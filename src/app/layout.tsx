@@ -7,6 +7,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Meal Mate AI",
   description: "Meal Mate AI is a meal planning app that uses AI to help you plan your meals.",
+  icons: {
+    icon: "@/app/assets/favicon.ico",
+  }
 };
 
 export default function RootLayout({
