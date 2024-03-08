@@ -55,28 +55,5 @@ export class MealNode implements IMealNode {
     this.prevMeal = null;
     this.nextMeal = null;
   }
-
-  /**
-   * Updates the image URL of the meal.
-   * @param {string} imageURL - The new image URL.
-   */
-  updateImageURL(imageURL: string) {
-    this.imageURL = imageURL;
-  }
-
-  /**
-   * Updates the name of the meal.
-   * @param {string} name - The new name.
-   */
-  updateName(name: string) {
-    this.name = name;
-  }
-
-  /**
-   * Updates the recipe of the meal.
-   * @param {IRecipe} recipe - The new recipe.
-   */
-  updateRecipe(recipe: IRecipe) {
-    this.recipe = recipe;
-  }
+  
 }

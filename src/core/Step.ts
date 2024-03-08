@@ -16,12 +16,4 @@ export class Step implements IStep {
   constructor(description: string) {
     this.description = description;
   }
-
-  /**
-   * Updates the description of the step.
-   * @param {string} description - The new description.
-   */
-  updateDescription(description: string) {
-    this.description = description;
-  }
 }

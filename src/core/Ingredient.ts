@@ -32,20 +32,4 @@ export class Ingredient implements IIngredient {
     this.amount = amount;
     this.unit = unit;
   }
-
-  /**
-   * Updates the amount of the ingredient.
-   * @param {number} amount - The new amount.
-   */
-  updateAmount(amount: number) {
-    this.amount = amount;
-  }
-
-  /**
-   * Updates the unit of measurement for the ingredient.
-   * @param {string} unit - The new unit.
-   */
-  updateUnit(unit: string) {
-    this.unit = unit;
-  }
 }

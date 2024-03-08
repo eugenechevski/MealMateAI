@@ -55,15 +55,6 @@ export class DayNode implements IDayNode {
   }
 
   /**
-   * Gets a meal node by its ID.
-   * @param {string} id - The ID of the meal node.
-   * @returns {IMealNode} The meal node.
-   */
-  getMeal(id: string) {
-    return this.meals[id];
-  }
-
-  /**
    * Adds a meal node to the day.
    * @param {IMealNode} meal - The meal node to add.
    */
@@ -91,5 +82,42 @@ export class DayNode implements IDayNode {
       this.firstMeal = meal.nextMeal;
     }
     delete this.meals[id];
+  }
+
+  /**
+   * Swaps two meal nodes in the day by their IDs.
+   * @param {string} id1 - The ID of the first meal node.
+   * @param {string} id2 - The ID of the second meal node.
+   */
+  swapMeals(id1: string, id2: string) {
+    const meal1 = this.meals[id1];
+    const meal2 = this.meals[id2];
+
+    if (!meal1 || !meal2) return;
+
+    const tempPrevMeal = meal1.prevMeal;
+    const tempNextMeal = meal1.nextMeal;
+    meal1.prevMeal = meal2.prevMeal;
+    meal1.nextMeal = meal2.nextMeal;
+    meal2.prevMeal = tempPrevMeal;
+    meal2.nextMeal = tempNextMeal;
+
+    if (meal1.prevMeal) {
+      meal1.prevMeal.nextMeal = meal1;
+    }
+    if (meal1.nextMeal) {
+      meal1.nextMeal.prevMeal = meal1;
+    }
+    if (meal2.prevMeal) {
+      meal2.prevMeal.nextMeal = meal2;
+    }
+    if (meal2.nextMeal) {
+      meal2.nextMeal.prevMeal = meal2;
+    }
+    if (this.firstMeal === meal1) {
+      this.firstMeal = meal2;
+    } else if (this.firstMeal === meal2) {
+      this.firstMeal = meal1;
+    }
   }
 }
