@@ -36,6 +36,12 @@ export class DayNode implements IDayNode {
   firstMeal: IMealNode | null;
 
   /**
+   * Pointer to the last meal node in the day.
+   * @type {IMealNode | null}
+   */
+  lastMeal: IMealNode | null;
+
+  /**
    * Map of all meal nodes in the day.
    * @type {{ [id: string]: IMealNode }}
    */
@@ -51,6 +57,7 @@ export class DayNode implements IDayNode {
     this.prevDay = null;
     this.nextDay = null;
     this.firstMeal = null;
+    this.lastMeal = null;
     this.meals = {};
   }
 
@@ -60,9 +67,17 @@ export class DayNode implements IDayNode {
    */
   addMeal(meal: IMealNode) {
     this.meals[meal.id] = meal;
+
     if (!this.firstMeal) {
       this.firstMeal = meal;
     }
+
+    if (this.lastMeal) {
+      this.lastMeal.nextMeal = meal;
+      meal.prevMeal = this.lastMeal;
+    }
+
+    this.lastMeal = meal;
   }
 
   /**
@@ -71,16 +86,25 @@ export class DayNode implements IDayNode {
    */
   removeMeal(id: string) {
     const meal = this.meals[id];
+
     if (!meal) return;
+
     if (meal.prevMeal) {
       meal.prevMeal.nextMeal = meal.nextMeal;
     }
+
     if (meal.nextMeal) {
       meal.nextMeal.prevMeal = meal.prevMeal;
     }
+
     if (this.firstMeal === meal) {
       this.firstMeal = meal.nextMeal;
     }
+
+    if (this.lastMeal === meal) {
+      this.lastMeal = meal.prevMeal;
+    }
+
     delete this.meals[id];
   }
 
@@ -95,29 +119,69 @@ export class DayNode implements IDayNode {
 
     if (!meal1 || !meal2) return;
 
-    const tempPrevMeal = meal1.prevMeal;
-    const tempNextMeal = meal1.nextMeal;
-    meal1.prevMeal = meal2.prevMeal;
-    meal1.nextMeal = meal2.nextMeal;
-    meal2.prevMeal = tempPrevMeal;
-    meal2.nextMeal = tempNextMeal;
+    // If the meal nodes are adjacent, then we can simply swap the pointers
+    // without having to update the adjacent nodes
+    if (meal1.nextMeal?.id === meal2.id) {
+      meal1.nextMeal = meal2.nextMeal;
+      meal2.prevMeal = meal1.prevMeal;
+      meal1.prevMeal = meal2;
+      meal2.nextMeal = meal1;
+    } else if (meal2.nextMeal?.id === meal1.id) {
+      meal2.nextMeal = meal1.nextMeal;
+      meal1.prevMeal = meal2.prevMeal;
+      meal2.prevMeal = meal1;
+      meal1.nextMeal = meal2;
+    } else {
+      // Perform the swap
+      const tempPrevMeal = meal1.prevMeal;
+      const tempNextMeal = meal1.nextMeal;
+      meal1.prevMeal = meal2.prevMeal;
+      meal1.nextMeal = meal2.nextMeal;
+      meal2.prevMeal = tempPrevMeal;
+      meal2.nextMeal = tempNextMeal;
+  
+      // Update the pointers of the adjacent nodes
+  
+      if (meal1.prevMeal) {
+        meal1.prevMeal.nextMeal = meal1;
+      }
+  
+      if (meal1.nextMeal) {
+        meal1.nextMeal.prevMeal = meal1;
+      }
+  
+      if (meal2.prevMeal) {
+        meal2.prevMeal.nextMeal = meal2;
+      }
+  
+      if (meal2.nextMeal) {
+        meal2.nextMeal.prevMeal = meal2;
+      }
+    }
 
-    if (meal1.prevMeal) {
-      meal1.prevMeal.nextMeal = meal1;
-    }
-    if (meal1.nextMeal) {
-      meal1.nextMeal.prevMeal = meal1;
-    }
-    if (meal2.prevMeal) {
-      meal2.prevMeal.nextMeal = meal2;
-    }
-    if (meal2.nextMeal) {
-      meal2.nextMeal.prevMeal = meal2;
-    }
-    if (this.firstMeal === meal1) {
+    // Update the first and last meal pointers if necessary
+
+    if (this.firstMeal?.id === meal1.id) {
       this.firstMeal = meal2;
-    } else if (this.firstMeal === meal2) {
+    } else if (this.firstMeal?.id === meal2.id) {
       this.firstMeal = meal1;
     }
+
+    if (this.lastMeal?.id === meal1.id) {
+      this.lastMeal = meal2;
+    } else if (this.lastMeal?.id === meal2.id) {
+      this.lastMeal = meal1;
+    }
+  }
+
+  printLinkedList() {
+    let printString = "";
+    let meal = this.firstMeal;
+    while (meal) {
+      printString += meal.id.slice(0, 3) + (meal.nextMeal !== null ? " -> " : "");
+      meal = meal.nextMeal;
+    }
+
+    console.log(printString);
   }
 }

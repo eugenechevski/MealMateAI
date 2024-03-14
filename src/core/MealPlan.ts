@@ -8,6 +8,7 @@ export class MealPlan implements IMealPlan {
    * @type {IDayNode | null}
    */
   firstDay: IDayNode | null;
+  lastDay: IDayNode | null;
 
   /**
    * Map of all day nodes in the meal plan.
@@ -20,6 +21,7 @@ export class MealPlan implements IMealPlan {
    */
   constructor() {
     this.firstDay = null;
+    this.lastDay = null;
     this.days = {};
   }
 
@@ -29,9 +31,17 @@ export class MealPlan implements IMealPlan {
    */
   addDay(day: IDayNode) {
     this.days[day.id] = day;
+
     if (!this.firstDay) {
       this.firstDay = day;
     }
+
+    if (this.lastDay) {
+      this.lastDay.nextDay = day;
+      day.prevDay = this.lastDay;
+    }
+
+    this.lastDay = day;
   }
 
   /**
@@ -40,16 +50,25 @@ export class MealPlan implements IMealPlan {
    */
   removeDay(id: string) {
     const day = this.days[id];
+
     if (!day) return;
+
     if (day.prevDay) {
       day.prevDay.nextDay = day.nextDay;
     }
+
     if (day.nextDay) {
       day.nextDay.prevDay = day.prevDay;
     }
+
     if (this.firstDay === day) {
       this.firstDay = day.nextDay;
     }
+
+    if (this.lastDay === day) {
+      this.lastDay = day.prevDay;
+    }
+
     delete this.days[id];
   }
 
@@ -64,33 +83,69 @@ export class MealPlan implements IMealPlan {
 
     if (!day1 || !day2) return;
 
-    const prevDay1 = day1.prevDay;
-    const nextDay1 = day1.nextDay;
-    const prevDay2 = day2.prevDay;
-    const nextDay2 = day2.nextDay;
+    // Swap nodes
+    // Make sure they are not the same node
+    // Also check whether they are adjacent
+    if (day1.nextDay?.id === day2.id) {
+      day1.nextDay = day2.nextDay;
+      day2.prevDay = day1.prevDay;
+      day1.prevDay = day2;
+      day2.nextDay = day1;
+    } else if (day2.nextDay?.id === day1.id) {
+      day2.nextDay = day1.nextDay;
+      day1.prevDay = day2.prevDay;
+      day2.prevDay = day1;
+      day1.nextDay = day2;
+    } else {
+      const tempPrev = day1.prevDay;
+      const tempNext = day1.nextDay;
+      day1.nextDay = day2.nextDay;
+      day2.nextDay = tempNext;
+      day1.prevDay = day2.prevDay;
+      day2.prevDay = tempPrev;
 
-    if (prevDay1) {
-      prevDay1.nextDay = day2;
-    }
-    if (nextDay1) {
-      nextDay1.prevDay = day2;
-    }
-    if (prevDay2) {
-      prevDay2.nextDay = day1;
-    }
-    if (nextDay2) {
-      nextDay2.prevDay = day1;
-    }
+      // Update the pointers of the adjacent nodes
+      
+      if (day1.nextDay) {
+        day1.nextDay.prevDay = day1;
+      }
 
-    day1.prevDay = prevDay2;
-    day1.nextDay = nextDay2;
-    day2.prevDay = prevDay1;
-    day2.nextDay = nextDay1;
+      if (day1.prevDay) {
+        day1.prevDay.nextDay = day1;
+      }
 
-    if (this.firstDay === day1) {
+      if (day2.nextDay) {
+        day2.nextDay.prevDay = day2;
+      }
+
+      if (day2.prevDay) {
+        day2.prevDay.nextDay = day2;
+      }
+    }
+    
+    // Update the first pointer
+    if (this.firstDay?.id === day1.id) {
       this.firstDay = day2;
-    } else if (this.firstDay === day2) {
+    } else if (this.firstDay?.id === day2.id) {
       this.firstDay = day1;
     }
+
+    // Update the last pointer
+    if (this.lastDay?.id === day1.id) {
+      this.lastDay = day2;
+    } else if (this.lastDay?.id === day2.id) {
+      this.lastDay = day1;
+    }
+  }
+
+  printLinkedList() {
+    let curr = this.firstDay;
+    let printString = "";
+    while (curr) {
+      printString += curr.id.slice(0, 3) + (curr.nextDay !== null ? " -> " : "");
+      curr = curr.nextDay;
+    }
+
+    console.log(printString);
   }
 }
