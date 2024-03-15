@@ -1,10 +1,10 @@
 import { v4 as uuidv4 } from "uuid";
+import { MealNode } from "@/core";
 
 /**
- * Represents a day node in the meal plan.
- * @implements {IDayNode}
+ * Represents a day node in the meal plan
  */
-export class DayNode implements IDayNode {
+export class DayNode {
   /**
    * The unique identifier for the day node.
    * @type {string}
@@ -12,48 +12,40 @@ export class DayNode implements IDayNode {
   id: string;
 
   /**
-   * The day count representing the day of the week (0 = Sunday, 1 = Monday, etc.).
-   * @type {0 | 1 | 2 | 3 | 4 | 5 | 6}
-   */
-  dayCount: 0 | 1 | 2 | 3 | 4 | 5 | 6;
-
-  /**
    * Pointer to the previous day node.
-   * @type {IDayNode | null}
+   * @type {DayNode | null}
    */
-  prevDay: IDayNode | null;
+  prevDay: DayNode | null;
 
   /**
    * Pointer to the next day node.
-   * @type {IDayNode | null}
+   * @type {DayNode | null}
    */
-  nextDay: IDayNode | null;
+  nextDay: DayNode | null;
 
   /**
    * Pointer to the first meal node in the day.
-   * @type {IMealNode | null}
+   * @type {MealNode | null}
    */
-  firstMeal: IMealNode | null;
+  firstMeal: MealNode | null;
 
   /**
    * Pointer to the last meal node in the day.
-   * @type {IMealNode | null}
+   * @type {MealNode | null}
    */
-  lastMeal: IMealNode | null;
+  lastMeal: MealNode | null;
 
   /**
    * Map of all meal nodes in the day.
-   * @type {{ [id: string]: IMealNode }}
+   * @type {{ [id: string]: MealNode }}
    */
-  meals: { [id: string]: IMealNode };
+  meals: { [id: string]: MealNode };
 
   /**
    * Creates a new day node.
-   * @param {0 | 1 | 2 | 3 | 4 | 5 | 6} dayCount - The day count representing the day of the week.
    */
-  constructor(dayCount: 0 | 1 | 2 | 3 | 4 | 5 | 6) {
+  constructor() {
     this.id = uuidv4();
-    this.dayCount = dayCount;
     this.prevDay = null;
     this.nextDay = null;
     this.firstMeal = null;
@@ -63,9 +55,9 @@ export class DayNode implements IDayNode {
 
   /**
    * Adds a meal node to the day.
-   * @param {IMealNode} meal - The meal node to add.
+   * @param {MealNode} meal - The meal node to add.
    */
-  addMeal(meal: IMealNode) {
+  addMeal(meal: MealNode) {
     this.meals[meal.id] = meal;
 
     if (!this.firstMeal) {
@@ -139,21 +131,21 @@ export class DayNode implements IDayNode {
       meal1.nextMeal = meal2.nextMeal;
       meal2.prevMeal = tempPrevMeal;
       meal2.nextMeal = tempNextMeal;
-  
+
       // Update the pointers of the adjacent nodes
-  
+
       if (meal1.prevMeal) {
         meal1.prevMeal.nextMeal = meal1;
       }
-  
+
       if (meal1.nextMeal) {
         meal1.nextMeal.prevMeal = meal1;
       }
-  
+
       if (meal2.prevMeal) {
         meal2.prevMeal.nextMeal = meal2;
       }
-  
+
       if (meal2.nextMeal) {
         meal2.nextMeal.prevMeal = meal2;
       }
@@ -178,7 +170,8 @@ export class DayNode implements IDayNode {
     let printString = "";
     let meal = this.firstMeal;
     while (meal) {
-      printString += meal.id.slice(0, 3) + (meal.nextMeal !== null ? " -> " : "");
+      printString +=
+        meal.id.slice(0, 3) + (meal.nextMeal !== null ? " -> " : "");
       meal = meal.nextMeal;
     }
 

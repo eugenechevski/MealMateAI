@@ -1,26 +1,27 @@
+import { Ingredient, Step } from "@/core";
+
 /**
  * Represents a recipe.
- * @implements {IRecipe}
  */
-export class Recipe implements IRecipe {
+export class Recipe {
   /**
    * The list of ingredients in the recipe.
-   * @type {IIngredient[]}
+   * @type {Ingredient[]}
    */
-  ingredients: IIngredient[];
+  ingredients: Ingredient[];
 
   /**
    * The list of steps in the recipe.
-   * @type {IStep[]}
+   * @type {Step[]}
    */
-  steps: IStep[];
+  steps: Step[];
 
   /**
    * Creates a new recipe.
-   * @param {IIngredient[]} ingredients - The list of ingredients.
-   * @param {IStep[]} steps - The list of steps.
+   * @param {Ingredient[]} ingredients - The list of ingredients.
+   * @param {Step[]} steps - The list of steps.
    */
-  constructor(ingredients: IIngredient[], steps: IStep[]) {
+  constructor(ingredients: Ingredient[], steps: Step[]) {
     this.ingredients = ingredients;
     this.steps = steps;
   }

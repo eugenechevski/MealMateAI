@@ -1,8 +1,7 @@
 /**
  * Represents an ingredient.
- * @implements {IIngredient}
  */
-export class Ingredient implements IIngredient {
+export class Ingredient {
   /**
    * The name of the ingredient.
    * @type {string}

@@ -4,6 +4,7 @@
  * @description The file exports all core classes used in the application.
  */
 
+export * from './MainUser';
 export * from './MealPlan';
 export * from './DayNode';
 export * from './MealNode';

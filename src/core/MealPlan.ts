@@ -1,20 +1,21 @@
+import { DayNode } from "@/core";
+
 /**
  * Represents a meal plan.
- * @implements {IMealPlan}
  */
-export class MealPlan implements IMealPlan {
+export class MealPlan {
   /**
    * Pointer to the first day node in the meal plan.
-   * @type {IDayNode | null}
+   * @type {DayNode | null}
    */
-  firstDay: IDayNode | null;
-  lastDay: IDayNode | null;
+  firstDay: DayNode | null;
+  lastDay: DayNode | null;
 
   /**
    * Map of all day nodes in the meal plan.
-   * @type {{ [id: string]: IDayNode }}
+   * @type {{ [id: string]: DayNode }}
    */
-  days: { [id: string]: IDayNode };
+  days: { [id: string]: DayNode };
 
   /**
    * Creates a new meal plan.
@@ -27,9 +28,9 @@ export class MealPlan implements IMealPlan {
 
   /**
    * Adds a day node to the meal plan.
-   * @param {IDayNode} day - The day node to add.
+   * @param {DayNode} day - The day node to add.
    */
-  addDay(day: IDayNode) {
+  addDay(day: DayNode) {
     this.days[day.id] = day;
 
     if (!this.firstDay) {
@@ -73,6 +74,23 @@ export class MealPlan implements IMealPlan {
   }
 
   /**
+   * Appends a new day node to the meal plan.
+   */
+  appendNewDay() {
+    const day = new DayNode();
+    this.addDay(day);
+  }
+
+  /**
+   * Pops the last day node from the meal plan.
+   */
+  popLastDay() {
+    if (this.lastDay) {
+      this.removeDay(this.lastDay.id);
+    }
+  }
+
+  /**
    * Swaps two day nodes in the meal plan by their IDs.
    * @param {string} id1 - The ID of the first day node.
    * @param {string} id2 - The ID of the second day node.
@@ -105,7 +123,7 @@ export class MealPlan implements IMealPlan {
       day2.prevDay = tempPrev;
 
       // Update the pointers of the adjacent nodes
-      
+
       if (day1.nextDay) {
         day1.nextDay.prevDay = day1;
       }
@@ -122,7 +140,7 @@ export class MealPlan implements IMealPlan {
         day2.prevDay.nextDay = day2;
       }
     }
-    
+
     // Update the first pointer
     if (this.firstDay?.id === day1.id) {
       this.firstDay = day2;
@@ -142,7 +160,8 @@ export class MealPlan implements IMealPlan {
     let curr = this.firstDay;
     let printString = "";
     while (curr) {
-      printString += curr.id.slice(0, 3) + (curr.nextDay !== null ? " -> " : "");
+      printString +=
+        curr.id.slice(0, 3) + (curr.nextDay !== null ? " -> " : "");
       curr = curr.nextDay;
     }
 

@@ -1,8 +1,7 @@
 /**
  * Represents a step in a recipe.
- * @implements {IStep}
  */
-export class Step implements IStep {
+export class Step {
   /**
    * The description of the step.
    * @type {string}

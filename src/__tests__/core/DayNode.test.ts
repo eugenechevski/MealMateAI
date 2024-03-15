@@ -66,16 +66,15 @@ describe("DayNode", () => {
   });
 
   it("should create a new day node", () => {
-    const day = new DayNode(0);
+    const day = new DayNode();
     expect(day.id).toBeTruthy();
-    expect(day.dayCount).toBe(0);
     expect(day.prevDay).toBeNull();
     expect(day.nextDay).toBeNull();
     expect(day.firstMeal).toBeNull();
   });
 
   it("should add a meal node to the day node", () => {
-    const day = new DayNode(0);
+    const day = new DayNode();
     
     expect(day.firstMeal).toBeNull();
     expect(day.lastMeal).toBeNull();
@@ -87,7 +86,7 @@ describe("DayNode", () => {
   });
 
   it("should remove a meal node from the day node", () => {
-    const day = new DayNode(0);
+    const day = new DayNode();
     
     day.addMeal(meal1);
 
@@ -101,7 +100,7 @@ describe("DayNode", () => {
   });
 
   it("should remove a meal node from the day node and update pointers", () => {
-    const day = new DayNode(0);
+    const day = new DayNode();
     
     day.addMeal(meal1);
     day.addMeal(meal2);
@@ -116,7 +115,7 @@ describe("DayNode", () => {
   });
 
   it("should swap two adjacent meal nodes in the day node", () => {
-    const day = new DayNode(0);
+    const day = new DayNode();
     
     day.addMeal(meal1);
     day.addMeal(meal2);
@@ -139,7 +138,7 @@ describe("DayNode", () => {
   });
 
   it("should swap two non-adjacent meal nodes in the day node", () => {
-    const day = new DayNode(0);
+    const day = new DayNode();
     
     day.addMeal(meal1);
     day.addMeal(meal2);

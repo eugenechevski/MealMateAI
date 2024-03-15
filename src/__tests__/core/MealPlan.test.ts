@@ -9,7 +9,7 @@ describe("MealPlan", () => {
 
   it("should add a day node to the meal plan", () => {
     const mealPlan = new MealPlan();
-    const day = new DayNode(0);
+    const day = new DayNode();
 
     mealPlan.addDay(day);
 
@@ -20,7 +20,7 @@ describe("MealPlan", () => {
 
   it("should remove a day node from the meal plan", () => {
     const mealPlan = new MealPlan();
-    const day = new DayNode(0);
+    const day = new DayNode();
 
     mealPlan.addDay(day);
     expect(mealPlan.days[day.id]).toBe(day);
@@ -36,8 +36,8 @@ describe("MealPlan", () => {
 
   it("should swap two adjacent day nodes in the meal plan", () => {
     const mealPlan = new MealPlan();
-    const day1 = new DayNode(0);
-    const day2 = new DayNode(1);
+    const day1 = new DayNode();
+    const day2 = new DayNode();
 
     mealPlan.addDay(day1);
     mealPlan.addDay(day2);
@@ -61,9 +61,9 @@ describe("MealPlan", () => {
 
   it("should swap two non-adjacent day nodes in the meal plan", () => {
     const mealPlan = new MealPlan();
-    const day1 = new DayNode(0);
-    const day2 = new DayNode(1);
-    const day3 = new DayNode(2);
+    const day1 = new DayNode();
+    const day2 = new DayNode();
+    const day3 = new DayNode();
 
     mealPlan.addDay(day1);
     mealPlan.addDay(day2);
