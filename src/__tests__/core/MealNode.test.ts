@@ -4,6 +4,7 @@ describe("MealNode", () => {
   it("should create a new meal node", () => {
     const recipe = new Recipe(
       "Tomato Spaghetti",
+      "Italian",
       "spaghetti.jpg",
       [
         new Ingredient("Spaghetti pasta", 1, "box"),

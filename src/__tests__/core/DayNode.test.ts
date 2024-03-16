@@ -10,6 +10,7 @@ describe("DayNode", () => {
     meal1 = new MealNode(
       new Recipe(
         "Tomato Spaghetti",
+        "Italian",
         "spaghetti.jpg",
         [
           new Ingredient("Spaghetti pasta", 1, "box"),
@@ -28,6 +29,7 @@ describe("DayNode", () => {
     meal2 = new MealNode(
       new Recipe(
         "Pepperoni Pizza",
+        "Italian",
         "pizza.jpg",
         [
           new Ingredient("Pizza dough", 1, "box"),
@@ -48,6 +50,7 @@ describe("DayNode", () => {
     meal3 = new MealNode(
       new Recipe(
         "Beef Tacos",
+        "Mexican",
         "tacos.jpg",
         [
           new Ingredient("Taco Shells", 1, "box"),

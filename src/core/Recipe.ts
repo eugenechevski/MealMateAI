@@ -11,6 +11,12 @@ export class Recipe {
   name: string;
 
   /**
+   * The type of cuisine the meal is associated with.
+   * @type {string}
+   */
+  cuisine: string;
+
+  /**
    * The URL of the image associated with the meal.
    * @type {string}
    */
@@ -33,8 +39,9 @@ export class Recipe {
    * @param {Ingredient[]} ingredients - The list of ingredients.
    * @param {Step[]} steps - The list of steps.
    */
-  constructor(name: string, imageURL: string, ingredients: Ingredient[], steps: Step[]) {
+  constructor(name: string, cuisine: string, imageURL: string, ingredients: Ingredient[], steps: Step[]) {
     this.name = name;
+    this.cuisine = cuisine;
     this.imageURL = imageURL;
     this.ingredients = ingredients;
     this.steps = steps;
