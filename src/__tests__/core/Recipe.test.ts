@@ -3,6 +3,7 @@ import { Recipe } from "@/core";
 describe("Recipe", () => {
   it("should create a new recipe", () => {
     const recipe = new Recipe(
+      "Spaghetti with Tomato Sauce",
       [
         { name: "Spaghetti pasta", amount: 1, unit: "box" },
         { name: "Tomato Sauce", amount: 1, unit: "jar" },

@@ -9,8 +9,8 @@ describe("DayNode", () => {
   beforeEach(() => {
     meal1 = new MealNode(
       "spaghetti.jpg",
-      "Tomato Spaghetti",
       new Recipe(
+        "Tomato Spaghetti",
         [
           new Ingredient("Spaghetti pasta", 1, "box"),
           new Ingredient("Tomato Sauce", 1, "jar"),
@@ -24,11 +24,11 @@ describe("DayNode", () => {
         ]
       )
     );
-  
+
     meal2 = new MealNode(
       "pizza.jpg",
-      "Pepperoni Pizza",
       new Recipe(
+        "Pepperoni Pizza",
         [
           new Ingredient("Pizza dough", 1, "box"),
           new Ingredient("Tomato Sauce", 1, "jar"),
@@ -44,11 +44,11 @@ describe("DayNode", () => {
         ]
       )
     );
-  
+
     meal3 = new MealNode(
       "tacos.jpg",
-      "Beef Tacos",
       new Recipe(
+        "Beef Tacos",
         [
           new Ingredient("Taco Shells", 1, "box"),
           new Ingredient("Ground Beef", 1, "lb"),
@@ -75,7 +75,7 @@ describe("DayNode", () => {
 
   it("should add a meal node to the day node", () => {
     const day = new DayNode();
-    
+
     expect(day.firstMeal).toBeNull();
     expect(day.lastMeal).toBeNull();
 
@@ -87,7 +87,7 @@ describe("DayNode", () => {
 
   it("should remove a meal node from the day node", () => {
     const day = new DayNode();
-    
+
     day.addMeal(meal1);
 
     expect(day.firstMeal).toBe(meal1);
@@ -101,7 +101,7 @@ describe("DayNode", () => {
 
   it("should remove a meal node from the day node and update pointers", () => {
     const day = new DayNode();
-    
+
     day.addMeal(meal1);
     day.addMeal(meal2);
 
@@ -116,7 +116,7 @@ describe("DayNode", () => {
 
   it("should swap two adjacent meal nodes in the day node", () => {
     const day = new DayNode();
-    
+
     day.addMeal(meal1);
     day.addMeal(meal2);
 
@@ -139,7 +139,7 @@ describe("DayNode", () => {
 
   it("should swap two non-adjacent meal nodes in the day node", () => {
     const day = new DayNode();
-    
+
     day.addMeal(meal1);
     day.addMeal(meal2);
     day.addMeal(meal3);

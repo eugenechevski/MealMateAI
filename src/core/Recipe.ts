@@ -5,6 +5,12 @@ import { Ingredient, Step } from "@/core";
  */
 export class Recipe {
   /**
+   * The name of the meal.
+   * @type {string}
+   */
+  name: string;
+
+  /**
    * The list of ingredients in the recipe.
    * @type {Ingredient[]}
    */
@@ -21,7 +27,8 @@ export class Recipe {
    * @param {Ingredient[]} ingredients - The list of ingredients.
    * @param {Step[]} steps - The list of steps.
    */
-  constructor(ingredients: Ingredient[], steps: Step[]) {
+  constructor(name: string, ingredients: Ingredient[], steps: Step[]) {
+    this.name = name;
     this.ingredients = ingredients;
     this.steps = steps;
   }

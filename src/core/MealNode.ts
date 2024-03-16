@@ -18,12 +18,6 @@ export class MealNode {
   imageURL: string;
 
   /**
-   * The name of the meal.
-   * @type {string}
-   */
-  name: string;
-
-  /**
    * The recipe associated with the meal.
    * @type {Recipe}
    */
@@ -47,10 +41,9 @@ export class MealNode {
    * @param {string} name - The name of the meal.
    * @param {Recipe} recipe - The recipe associated with the meal.
    */
-  constructor(imageURL: string, name: string, recipe: Recipe) {
+  constructor(imageURL: string, recipe: Recipe) {
     this.id = uuidv4();
     this.imageURL = imageURL;
-    this.name = name;
     this.recipe = recipe;
     this.prevMeal = null;
     this.nextMeal = null;
