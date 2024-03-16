@@ -4,6 +4,7 @@ describe("MealNode", () => {
   it("should create a new meal node", () => {
     const recipe = new Recipe(
       "Tomato Spaghetti",
+      "spaghetti.jpg",
       [
         new Ingredient("Spaghetti pasta", 1, "box"),
         new Ingredient("Tomato Sauce", 1, "jar"),
@@ -16,10 +17,10 @@ describe("MealNode", () => {
         new Step("Add sauce."),
       ]
     );
-    const meal = new MealNode("spaghetti.jpg", recipe);
+    const meal = new MealNode(recipe);
 
     expect(meal.id).toBeTruthy();
-    expect(meal.imageURL).toBe("spaghetti.jpg");
+    expect(meal.recipe.imageURL).toBe("spaghetti.jpg");
     expect(meal.recipe.name).toBe("Tomato Spaghetti");
     expect(meal.recipe).toBe(recipe);
     expect(meal.prevMeal).toBeNull();

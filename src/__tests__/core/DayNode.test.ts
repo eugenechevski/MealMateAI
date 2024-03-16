@@ -8,9 +8,9 @@ describe("DayNode", () => {
 
   beforeEach(() => {
     meal1 = new MealNode(
-      "spaghetti.jpg",
       new Recipe(
         "Tomato Spaghetti",
+        "spaghetti.jpg",
         [
           new Ingredient("Spaghetti pasta", 1, "box"),
           new Ingredient("Tomato Sauce", 1, "jar"),
@@ -26,9 +26,9 @@ describe("DayNode", () => {
     );
 
     meal2 = new MealNode(
-      "pizza.jpg",
       new Recipe(
         "Pepperoni Pizza",
+        "pizza.jpg",
         [
           new Ingredient("Pizza dough", 1, "box"),
           new Ingredient("Tomato Sauce", 1, "jar"),
@@ -46,9 +46,9 @@ describe("DayNode", () => {
     );
 
     meal3 = new MealNode(
-      "tacos.jpg",
       new Recipe(
         "Beef Tacos",
+        "tacos.jpg",
         [
           new Ingredient("Taco Shells", 1, "box"),
           new Ingredient("Ground Beef", 1, "lb"),
