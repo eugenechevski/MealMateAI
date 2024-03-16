@@ -1,0 +1,172 @@
+{
+  "recipes": [
+    {
+      "name": "Spaghetti Aglio e Olio",
+      "cuisine": "Italian",
+      "imageURL": "",
+      "ingredients": [
+        { "name": "Spaghetti", "amount": 1, "unit": "lb" },
+        { "name": "Garlic", "amount": 4, "unit": "cloves" },
+        { "name": "Olive Oil", "amount": 0.25, "unit": "cup" },
+        { "name": "Red Pepper Flakes", "amount": 1, "unit": "teaspoon" },
+        { "name": "Parsley", "amount": 0.25, "unit": "cup" }
+      ],
+      "steps": [
+        "Boil pasta",
+        "Sauté garlic",
+        "Combine pasta with garlic oil",
+        "Garnish with parsley"
+      ]
+    },
+    {
+      "name": "Caprese Salad",
+      "cuisine": "Italian",
+      "imageURL": "",
+      "ingredients": [
+        { "name": "Tomatoes", "amount": 3, "unit": "medium" },
+        { "name": "Mozzarella Cheese", "amount": 8, "unit": "ounces" },
+        { "name": "Basil Leaves", "amount": 1, "unit": "handful" },
+        { "name": "Olive Oil", "amount": 2, "unit": "tablespoons" },
+        { "name": "Balsamic Glaze", "amount": 1, "unit": "tablespoon" }
+      ],
+      "steps": [
+        "Slice tomatoes and mozzarella",
+        "Layer with basil",
+        "Drizzle oil and glaze"
+      ]
+    },
+    {
+      "name": "Pasta Carbonara",
+      "cuisine": "Italian",
+      "imageURL": "",
+      "ingredients": [
+        { "name": "Pasta", "amount": 1, "unit": "lb" },
+        { "name": "Eggs", "amount": 4, "unit": "" },
+        { "name": "Parmesan Cheese", "amount": 1, "unit": "cup" },
+        { "name": "Pancetta", "amount": 6, "unit": "ounces" },
+        { "name": "Garlic", "amount": 2, "unit": "cloves" }
+      ],
+      "steps": [
+        "Cook pasta",
+        "Fry pancetta with garlic",
+        "Mix eggs and cheese",
+        "Combine all with pasta"
+      ]
+    },
+    {
+      "name": "Bruschetta",
+      "cuisine": "Italian",
+      "imageURL": "",
+      "ingredients": [
+        { "name": "Baguette", "amount": 1, "unit": "" },
+        { "name": "Tomatoes", "amount": 3, "unit": "medium" },
+        { "name": "Garlic", "amount": 2, "unit": "cloves" },
+        { "name": "Basil", "amount": 1, "unit": "handful" },
+        { "name": "Olive Oil", "amount": 0.25, "unit": "cup" }
+      ],
+      "steps": [
+        "Toast baguette slices",
+        "Mix tomatoes with basil and garlic",
+        "Top baguette with tomato mixture"
+      ]
+    },
+    {
+      "name": "Frittata",
+      "cuisine": "Italian",
+      "imageURL": "",
+      "ingredients": [
+        { "name": "Eggs", "amount": 6, "unit": "" },
+        { "name": "Parmesan Cheese", "amount": 0.5, "unit": "cup" },
+        { "name": "Vegetables", "amount": 2, "unit": "cups" },
+        { "name": "Olive Oil", "amount": 2, "unit": "tablespoons" }
+      ],
+      "steps": [
+        "Beat eggs with cheese",
+        "Sauté vegetables",
+        "Combine eggs with vegetables, cook until set"
+      ]
+    },
+    {
+      "name": "Minestrone Soup",
+      "cuisine": "Italian",
+      "imageURL": "",
+      "ingredients": [
+        { "name": "Vegetable Broth", "amount": 6, "unit": "cups" },
+        { "name": "Canned Tomatoes", "amount": 1, "unit": "can" },
+        { "name": "Mixed Vegetables", "amount": 3, "unit": "cups" },
+        { "name": "Pasta", "amount": 1, "unit": "cup" },
+        { "name": "Beans", "amount": 1, "unit": "can" }
+      ],
+      "steps": [
+        "Simmer broth with tomatoes",
+        "Add vegetables and pasta",
+        "Stir in beans until heated through"
+      ]
+    },
+    {
+      "name": "Tiramisu",
+      "cuisine": "Italian",
+      "imageURL": "",
+      "ingredients": [
+        { "name": "Mascarpone Cheese", "amount": 1, "unit": "lb" },
+        { "name": "Espresso", "amount": 2, "unit": "cups" },
+        { "name": "Ladyfingers", "amount": 24, "unit": "" },
+        { "name": "Cocoa Powder", "amount": 0.25, "unit": "cup" }
+      ],
+      "steps": [
+        "Dip ladyfingers in espresso",
+        "Layer with mascarpone",
+        "Chill, then dust with cocoa"
+      ]
+    },
+    {
+      "name": "Risotto",
+      "cuisine": "Italian",
+      "imageURL": "",
+      "ingredients": [
+        { "name": "Arborio Rice", "amount": 1, "unit": "cup" },
+        { "name": "Chicken Stock", "amount": 4, "unit": "cups" },
+        { "name": "Onion", "amount": 1, "unit": "small" },
+        { "name": "White Wine", "amount": 0.5, "unit": "cup" },
+        { "name": "Parmesan Cheese", "amount": 0.5, "unit": "cup" }
+      ],
+      "steps": [
+        "Sauté onion",
+        "Toast rice, deglaze with wine",
+        "Add stock gradually, stir until creamy"
+      ]
+    },
+    {
+      "name": "Polenta",
+      "cuisine": "Italian",
+      "imageURL": "",
+      "ingredients": [
+        { "name": "Cornmeal", "amount": 1, "unit": "cup" },
+        { "name": "Water", "amount": 4, "unit": "cups" },
+        { "name": "Butter", "amount": 2, "unit": "tablespoons" },
+        { "name": "Parmesan Cheese", "amount": 0.5, "unit": "cup" }
+      ],
+      "steps": [
+        "Boil water",
+        "Whisk in cornmeal gradually",
+        "Cook until thickened, stir in butter and cheese"
+      ]
+    },
+    {
+      "name": "Pesto Pasta",
+      "cuisine": "Italian",
+      "imageURL": "",
+      "ingredients": [
+        { "name": "Pasta", "amount": 1, "unit": "lb" },
+        { "name": "Pesto Sauce", "amount": 1, "unit": "cup" },
+        { "name": "Parmesan Cheese", "amount": 0.25, "unit": "cup" },
+        { "name": "Pine Nuts", "amount": 0.25, "unit": "cup" }
+      ],
+      "steps": [
+        "Cook pasta",
+        "Mix pasta with pesto",
+        "Garnish with Parmesan and pine nuts"
+      ]
+    }
+  ]
+}
