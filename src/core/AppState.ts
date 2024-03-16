@@ -1,4 +1,9 @@
-import { MealPlan, MainUser, MealNode } from "@/core";
+/**
+ * The class stores the state of the application.
+ * It stores the user, the current meal plan, and the selection menu.
+ */
+
+import { MealPlan, MainUser, SelectionMenu } from "@/core";
 
 const MAX_MEAL_PLAN_DAYS = 7;
 const MAX_MEALS_PER_DAY = 5;
@@ -6,29 +11,11 @@ const MAX_MEALS_PER_DAY = 5;
 export class AppState {
   user: MainUser;
   currentMealPlan: MealPlan;
+  selectionMenu: SelectionMenu;
 
-  constructor(user: MainUser) {
+  constructor(user: MainUser, selectionMenu: SelectionMenu) {
     this.user = user;
     this.currentMealPlan = new MealPlan();
-  }
-
-  startNewMealPlan() {
-    this.currentMealPlan = new MealPlan();
-  }
-
-  startNewDay() {
-    this.currentMealPlan.appendNewDay();
-  }
-
-  endMealPlan() {}
-
-  endDayPlan() {}
-
-  addNewMeal(meal: MealNode) {
-    this.currentMealPlan.lastDay?.addMeal(meal);
-  }
-
-  getSelectionMenu() {
-
+    this.selectionMenu = selectionMenu;
   }
 }
