@@ -1,9 +1,13 @@
-import Image from "next/image";
+import { createClient } from "@/lib/supabase/server";
+import { cookies } from "next/headers";
 
-export default function Home() {
+export default async function Page() {
+  const cookieStore = cookies();
+  const supabase = createClient(cookieStore);
+
   return (
-    <main className="">
-      The project is in progress. Stay tuned.
-    </main>
+    <div>
+      The project is in progress.
+    </div>
   );
 }
