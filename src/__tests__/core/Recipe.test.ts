@@ -1,11 +1,11 @@
-import { Recipe } from "@/core";
+import { Recipe, MealImage } from "@/core";
 
 describe("Recipe", () => {
   it("should create a new recipe", () => {
     const recipe = new Recipe(
       "Spaghetti with Tomato Sauce",
       "Italian",
-      "spaggetti.jpg",
+      new MealImage("spaggetti", "spaggetti.jpg"),
       [
         { name: "Spaghetti pasta", amount: 1, unit: "box" },
         { name: "Tomato Sauce", amount: 1, unit: "jar" },

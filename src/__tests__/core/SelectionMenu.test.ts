@@ -1,4 +1,4 @@
-import { SelectionMenu, Recipe, Ingredient, Step } from "@/core";
+import { SelectionMenu, Recipe, Ingredient, Step, MealImage } from "@/core";
 
 describe("SelectionMenu", () => {
   let recipe1: Recipe;
@@ -7,7 +7,7 @@ describe("SelectionMenu", () => {
     recipe1 = new Recipe(
       "Hummus",
       "Middle Eastern",
-      "hummus.jpg",
+      new MealImage("hummus", "hummus.jpg"),
       [
         new Ingredient("chickpeas", 1, "can"),
         new Ingredient("tahini", 1, "cup"),
@@ -60,7 +60,7 @@ describe("SelectionMenu", () => {
     const updatedRecipe = new Recipe(
       "Hummus",
       "Middle Eastern",
-      "hummus.jpg",
+      new MealImage("hummus", "hummus.jpg"),
       [
         new Ingredient("chickpeas", 1, "can"),
         new Ingredient("tahini", 1, "cup"),

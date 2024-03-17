@@ -1,4 +1,4 @@
-import { Ingredient, Step } from "@/core";
+import { MealImage, Ingredient, Step } from "@/core";
 
 /**
  * Represents a recipe.
@@ -20,7 +20,7 @@ export class Recipe {
    * The URL of the image associated with the meal.
    * @type {string}
    */
-  imageURL: string;
+  image: MealImage;
 
   /**
    * The list of ingredients in the recipe.
@@ -39,10 +39,10 @@ export class Recipe {
    * @param {Ingredient[]} ingredients - The list of ingredients.
    * @param {Step[]} steps - The list of steps.
    */
-  constructor(name: string, cuisine: string, imageURL: string, ingredients: Ingredient[], steps: Step[]) {
+  constructor(name: string, cuisine: string, image: MealImage, ingredients: Ingredient[], steps: Step[]) {
     this.name = name;
     this.cuisine = cuisine;
-    this.imageURL = imageURL;
+    this.image = image;
     this.ingredients = ingredients;
     this.steps = steps;
   }

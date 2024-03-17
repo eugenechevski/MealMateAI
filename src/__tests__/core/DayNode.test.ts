@@ -1,4 +1,4 @@
-import { DayNode, MealNode, Recipe, Step, Ingredient } from "@/core";
+import { DayNode, MealNode, Recipe, Step, Ingredient, MealImage } from "@/core";
 
 describe("DayNode", () => {
   // Create new meal nodes.
@@ -11,7 +11,7 @@ describe("DayNode", () => {
       new Recipe(
         "Tomato Spaghetti",
         "Italian",
-        "spaghetti.jpg",
+        new MealImage("spaghetti", "spaghetti.jpg"),
         [
           new Ingredient("Spaghetti pasta", 1, "box"),
           new Ingredient("Tomato Sauce", 1, "jar"),
@@ -30,7 +30,7 @@ describe("DayNode", () => {
       new Recipe(
         "Pepperoni Pizza",
         "Italian",
-        "pizza.jpg",
+        new MealImage("pizza", "pizza.jpg"),
         [
           new Ingredient("Pizza dough", 1, "box"),
           new Ingredient("Tomato Sauce", 1, "jar"),
@@ -51,7 +51,7 @@ describe("DayNode", () => {
       new Recipe(
         "Beef Tacos",
         "Mexican",
-        "tacos.jpg",
+        new MealImage("tacos", "tacos.jpg"),
         [
           new Ingredient("Taco Shells", 1, "box"),
           new Ingredient("Ground Beef", 1, "lb"),
