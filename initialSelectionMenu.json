@@ -421,6 +421,466 @@
         "Mix pasta with pesto",
         "Garnish with Parmesan and pine nuts"
       ]
+    },
+    {
+      "name": "Quiche Lorraine",
+      "cuisine": "French",
+      "image": {
+        "title": "Quiche Lorraine",
+        "url": "https://hips.hearstapps.com/del.h-cdn.co/assets/18/09/1600x1200/sd-aspect-1519657904-delish-quiche-lorraine.jpg?resize=1200:*",
+        "width": 1200,
+        "height": 1200,
+        "source": "Delish",
+        "source_url": "https://www.delish.com/cooking/recipe-ideas/a58388/easy-quiche-lorraine-recipe/"
+      },
+      "ingredients": [
+        {
+          "name": "Pie Crust",
+          "amount": 1,
+          "unit": ""
+        },
+        {
+          "name": "Eggs",
+          "amount": 4,
+          "unit": ""
+        },
+        {
+          "name": "Heavy Cream",
+          "amount": 1,
+          "unit": "cup"
+        },
+        {
+          "name": "Bacon",
+          "amount": 6,
+          "unit": "slices"
+        },
+        {
+          "name": "Gruyère Cheese",
+          "amount": 1,
+          "unit": "cup"
+        }
+      ],
+      "steps": [
+        "Pre-bake the pie crust until lightly golden",
+        "Whisk together eggs, cream, chopped bacon, and grated Gruyère, then pour into the crust",
+        "Bake until the filling is set and the top is golden brown"
+      ]
+    },
+    {
+      "name": "Ratatouille",
+      "cuisine": "French",
+      "image": {
+        "title": "Ratatouille",
+        "url": "https://media.chefdehome.com/740/0/0/ratatouille/ratatouille-casserole.jpg",
+        "width": 740,
+        "height": 740,
+        "source": "ChefDeHome",
+        "source_url": "https://www.chefdehome.com/recipes/561/ratatouille"
+      },
+      "ingredients": [
+        {
+          "name": "Eggplant",
+          "amount": 1,
+          "unit": ""
+        },
+        {
+          "name": "Zucchini",
+          "amount": 2,
+          "unit": ""
+        },
+        {
+          "name": "Red Bell Pepper",
+          "amount": 1,
+          "unit": ""
+        },
+        {
+          "name": "Tomato",
+          "amount": 4,
+          "unit": "medium"
+        },
+        {
+          "name": "Olive Oil",
+          "amount": 2,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Garlic",
+          "amount": 2,
+          "unit": "cloves"
+        }
+      ],
+      "steps": [
+        "Sauté sliced eggplant, zucchini, bell peppers, and tomato in olive oil until tender",
+        "Layer the cooked vegetables in a baking dish, seasoning with garlic and herbs between layers",
+        "Bake in the oven until the flavors meld and the top is slightly caramelized"
+      ]
+    },
+    {
+      "name": "Croque Monsieur",
+      "cuisine": "French",
+      "image": {
+        "title": "Croque Monsieur",
+        "url": "https://www.thespruceeats.com/thmb/m334hnwllMQiiS2mj2VVSLDiPFs=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/croque-monsieur-classic-french-grilled-cheese-996061-hero-01-cbf77c357af042fa89080019757916f0.jpg",
+        "width": 750,
+        "height": 750,
+        "source": "The Spruce Eats",
+        "source_url": "https://www.thespruceeats.com/croque-monsieur-classic-french-grilled-cheese-996061"
+      },
+      "ingredients": [
+        {
+          "name": "Bread",
+          "amount": 4,
+          "unit": "slices"
+        },
+        {
+          "name": "Ham",
+          "amount": 4,
+          "unit": "slices"
+        },
+        {
+          "name": "Gruyère Cheese",
+          "amount": 1,
+          "unit": "cup"
+        },
+        {
+          "name": "Butter",
+          "amount": 2,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Dijon Mustard",
+          "amount": 1,
+          "unit": "tablespoon"
+        }
+      ],
+      "steps": [
+        "Spread Dijon mustard on bread slices, then layer with ham and grated Gruyère. Top with another slice of bread",
+        "Melt butter in a pan and toast the sandwiches until golden brown on both sides",
+        "Top each sandwich with more Gruyère and broil until the cheese is bubbly and golden"
+      ]
+    },
+    {
+      "name": "Salade Niçoise",
+      "cuisine": "French",
+      "image": {
+        "title": "Salade Niçoise",
+        "url": "https://lechefswife.com/wp-content/uploads/2022/05/45AC92EF-157B-44E6-AF87-BE6F2C8FA33B-scaled.jpeg",
+        "width": 1200,
+        "height": 1200,
+        "source": "Le Chef's Wife",
+        "source_url": "https://lechefswife.com/french-salade-nicoise-recipe/"
+      },
+      "ingredients": [
+        {
+          "name": "Lettuce",
+          "amount": 1,
+          "unit": "head"
+        },
+        {
+          "name": "Tomatoes",
+          "amount": 3,
+          "unit": "medium"
+        },
+        {
+          "name": "Hard boiled Eggs",
+          "amount": 4,
+          "unit": ""
+        },
+        {
+          "name": "Niçoise Olives",
+          "amount": 0.5,
+          "unit": "cup"
+        },
+        {
+          "name": "Anchovies",
+          "amount": 6,
+          "unit": "fillets"
+        },
+        {
+          "name": "Tuna",
+          "amount": 1,
+          "unit": "can"
+        }
+      ],
+      "steps": [
+        "Arrange lettuce, halved tomatoes, halved hard-boiled eggs, Niçoise olives, and anchovies on a plate",
+        "Top with flaked tuna and drizzle with olive oil and vinegar dressing",
+        "Season with salt and pepper to taste"
+      ]
+    },
+    {
+      "name": "French Onion Soup",
+      "cuisine": "French",
+      "image": {
+        "title": "French Onion Soup",
+        "url": "https://www.allrecipes.com/thmb/VJUV55WhtJtGjIozXPkYDTMhe1g=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/13309-rich-and-simple-french-onion-soup-mfs-044-82982847dd4344019b063cbc590d8598.jpg",
+        "width": 1500,
+        "height": 1500,
+        "source": "Allrecipes",
+        "source_url": "https://www.allrecipes.com/recipe/13309/rich-and-simple-french-onion-soup/"
+      },
+      "ingredients": [
+        {
+          "name": "Onions",
+          "amount": 4,
+          "unit": "large"
+        },
+        {
+          "name": "Butter",
+          "amount": 2,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Beef Stock",
+          "amount": 6,
+          "unit": "cups"
+        },
+        {
+          "name": "French Bread",
+          "amount": 4,
+          "unit": "slices"
+        },
+        {
+          "name": "Gruyère Cheese",
+          "amount": 1,
+          "unit": "cup"
+        }
+      ],
+      "steps": [
+        "Caramelize sliced onions in butter, then add beef stock and simmer for depth of flavor",
+        "Pour the soup into oven-safe bowls, top with a slice of toasted French bread and grated Gruyère cheese",
+        "Broil until the cheese is melted and bubbly"
+      ]
+    },
+    {
+      "name": "Crêpes",
+      "cuisine": "French",
+      "image": {
+        "title": "Crêpes",
+        "url": "https://hips.hearstapps.com/hmg-prod/images/crepes-index-64347419e3c7a.jpg?crop=0.6666666666666666xw:1xh;center,top&resize=1200:*",
+        "width": 1200,
+        "height": 1200,
+        "source": "Delish",
+        "source_url": "https://www.delish.com/cooking/recipe-ideas/recipes/a52114/easy-basic-crepe-recipe/"
+      },
+      "ingredients": [
+        {
+          "name": "Flour",
+          "amount": 1,
+          "unit": "cup"
+        },
+        {
+          "name": "Milk",
+          "amount": 1.5,
+          "unit": "cups"
+        },
+        {
+          "name": "Eggs",
+          "amount": 2,
+          "unit": ""
+        },
+        {
+          "name": "Butter",
+          "amount": 2,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Salt",
+          "amount": 0.5,
+          "unit": "tablespoon"
+        }
+      ],
+      "steps": [
+        "Mix flour, milk, eggs, melted butter, and salt to create a smooth batter",
+        "Pour a small amount of batter into a hot, lightly buttered pan, tilting to spread evenly",
+        "Cook until edges are dry, flip carefully, and cook the other side. Fill as desired"
+      ]
+    },
+    {
+      "name": "Beef bourguignon",
+      "cuisine": "French",
+      "image": {
+        "title": "Beef bourguignon",
+        "url": "https://mojo.generalmills.com/api/public/content/D4Btjmb-G0y2ZdcoKNBlvA_gmi_hi_res_jpeg.jpeg?v=966f6fb2&t=466b54bb264e48b199fc8e83ef1136b4",
+        "width": 800,
+        "height": 800,
+        "source": "Tablespoon",
+        "source_url": "https://www.tablespoon.com/recipes/julia-childs-beef-bourguignon/cdda3ccc-3623-4363-8095-aaca1a3f8313"
+      },
+      "ingredients": [
+        {
+          "name": "Beef Chuck",
+          "amount": 3,
+          "unit": "pounds"
+        },
+        {
+          "name": "Carrots",
+          "amount": 3,
+          "unit": ""
+        },
+        {
+          "name": "Onions",
+          "amount": 2,
+          "unit": "large"
+        },
+        {
+          "name": "Red Wine",
+          "amount": 2.5,
+          "unit": "cups"
+        },
+        {
+          "name": "Beef Stock",
+          "amount": 2,
+          "unit": "cups"
+        },
+        {
+          "name": "Bacon",
+          "amount": 5,
+          "unit": "slices"
+        }
+      ],
+      "steps": [
+        "Brown chunks of beef, then sauté carrots and onions in the same pot",
+        "Add red wine and beef stock to the pot, along with herbs, and simmer until the beef is tender",
+        "Serve with boiled potatoes or crusty bread"
+      ]
+    },
+    {
+      "name": "Coq au Vin",
+      "cuisine": "French",
+      "image": {
+        "title": "Coq au Vin",
+        "url": "https://www.foodnetwork.com/content/dam/images/food/fullset/2008/2/1/0/IG1005_Coq_Au_Vin_s4x3.jpg",
+        "width": 1200,
+        "height": 1200,
+        "source": "Food Network",
+        "source_url": "https://www.foodnetwork.com/recipes/ina-garten/coq-au-vin-recipe4-2011654"
+      },
+      "ingredients": [
+        {
+          "name": "Chicken",
+          "amount": 4,
+          "unit": "pounds"
+        },
+        {
+          "name": "Bacon",
+          "amount": 4,
+          "unit": "slices"
+        },
+        {
+          "name": "Red Wine",
+          "amount": 2.5,
+          "unit": "cups"
+        },
+        {
+          "name": "Mushrooms",
+          "amount": 1,
+          "unit": "cup"
+        },
+        {
+          "name": "Onions",
+          "amount": 1,
+          "unit": "cup"
+        },
+        {
+          "name": "Garlic",
+          "amount": 2,
+          "unit": "cloves"
+        }
+      ],
+      "steps": [
+        "Brown chicken pieces and lardons. Remove and sauté mushrooms and onions in the same pan",
+        "Return the chicken to the pan, add red wine and chicken stock, and simmer until the chicken is cooked through",
+        "Thicken the sauce if desired, and serve with mashed potatoes"
+      ]
+    },
+    {
+      "name": "Tarte Tatin",
+      "cuisine": "French",
+      "image": {
+        "title": "Tarte Tatin",
+        "url": "https://www.foodandwine.com/thmb/LlnnhX5MveKwpXxCMbT5CSvl1PY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Tarte-Tatin-FT-RECIPE0923-5fbf820c33ea4c12b23ff00c78f63471.jpg",
+        "width": 1500,
+        "height": 1500,
+        "source": "Food & Wine",
+        "source_url": "https://www.foodandwine.com/recipes/tarte-tatin"
+      },
+      "ingredients": [
+        {
+          "name": "Apples",
+          "amount": 6,
+          "unit": "medium"
+        },
+        {
+          "name": "Butter",
+          "amount": 4,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Sugar",
+          "amount": 0.75,
+          "unit": "cup"
+        },
+        {
+          "name": "Puff Pastry",
+          "amount": 1,
+          "unit": "sheet"
+        }
+      ],
+      "steps": [
+        "Caramelize sugar and butter in a pan, then arrange apple slices on top",
+        "Cover apples with puff pastry, tucking in the edges, and bake until golden",
+        "Cool slightly, then invert onto a plate before serving"
+      ]
+    },
+    {
+      "name": "Moules Marinières",
+      "cuisine": "French",
+      "image": {
+        "title": "Moules Marinières",
+        "url": "https://food-images.files.bbci.co.uk/food/recipes/moulesmarinierewithc_71787_16x9.jpg",
+        "width": 1200,
+        "height": 1200,
+        "source": "BBC",
+        "source_url": "https://www.bbc.co.uk/food/recipes/moulesmarinierewithc_71787"
+      },
+      "ingredients": [
+        {
+          "name": "Mussels",
+          "amount": 2,
+          "unit": "pounds"
+        },
+        {
+          "name": "White Wine",
+          "amount": 1,
+          "unit": "cup"
+        },
+        {
+          "name": "Shallots",
+          "amount": 2,
+          "unit": "large"
+        },
+        {
+          "name": "Garlic",
+          "amount": 2,
+          "unit": "cloves"
+        },
+        {
+          "name": "Butter",
+          "amount": 2,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Parsley",
+          "amount": 0.25,
+          "unit": "cup"
+        }
+      ],
+      "steps": [
+        "Sauté finely chopped shallots and garlic in butter, then add mussels and pour over white wine",
+        "Cover and steam until the mussels open, then sprinkle with chopped parsley",
+        "Serve with the cooking liquid and fresh bread or fries"
+      ]
     }
   ]
 }
