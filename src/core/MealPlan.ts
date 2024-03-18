@@ -1,4 +1,4 @@
-import { DayNode } from "@/core";
+import { DayNode, Ingredient } from "@/core";
 
 /**
  * Represents a meal plan.
@@ -18,12 +18,19 @@ export class MealPlan {
   days: { [id: string]: DayNode };
 
   /**
+   * Map of all user ingredients in the meal plan.
+   * @type {{ [name: string]: Ingredient }}
+   */
+  userIngredients: { [name: string]: Ingredient };
+
+  /**
    * Creates a new meal plan.
    */
   constructor() {
     this.firstDay = null;
     this.lastDay = null;
     this.days = {};
+    this.userIngredients = {};
   }
 
   /**
@@ -156,6 +163,29 @@ export class MealPlan {
     }
   }
 
+  addUserIngredient(ingredient: Ingredient) {
+    if (this.userIngredients[ingredient.name]) {
+      this.userIngredients[ingredient.name].amount += ingredient.amount;
+      return;
+    }
+
+    this.userIngredients[ingredient.name] = ingredient;
+  }
+
+  updateUserIngredient(ingredient: Ingredient) {
+    if (this.userIngredients[ingredient.name]) {
+      this.userIngredients[ingredient.name] = ingredient;
+      return;
+    }
+  }
+
+  removeUserIngredient(name: string) {
+    delete this.userIngredients[name];
+  }
+
+  /**
+   * Prints the meal plan to the console.
+   */
   printLinkedList() {
     let curr = this.firstDay;
     let printString = "";

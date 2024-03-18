@@ -89,4 +89,38 @@ describe("MealPlan", () => {
     expect(day1.prevDay).toBe(day2);
     expect(day1.nextDay).toBeNull();
   });
+  
+  it("should add a user ingredient to the meal plan", () => {
+    const mealPlan = new MealPlan();
+    
+    mealPlan.addUserIngredient(new Ingredient("Spaghetti pasta", 1, "box"));
+    
+    expect(mealPlan.userIngredients["Spaghetti pasta"].amount).toBe(1);
+  });
+
+  it("should update a user ingredient in the meal plan", () => {
+    const mealPlan = new MealPlan();
+    
+    mealPlan.addUserIngredient(new Ingredient("Spaghetti pasta", 1, "box"));
+    
+    expect(mealPlan.userIngredients["Spaghetti pasta"].amount).toBe(1);
+    expect(mealPlan.userIngredients["Spaghetti pasta"].unit).toBe("box");
+
+    mealPlan.updateUserIngredient(new Ingredient("Spaghetti pasta", 2, "lb"));
+    
+    expect(mealPlan.userIngredients["Spaghetti pasta"].amount).toBe(2);
+    expect(mealPlan.userIngredients["Spaghetti pasta"].unit).toBe("lb");
+  });
+
+  it("should remove a user ingredient from the meal plan", () => {
+    const mealPlan = new MealPlan();
+    
+    mealPlan.addUserIngredient(new Ingredient("Spaghetti pasta", 1, "box"));
+    
+    expect(mealPlan.userIngredients["Spaghetti pasta"].amount).toBe(1);
+
+    mealPlan.removeUserIngredient("Spaghetti pasta");
+    
+    expect(mealPlan.userIngredients["Spaghetti pasta"]).toBeUndefined();
+  });
 });
