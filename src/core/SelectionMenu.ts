@@ -7,12 +7,12 @@ export class SelectionMenu {
     };
   };
 
-  constructor(selectionMenu: {
+  constructor(selectionMenu?: {
     [cuisine: string]: {
       [mealName: string]: Recipe;
     };
   }) {
-    this.items = selectionMenu;
+    this.items = selectionMenu || {};
   }
 
   addItem(recipe: Recipe) {
