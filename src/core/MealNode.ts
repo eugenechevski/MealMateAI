@@ -15,7 +15,7 @@ export class MealNode {
    * The recipe associated with the meal.
    * @type {Recipe}
    */
-  recipe: Recipe;
+  recipe?: Recipe;
 
   /**
    * Pointer to the previous meal node.
@@ -35,7 +35,7 @@ export class MealNode {
    * @param {string} name - The name of the meal.
    * @param {Recipe} recipe - The recipe associated with the meal.
    */
-  constructor(recipe: Recipe) {
+  constructor(recipe?: Recipe) {
     this.id = uuidv4();
     this.recipe = recipe;
     this.prevMeal = null;

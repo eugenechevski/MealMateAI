@@ -166,6 +166,19 @@ export class DayNode {
     }
   }
 
+  /**
+   * Appends a new meal node to the day.
+   * @returns {MealNode} - The newly created meal node.
+   */
+  appendNewMeal() {
+    const newMeal = new MealNode();
+    this.addMeal(newMeal);
+    return newMeal;
+  }
+
+  /**
+   * Prints the day node and its meal nodes to the console.
+   */
   printLinkedList() {
     let printString = "";
     let meal = this.firstMeal;
