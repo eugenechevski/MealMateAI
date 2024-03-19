@@ -1,4 +1,5 @@
-declare interface RawMealData {
+// The type for the initial raw data of recipes
+declare type RawMealData = {
     name: string;
     cuisine: string;
     ingredients: {
@@ -26,6 +27,25 @@ declare interface RawMealData {
 
 declare type RawMenuData = RawMealData[];
 
+// Type for the final output for a meal plan
 declare type MealPlanData = {
-
+  [day: number]: {
+    [meal: number]: {
+        name: string;
+        cuisine: string;
+        ingredients: {
+            name: string;
+            amount: number;
+            unit: string;
+        }[];
+        steps: string[];
+        nutrition?: {
+            servings: number;
+            caloriesPerServing?: number;
+            protein?: number;
+            carbohydrates?: number;
+            fat?: number;
+        };
+    }
+  }
 }
