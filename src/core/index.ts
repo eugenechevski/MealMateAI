@@ -12,4 +12,5 @@ export * from './Recipe';
 export * from './Ingredient';
 export * from './Step';
 export * from './MealImage';
+export * from './Nutrition';
 

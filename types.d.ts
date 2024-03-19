@@ -15,6 +15,17 @@ declare interface RawMealData {
         width: number;
         height: number;
     };
+    nutrition?: {
+        servings: number;
+        caloriesPerServing?: number;
+        protein?: number;
+        carbohydrates?: number;
+        fat?: number;
+    };
 };
 
 declare type RawMenuData = RawMealData[];
+
+declare type MealPlanData = {
+
+}

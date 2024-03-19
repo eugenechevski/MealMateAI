@@ -3,7 +3,14 @@
  * data either from the server or from the local storage.
  */
 
-import { SelectionMenu, Recipe, Ingredient, Step, MealImage } from "@/core";
+import {
+  SelectionMenu,
+  Recipe,
+  Ingredient,
+  Step,
+  MealImage,
+  Nutrition,
+} from "@/core";
 
 export default function buildSelectionMenu(
   rawData: RawMenuData
@@ -26,7 +33,17 @@ export default function buildSelectionMenu(
         (ingredient) =>
           new Ingredient(ingredient.name, ingredient.amount, ingredient.unit)
       ),
-      rawMeal.steps.map((step) => new Step(step))
+      rawMeal.steps.map((step) => new Step(step)),
+      rawMeal.nutrition
+        ? new Nutrition(
+            rawMeal.name,
+            rawMeal.nutrition.servings,
+            rawMeal.nutrition.caloriesPerServing,
+            rawMeal.nutrition.protein,
+            rawMeal.nutrition.carbohydrates,
+            rawMeal.nutrition.fat
+          )
+        : undefined
     );
 
     selectionMenu.addItem(recipe);
