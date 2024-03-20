@@ -184,6 +184,39 @@ export class MealPlan {
   }
 
   /**
+   * The function assembles the meal plan data into an object format.
+   * 
+   * @returns {MealPlanData} - The meal plan data.
+   */
+  getMealPlanData() {
+    const mealPlanData: MealPlanData = {};
+
+    let currDay = this.firstDay;
+    let dayCount = 1;
+
+    while (currDay) {
+      const dayData: DayPlanData = {};
+      let currMeal = currDay.firstMeal;
+      let mealCount = 1;
+
+      while (currMeal) {
+        let mealData = currMeal.getMealData();
+        if (mealData) {
+          dayData[mealCount] = mealData;
+        }
+        currMeal = currMeal.nextMeal;
+        mealCount++;
+      }
+
+      mealPlanData[dayCount] = dayData;
+      currDay = currDay.nextDay;
+      dayCount++;
+    }
+
+    return mealPlanData;
+  }
+
+  /**
    * Prints the meal plan to the console.
    */
   printLinkedList() {

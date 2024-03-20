@@ -41,4 +41,37 @@ export class MealNode {
     this.prevMeal = null;
     this.nextMeal = null;
   }
+
+  getMealData(): MealData | undefined {
+    if (!this.recipe) {
+      return;
+    }
+
+    const recipe = this.recipe;
+
+    const data: MealData = {
+      name: recipe.name,
+      cuisine: recipe.cuisine,
+      ingredients: recipe.ingredients.map((ingredient) => {
+        return {
+          name: ingredient.name,
+          amount: ingredient.amount,
+          unit: ingredient.unit,
+        };
+      }),
+      steps: recipe.steps.map((step) => step.description),
+    };
+
+    if (recipe.nutrition) {
+      data.nutrition = {
+        servings: recipe.nutrition.servings,
+        caloriesPerServing: recipe.nutrition.caloriesPerServing,
+        protein: recipe.nutrition.protein,
+        carbohydrates: recipe.nutrition.carbohydrates,
+        fat: recipe.nutrition.fat,
+      };
+    }
+
+    return data;
+  }
 }
