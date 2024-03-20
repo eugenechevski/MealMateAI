@@ -1,886 +1,1026 @@
 {
   "recipes": [
-    {
-      "name": "Spaghetti Aglio e Olio",
-      "cuisine": "Italian",
-      "ingredients": [
-        {
-          "name": "Spaghetti",
-          "amount": 1,
-          "unit": "lb"
-        },
-        {
-          "name": "Garlic",
-          "amount": 4,
-          "unit": "cloves"
-        },
-        {
-          "name": "Olive Oil",
-          "amount": 0.25,
-          "unit": "cup"
-        },
-        {
-          "name": "Red Pepper Flakes",
-          "amount": 1,
-          "unit": "teaspoon"
-        },
-        {
-          "name": "Parsley",
-          "amount": 0.25,
-          "unit": "cup"
-        }
-      ],
-      "steps": [
-        "Boil pasta",
-        "Sauté garlic",
-        "Combine pasta with garlic oil",
-        "Garnish with parsley"
-      ],
-      "image": {
-        "title": "Spaghetti Aglio e Olio",
-        "url": "https://www.simplymaderecipes.com/wp-content/uploads/2020/04/Pasta-Aglio-e-Olio-main.png",
-        "width": 1200,
-        "height": 1200,
-        "source": "Simply Made Recipes",
-        "source_url": "https://www.simplymaderecipes.com/pasta-aglio-e-olio/"
+      {
+          "name": "Spaghetti Aglio e Olio",
+          "cuisine": "Italian",
+          "ingredients": [
+              {
+                  "name": "Spaghetti",
+                  "amount": 1,
+                  "unit": "lb"
+              },
+              {
+                  "name": "Garlic",
+                  "amount": 4,
+                  "unit": "cloves"
+              },
+              {
+                  "name": "Olive Oil",
+                  "amount": 0.25,
+                  "unit": "cup"
+              },
+              {
+                  "name": "Red Pepper Flakes",
+                  "amount": 1,
+                  "unit": "teaspoon"
+              },
+              {
+                  "name": "Parsley",
+                  "amount": 0.25,
+                  "unit": "cup"
+              }
+          ],
+          "steps": [
+              "Boil pasta",
+              "Sauté garlic",
+              "Combine pasta with garlic oil",
+              "Garnish with parsley"
+          ],
+          "image": {
+              "title": "Spaghetti Aglio e Olio",
+              "url": "https://www.simplymaderecipes.com/wp-content/uploads/2020/04/Pasta-Aglio-e-Olio-main.png",
+              "width": 1200,
+              "height": 1200,
+              "source": "Simply Made Recipes",
+              "source_url": "https://www.simplymaderecipes.com/pasta-aglio-e-olio/"
+          },
+          "nutrition": {
+              "servings": 4,
+              "caloriesPerServing": 430,
+              "protein": 12,
+              "carbohydrates": 65,
+              "fat": 14
+          }
+      },
+      {
+          "name": "Caprese Salad",
+          "cuisine": "Italian",
+          "image": {
+              "title": "Caprese Salad",
+              "url": "https://www.californiastrawberries.com/wp-content/uploads/2015/05/Strawberry-Caprese-Salad-copy.png",
+              "width": 1024,
+              "height": 1024,
+              "source": "California Strawberries",
+              "source_url": "https://www.californiastrawberries.com/recipes_and_ideasdetailstrawberry_caprese_salad/"
+          },
+          "ingredients": [
+              {
+                  "name": "Tomatoes",
+                  "amount": 3,
+                  "unit": "medium"
+              },
+              {
+                  "name": "Mozzarella Cheese",
+                  "amount": 8,
+                  "unit": "ounces"
+              },
+              {
+                  "name": "Basil Leaves",
+                  "amount": 1,
+                  "unit": "handful"
+              },
+              {
+                  "name": "Olive Oil",
+                  "amount": 2,
+                  "unit": "tablespoons"
+              },
+              {
+                  "name": "Balsamic Glaze",
+                  "amount": 1,
+                  "unit": "tablespoon"
+              }
+          ],
+          "steps": [
+              "Slice tomatoes and mozzarella",
+              "Layer with basil",
+              "Drizzle oil and glaze"
+          ],
+          "nutrition": {
+              "servings": 4,
+              "caloriesPerServing": 210,
+              "protein": 10,
+              "carbohydrates": 5,
+              "fat": 16
+          }
+      },
+      {
+          "name": "Pasta Carbonara",
+          "cuisine": "Italian",
+          "image": {
+              "title": "Pasta Carbonara",
+              "url": "https://recipes.net/wp-content/uploads/2023/05/jamie-olivers-spaghetti-carbonara-recipe_6019122c01c76dc7c355280e963e5280-768x768.jpeg",
+              "width": 768,
+              "height": 768,
+              "source": "Recipes.net",
+              "source_url": "https://recipes.net/copycat/jamie-oliver/jamie-olivers-spaghetti-carbonara-recipe/"
+          },
+          "ingredients": [
+              {
+                  "name": "Pasta",
+                  "amount": 1,
+                  "unit": "lb"
+              },
+              {
+                  "name": "Eggs",
+                  "amount": 4,
+                  "unit": ""
+              },
+              {
+                  "name": "Parmesan Cheese",
+                  "amount": 1,
+                  "unit": "cup"
+              },
+              {
+                  "name": "Pancetta",
+                  "amount": 6,
+                  "unit": "ounces"
+              },
+              {
+                  "name": "Garlic",
+                  "amount": 2,
+                  "unit": "cloves"
+              }
+          ],
+          "steps": [
+              "Cook pasta",
+              "Fry pancetta with garlic",
+              "Mix eggs and cheese",
+              "Combine all with pasta"
+          ],
+          "nutrition": {
+              "servings": 4,
+              "caloriesPerServing": 520,
+              "protein": 21,
+              "carbohydrates": 75,
+              "fat": 18
+          }
+      },
+      {
+          "name": "Bruschetta",
+          "cuisine": "Italian",
+          "image": {
+              "title": "Bruschetta",
+              "url": "https://i0.wp.com/spainonafork.com/wp-content/uploads/2017/11/bruschetta411.png?fit=750%2C750&ssl=1",
+              "width": 750,
+              "height": 750,
+              "source": "Spain on a Fork",
+              "source_url": "https://spainonafork.com/easy-bruschetta-recipe/"
+          },
+          "ingredients": [
+              {
+                  "name": "Baguette",
+                  "amount": 1,
+                  "unit": ""
+              },
+              {
+                  "name": "Tomatoes",
+                  "amount": 3,
+                  "unit": "medium"
+              },
+              {
+                  "name": "Garlic",
+                  "amount": 2,
+                  "unit": "cloves"
+              },
+              {
+                  "name": "Basil",
+                  "amount": 1,
+                  "unit": "handful"
+              },
+              {
+                  "name": "Olive Oil",
+                  "amount": 0.25,
+                  "unit": "cup"
+              }
+          ],
+          "steps": [
+              "Toast baguette slices",
+              "Mix tomatoes with basil and garlic",
+              "Top baguette with tomato mixture"
+          ],
+          "nutrition": {
+              "servings": 6,
+              "caloriesPerServing": 180,
+              "protein": 6,
+              "carbohydrates": 27,
+              "fat": 5
+          }
+      },
+      {
+          "name": "Frittata",
+          "cuisine": "Italian",
+          "image": {
+              "title": "Frittata",
+              "url": "https://hips.hearstapps.com/hmg-prod/images/herb-frittata-recipe-1607362977.png",
+              "width": 980,
+              "height": 980,
+              "source": "Prevention",
+              "source_url": "https://www.prevention.com/food-nutrition/recipes/a34894579/herb-frittata-recipe/"
+          },
+          "ingredients": [
+              {
+                  "name": "Eggs",
+                  "amount": 6,
+                  "unit": ""
+              },
+              {
+                  "name": "Parmesan Cheese",
+                  "amount": 0.5,
+                  "unit": "cup"
+              },
+              {
+                  "name": "Vegetables",
+                  "amount": 2,
+                  "unit": "cups"
+              },
+              {
+                  "name": "Olive Oil",
+                  "amount": 2,
+                  "unit": "tablespoons"
+              }
+          ],
+          "steps": [
+              "Beat eggs with cheese",
+              "Sautè vegetables",
+              "Combine eggs with vegetables, cook until set"
+          ],
+          "nutrition": {
+              "servings": 4,
+              "caloriesPerServing": 220,
+              "protein": 14,
+              "carbohydrates": 3,
+              "fat": 17
+          }
+      },
+      {
+          "name": "Minestrone Soup",
+          "cuisine": "Italian",
+          "image": {
+              "title": "Minestrone Soup",
+              "url": "https://mortadellahead.com/wp-content/uploads/2023/06/Minestrone-Soup-Recipe.png",
+              "width": 512,
+              "height": 512,
+              "source": "Mortadella Head",
+              "source_url": "https://mortadellahead.com/minestrone-soup-recipe/"
+          },
+          "ingredients": [
+              {
+                  "name": "Vegetable Broth",
+                  "amount": 6,
+                  "unit": "cups"
+              },
+              {
+                  "name": "Canned Tomatoes",
+                  "amount": 1,
+                  "unit": "can"
+              },
+              {
+                  "name": "Mixed Vegetables",
+                  "amount": 3,
+                  "unit": "cups"
+              },
+              {
+                  "name": "Pasta",
+                  "amount": 1,
+                  "unit": "cup"
+              },
+              {
+                  "name": "Beans",
+                  "amount": 1,
+                  "unit": "can"
+              }
+          ],
+          "steps": [
+              "Simmer broth with tomatoes",
+              "Add vegetables and pasta",
+              "Stir in beans until heated through"
+          ],
+          "nutrition": {
+              "servings": 6,
+              "caloriesPerServing": 190,
+              "protein": 8,
+              "carbohydrates": 30,
+              "fat": 3
+          }
+      },
+      {
+          "name": "Tiramisu",
+          "cuisine": "Italian",
+          "image": {
+              "title": "Tiramisu",
+              "url": "https://bakeomaniac.com/wp-content/uploads/2021/12/Italian-Classic-Tiramisu.png",
+              "width": 800,
+              "height": 800,
+              "source": "Bakeomaniac",
+              "source_url": "https://bakeomaniac.com/classic-tiramisu-recipe/"
+          },
+          "ingredients": [
+              {
+                  "name": "Mascarpone Cheese",
+                  "amount": 1,
+                  "unit": "lb"
+              },
+              {
+                  "name": "Espresso",
+                  "amount": 2,
+                  "unit": "cups"
+              },
+              {
+                  "name": "Ladyfingers",
+                  "amount": 24,
+                  "unit": ""
+              },
+              {
+                  "name": "Cocoa Powder",
+                  "amount": 0.25,
+                  "unit": "cup"
+              }
+          ],
+          "steps": [
+              "Dip ladyfingers in espresso",
+              "Layer with mascarpone",
+              "Chill, then dust with cocoa"
+          ],
+          "nutrition": {
+              "servings": 8,
+              "caloriesPerServing": 490,
+              "protein": 6,
+              "carbohydrates": 45,
+              "fat": 30
+          }
+      },
+      {
+          "name": "Risotto",
+          "cuisine": "Italian",
+          "image": {
+              "title": "Risotto",
+              "url": "https://jow.com/_next/image?url=https%3A%2F%2Fstatic.jow.fr%2F880x880%2Frecipes%2FsZpsWtSzvQBs7w.png&w=2560&q=100",
+              "width": 880,
+              "height": 880,
+              "source": "Jow",
+              "source_url": "https://jow.com/recipes/asparagus-risotto-8lsl7wo78sv8jvp71a5h"
+          },
+          "ingredients": [
+              {
+                  "name": "Arborio Rice",
+                  "amount": 1,
+                  "unit": "cup"
+              },
+              {
+                  "name": "Chicken Stock",
+                  "amount": 4,
+                  "unit": "cups"
+              },
+              {
+                  "name": "Onion",
+                  "amount": 1,
+                  "unit": "small"
+              },
+              {
+                  "name": "White Wine",
+                  "amount": 0.5,
+                  "unit": "cup"
+              },
+              {
+                  "name": "Parmesan Cheese",
+                  "amount": 0.5,
+                  "unit": "cup"
+              }
+          ],
+          "steps": [
+              "Sautè onion",
+              "Toast rice, deglaze with wine",
+              "Add stock gradually, stir until creamy"
+          ],
+          "nutrition": {
+              "servings": 4,
+              "caloriesPerServing": 350,
+              "protein": 9,
+              "carbohydrates": 53,
+              "fat": 10
+          }
+      },
+      {
+          "name": "Polenta",
+          "cuisine": "Italian",
+          "image": {
+              "title": "Polenta",
+              "url": "https://www.romaniandelights.com.au/wp-content/uploads/2024/01/1-1-edited.png",
+              "width": 850,
+              "height": 850,
+              "source": "Romanian Delights",
+              "source_url": "https://www.romaniandelights.com.au/traditional-romanian-polenta-with-sour-cream-and-cheese/"
+          },
+          "ingredients": [
+              {
+                  "name": "Cornmeal",
+                  "amount": 1,
+                  "unit": "cup"
+              },
+              {
+                  "name": "Water",
+                  "amount": 4,
+                  "unit": "cups"
+              },
+              {
+                  "name": "Butter",
+                  "amount": 2,
+                  "unit": "tablespoons"
+              },
+              {
+                  "name": "Parmesan Cheese",
+                  "amount": 0.5,
+                  "unit": "cup"
+              }
+          ],
+          "steps": [
+              "Boil water",
+              "Whisk in cornmeal gradually",
+              "Cook until thickened, stir in butter and cheese"
+          ],
+          "nutrition": {
+              "servings": 4,
+              "caloriesPerServing": 220,
+              "protein": 5,
+              "carbohydrates": 38,
+              "fat": 6
+          }
+      },
+      {
+          "name": "Pesto Pasta",
+          "cuisine": "Italian",
+          "image": {
+              "title": "Pesto Pasta",
+              "url": "https://www.cookingwithemily.co.uk/wp-content/uploads/2022/08/basil-pesto.png",
+              "width": 513,
+              "height": 513,
+              "source": "Cooking With Emily",
+              "source_url": "https://www.cookingwithemily.co.uk/food/other/basil-pesto-pasta/"
+          },
+          "ingredients": [
+              {
+                  "name": "Pasta",
+                  "amount": 1,
+                  "unit": "lb"
+              },
+              {
+                  "name": "Pesto Sauce",
+                  "amount": 1,
+                  "unit": "cup"
+              },
+              {
+                  "name": "Parmesan Cheese",
+                  "amount": 0.25,
+                  "unit": "cup"
+              },
+              {
+                  "name": "Pine Nuts",
+                  "amount": 0.25,
+                  "unit": "cup"
+              }
+          ],
+          "steps": [
+              "Cook pasta",
+              "Mix pasta with pesto",
+              "Garnish with Parmesan and pine nuts"
+          ],
+          "nutrition": {
+              "servings": 4,
+              "caloriesPerServing": 560,
+              "protein": 18,
+              "carbohydrates": 75,
+              "fat": 20
+          }
+      },
+      {
+          "name": "Quiche Lorraine",
+          "cuisine": "French",
+          "image": {
+              "title": "Quiche Lorraine",
+              "url": "https://hips.hearstapps.com/del.h-cdn.co/assets/18/09/1600x1200/sd-aspect-1519657904-delish-quiche-lorraine.jpg?resize=1200:*",
+              "width": 1200,
+              "height": 1200,
+              "source": "Delish",
+              "source_url": "https://www.delish.com/cooking/recipe-ideas/a58388/easy-quiche-lorraine-recipe/"
+          },
+          "ingredients": [
+              {
+                  "name": "Pie Crust",
+                  "amount": 1,
+                  "unit": ""
+              },
+              {
+                  "name": "Eggs",
+                  "amount": 4,
+                  "unit": ""
+              },
+              {
+                  "name": "Heavy Cream",
+                  "amount": 1,
+                  "unit": "cup"
+              },
+              {
+                  "name": "Bacon",
+                  "amount": 6,
+                  "unit": "slices"
+              },
+              {
+                  "name": "Gruyère Cheese",
+                  "amount": 1,
+                  "unit": "cup"
+              }
+          ],
+          "steps": [
+              "Pre-bake the pie crust until lightly golden",
+              "Whisk together eggs, cream, chopped bacon, and grated Gruyère, then pour into the crust",
+              "Bake until the filling is set and the top is golden brown"
+          ],
+          "nutrition": {
+              "servings": 6,
+              "caloriesPerServing": 350,
+              "protein": 14,
+              "carbohydrates": 25,
+              "fat": 22
+          }
+      },
+      {
+          "name": "Ratatouille",
+          "cuisine": "French",
+          "image": {
+              "title": "Ratatouille",
+              "url": "https://media.chefdehome.com/740/0/0/ratatouille/ratatouille-casserole.jpg",
+              "width": 740,
+              "height": 740,
+              "source": "ChefDeHome",
+              "source_url": "https://www.chefdehome.com/recipes/561/ratatouille"
+          },
+          "ingredients": [
+              {
+                  "name": "Eggplant",
+                  "amount": 1,
+                  "unit": ""
+              },
+              {
+                  "name": "Zucchini",
+                  "amount": 2,
+                  "unit": ""
+              },
+              {
+                  "name": "Red Bell Pepper",
+                  "amount": 1,
+                  "unit": ""
+              },
+              {
+                  "name": "Tomato",
+                  "amount": 4,
+                  "unit": "medium"
+              },
+              {
+                  "name": "Olive Oil",
+                  "amount": 2,
+                  "unit": "tablespoons"
+              },
+              {
+                  "name": "Garlic",
+                  "amount": 2,
+                  "unit": "cloves"
+              }
+          ],
+          "steps": [
+              "Sautè sliced eggplant, zucchini, bell peppers, and tomato in olive oil until tender",
+              "Layer the cooked vegetables in a baking dish, seasoning with garlic and herbs between layers",
+              "Bake in the oven until the flavors meld and the top is slightly caramelized"
+          ],
+          "nutrition": {
+              "servings": 4,
+              "caloriesPerServing": 150,
+              "protein": 3,
+              "carbohydrates": 18,
+              "fat": 8
+          }
+      },
+      {
+          "name": "Croque Monsieur",
+          "cuisine": "French",
+          "image": {
+              "title": "Croque Monsieur",
+              "url": "https://www.thespruceeats.com/thmb/m334hnwllMQiiS2mj2VVSLDiPFs=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/croque-monsieur-classic-french-grilled-cheese-996061-hero-01-cbf77c357af042fa89080019757916f0.jpg",
+              "width": 750,
+              "height": 750,
+              "source": "The Spruce Eats",
+              "source_url": "https://www.thespruceeats.com/croque-monsieur-classic-french-grilled-cheese-996061"
+          },
+          "ingredients": [
+              {
+                  "name": "Bread",
+                  "amount": 4,
+                  "unit": "slices"
+              },
+              {
+                  "name": "Ham",
+                  "amount": 4,
+                  "unit": "slices"
+              },
+              {
+                  "name": "Gruyère Cheese",
+                  "amount": 1,
+                  "unit": "cup"
+              },
+              {
+                  "name": "Butter",
+                  "amount": 2,
+                  "unit": "tablespoons"
+              },
+              {
+                  "name": "Dijon Mustard",
+                  "amount": 1,
+                  "unit": "tablespoon"
+              }
+          ],
+          "steps": [
+              "Spread Dijon mustard on bread slices, then layer with ham and grated Gruyère. Top with another slice of bread",
+              "Melt butter in a pan and toast the sandwiches until golden brown on both sides",
+              "Top each sandwich with more Gruyère and broil until the cheese is bubbly and golden"
+          ],
+          "nutrition": {
+              "servings": 2,
+              "caloriesPerServing": 420,
+              "protein": 24,
+              "carbohydrates": 35,
+              "fat": 22
+          }
+      },
+      {
+          "name": "Salade Nièoise",
+          "cuisine": "French",
+          "image": {
+              "title": "Salade Nièoise",
+              "url": "https://lechefswife.com/wp-content/uploads/2022/05/45AC92EF-157B-44E6-AF87-BE6F2C8FA33B-scaled.jpeg",
+              "width": 1200,
+              "height": 1200,
+              "source": "Le Chef's Wife",
+              "source_url": "https://lechefswife.com/french-salade-nicoise-recipe/"
+          },
+          "ingredients": [
+              {
+                  "name": "Lettuce",
+                  "amount": 1,
+                  "unit": "head"
+              },
+              {
+                  "name": "Tomatoes",
+                  "amount": 3,
+                  "unit": "medium"
+              },
+              {
+                  "name": "Hard boiled Eggs",
+                  "amount": 4,
+                  "unit": ""
+              },
+              {
+                  "name": "Nièoise Olives",
+                  "amount": 0.5,
+                  "unit": "cup"
+              },
+              {
+                  "name": "Anchovies",
+                  "amount": 6,
+                  "unit": "fillets"
+              },
+              {
+                  "name": "Tuna",
+                  "amount": 1,
+                  "unit": "can"
+              }
+          ],
+          "steps": [
+              "Arrange lettuce, halved tomatoes, halved hard-boiled eggs, Nièoise olives, and anchovies on a plate",
+              "Top with flaked tuna and drizzle with olive oil and vinegar dressing",
+              "Season with salt and pepper to taste"
+          ],
+          "nutrition": {
+              "servings": 4,
+              "caloriesPerServing": 300,
+              "protein": 20,
+              "carbohydrates": 12,
+              "fat": 20
+          }
+      },
+      {
+          "name": "French Onion Soup",
+          "cuisine": "French",
+          "image": {
+              "title": "French Onion Soup",
+              "url": "https://www.allrecipes.com/thmb/VJUV55WhtJtGjIozXPkYDTMhe1g=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/13309-rich-and-simple-french-onion-soup-mfs-044-82982847dd4344019b063cbc590d8598.jpg",
+              "width": 1500,
+              "height": 1500,
+              "source": "Allrecipes",
+              "source_url": "https://www.allrecipes.com/recipe/13309/rich-and-simple-french-onion-soup/"
+          },
+          "ingredients": [
+              {
+                  "name": "Onions",
+                  "amount": 4,
+                  "unit": "large"
+              },
+              {
+                  "name": "Butter",
+                  "amount": 2,
+                  "unit": "tablespoons"
+              },
+              {
+                  "name": "Beef Stock",
+                  "amount": 6,
+                  "unit": "cups"
+              },
+              {
+                  "name": "French Bread",
+                  "amount": 4,
+                  "unit": "slices"
+              },
+              {
+                  "name": "Gruyère Cheese",
+                  "amount": 1,
+                  "unit": "cup"
+              }
+          ],
+          "steps": [
+              "Caramelize sliced onions in butter, then add beef stock and simmer for depth of flavor",
+              "Pour the soup into oven-safe bowls, top with a slice of toasted French bread and grated Gruyère cheese",
+              "Broil until the cheese is melted and bubbly"
+          ],
+          "nutrition": {
+              "servings": 4,
+              "caloriesPerServing": 250,
+              "protein": 10,
+              "carbohydrates": 20,
+              "fat": 14
+          }
+      },
+      {
+          "name": "Crèpes",
+          "cuisine": "French",
+          "image": {
+              "title": "Crèpes",
+              "url": "https://hips.hearstapps.com/hmg-prod/images/crepes-index-64347419e3c7a.jpg?crop=0.6666666666666666xw:1xh;center,top&resize=1200:*",
+              "width": 1200,
+              "height": 1200,
+              "source": "Delish",
+              "source_url": "https://www.delish.com/cooking/recipe-ideas/recipes/a52114/easy-basic-crepe-recipe/"
+          },
+          "ingredients": [
+              {
+                  "name": "Flour",
+                  "amount": 1,
+                  "unit": "cup"
+              },
+              {
+                  "name": "Milk",
+                  "amount": 1.5,
+                  "unit": "cups"
+              },
+              {
+                  "name": "Eggs",
+                  "amount": 2,
+                  "unit": ""
+              },
+              {
+                  "name": "Butter",
+                  "amount": 2,
+                  "unit": "tablespoons"
+              },
+              {
+                  "name": "Salt",
+                  "amount": 0.5,
+                  "unit": "tablespoon"
+              }
+          ],
+          "steps": [
+              "Mix flour, milk, eggs, melted butter, and salt to create a smooth batter",
+              "Pour a small amount of batter into a hot, lightly buttered pan, tilting to spread evenly",
+              "Cook until edges are dry, flip carefully, and cook the other side. Fill as desired"
+          ],
+          "nutrition": {
+              "servings": 8,
+              "caloriesPerServing": 110,
+              "protein": 4,
+              "carbohydrates": 15,
+              "fat": 4
+          }
+      },
+      {
+          "name": "Beef bourguignon",
+          "cuisine": "French",
+          "image": {
+              "title": "Beef bourguignon",
+              "url": "https://mojo.generalmills.com/api/public/content/D4Btjmb-G0y2ZdcoKNBlvA_gmi_hi_res_jpeg.jpeg?v=966f6fb2&t=466b54bb264e48b199fc8e83ef1136b4",
+              "width": 800,
+              "height": 800,
+              "source": "Tablespoon",
+              "source_url": "https://www.tablespoon.com/recipes/julia-childs-beef-bourguignon/cdda3ccc-3623-4363-8095-aaca1a3f8313"
+          },
+          "ingredients": [
+              {
+                  "name": "Beef Chuck",
+                  "amount": 3,
+                  "unit": "pounds"
+              },
+              {
+                  "name": "Carrots",
+                  "amount": 3,
+                  "unit": ""
+              },
+              {
+                  "name": "Onions",
+                  "amount": 2,
+                  "unit": "large"
+              },
+              {
+                  "name": "Red Wine",
+                  "amount": 2.5,
+                  "unit": "cups"
+              },
+              {
+                  "name": "Beef Stock",
+                  "amount": 2,
+                  "unit": "cups"
+              },
+              {
+                  "name": "Bacon",
+                  "amount": 5,
+                  "unit": "slices"
+              }
+          ],
+          "steps": [
+              "Brown chunks of beef, then sautè carrots and onions in the same pot",
+              "Add red wine and beef stock to the pot, along with herbs, and simmer until the beef is tender",
+              "Serve with boiled potatoes or crusty bread"
+          ],
+          "nutrition": {
+              "servings": 6,
+              "caloriesPerServing": 600,
+              "protein": 40,
+              "carbohydrates": 10,
+              "fat": 40
+          }
+      },
+      {
+          "name": "Coq au Vin",
+          "cuisine": "French",
+          "image": {
+              "title": "Coq au Vin",
+              "url": "https://www.foodnetwork.com/content/dam/images/food/fullset/2008/2/1/0/IG1005_Coq_Au_Vin_s4x3.jpg",
+              "width": 1200,
+              "height": 1200,
+              "source": "Food Network",
+              "source_url": "https://www.foodnetwork.com/recipes/ina-garten/coq-au-vin-recipe4-2011654"
+          },
+          "ingredients": [
+              {
+                  "name": "Chicken",
+                  "amount": 4,
+                  "unit": "pounds"
+              },
+              {
+                  "name": "Bacon",
+                  "amount": 4,
+                  "unit": "slices"
+              },
+              {
+                  "name": "Red Wine",
+                  "amount": 2.5,
+                  "unit": "cups"
+              },
+              {
+                  "name": "Mushrooms",
+                  "amount": 1,
+                  "unit": "cup"
+              },
+              {
+                  "name": "Onions",
+                  "amount": 1,
+                  "unit": "cup"
+              },
+              {
+                  "name": "Garlic",
+                  "amount": 2,
+                  "unit": "cloves"
+              }
+          ],
+          "steps": [
+              "Brown chicken pieces and lardons. Remove and sautè mushrooms and onions in the same pan",
+              "Return the chicken to the pan, add red wine and chicken stock, and simmer until the chicken is cooked through",
+              "Thicken the sauce if desired, and serve with mashed potatoes"
+          ],
+          "nutrition": {
+              "servings": 4,
+              "caloriesPerServing": 550,
+              "protein": 45,
+              "carbohydrates": 5,
+              "fat": 35
+          }
+      },
+      {
+          "name": "Tarte Tatin",
+          "cuisine": "French",
+          "image": {
+              "title": "Tarte Tatin",
+              "url": "https://www.foodandwine.com/thmb/LlnnhX5MveKwpXxCMbT5CSvl1PY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Tarte-Tatin-FT-RECIPE0923-5fbf820c33ea4c12b23ff00c78f63471.jpg",
+              "width": 1500,
+              "height": 1500,
+              "source": "Food & Wine",
+              "source_url": "https://www.foodandwine.com/recipes/tarte-tatin"
+          },
+          "ingredients": [
+              {
+                  "name": "Apples",
+                  "amount": 6,
+                  "unit": "medium"
+              },
+              {
+                  "name": "Butter",
+                  "amount": 4,
+                  "unit": "tablespoons"
+              },
+              {
+                  "name": "Sugar",
+                  "amount": 0.75,
+                  "unit": "cup"
+              },
+              {
+                  "name": "Puff Pastry",
+                  "amount": 1,
+                  "unit": "sheet"
+              }
+          ],
+          "steps": [
+              "Caramelize sugar and butter in a pan, then arrange apple slices on top",
+              "Cover apples with puff pastry, tucking in the edges, and bake until golden",
+              "Cool slightly, then invert onto a plate before serving"
+          ],
+          "nutrition": {
+              "servings": 8,
+              "caloriesPerServing": 300,
+              "protein": 2,
+              "carbohydrates": 45,
+              "fat": 12
+          }
+      },
+      {
+          "name": "Moules Marinières",
+          "cuisine": "French",
+          "image": {
+              "title": "Moules Marinières",
+              "url": "https://food-images.files.bbci.co.uk/food/recipes/moulesmarinierewithc_71787_16x9.jpg",
+              "width": 1200,
+              "height": 1200,
+              "source": "BBC",
+              "source_url": "https://www.bbc.co.uk/food/recipes/moulesmarinierewithc_71787"
+          },
+          "ingredients": [
+              {
+                  "name": "Mussels",
+                  "amount": 2,
+                  "unit": "pounds"
+              },
+              {
+                  "name": "White Wine",
+                  "amount": 1,
+                  "unit": "cup"
+              },
+              {
+                  "name": "Shallots",
+                  "amount": 2,
+                  "unit": "large"
+              },
+              {
+                  "name": "Garlic",
+                  "amount": 2,
+                  "unit": "cloves"
+              },
+              {
+                  "name": "Butter",
+                  "amount": 2,
+                  "unit": "tablespoons"
+              },
+              {
+                  "name": "Parsley",
+                  "amount": 0.25,
+                  "unit": "cup"
+              }
+          ],
+          "steps": [
+              "Sautè finely chopped shallots and garlic in butter, then add mussels and pour over white wine",
+              "Cover and steam until the mussels open, then sprinkle with chopped parsley",
+              "Serve with the cooking liquid and fresh bread or fries"
+          ],
+          "nutrition": {
+              "servings": 2,
+              "caloriesPerServing": 310,
+              "protein": 24,
+              "carbohydrates": 18,
+              "fat": 14
+          }
       }
-    },
-    {
-      "name": "Caprese Salad",
-      "cuisine": "Italian",
-      "image": {
-        "title": "Caprese Salad",
-        "url": "https://www.californiastrawberries.com/wp-content/uploads/2015/05/Strawberry-Caprese-Salad-copy.png",
-        "width": 1024,
-        "height": 1024,
-        "source": "California Strawberries",
-        "source_url": "https://www.californiastrawberries.com/recipes_and_ideasdetailstrawberry_caprese_salad/"
-      },
-      "ingredients": [
-        {
-          "name": "Tomatoes",
-          "amount": 3,
-          "unit": "medium"
-        },
-        {
-          "name": "Mozzarella Cheese",
-          "amount": 8,
-          "unit": "ounces"
-        },
-        {
-          "name": "Basil Leaves",
-          "amount": 1,
-          "unit": "handful"
-        },
-        {
-          "name": "Olive Oil",
-          "amount": 2,
-          "unit": "tablespoons"
-        },
-        {
-          "name": "Balsamic Glaze",
-          "amount": 1,
-          "unit": "tablespoon"
-        }
-      ],
-      "steps": [
-        "Slice tomatoes and mozzarella",
-        "Layer with basil",
-        "Drizzle oil and glaze"
-      ]
-    },
-    {
-      "name": "Pasta Carbonara",
-      "cuisine": "Italian",
-      "image": {
-        "title": "Pasta Carbonara",
-        "url": "https://recipes.net/wp-content/uploads/2023/05/jamie-olivers-spaghetti-carbonara-recipe_6019122c01c76dc7c355280e963e5280-768x768.jpeg",
-        "width": 768,
-        "height": 768,
-        "source": "Recipes.net",
-        "source_url": "https://recipes.net/copycat/jamie-oliver/jamie-olivers-spaghetti-carbonara-recipe/"
-      },
-      "ingredients": [
-        {
-          "name": "Pasta",
-          "amount": 1,
-          "unit": "lb"
-        },
-        {
-          "name": "Eggs",
-          "amount": 4,
-          "unit": ""
-        },
-        {
-          "name": "Parmesan Cheese",
-          "amount": 1,
-          "unit": "cup"
-        },
-        {
-          "name": "Pancetta",
-          "amount": 6,
-          "unit": "ounces"
-        },
-        {
-          "name": "Garlic",
-          "amount": 2,
-          "unit": "cloves"
-        }
-      ],
-      "steps": [
-        "Cook pasta",
-        "Fry pancetta with garlic",
-        "Mix eggs and cheese",
-        "Combine all with pasta"
-      ]
-    },
-    {
-      "name": "Bruschetta",
-      "cuisine": "Italian",
-      "image": {
-        "title": "Bruschetta",
-        "url": "https://i0.wp.com/spainonafork.com/wp-content/uploads/2017/11/bruschetta411.png?fit=750%2C750&ssl=1",
-        "width": 750,
-        "height": 750,
-        "source": "Spain on a Fork",
-        "source_url": "https://spainonafork.com/easy-bruschetta-recipe/"
-      },
-      "ingredients": [
-        {
-          "name": "Baguette",
-          "amount": 1,
-          "unit": ""
-        },
-        {
-          "name": "Tomatoes",
-          "amount": 3,
-          "unit": "medium"
-        },
-        {
-          "name": "Garlic",
-          "amount": 2,
-          "unit": "cloves"
-        },
-        {
-          "name": "Basil",
-          "amount": 1,
-          "unit": "handful"
-        },
-        {
-          "name": "Olive Oil",
-          "amount": 0.25,
-          "unit": "cup"
-        }
-      ],
-      "steps": [
-        "Toast baguette slices",
-        "Mix tomatoes with basil and garlic",
-        "Top baguette with tomato mixture"
-      ]
-    },
-    {
-      "name": "Frittata",
-      "cuisine": "Italian",
-      "image": {
-        "title": "Frittata",
-        "url": "https://hips.hearstapps.com/hmg-prod/images/herb-frittata-recipe-1607362977.png",
-        "width": 980,
-        "height": 980,
-        "source": "Prevention",
-        "source_url": "https://www.prevention.com/food-nutrition/recipes/a34894579/herb-frittata-recipe/"
-      },
-      "ingredients": [
-        {
-          "name": "Eggs",
-          "amount": 6,
-          "unit": ""
-        },
-        {
-          "name": "Parmesan Cheese",
-          "amount": 0.5,
-          "unit": "cup"
-        },
-        {
-          "name": "Vegetables",
-          "amount": 2,
-          "unit": "cups"
-        },
-        {
-          "name": "Olive Oil",
-          "amount": 2,
-          "unit": "tablespoons"
-        }
-      ],
-      "steps": [
-        "Beat eggs with cheese",
-        "Sauté vegetables",
-        "Combine eggs with vegetables, cook until set"
-      ]
-    },
-    {
-      "name": "Minestrone Soup",
-      "cuisine": "Italian",
-      "image": {
-        "title": "Minestrone Soup",
-        "url": "https://mortadellahead.com/wp-content/uploads/2023/06/Minestrone-Soup-Recipe.png",
-        "width": 512,
-        "height": 512,
-        "source": "Mortadella Head",
-        "source_url": "https://mortadellahead.com/minestrone-soup-recipe/"
-      },
-      "ingredients": [
-        {
-          "name": "Vegetable Broth",
-          "amount": 6,
-          "unit": "cups"
-        },
-        {
-          "name": "Canned Tomatoes",
-          "amount": 1,
-          "unit": "can"
-        },
-        {
-          "name": "Mixed Vegetables",
-          "amount": 3,
-          "unit": "cups"
-        },
-        {
-          "name": "Pasta",
-          "amount": 1,
-          "unit": "cup"
-        },
-        {
-          "name": "Beans",
-          "amount": 1,
-          "unit": "can"
-        }
-      ],
-      "steps": [
-        "Simmer broth with tomatoes",
-        "Add vegetables and pasta",
-        "Stir in beans until heated through"
-      ]
-    },
-    {
-      "name": "Tiramisu",
-      "cuisine": "Italian",
-      "image": {
-        "title": "Tiramisu",
-        "url": "https://bakeomaniac.com/wp-content/uploads/2021/12/Italian-Classic-Tiramisu.png",
-        "width": 800,
-        "height": 800,
-        "source": "Bakeomaniac",
-        "source_url": "https://bakeomaniac.com/classic-tiramisu-recipe/"
-      },
-      "ingredients": [
-        {
-          "name": "Mascarpone Cheese",
-          "amount": 1,
-          "unit": "lb"
-        },
-        {
-          "name": "Espresso",
-          "amount": 2,
-          "unit": "cups"
-        },
-        {
-          "name": "Ladyfingers",
-          "amount": 24,
-          "unit": ""
-        },
-        {
-          "name": "Cocoa Powder",
-          "amount": 0.25,
-          "unit": "cup"
-        }
-      ],
-      "steps": [
-        "Dip ladyfingers in espresso",
-        "Layer with mascarpone",
-        "Chill, then dust with cocoa"
-      ]
-    },
-    {
-      "name": "Risotto",
-      "cuisine": "Italian",
-      "image": {
-        "title": "Risotto",
-        "url": "https://jow.com/_next/image?url=https%3A%2F%2Fstatic.jow.fr%2F880x880%2Frecipes%2FsZpsWtSzvQBs7w.png&w=2560&q=100",
-        "width": 880,
-        "height": 880,
-        "source": "Jow",
-        "source_url": "https://jow.com/recipes/asparagus-risotto-8lsl7wo78sv8jvp71a5h"
-      },
-      "ingredients": [
-        {
-          "name": "Arborio Rice",
-          "amount": 1,
-          "unit": "cup"
-        },
-        {
-          "name": "Chicken Stock",
-          "amount": 4,
-          "unit": "cups"
-        },
-        {
-          "name": "Onion",
-          "amount": 1,
-          "unit": "small"
-        },
-        {
-          "name": "White Wine",
-          "amount": 0.5,
-          "unit": "cup"
-        },
-        {
-          "name": "Parmesan Cheese",
-          "amount": 0.5,
-          "unit": "cup"
-        }
-      ],
-      "steps": [
-        "Sauté onion",
-        "Toast rice, deglaze with wine",
-        "Add stock gradually, stir until creamy"
-      ]
-    },
-    {
-      "name": "Polenta",
-      "cuisine": "Italian",
-      "image": {
-        "title": "Polenta",
-        "url": "https://www.romaniandelights.com.au/wp-content/uploads/2024/01/1-1-edited.png",
-        "width": 850,
-        "height": 850,
-        "source": "Romanian Delights",
-        "source_url": "https://www.romaniandelights.com.au/traditional-romanian-polenta-with-sour-cream-and-cheese/"
-      },
-      "ingredients": [
-        {
-          "name": "Cornmeal",
-          "amount": 1,
-          "unit": "cup"
-        },
-        {
-          "name": "Water",
-          "amount": 4,
-          "unit": "cups"
-        },
-        {
-          "name": "Butter",
-          "amount": 2,
-          "unit": "tablespoons"
-        },
-        {
-          "name": "Parmesan Cheese",
-          "amount": 0.5,
-          "unit": "cup"
-        }
-      ],
-      "steps": [
-        "Boil water",
-        "Whisk in cornmeal gradually",
-        "Cook until thickened, stir in butter and cheese"
-      ]
-    },
-    {
-      "name": "Pesto Pasta",
-      "cuisine": "Italian",
-      "image": {
-        "title": "Pesto Pasta",
-        "url": "https://www.cookingwithemily.co.uk/wp-content/uploads/2022/08/basil-pesto.png",
-        "width": 513,
-        "height": 513,
-        "source": "Cooking With Emily",
-        "source_url": "https://www.cookingwithemily.co.uk/food/other/basil-pesto-pasta/"
-      },
-      "ingredients": [
-        {
-          "name": "Pasta",
-          "amount": 1,
-          "unit": "lb"
-        },
-        {
-          "name": "Pesto Sauce",
-          "amount": 1,
-          "unit": "cup"
-        },
-        {
-          "name": "Parmesan Cheese",
-          "amount": 0.25,
-          "unit": "cup"
-        },
-        {
-          "name": "Pine Nuts",
-          "amount": 0.25,
-          "unit": "cup"
-        }
-      ],
-      "steps": [
-        "Cook pasta",
-        "Mix pasta with pesto",
-        "Garnish with Parmesan and pine nuts"
-      ]
-    },
-    {
-      "name": "Quiche Lorraine",
-      "cuisine": "French",
-      "image": {
-        "title": "Quiche Lorraine",
-        "url": "https://hips.hearstapps.com/del.h-cdn.co/assets/18/09/1600x1200/sd-aspect-1519657904-delish-quiche-lorraine.jpg?resize=1200:*",
-        "width": 1200,
-        "height": 1200,
-        "source": "Delish",
-        "source_url": "https://www.delish.com/cooking/recipe-ideas/a58388/easy-quiche-lorraine-recipe/"
-      },
-      "ingredients": [
-        {
-          "name": "Pie Crust",
-          "amount": 1,
-          "unit": ""
-        },
-        {
-          "name": "Eggs",
-          "amount": 4,
-          "unit": ""
-        },
-        {
-          "name": "Heavy Cream",
-          "amount": 1,
-          "unit": "cup"
-        },
-        {
-          "name": "Bacon",
-          "amount": 6,
-          "unit": "slices"
-        },
-        {
-          "name": "Gruyère Cheese",
-          "amount": 1,
-          "unit": "cup"
-        }
-      ],
-      "steps": [
-        "Pre-bake the pie crust until lightly golden",
-        "Whisk together eggs, cream, chopped bacon, and grated Gruyère, then pour into the crust",
-        "Bake until the filling is set and the top is golden brown"
-      ]
-    },
-    {
-      "name": "Ratatouille",
-      "cuisine": "French",
-      "image": {
-        "title": "Ratatouille",
-        "url": "https://media.chefdehome.com/740/0/0/ratatouille/ratatouille-casserole.jpg",
-        "width": 740,
-        "height": 740,
-        "source": "ChefDeHome",
-        "source_url": "https://www.chefdehome.com/recipes/561/ratatouille"
-      },
-      "ingredients": [
-        {
-          "name": "Eggplant",
-          "amount": 1,
-          "unit": ""
-        },
-        {
-          "name": "Zucchini",
-          "amount": 2,
-          "unit": ""
-        },
-        {
-          "name": "Red Bell Pepper",
-          "amount": 1,
-          "unit": ""
-        },
-        {
-          "name": "Tomato",
-          "amount": 4,
-          "unit": "medium"
-        },
-        {
-          "name": "Olive Oil",
-          "amount": 2,
-          "unit": "tablespoons"
-        },
-        {
-          "name": "Garlic",
-          "amount": 2,
-          "unit": "cloves"
-        }
-      ],
-      "steps": [
-        "Sauté sliced eggplant, zucchini, bell peppers, and tomato in olive oil until tender",
-        "Layer the cooked vegetables in a baking dish, seasoning with garlic and herbs between layers",
-        "Bake in the oven until the flavors meld and the top is slightly caramelized"
-      ]
-    },
-    {
-      "name": "Croque Monsieur",
-      "cuisine": "French",
-      "image": {
-        "title": "Croque Monsieur",
-        "url": "https://www.thespruceeats.com/thmb/m334hnwllMQiiS2mj2VVSLDiPFs=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/croque-monsieur-classic-french-grilled-cheese-996061-hero-01-cbf77c357af042fa89080019757916f0.jpg",
-        "width": 750,
-        "height": 750,
-        "source": "The Spruce Eats",
-        "source_url": "https://www.thespruceeats.com/croque-monsieur-classic-french-grilled-cheese-996061"
-      },
-      "ingredients": [
-        {
-          "name": "Bread",
-          "amount": 4,
-          "unit": "slices"
-        },
-        {
-          "name": "Ham",
-          "amount": 4,
-          "unit": "slices"
-        },
-        {
-          "name": "Gruyère Cheese",
-          "amount": 1,
-          "unit": "cup"
-        },
-        {
-          "name": "Butter",
-          "amount": 2,
-          "unit": "tablespoons"
-        },
-        {
-          "name": "Dijon Mustard",
-          "amount": 1,
-          "unit": "tablespoon"
-        }
-      ],
-      "steps": [
-        "Spread Dijon mustard on bread slices, then layer with ham and grated Gruyère. Top with another slice of bread",
-        "Melt butter in a pan and toast the sandwiches until golden brown on both sides",
-        "Top each sandwich with more Gruyère and broil until the cheese is bubbly and golden"
-      ]
-    },
-    {
-      "name": "Salade Niçoise",
-      "cuisine": "French",
-      "image": {
-        "title": "Salade Niçoise",
-        "url": "https://lechefswife.com/wp-content/uploads/2022/05/45AC92EF-157B-44E6-AF87-BE6F2C8FA33B-scaled.jpeg",
-        "width": 1200,
-        "height": 1200,
-        "source": "Le Chef's Wife",
-        "source_url": "https://lechefswife.com/french-salade-nicoise-recipe/"
-      },
-      "ingredients": [
-        {
-          "name": "Lettuce",
-          "amount": 1,
-          "unit": "head"
-        },
-        {
-          "name": "Tomatoes",
-          "amount": 3,
-          "unit": "medium"
-        },
-        {
-          "name": "Hard boiled Eggs",
-          "amount": 4,
-          "unit": ""
-        },
-        {
-          "name": "Niçoise Olives",
-          "amount": 0.5,
-          "unit": "cup"
-        },
-        {
-          "name": "Anchovies",
-          "amount": 6,
-          "unit": "fillets"
-        },
-        {
-          "name": "Tuna",
-          "amount": 1,
-          "unit": "can"
-        }
-      ],
-      "steps": [
-        "Arrange lettuce, halved tomatoes, halved hard-boiled eggs, Niçoise olives, and anchovies on a plate",
-        "Top with flaked tuna and drizzle with olive oil and vinegar dressing",
-        "Season with salt and pepper to taste"
-      ]
-    },
-    {
-      "name": "French Onion Soup",
-      "cuisine": "French",
-      "image": {
-        "title": "French Onion Soup",
-        "url": "https://www.allrecipes.com/thmb/VJUV55WhtJtGjIozXPkYDTMhe1g=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/13309-rich-and-simple-french-onion-soup-mfs-044-82982847dd4344019b063cbc590d8598.jpg",
-        "width": 1500,
-        "height": 1500,
-        "source": "Allrecipes",
-        "source_url": "https://www.allrecipes.com/recipe/13309/rich-and-simple-french-onion-soup/"
-      },
-      "ingredients": [
-        {
-          "name": "Onions",
-          "amount": 4,
-          "unit": "large"
-        },
-        {
-          "name": "Butter",
-          "amount": 2,
-          "unit": "tablespoons"
-        },
-        {
-          "name": "Beef Stock",
-          "amount": 6,
-          "unit": "cups"
-        },
-        {
-          "name": "French Bread",
-          "amount": 4,
-          "unit": "slices"
-        },
-        {
-          "name": "Gruyère Cheese",
-          "amount": 1,
-          "unit": "cup"
-        }
-      ],
-      "steps": [
-        "Caramelize sliced onions in butter, then add beef stock and simmer for depth of flavor",
-        "Pour the soup into oven-safe bowls, top with a slice of toasted French bread and grated Gruyère cheese",
-        "Broil until the cheese is melted and bubbly"
-      ]
-    },
-    {
-      "name": "Crêpes",
-      "cuisine": "French",
-      "image": {
-        "title": "Crêpes",
-        "url": "https://hips.hearstapps.com/hmg-prod/images/crepes-index-64347419e3c7a.jpg?crop=0.6666666666666666xw:1xh;center,top&resize=1200:*",
-        "width": 1200,
-        "height": 1200,
-        "source": "Delish",
-        "source_url": "https://www.delish.com/cooking/recipe-ideas/recipes/a52114/easy-basic-crepe-recipe/"
-      },
-      "ingredients": [
-        {
-          "name": "Flour",
-          "amount": 1,
-          "unit": "cup"
-        },
-        {
-          "name": "Milk",
-          "amount": 1.5,
-          "unit": "cups"
-        },
-        {
-          "name": "Eggs",
-          "amount": 2,
-          "unit": ""
-        },
-        {
-          "name": "Butter",
-          "amount": 2,
-          "unit": "tablespoons"
-        },
-        {
-          "name": "Salt",
-          "amount": 0.5,
-          "unit": "tablespoon"
-        }
-      ],
-      "steps": [
-        "Mix flour, milk, eggs, melted butter, and salt to create a smooth batter",
-        "Pour a small amount of batter into a hot, lightly buttered pan, tilting to spread evenly",
-        "Cook until edges are dry, flip carefully, and cook the other side. Fill as desired"
-      ]
-    },
-    {
-      "name": "Beef bourguignon",
-      "cuisine": "French",
-      "image": {
-        "title": "Beef bourguignon",
-        "url": "https://mojo.generalmills.com/api/public/content/D4Btjmb-G0y2ZdcoKNBlvA_gmi_hi_res_jpeg.jpeg?v=966f6fb2&t=466b54bb264e48b199fc8e83ef1136b4",
-        "width": 800,
-        "height": 800,
-        "source": "Tablespoon",
-        "source_url": "https://www.tablespoon.com/recipes/julia-childs-beef-bourguignon/cdda3ccc-3623-4363-8095-aaca1a3f8313"
-      },
-      "ingredients": [
-        {
-          "name": "Beef Chuck",
-          "amount": 3,
-          "unit": "pounds"
-        },
-        {
-          "name": "Carrots",
-          "amount": 3,
-          "unit": ""
-        },
-        {
-          "name": "Onions",
-          "amount": 2,
-          "unit": "large"
-        },
-        {
-          "name": "Red Wine",
-          "amount": 2.5,
-          "unit": "cups"
-        },
-        {
-          "name": "Beef Stock",
-          "amount": 2,
-          "unit": "cups"
-        },
-        {
-          "name": "Bacon",
-          "amount": 5,
-          "unit": "slices"
-        }
-      ],
-      "steps": [
-        "Brown chunks of beef, then sauté carrots and onions in the same pot",
-        "Add red wine and beef stock to the pot, along with herbs, and simmer until the beef is tender",
-        "Serve with boiled potatoes or crusty bread"
-      ]
-    },
-    {
-      "name": "Coq au Vin",
-      "cuisine": "French",
-      "image": {
-        "title": "Coq au Vin",
-        "url": "https://www.foodnetwork.com/content/dam/images/food/fullset/2008/2/1/0/IG1005_Coq_Au_Vin_s4x3.jpg",
-        "width": 1200,
-        "height": 1200,
-        "source": "Food Network",
-        "source_url": "https://www.foodnetwork.com/recipes/ina-garten/coq-au-vin-recipe4-2011654"
-      },
-      "ingredients": [
-        {
-          "name": "Chicken",
-          "amount": 4,
-          "unit": "pounds"
-        },
-        {
-          "name": "Bacon",
-          "amount": 4,
-          "unit": "slices"
-        },
-        {
-          "name": "Red Wine",
-          "amount": 2.5,
-          "unit": "cups"
-        },
-        {
-          "name": "Mushrooms",
-          "amount": 1,
-          "unit": "cup"
-        },
-        {
-          "name": "Onions",
-          "amount": 1,
-          "unit": "cup"
-        },
-        {
-          "name": "Garlic",
-          "amount": 2,
-          "unit": "cloves"
-        }
-      ],
-      "steps": [
-        "Brown chicken pieces and lardons. Remove and sauté mushrooms and onions in the same pan",
-        "Return the chicken to the pan, add red wine and chicken stock, and simmer until the chicken is cooked through",
-        "Thicken the sauce if desired, and serve with mashed potatoes"
-      ]
-    },
-    {
-      "name": "Tarte Tatin",
-      "cuisine": "French",
-      "image": {
-        "title": "Tarte Tatin",
-        "url": "https://www.foodandwine.com/thmb/LlnnhX5MveKwpXxCMbT5CSvl1PY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Tarte-Tatin-FT-RECIPE0923-5fbf820c33ea4c12b23ff00c78f63471.jpg",
-        "width": 1500,
-        "height": 1500,
-        "source": "Food & Wine",
-        "source_url": "https://www.foodandwine.com/recipes/tarte-tatin"
-      },
-      "ingredients": [
-        {
-          "name": "Apples",
-          "amount": 6,
-          "unit": "medium"
-        },
-        {
-          "name": "Butter",
-          "amount": 4,
-          "unit": "tablespoons"
-        },
-        {
-          "name": "Sugar",
-          "amount": 0.75,
-          "unit": "cup"
-        },
-        {
-          "name": "Puff Pastry",
-          "amount": 1,
-          "unit": "sheet"
-        }
-      ],
-      "steps": [
-        "Caramelize sugar and butter in a pan, then arrange apple slices on top",
-        "Cover apples with puff pastry, tucking in the edges, and bake until golden",
-        "Cool slightly, then invert onto a plate before serving"
-      ]
-    },
-    {
-      "name": "Moules Marinières",
-      "cuisine": "French",
-      "image": {
-        "title": "Moules Marinières",
-        "url": "https://food-images.files.bbci.co.uk/food/recipes/moulesmarinierewithc_71787_16x9.jpg",
-        "width": 1200,
-        "height": 1200,
-        "source": "BBC",
-        "source_url": "https://www.bbc.co.uk/food/recipes/moulesmarinierewithc_71787"
-      },
-      "ingredients": [
-        {
-          "name": "Mussels",
-          "amount": 2,
-          "unit": "pounds"
-        },
-        {
-          "name": "White Wine",
-          "amount": 1,
-          "unit": "cup"
-        },
-        {
-          "name": "Shallots",
-          "amount": 2,
-          "unit": "large"
-        },
-        {
-          "name": "Garlic",
-          "amount": 2,
-          "unit": "cloves"
-        },
-        {
-          "name": "Butter",
-          "amount": 2,
-          "unit": "tablespoons"
-        },
-        {
-          "name": "Parsley",
-          "amount": 0.25,
-          "unit": "cup"
-        }
-      ],
-      "steps": [
-        "Sauté finely chopped shallots and garlic in butter, then add mussels and pour over white wine",
-        "Cover and steam until the mussels open, then sprinkle with chopped parsley",
-        "Serve with the cooking liquid and fresh bread or fries"
-      ]
-    }
   ]
 }
