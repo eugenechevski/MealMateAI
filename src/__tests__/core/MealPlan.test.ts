@@ -134,6 +134,7 @@ describe("MealPlan", () => {
   });
 
   it("should return the meal plan data", async () => {
+    // Build the selection menu
     const selectionMenu = buildSelectionMenu(
       (await import("../../../initialSelectionMenu.json")).recipes
     );
@@ -193,5 +194,11 @@ describe("MealPlan", () => {
     }
 
     expect(mealPlan.getMealPlanData()).toEqual(expectedMealPlanData);
+  });
+
+  it("should return an empty meal plan data when meal plan finished without any recipes", () => {
+    const mealPlan = new MealPlan();
+
+    expect(mealPlan.getMealPlanData()).toEqual({});
   });
 });

@@ -47,8 +47,6 @@ export class AppState {
   }
 
   finishMealPlan() {
-    const mealPlanData = this.currentMealPlan.getMealPlanData();
-    // Return an object format of the meal plan
-    
+    return this.currentMealPlan.getMealPlanData();
   }
 }
