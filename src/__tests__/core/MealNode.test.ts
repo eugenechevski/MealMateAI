@@ -21,8 +21,8 @@ describe("MealNode", () => {
     const meal = new MealNode(recipe);
 
     expect(meal.id).toBeTruthy();
-    expect(meal.recipe.image.url).toBe("spaghetti.jpg");
-    expect(meal.recipe.name).toBe("Tomato Spaghetti");
+    expect(meal.recipe?.image?.url).toBe("spaghetti.jpg");
+    expect(meal.recipe?.name).toBe("Tomato Spaghetti");
     expect(meal.recipe).toBe(recipe);
     expect(meal.prevMeal).toBeNull();
     expect(meal.nextMeal).toBeNull();

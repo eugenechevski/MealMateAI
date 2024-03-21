@@ -3,10 +3,7 @@
  * It stores the user, the current meal plan, and the selection menu.
  */
 
-import { MealPlan, MainUser, SelectionMenu, MealNode } from "@/core";
-
-const MAX_MEAL_PLAN_DAYS = 7;
-const MAX_MEALS_PER_DAY = 5;
+import { MealPlan, MainUser, SelectionMenu, MealNode, Recipe } from "@/core";
 
 export class AppState {
   user: MainUser;
@@ -23,27 +20,6 @@ export class AppState {
     this.currentMealPlan = new MealPlan();
 
     return true;
-  }
-
-  startNewDay() {
-    if (Object.keys(this.currentMealPlan.days).length < MAX_MEAL_PLAN_DAYS) {
-      this.currentMealPlan.appendNewDay();
-      return true;
-    }
-
-    return false;
-  }
-
-  startNewMealForDay(dayId: string) {
-    if (
-      Object.keys(this.currentMealPlan.days[dayId].meals).length <
-      MAX_MEALS_PER_DAY
-    ) {
-      this.currentMealPlan.days[dayId].appendNewMeal();
-      return true;
-    }
-
-    return false;
   }
 
   finishMealPlan() {

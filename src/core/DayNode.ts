@@ -1,6 +1,8 @@
 import { v4 as uuidv4 } from "uuid";
 import { MealNode } from "@/core";
 
+const MAX_MEALS_PER_DAY = 5;
+
 /**
  * Represents a day node in the meal plan
  */
@@ -171,6 +173,8 @@ export class DayNode {
    * @returns {MealNode} - The newly created meal node.
    */
   appendNewMeal() {
+    if (Object.keys(this.meals).length === MAX_MEALS_PER_DAY) { return; }
+
     const newMeal = new MealNode();
     this.addMeal(newMeal);
     return newMeal;
