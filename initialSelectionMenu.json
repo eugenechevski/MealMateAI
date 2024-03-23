@@ -492,6 +492,11 @@
         "fat": 20
       }
     },
+
+
+
+
+
     {
       "name": "Quiche Lorraine",
       "cuisine": "French",
@@ -1021,6 +1026,2493 @@
         "carbohydrates": 18,
         "fat": 14
       }
+    },
+
+
+
+
+    {
+      "name": "Karaage",
+      "cuisine": "Japanese",
+      "ingredients": [
+        {
+          "name": "Chicken Thighs",
+          "amount": 1,
+          "unit": "lb"
+        },
+        {
+          "name": "Soy Sauce",
+          "amount": 3,
+          "unit": "tablespoon"
+        },
+        {
+          "name": "Mirin",
+          "amount": 3,
+          "unit": "tablespoon"
+        },
+        {
+          "name": "Sugar",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Minced Garlic",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Grated Ginger",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Water",
+          "amount": 0.5,
+          "unit": "cup"
+        },
+        {
+          "name": "Hondashi",
+          "amount": 0.5,
+          "unit": "tsp"
+        },
+        {
+          "name": "Potato Starch",
+          "amount": 2,
+          "unit": "cups"
+        }
+      ],
+      "steps": [
+        "Cut chicken into bite sized pieces",
+        "Mix everything together but the Potato starch and chicken",
+        "Put chicken into marinade overnight",
+        "Take chicken out of marinade",
+        "Add potato starch into bowl and add in a tiny splash of  water",
+        "Toss potato starch around in bowl to form small tiny clumps",
+        "Put chicken into potato starch until coated completely",
+        "Fry in oil, after frying it to golden brown, take all of it out, and fry again for about 20 seconds"
+
+      ],
+      "image": {
+        "title": "Karaage",
+        "url": "https://static01.nyt.com/images/2018/07/25/dining/HK-karaage-horizontal/merlin_141075300_74569dec-9fc2-4174-931d-019dddef3bb8-master768.jpg?w=1280&q=75",
+        "width": 1200,
+        "height": 1200,
+        "source": "cooking nytimes",
+        "source_url": "https://cooking.nytimes.com/recipes/1019428-karaage-japanese-fried-chicken"
+      },
+      "nutrition": {
+        "servings": 1,
+        "caloriesPerServing": 411,
+        "protein": 16.4,
+        "carbohydrates": 66.9,
+        "fat": 7.5
+      }
+    },
+    {
+      "name": "Chicken Katsu",
+      "cuisine": "Japanese",
+      "ingredients": [
+        {
+          "name": "Boneless Chicken Breast",
+          "amount": 1,
+          "unit": "lb"
+        },
+        {
+          "name": "Salt",
+          "amount": 0.5,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Black Pepper",
+          "amount": 0.25,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "All-Purpose Flour",
+          "amount": 0.5,
+          "unit": "cup"
+        },
+        {
+          "name": "Eggs",
+          "amount": 2,
+          "unit": "large"
+        },
+        {
+          "name": "Water",
+          "amount": 1,
+          "unit": "tablespoon"
+        },
+        {
+          "name": "Panko Breadcrumbs",
+          "amount": 1,
+          "unit": "cup"
+        },
+        {
+          "name": "Vegetable Oil",
+          "amount": 1,
+          "unit": "cup"
+        }
+      ],
+      "steps": [
+        "Pound chicken breasts to even thickness, about 1/2 inch, then season both sides with salt and pepper.",
+        "Prepare three shallow dishes: one with flour, one with beaten eggs and water mixed together, and one with panko breadcrumbs.",
+        "Dredge each chicken piece in flour, shaking off the excess, then dip into the egg mixture, and finally coat thoroughly with panko breadcrumbs.",
+        "Heat vegetable oil in a large skillet over medium-high heat. Once hot, add chicken pieces and cook until golden brown and crispy, about 3 to 4 minutes per side.",
+        "Transfer cooked chicken to a paper towel-lined plate to drain excess oil.",
+        "Serve hot, sliced with tonkatsu sauce on the side for dipping."
+      ],
+      "image": {
+        "title": "Chicken Katsu",
+        "url": "https://www.allrecipes.com/thmb/BNV43ZWhiPe2T4Mvh_5U_ftSPLA=/650x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/653617-Chicken-Katsu-Photo-by-abapplez-650x465-3a3cb7db797f427391d5a8855bf92772.jpg",
+        "width": 1200,
+        "height": 1200,
+        "source": "all recipes",
+        "source_url": "https://www.allrecipes.com/recipe/72068/chicken-katsu/"
+      },
+      "nutrition": {
+        "servings": 4,
+        "caloriesPerServing": "600",
+        "protein": "35",
+        "carbohydrates": "40",
+        "fat": "30"
+      }
+    },  
+    {
+      "name": "Katsudon",
+      "cuisine": "Japanese",
+      "ingredients": [
+        {
+          "name": "Cooked Chicken Katsu",
+          "amount": 4,
+          "unit": "pieces"
+        },
+        {
+          "name": "Cooked Rice",
+          "amount": 4,
+          "unit": "cups"
+        },
+        {
+          "name": "Onions",
+          "amount": 2,
+          "unit": "medium, sliced"
+        },
+        {
+          "name": "Eggs",
+          "amount": 4,
+          "unit": "large"
+        },
+        {
+          "name": "Dashi Stock",
+          "amount": 1,
+          "unit": "cup"
+        },
+        {
+          "name": "Soy Sauce",
+          "amount": 4,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Mirin",
+          "amount": 4,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Sugar",
+          "amount": 2,
+          "unit": "teaspoons"
+        }
+      ],
+      "steps": [
+        "Slice the cooked Chicken Katsu into strips.",
+        "In a skillet, combine dashi stock, soy sauce, mirin, and sugar. Bring to a simmer.",
+        "Add sliced onions to the skillet and cook until tender.",
+        "Place Chicken Katsu strips over the onions. Beat eggs and pour over the chicken and onions.",
+        "Cover and cook over low heat until the egg is just set.",
+        "Serve the chicken and egg mixture over bowls of cooked rice."
+      ],
+      "image": {
+        "title": "Katsudon",
+        "url": "https://thewoksoflife.com/wp-content/uploads/2015/03/katsudon-8.jpg",
+        "width": 1200,
+        "height": 1200,
+        "source": "The woks of life",
+        "source_url": "https://thewoksoflife.com/katsudon/"
+      },
+      "nutrition": {
+        "servings": 4,
+        "caloriesPerServing": 800,
+        "protein": 45,
+        "carbohydrates": 100,
+        "fat": 35
+      }
+    },
+    {
+      "name": "Japanese Chicken Curry",
+      "cuisine": "Japanese",
+      "ingredients": [
+        {
+          "name": "Boneless Chicken Thighs",
+          "amount": 1,
+          "unit": "lb"
+        },
+        {
+          "name": "Carrots",
+          "amount": 2,
+          "unit": "large"
+        },
+        {
+          "name": "Onions",
+          "amount": 2,
+          "unit": "large"
+        },
+        {
+          "name": "Potatoes",
+          "amount": 2,
+          "unit": "large"
+        },
+        {
+          "name": "Japanese Curry Roux",
+          "amount": 1,
+          "unit": "box"
+        },
+        {
+          "name": "Water",
+          "amount": 4,
+          "unit": "cups"
+        },
+        {
+          "name": "Cooked Rice",
+          "amount": 4,
+          "unit": "cups"
+        }
+      ],
+      "steps": [
+        "Cut the chicken, carrots, onions, and potatoes into bite-sized pieces.",
+        "In a large pot, sauté onions until translucent, then add chicken and brown slightly.",
+        "Add carrots and potatoes to the pot, then add water and bring to a boil. Reduce heat to simmer.",
+        "Add the curry roux blocks to the pot, stirring until fully dissolved. Simmer until the vegetables are tender and the sauce has thickened.",
+        "Serve the curry over bowls of cooked rice."
+      ],
+      "image": {
+        "title": "Japanese Chicken Curry",
+        "url": "https://www.justonecookbook.com/wp-content/uploads/2021/10/Japanese-Chicken-Curry-3769-II.jpg",
+        "width": 1200,
+        "height": 1200,
+        "source": "just one cookbook",
+        "source_url": "https://www.justonecookbook.com/simple-chicken-curry/"
+      },
+      "nutrition": {
+        "servings": 4,
+        "caloriesPerServing": 800,
+        "protein": 35,
+        "carbohydrates": 100,
+        "fat": 25
+      }
+    },
+    {
+      "name": "Gyudon",
+      "cuisine": "Japanese",
+      "ingredients": [
+        {
+          "name": "Thinly Sliced Beef",
+          "amount": 1,
+          "unit": "lb"
+        },
+        {
+          "name": "Onions",
+          "amount": 2,
+          "unit": "medium, sliced"
+        },
+        {
+          "name": "Soy Sauce",
+          "amount": 4,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Mirin",
+          "amount": 3,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Sake",
+          "amount": 2,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Sugar",
+          "amount": 2,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Dashi Stock",
+          "amount": 1,
+          "unit": "cup"
+        },
+        {
+          "name": "Cooked Rice",
+          "amount": 4,
+          "unit": "cups"
+        },
+        {
+          "name": "Pickled Red Ginger",
+          "amount": 1,
+          "unit": "tablespoon"
+        }
+      ],
+      "steps": [
+        "In a large skillet, combine the dashi, soy sauce, mirin, sake, and sugar. Bring to a simmer.",
+        "Add the sliced onions to the skillet and cook until tender.",
+        "Add the thinly sliced beef to the skillet and cook until browned.",
+        "Divide the cooked rice among four bowls. Top each bowl with the beef and onion mixture.",
+        "Garnish with pickled red ginger."
+      ],
+      "image": {
+        "title": "Gyudon",
+        "url": "https://www.justonecookbook.com/wp-content/uploads/2022/04/Gyudon-7439-2-II.jpg",
+        "width": 1200,
+        "height": 1200,
+        "source": "just one cookbook",
+        "source_url": "https://www.justonecookbook.com/gyudon/"
+      },
+      "nutrition": {
+        "servings": 4,
+        "caloriesPerServing": 700,
+        "protein": 30,
+        "carbohydrates": 80,
+        "fat": 20
+      }
+    },
+    {
+      "name": "Japanese Cold Soba",
+      "cuisine": "Japanese",
+      "ingredients": [
+        {
+          "name": "Dried Soba Noodles",
+          "amount": 12,
+          "unit": "oz"
+        },
+        {
+          "name": "Soy Sauce",
+          "amount": 3,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Mirin",
+          "amount": 2,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Sugar",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Dashi Stock",
+          "amount": 2,
+          "unit": "cups"
+        },
+        {
+          "name": "Green Onions",
+          "amount": 4,
+          "unit": "stalks, finely chopped"
+        },
+        {
+          "name": "Wasabi",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Nori Seaweed",
+          "amount": 1,
+          "unit": "sheet, cut into thin strips"
+        }
+      ],
+      "steps": [
+        "Cook soba noodles in boiling water until just tender, then rinse under cold water and drain.",
+        "Combine soy sauce, mirin, sugar, and dashi stock in a bowl to make the dipping sauce.",
+        "Chill the cooked soba noodles and dipping sauce in the refrigerator until cold.",
+        "Serve the cold soba noodles on plates with the dipping sauce on the side.",
+        "Garnish the noodles with chopped green onions, wasabi, and nori strips."
+      ],
+      "image": {
+        "title": "Japanese Cold Soba",
+        "url": "https://static01.nyt.com/images/2016/07/19/dining/19COOKING-SOBANOODLES1/19COOKING-SOBANOODLES1-master768.jpg?w=1024&q=75",
+        "width": 1200,
+        "height": 1200,
+        "source": "cooking nytimes",
+        "source_url": "https://cooking.nytimes.com/recipes/10549-cold-soba-noodles-with-dipping-sauce"
+      },
+      "nutrition": {
+        "servings": 4,
+        "caloriesPerServing": 350,
+        "protein": 12,
+        "carbohydrates": 75,
+        "fat": 1
+      }
+    },
+    {
+      "name": "Japanese Udon Soup",
+      "cuisine": "Japanese",
+      "ingredients": [
+        {
+          "name": "Dried Udon Noodles",
+          "amount": 12,
+          "unit": "oz"
+        },
+        {
+          "name": "Dashi Stock",
+          "amount": 4,
+          "unit": "cups"
+        },
+        {
+          "name": "Soy Sauce",
+          "amount": 4,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Mirin",
+          "amount": 2,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Sugar",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Green Onions",
+          "amount": 4,
+          "unit": "stalks, chopped"
+        },
+        {
+          "name": "Shiitake Mushrooms",
+          "amount": 4,
+          "unit": "large, sliced"
+        },
+        {
+          "name": "Spinach",
+          "amount": 2,
+          "unit": "cups"
+        },
+        {
+          "name": "Kamaboko (fish cake)",
+          "amount": 4,
+          "unit": "slices"
+        },
+        {
+          "name": "Tempura Bits (optional)",
+          "amount": 0.5,
+          "unit": "cup"
+        }
+      ],
+      "steps": [
+        "Cook udon noodles according to package instructions, then rinse under cold water and drain.",
+        "In a large pot, combine dashi stock, soy sauce, mirin, and sugar. Bring to a simmer.",
+        "Add shiitake mushrooms to the pot and cook until tender.",
+        "Divide the cooked noodles among four bowls.",
+        "Pour the hot soup over the noodles in each bowl.",
+        "Top with spinach, green onions, kamaboko slices, and optional tempura bits."
+      ],
+      "image": {
+        "title": "Japanese Udon Soup",
+        "url": "https://www.justonecookbook.com/wp-content/uploads/2021/10/Kake-Udon-2246-II.jpg",
+        "width": 1200,
+        "height": 1200,
+        "source": "just one cookbook",
+        "source_url": "https://www.justonecookbook.com/udon-noodle-soup/"
+      },
+      "nutrition": {
+        "servings": 4,
+        "caloriesPerServing": 400,
+        "protein": 15,
+        "carbohydrates": 80,
+        "fat": 5
+      }
+    },
+    {
+      "name": "Oyakodon",
+      "cuisine": "Japanese",
+      "ingredients": [
+        {
+          "name": "Boneless Chicken Thighs",
+          "amount": 1,
+          "unit": "lb"
+        },
+        {
+          "name": "Onions",
+          "amount": 2,
+          "unit": "medium, sliced"
+        },
+        {
+          "name": "Eggs",
+          "amount": 4,
+          "unit": "large"
+        },
+        {
+          "name": "Dashi Stock",
+          "amount": 1,
+          "unit": "cup"
+        },
+        {
+          "name": "Soy Sauce",
+          "amount": 4,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Mirin",
+          "amount": 4,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Sugar",
+          "amount": 2,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Cooked Rice",
+          "amount": 4,
+          "unit": "cups"
+        },
+        {
+          "name": "Green Onions",
+          "amount": 2,
+          "unit": "stalks, chopped for garnish"
+        }
+      ],
+      "steps": [
+        "Cut the chicken thighs into bite-sized pieces.",
+        "In a skillet, combine the dashi, soy sauce, mirin, and sugar. Bring to a simmer.",
+        "Add the sliced onions to the skillet and cook until tender.",
+        "Add the chicken pieces to the skillet and cook until done.",
+        "Beat the eggs lightly, then pour over the chicken and onions in the skillet. Cover and cook until the eggs are just set.",
+        "Serve the chicken and egg mixture over bowls of cooked rice, garnished with green onions."
+      ],
+      "image": {
+        "title": "Oyakodon",
+        "url": "https://www.justonecookbook.com/wp-content/uploads/2022/10/Oyakodon-0595-II-1024x1536.jpg",
+        "width": 1200,
+        "height": 1200,
+        "source": "just one cookbook",
+        "source_url": "https://www.justonecookbook.com/oyakodon/"
+      },
+      "nutrition": {
+        "servings": 4,
+        "caloriesPerServing": 600,
+        "protein": 35,
+        "carbohydrates": 70,
+        "fat": 20
+      }
+    },
+    {
+      "name": "Onigiri with Unagi Filling",
+      "cuisine": "Japanese",
+      "ingredients": [
+        {
+          "name": "Cooked Short-Grain Rice",
+          "amount": 4,
+          "unit": "cups"
+        },
+        {
+          "name": "Unagi (Eel), pre-cooked",
+          "amount": 6,
+          "unit": "oz"
+        },
+        {
+          "name": "Soy Sauce",
+          "amount": 1,
+          "unit": "tablespoon"
+        },
+        {
+          "name": "Mirin",
+          "amount": 1,
+          "unit": "tablespoon"
+        },
+        {
+          "name": "Salt",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Nori Seaweed Sheets",
+          "amount": 2,
+          "unit": "sheets, cut into strips"
+        }
+      ],
+      "steps": [
+        "Season the cooked rice with salt, and let it cool until it's comfortable to handle.",
+        "Cut the pre-cooked unagi into small pieces and mix with soy sauce and mirin.",
+        "Wet your hands to prevent the rice from sticking, then take a portion of rice and form a small well in the center.",
+        "Place a piece of the seasoned unagi in the well, then mold the rice around it to form a ball or a triangle.",
+        "Wrap the rice ball with a strip of nori seaweed for easy handling and added flavor.",
+        "Repeat the process until all the rice and unagi are used."
+      ],
+      "image": {
+        "title": "Onigiri with Unagi Filling",
+        "url": "https://drivemehungry.com/wp-content/uploads/2022/06/onigiri-japanese-rice-balls-10-1152x1536.jpg",
+        "width": 1200,
+        "height": 1200,
+        "source": "Drive me hungry",
+        "source_url": "https://drivemehungry.com/onigiri-japanese-rice-balls/"
+      },
+      "nutrition": {
+        "servings": 4,
+        "caloriesPerServing": 350,
+        "protein": 10,
+        "carbohydrates": 65,
+        "fat": 5
+      }
+    },
+    {
+      "name": "Miso Soup",
+      "cuisine": "Japanese",
+      "ingredients": [
+        {
+          "name": "Dashi Stock",
+          "amount": 4,
+          "unit": "cups"
+        },
+        {
+          "name": "Miso Paste",
+          "amount": 3,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Tofu",
+          "amount": 6,
+          "unit": "oz, cubed"
+        },
+        {
+          "name": "Seaweed (Wakame)",
+          "amount": 1,
+          "unit": "tablespoon, dried"
+        },
+        {
+          "name": "Green Onions",
+          "amount": 2,
+          "unit": "stalks, chopped"
+        }
+      ],
+      "steps": [
+        "Soak the dried wakame in water for about 5 minutes, then drain.",
+        "Bring the dashi stock to a simmer in a pot.",
+        "Place a small amount of the hot dashi into a bowl with the miso paste. Whisk until smooth, then add back into the pot of dashi.",
+        "Add the tofu and wakame to the pot and heat through, being careful not to boil the soup after adding the miso.",
+        "Serve in bowls, garnished with green onions."
+      ],
+      "image": {
+        "title": "Miso Soup",
+        "url": "https://www.justonecookbook.com/wp-content/uploads/2022/06/Miso-Soup-8271-II.jpg",
+        "width": 1200,
+        "height": 1200,
+        "source": "just one cookbook",
+        "source_url": "https://www.justonecookbook.com/homemade-miso-soup/"
+      },
+      "nutrition": {
+        "servings": 4,
+        "caloriesPerServing": 80,
+        "protein": 6,
+        "carbohydrates": 7,
+        "fat": 3
+      }
+    },
+
+
+
+
+    {
+      "name": "Potstickers with Crispy Skirt",
+      "cuisine": "Taiwanese",
+      "ingredients": [
+        {
+          "name": "Taiwanese Potstickers",
+          "amount": 12,
+          "unit": "pieces"
+        },
+        {
+          "name": "Water",
+          "amount": 0.5,
+          "unit": "cup"
+        },
+        {
+          "name": "All-Purpose Flour",
+          "amount": 1,
+          "unit": "tablespoon"
+        },
+        {
+          "name": "Vegetable Oil",
+          "amount": 2,
+          "unit": "tablespoons"
+        }
+      ],
+      "steps": [
+        "Heat vegetable oil in a non-stick skillet over medium heat.",
+        "Arrange the potstickers in the skillet and cook until the bottoms start to brown.",
+        "Mix water and flour in a bowl to create a slurry, then pour this mixture into the skillet around the potstickers.",
+        "Cover the skillet with a lid and cook until the water has evaporated and the flour forms a crispy skirt around the potstickers.",
+        "Remove the lid, let the crust cook a little more until it's golden brown, then carefully remove everything from the skillet, keeping the crispy skirt intact.",
+        "Serve immediately."
+      ],
+      "image": {
+        "title": "Potstickers with Crispy Skirt",
+        "url": "https://i0.wp.com/msshiandmrhe.com/wp-content/uploads/2022/01/IMG_4417.jpg?resize=800%2C840&ssl=1",
+        "width": 1200,
+        "height": 1200,
+        "source": "ms shi and mr he",
+        "source_url": "https://msshiandmrhe.com/potstickers-with-a-crispy-skirt/"
+      },
+      "nutrition": {
+        "servings": 4,
+        "caloriesPerServing": 250,
+        "protein": 10,
+        "carbohydrates": 30,
+        "fat": 10
+      }
+    },  
+    {
+      "name": "Taiwanese Popcorn Chicken",
+      "cuisine": "Taiwanese",
+      "ingredients": [
+        {
+          "name": "Boneless Chicken Thighs",
+          "amount": 1,
+          "unit": "lb"
+        },
+        {
+          "name": "Soy Sauce",
+          "amount": 2,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Rice Wine",
+          "amount": 1,
+          "unit": "tablespoon"
+        },
+        {
+          "name": "Sugar",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Five-Spice Powder",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "White Pepper",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Garlic Powder",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Cornstarch",
+          "amount": 1,
+          "unit": "cup"
+        },
+        {
+          "name": "Sweet Potato Flour",
+          "amount": 1,
+          "unit": "cup"
+        },
+        {
+          "name": "Egg",
+          "amount": 1,
+          "unit": "large"
+        },
+        {
+          "name": "Basil Leaves",
+          "amount": 1,
+          "unit": "cup"
+        },
+        {
+          "name": "Vegetable Oil",
+          "amount": 2,
+          "unit": "cups"
+        }
+      ],
+      "steps": [
+        "Cut chicken thighs into bite-sized pieces and marinate with soy sauce, rice wine, sugar, five-spice powder, white pepper, and garlic powder for at least 30 minutes.",
+        "Beat the egg and mix into the chicken.",
+        "Combine cornstarch and sweet potato flour in a separate bowl.",
+        "Heat the vegetable oil in a deep fryer or deep skillet.",
+        "Dredge the marinated chicken pieces in the flour mixture, then fry until golden brown and crispy.",
+        "In the same oil, quickly fry the basil leaves until crispy.",
+        "Serve the popcorn chicken garnished with the crispy basil leaves."
+      ],
+      "image": {
+        "title": "Taiwanese Popcorn Chicken",
+        "url": "https://static01.nyt.com/images/2020/11/17/dining/sl-taiwanese-fried-chicken/merlin_179866965_dae18691-ff16-4d53-8d55-965933bbaa5b-master768.jpg?w=1024&q=75",
+        "width": 1200,
+        "height": 1200,
+        "source": "cooking nytimes",
+        "source_url": "https://cooking.nytimes.com/recipes/1021582-taiwanese-popcorn-chicken-with-fried-basil"
+      },
+      "nutrition": {
+        "servings": 4,
+        "caloriesPerServing": 600,
+        "protein": 25,
+        "carbohydrates": 55,
+        "fat": 30
+      }
+    },
+    {
+      "name": "Stir-Fry Egg and Tomatoes",
+      "cuisine": "Asian",
+      "ingredients": [
+        {
+          "name": "Eggs",
+          "amount": 4,
+          "unit": "large"
+        },
+        {
+          "name": "Tomatoes",
+          "amount": 3,
+          "unit": "medium, cut into wedges"
+        },
+        {
+          "name": "Sugar",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Salt",
+          "amount": 0.5,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Vegetable Oil",
+          "amount": 2,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Green Onions",
+          "amount": 2,
+          "unit": "stalks, chopped"
+        }
+      ],
+      "steps": [
+        "Beat the eggs with half the salt and set aside.",
+        "Heat one tablespoon of oil in a pan over medium heat, scramble the eggs until just set, then remove them from the pan.",
+        "Add the remaining oil to the pan, and stir-fry the tomatoes with the remaining salt and sugar until they start to soften.",
+        "Return the scrambled eggs to the pan, add the green onions, and stir well to combine. Cook for an additional minute.",
+        "Serve hot as a side dish or over rice for a simple meal."
+      ],
+      "image": {
+        "title": "Stir-Fry Egg and Tomatoes",
+        "url": "https://thewoksoflife.com/wp-content/uploads/2019/05/tomato-egg-11.jpg",
+        "width": 1200,
+        "height": 1200,
+        "source": "The woks of life",
+        "source_url": "https://thewoksoflife.com/stir-fried-tomato-and-egg/"
+      },
+      "nutrition": {
+        "servings": 4,
+        "caloriesPerServing": 150,
+        "protein": 8,
+        "carbohydrates": 6,
+        "fat": 10
+      }
+    },
+    {
+      "name": "Taiwanese Fried XXL Chicken",
+      "cuisine": "Taiwanese",
+      "ingredients": [
+        {
+          "name": "Boneless Chicken Breast",
+          "amount": 1,
+          "unit": "lb"
+        },
+        {
+          "name": "Soy Sauce",
+          "amount": 2,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Rice Wine",
+          "amount": 1,
+          "unit": "tablespoon"
+        },
+        {
+          "name": "Garlic Powder",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Five-Spice Powder",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "White Pepper",
+          "amount": 0.5,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Sugar",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Salt",
+          "amount": 0.5,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Sweet Potato Starch",
+          "amount": 1,
+          "unit": "cup"
+        },
+        {
+          "name": "Egg",
+          "amount": 1,
+          "unit": "large"
+        },
+        {
+          "name": "Vegetable Oil",
+          "amount": 2,
+          "unit": "cups"
+        }
+      ],
+      "steps": [
+        "Pound the chicken breast to an even thickness, then cut into a large, thin piece similar to a schnitzel.",
+        "Marinate the chicken with soy sauce, rice wine, garlic powder, five-spice powder, white pepper, sugar, and salt for at least 30 minutes.",
+        "Beat the egg and mix it into the chicken.",
+        "Dredge the marinated chicken in sweet potato starch, ensuring it's fully coated.",
+        "Heat the vegetable oil in a deep fryer or deep skillet to 350°F (175°C).",
+        "Fry the chicken until golden brown and crispy, about 5 to 7 minutes, depending on the thickness.",
+        "Let the chicken drain on paper towels, then cut into strips and serve hot."
+      ],
+      "image": {
+        "title": "Taiwanese Fried XXL Chicken",
+        "url": "https://i0.wp.com/maicookbook.com/wp-content/uploads/2020/11/maicookbook_taiwanese_xxl_fried_chicken_1.jpg?fit=2000%2C2500&ssl=1",
+        "width": 1200,
+        "height": 1200,
+        "source": "mai cookbook",
+        "source_url": "https://maicookbook.com/taiwanese-xxl-fried-chicken-breast/"
+      },
+      "nutrition": {
+        "servings": 2,
+        "caloriesPerServing": 700,
+        "protein": 55,
+        "carbohydrates": 60,
+        "fat": 30
+      }
+    },
+    {
+      "name": "Taiwanese Fried Pork Chop",
+      "cuisine": "Taiwanese",
+      "ingredients": [
+        {
+          "name": "Boneless Pork Chops",
+          "amount": 1,
+          "unit": "lb"
+        },
+        {
+          "name": "Soy Sauce",
+          "amount": 2,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Rice Wine",
+          "amount": 2,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Garlic",
+          "amount": 2,
+          "unit": "cloves, minced"
+        },
+        {
+          "name": "Five-Spice Powder",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "White Pepper",
+          "amount": 0.5,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Sugar",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Sweet Potato Starch",
+          "amount": 1,
+          "unit": "cup"
+        },
+        {
+          "name": "Egg",
+          "amount": 1,
+          "unit": "large"
+        },
+        {
+          "name": "Vegetable Oil",
+          "amount": 2,
+          "unit": "cups"
+        }
+      ],
+      "steps": [
+        "Tenderize the pork chops to about 1/4 inch thickness, then cut into serving pieces.",
+        "Create a marinade by mixing soy sauce, rice wine, minced garlic, five-spice powder, white pepper, and sugar. Marinate the pork chops in this mixture for at least 30 minutes, or preferably overnight.",
+        "Beat the egg and lightly coat each marinated pork chop with it.",
+        "Dredge the egg-coated pork chops in sweet potato starch, making sure each piece is fully coated.",
+        "Heat the vegetable oil in a deep fryer or deep skillet to 350°F (175°C).",
+        "Fry the pork chops until golden brown and crispy, about 3 to 5 minutes on each side, depending on thickness.",
+        "Drain on paper towels to remove excess oil before serving."
+      ],
+      "image": {
+        "title": "Taiwanese Fried Pork Chop",
+        "url": "https://cookinginchinglish.com/wp-content/uploads/2020/06/Pork-chop-09.jpg",
+        "width": 1200,
+        "height": 1200,
+        "source": "cooking nytimes",
+        "source_url": "https://cookinginchinglish.com/taiwanese-crispy-pork-chop/"
+      },
+      "nutrition": {
+        "servings": 2,
+        "caloriesPerServing": 750,
+        "protein": 50,
+        "carbohydrates": 65,
+        "fat": 35
+      }
+    },
+    {
+      "name": "Stinky Tofu",
+      "cuisine": "Taiwanese",
+      "ingredients": [
+        {
+          "name": "Stinky Tofu (fermented tofu)",
+          "amount": 1,
+          "unit": "lb"
+        },
+        {
+          "name": "Vegetable Oil",
+          "amount": 2,
+          "unit": "cups"
+        },
+        {
+          "name": "Soy Sauce",
+          "amount": 1,
+          "unit": "tablespoon"
+        },
+        {
+          "name": "Chili Sauce",
+          "amount": 1,
+          "unit": "tablespoon"
+        },
+        {
+          "name": "Pickled Cabbage",
+          "amount": 0.5,
+          "unit": "cup"
+        }
+      ],
+      "steps": [
+        "Cut the stinky tofu into bite-sized pieces.",
+        "Heat the vegetable oil in a deep fryer or deep skillet to 350°F (175°C).",
+        "Fry the stinky tofu pieces until they are golden brown and crispy, about 5 minutes.",
+        "Drain the fried tofu on paper towels to remove excess oil.",
+        "Serve hot with soy sauce, chili sauce, and pickled cabbage on the side for dipping."
+      ],
+      "image": {
+        "title": "Stinky Tofu",
+        "url": "https://images.getrecipekit.com/v1617362381_Stinky_Tofu_520x500_iijyk3.jpg?aspect_ratio=16:9&quality=90&",
+        "width": 1200,
+        "height": 1200,
+        "source": "tofu bud",
+        "source_url": "https://tofubud.com/blogs/snack-recipes/stinky-tofu"
+      },
+      "nutrition": {
+        "servings": 4,
+        "caloriesPerServing": 300,
+        "protein": 20,
+        "carbohydrates": 5,
+        "fat": 22
+      }
+    },
+    {
+      "name": "Taiwanese Stir Fry Cabbage",
+      "cuisine": "Taiwanese",
+      "ingredients": [
+        {
+          "name": "Cabbage",
+          "amount": 1,
+          "unit": "head, sliced"
+        },
+        {
+          "name": "Garlic",
+          "amount": 3,
+          "unit": "cloves, minced"
+        },
+        {
+          "name": "Soy Sauce",
+          "amount": 2,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Rice Vinegar",
+          "amount": 1,
+          "unit": "tablespoon"
+        },
+        {
+          "name": "Sugar",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Sesame Oil",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Vegetable Oil",
+          "amount": 2,
+          "unit": "tablespoons"
+        }
+      ],
+      "steps": [
+        "Heat vegetable oil in a large pan over medium heat. Add minced garlic and stir-fry until fragrant.",
+        "Add the sliced cabbage to the pan. Stir-fry for 5-7 minutes, or until cabbage is tender but still slightly crisp.",
+        "Stir in soy sauce, rice vinegar, and sugar. Cook for another 2 minutes.",
+        "Drizzle with sesame oil before removing from heat.",
+        "Serve hot as a side dish or part of a larger meal."
+      ],
+      "image": {
+        "title": "Taiwanese Stir Fry Cabbage",
+        "url": "https://www.dintaifungusa.com/us/image/1249",
+        "width": 1200,
+        "height": 800,
+        "source": "din tai fung",
+        "source_url": "https://www.dintaifungusa.com/us/menu/sauteed-taiwanese-cabbage-with-garlic.html"
+      },
+      "nutrition": {
+        "servings": 4,
+        "caloriesPerServing": 120,
+        "protein": 3,
+        "carbohydrates": 15,
+        "fat": 7
+      }
+    },
+    {
+      "name": "Taiwanese Beef Noodle Soup",
+      "cuisine": "Taiwanese",
+      "ingredients": [
+        {
+          "name": "Beef Shank",
+          "amount": 2,
+          "unit": "lbs"
+        },
+        {
+          "name": "Beef Bones",
+          "amount": 2,
+          "unit": "lbs"
+        },
+        {
+          "name": "Soy Sauce",
+          "amount": 1,
+          "unit": "cup"
+        },
+        {
+          "name": "Dark Soy Sauce",
+          "amount": 1,
+          "unit": "tablespoon"
+        },
+        {
+          "name": "Rice Wine",
+          "amount": 1,
+          "unit": "cup"
+        },
+        {
+          "name": "Rock Sugar",
+          "amount": 2,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Ginger",
+          "amount": 3,
+          "unit": "slices"
+        },
+        {
+          "name": "Green Onions",
+          "amount": 5,
+          "unit": "stalks"
+        },
+        {
+          "name": "Garlic",
+          "amount": 5,
+          "unit": "cloves"
+        },
+        {
+          "name": "Star Anise",
+          "amount": 5,
+          "unit": "pieces"
+        },
+        {
+          "name": "Chinese Five Spice Powder",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Dried Chili Pepper",
+          "amount": 2,
+          "unit": "pieces"
+        },
+        {
+          "name": "Bok Choy",
+          "amount": 4,
+          "unit": "pieces"
+        },
+        {
+          "name": "Wheat Noodles",
+          "amount": 1,
+          "unit": "lb"
+        },
+        {
+          "name": "Vegetable Oil",
+          "amount": 2,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Water",
+          "amount": 8,
+          "unit": "cups"
+        }
+      ],
+      "steps": [
+        "Blanch the beef shank and bones in boiling water for 5 minutes to remove impurities. Drain and rinse.",
+        "Heat oil in a large pot over medium heat. Add ginger, green onions, garlic, star anise, and dried chili pepper. Stir-fry until fragrant.",
+        "Add the blanched beef shank, bones, and enough water to cover. Bring to a boil, then reduce heat to low and simmer for 2 hours.",
+        "Add soy sauce, dark soy sauce, rice wine, rock sugar, and Chinese five spice. Continue to simmer for another hour.",
+        "Cook noodles according to package instructions. Blanch bok choy in boiling water.",
+        "Slice the beef shank. Place noodles and bok choy in bowls, add sliced beef, and ladle hot broth over. Serve immediately."
+      ],
+      "image": {
+        "title": "Taiwanese Beef Noodle Soup",
+        "url": "https://thewoksoflife.com/wp-content/uploads/2018/03/taiwanese-beef-noodle-soup-instant-pot-9.jpg",
+        "width": 1200,
+        "height": 1200,
+        "source": "The woks of life",
+        "source_url": "https://thewoksoflife.com/taiwanese-beef-noodle-soup-instant-pot/"
+      },
+      "nutrition": {
+        "servings": 4,
+        "caloriesPerServing": 650,
+        "protein": 60,
+        "carbohydrates": 50,
+        "fat": 20
+      }
+    },
+    {
+      "name": "Oyster Vermicelli Noodles",
+      "cuisine": "Taiwanese",
+      "ingredients": [
+        {
+          "name": "Fresh Oysters",
+          "amount": 1,
+          "unit": "cup"
+        },
+        {
+          "name": "Vermicelli Noodles",
+          "amount": 8,
+          "unit": "oz"
+        },
+        {
+          "name": "Chicken Stock",
+          "amount": 4,
+          "unit": "cups"
+        },
+        {
+          "name": "Ginger",
+          "amount": 1,
+          "unit": "tablespoon, minced"
+        },
+        {
+          "name": "Garlic",
+          "amount": 1,
+          "unit": "tablespoon, minced"
+        },
+        {
+          "name": "Soy Sauce",
+          "amount": 2,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Black Vinegar",
+          "amount": 1,
+          "unit": "tablespoon"
+        },
+        {
+          "name": "Cornstarch",
+          "amount": 2,
+          "unit": "teaspoons"
+        },
+        {
+          "name": "Water",
+          "amount": 2,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Sesame Oil",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Green Onions",
+          "amount": 2,
+          "unit": "stalks, chopped"
+        },
+        {
+          "name": "Cilantro",
+          "amount": 1,
+          "unit": "handful, chopped"
+        }
+      ],
+      "steps": [
+        "Soak the vermicelli noodles in warm water for about 10 minutes, then drain.",
+        "Mix cornstarch with water to create a slurry. Set aside.",
+        "Heat a pot over medium heat, add a bit of oil, and sauté ginger and garlic until fragrant.",
+        "Add the chicken stock to the pot and bring to a simmer.",
+        "Add the oysters to the simmering broth and cook until the edges start to curl.",
+        "Add the soy sauce, black vinegar, and the cornstarch slurry to the pot, stirring until the broth thickens slightly.",
+        "Add the drained vermicelli noodles to the pot and cook until tender, about 2 minutes.",
+        "Stir in sesame oil, then remove from heat.",
+        "Serve the oyster vermicelli in bowls, garnished with green onions and cilantro."
+      ],
+      "image": {
+        "title": "Oyster Vermicelli Noodles",
+        "url": "https://www.angelwongskitchen.com/uploads/2/8/7/7/28776217/sequence-01-00-07-27-21-still004-2_orig.jpg",
+        "width": 1200,
+        "height": 1200,
+        "source": "Angel Wong's kitchen",
+        "source_url": "https://www.angelwongskitchen.com/taiwaneseoysternoodles.html"
+      },
+      "nutrition": {
+        "servings": 4,
+        "caloriesPerServing": 300,
+        "protein": 10,
+        "carbohydrates": 45,
+        "fat": 10
+      }
+    },
+    {
+      "name": "Scallion Pancakes with Eggs",
+      "cuisine": "Taiwanese",
+      "ingredients": [
+        {
+          "name": "Frozen Scallion Pancakes",
+          "amount": 4,
+          "unit": "pieces"
+        },
+        {
+          "name": "Eggs",
+          "amount": 4,
+          "unit": "large"
+        },
+        {
+          "name": "Vegetable Oil",
+          "amount": 4,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Soy Sauce",
+          "amount": 2,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Hot Sauce (optional)",
+          "amount": 2,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Scallions",
+          "amount": 2,
+          "unit": "stalks, chopped for garnish"
+        }
+      ],
+      "steps": [
+        "Heat 1 tablespoon of oil in a non-stick skillet over medium heat.",
+        "Place one frozen scallion pancake in the skillet and cook until golden brown on one side, about 2 minutes.",
+        "Flip the pancake. Crack an egg over the pancake, spreading the egg white gently to cover most of the pancake while keeping the yolk intact.",
+        "Cover the skillet with a lid and cook until the egg white is set but the yolk is still runny, about 2-3 minutes.",
+        "Repeat the process for the remaining pancakes and eggs.",
+        "Serve hot, drizzled with soy sauce and optional hot sauce, garnished with chopped scallions."
+      ],
+      "image": {
+        "title": "Scallion Pancakes with Eggs",
+        "url": "https://www.assortedeats.com/wp-content/uploads/2021/08/Dan-Bing-Taiwanese-Egg-Crepe-Diagonal-1121x1495.jpg",
+        "width": 1200,
+        "height": 1200,
+        "source": "assorted eats",
+        "source_url": "https://www.assortedeats.com/dan-bing/"
+      },
+      "nutrition": {
+        "servings": 4,
+        "caloriesPerServing": 350,
+        "protein": 12,
+        "carbohydrates": 30,
+        "fat": 20
+      }
+    },
+
+
+
+
+    {
+      "name": "Chicken Tikka Masala",
+      "cuisine": "Indian",
+      "ingredients": [
+        {
+          "name": "Boneless Chicken Breast",
+          "amount": 1.5,
+          "unit": "lbs"
+        },
+        {
+          "name": "Yogurt",
+          "amount": 1,
+          "unit": "cup"
+        },
+        {
+          "name": "Lemon Juice",
+          "amount": 2,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Turmeric Powder",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Garam Masala",
+          "amount": 2,
+          "unit": "teaspoons"
+        },
+        {
+          "name": "Cumin Powder",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Paprika",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Tomato Puree",
+          "amount": 1,
+          "unit": "cup"
+        },
+        {
+          "name": "Cream",
+          "amount": 1,
+          "unit": "cup"
+        },
+        {
+          "name": "Onion",
+          "amount": 1,
+          "unit": "large, finely chopped"
+        },
+        {
+          "name": "Garlic",
+          "amount": 4,
+          "unit": "cloves, minced"
+        },
+        {
+          "name": "Ginger",
+          "amount": 1,
+          "unit": "tablespoon, minced"
+        },
+        {
+          "name": "Vegetable Oil",
+          "amount": 2,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Salt",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Cilantro",
+          "amount": 1,
+          "unit": "handful, chopped for garnish"
+        }
+      ],
+      "steps": [
+        "Marinate the chicken with yogurt, lemon juice, turmeric, half the garam masala, cumin, paprika, and salt for at least 1 hour or overnight.",
+        "Grill the marinated chicken until fully cooked. Set aside.",
+        "Heat oil in a pan over medium heat. Add onions, garlic, and ginger, sautéing until onions are soft.",
+        "Add the remaining garam masala and tomato puree to the pan, simmering for 10 minutes.",
+        "Add the grilled chicken pieces to the sauce, cover, and simmer for another 10 minutes.",
+        "Stir in the cream, simmering gently for 5 minutes or until the sauce thickens.",
+        "Garnish with chopped cilantro and serve with rice or naan."
+      ],
+      "image": {
+        "title": "Chicken Tikka Masala",
+        "url": "https://cafedelites.com/wp-content/uploads/2018/04/Best-Chicken-Tikka-Masala-IMAGE-1-1024x1536.jpg",
+        "width": 1200,
+        "height": 1200,
+        "source": "cafe delites",
+        "source_url": "https://cafedelites.com/chicken-tikka-masala/"
+      },
+      "nutrition": {
+        "servings": 4,
+        "caloriesPerServing": 450,
+        "protein": 35,
+        "carbohydrates": 15,
+        "fat": 30
+      }
+    },
+    {
+  "name": "Palak Paneer",
+  "cuisine": "Indian",
+  "ingredients": [
+    {
+      "name": "Spinach",
+      "amount": 1,
+      "unit": "lb"
+    },
+    {
+      "name": "Paneer (Indian Cottage Cheese)",
+      "amount": 14,
+      "unit": "oz"
+    },
+    {
+      "name": "Onion",
+      "amount": 1,
+      "unit": "medium, finely chopped"
+    },
+    {
+      "name": "Tomato",
+      "amount": 1,
+      "unit": "large, finely chopped"
+    },
+    {
+      "name": "Garlic",
+      "amount": 4,
+      "unit": "cloves, minced"
+    },
+    {
+      "name": "Ginger",
+      "amount": 1,
+      "unit": "inch piece, minced"
+    },
+    {
+      "name": "Green Chili",
+      "amount": 1,
+      "unit": "minced"
+    },
+    {
+      "name": "Cumin Seeds",
+      "amount": 1,
+      "unit": "teaspoon"
+    },
+    {
+      "name": "Garam Masala",
+      "amount": 1,
+      "unit": "teaspoon"
+    },
+    {
+      "name": "Turmeric Powder",
+      "amount": 0.5,
+      "unit": "teaspoon"
+    },
+    {
+      "name": "Cream",
+      "amount": 0.25,
+      "unit": "cup"
+    },
+    {
+      "name": "Vegetable Oil",
+      "amount": 2,
+      "unit": "tablespoons"
+    },
+    {
+      "name": "Salt",
+      "amount": 1,
+      "unit": "teaspoon"
+    },
+    {
+      "name": "Water",
+      "amount": 0.5,
+      "unit": "cup, as needed for blending"
     }
+  ],
+  "steps": [
+    "Blanch the spinach in boiling water for 2 minutes, then immerse in cold water. Drain and puree the spinach.",
+    "Heat oil in a pan, add cumin seeds. When they start to crackle, add garlic, ginger, and green chili. Sauté for a minute.",
+    "Add the chopped onion and cook until translucent. Add the chopped tomato, turmeric, and salt. Cook until the tomatoes are soft.",
+    "Add the spinach puree to the pan. Cook for 5-7 minutes, then add the paneer cubes. Cook for another 5 minutes.",
+    "Stir in the cream and garam masala. Adjust salt if necessary and cook for another minute.",
+    "Serve hot with naan or rice."
+  ],
+  "image": {
+    "title": "Palak Paneer",
+    "url": "https://www.indianhealthyrecipes.com/palak-paneer-recipe-easy-paneer-recipes-step-by-step-pics/",
+    "width": 1200,
+    "height": 800,
+    "source": "Indian healthy recipes",
+    "source_url": "https://www.indianhealthyrecipes.com/palak-paneer-recipe-easy-paneer-recipes-step-by-step-pics/"
+  },
+  "nutrition": {
+    "servings": 4,
+    "caloriesPerServing": 250,
+    "protein": 12,
+    "carbohydrates": 10,
+    "fat": 20
+  }
+    },
+    {
+      "name": "Chole (Chickpea Curry)",
+      "cuisine": "Indian",
+      "ingredients": [
+        {
+          "name": "Chickpeas",
+          "amount": 2,
+          "unit": "cups, soaked overnight and drained"
+        },
+        {
+          "name": "Onions",
+          "amount": 2,
+          "unit": "medium, finely chopped"
+        },
+        {
+          "name": "Tomatoes",
+          "amount": 2,
+          "unit": "large, pureed"
+        },
+        {
+          "name": "Garlic",
+          "amount": 4,
+          "unit": "cloves, minced"
+        },
+        {
+          "name": "Ginger",
+          "amount": 1,
+          "unit": "inch piece, grated"
+        },
+        {
+          "name": "Green Chilies",
+          "amount": 2,
+          "unit": "slit"
+        },
+        {
+          "name": "Cumin Seeds",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Coriander Powder",
+          "amount": 2,
+          "unit": "teaspoons"
+        },
+        {
+          "name": "Cumin Powder",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Garam Masala",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Turmeric Powder",
+          "amount": 0.5,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Chili Powder",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Amchur (Dry Mango Powder)",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Salt",
+          "amount": 1,
+          "unit": "teaspoon, or to taste"
+        },
+        {
+          "name": "Vegetable Oil",
+          "amount": 3,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Water",
+          "amount": 3,
+          "unit": "cups, or as required"
+        },
+        {
+          "name": "Fresh Cilantro",
+          "amount": 0.25,
+          "unit": "cup, chopped for garnish"
+        }
+      ],
+      "steps": [
+        "Heat oil in a large pot over medium heat. Add cumin seeds and let them splutter.",
+        "Add onions, garlic, ginger, and green chilies. Sauté until the onions turn golden brown.",
+        "Add tomato puree, turmeric, coriander powder, cumin powder, chili powder, and salt. Cook until the oil separates from the masala.",
+        "Add the soaked chickpeas and water. Bring to a boil, then reduce the heat to low, cover, and simmer until the chickpeas are tender, about 1 hour.",
+        "Stir in garam masala and amchur powder. Adjust seasoning if necessary.",
+        "Garnish with chopped cilantro and serve hot with rice or flatbreads."
+      ],
+      "image": {
+        "title": "Chole (Chickpea Curry)",
+        "url": "https://www.cookwithmanali.com/wp-content/uploads/2023/04/Punjabi-Chole-Masala-676x1024.jpg",
+        "width": 1200,
+        "height": 1200,
+        "source": "cook with manali",
+        "source_url": "https://www.cookwithmanali.com/punjabi-chole-chickpeas-curry/"
+      },
+      "nutrition": {
+        "servings": 4,
+        "caloriesPerServing": 350,
+        "protein": 12,
+        "carbohydrates": 45,
+        "fat": 15
+      }
+    },
+    {
+      "name": "Rogan Josh",
+      "cuisine": "Indian",
+      "ingredients": [
+        {
+          "name": "Lamb",
+          "amount": 2,
+          "unit": "lbs, cut into pieces"
+        },
+        {
+          "name": "Yogurt",
+          "amount": 1,
+          "unit": "cup"
+        },
+        {
+          "name": "Vegetable Oil",
+          "amount": 3,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Onions",
+          "amount": 2,
+          "unit": "large, finely sliced"
+        },
+        {
+          "name": "Garlic",
+          "amount": 4,
+          "unit": "cloves, minced"
+        },
+        {
+          "name": "Ginger",
+          "amount": 2,
+          "unit": "inches, grated"
+        },
+        {
+          "name": "Tomato Puree",
+          "amount": 1,
+          "unit": "cup"
+        },
+        {
+          "name": "Garam Masala",
+          "amount": 2,
+          "unit": "teaspoons"
+        },
+        {
+          "name": "Kashmiri Chili Powder",
+          "amount": 2,
+          "unit": "teaspoons"
+        },
+        {
+          "name": "Cumin Powder",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Coriander Powder",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Turmeric Powder",
+          "amount": 0.5,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Cardamom Pods",
+          "amount": 4,
+          "unit": "crushed"
+        },
+        {
+          "name": "Cinnamon Stick",
+          "amount": 1,
+          "unit": "piece"
+        },
+        {
+          "name": "Bay Leaves",
+          "amount": 2,
+          "unit": "leaves"
+        },
+        {
+          "name": "Salt",
+          "amount": 1,
+          "unit": "teaspoon, or to taste"
+        },
+        {
+          "name": "Water",
+          "amount": 1,
+          "unit": "cup"
+        }
+      ],
+      "steps": [
+        "Marinate the lamb pieces in yogurt, half of the garam masala, turmeric, cumin, coriander, and Kashmiri chili powder for at least 2 hours or overnight.",
+        "Heat oil in a large pot. Add cinnamon, cardamom, and bay leaves. Sauté for a minute.",
+        "Add onions and cook until golden brown. Add garlic and ginger, and sauté until fragrant.",
+        "Add the marinated lamb along with the marinade to the pot. Brown the lamb on all sides.",
+        "Add tomato puree and salt. Stir well and cook for a few minutes until the oil begins to separate from the sauce.",
+        "Add water, cover, and simmer on low heat for about 1.5 to 2 hours, or until the lamb is tender.",
+        "Stir in the remaining garam masala and adjust seasoning if necessary. Cook uncovered for an additional 10 minutes to thicken the sauce.",
+        "Serve hot with rice or naan."
+      ],
+      "image": {
+        "title": "Rogan Josh",
+        "url": "https://www.recipetineats.com/wp-content/uploads/2020/02/Rogan-Josh_4.jpg?resize=650,910",
+        "width": 1200,
+        "height": 1200,
+        "source": "recipetineats",
+        "source_url": "https://www.recipetineats.com/rogan-josh/"
+      },
+      "nutrition": {
+        "servings": 4,
+        "caloriesPerServing": 500,
+        "protein": 40,
+        "carbohydrates": 5,
+        "fat": 35
+      }
+    },
+    {
+      "name": "Masoor Dal",
+      "cuisine": "Indian",
+      "ingredients": [
+        {
+          "name": "Red Lentils (Masoor Dal)",
+          "amount": 1,
+          "unit": "cup"
+        },
+        {
+          "name": "Water",
+          "amount": 4,
+          "unit": "cups"
+        },
+        {
+          "name": "Turmeric Powder",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Salt",
+          "amount": 1,
+          "unit": "teaspoon, or to taste"
+        },
+        {
+          "name": "Vegetable Oil",
+          "amount": 2,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Cumin Seeds",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Mustard Seeds",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Onion",
+          "amount": 1,
+          "unit": "medium, finely chopped"
+        },
+        {
+          "name": "Garlic",
+          "amount": 3,
+          "unit": "cloves, minced"
+        },
+        {
+          "name": "Ginger",
+          "amount": 1,
+          "unit": "inch piece, grated"
+        },
+        {
+          "name": "Green Chili",
+          "amount": 1,
+          "unit": "finely chopped"
+        },
+        {
+          "name": "Tomato",
+          "amount": 1,
+          "unit": "large, chopped"
+        },
+        {
+          "name": "Garam Masala",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Coriander Leaves",
+          "amount": 0.25,
+          "unit": "cup, chopped for garnish"
+        }
+      ],
+      "steps": [
+        "Rinse the red lentils until the water runs clear. Add lentils to a pot with water, turmeric, and salt. Bring to a boil, then simmer until lentils are tender, about 20-25 minutes.",
+        "In a separate pan, heat oil over medium heat. Add cumin and mustard seeds and let them sizzle for a few seconds.",
+        "Add the chopped onions, garlic, ginger, and green chili. Sauté until the onions are golden.",
+        "Stir in the chopped tomatoes and cook until soft.",
+        "Add the cooked tomato mixture to the cooked lentils. Stir in garam masala and adjust seasoning.",
+        "Garnish with chopped coriander leaves and serve hot with rice or flatbread."
+      ],
+      "image": {
+        "title": "Masoor Dal",
+        "url": "https://www.teaforturmeric.com/wp-content/uploads/2022/06/Masoor-Dal-04-728x1092.jpg",
+        "width": 1200,
+        "height": 800,
+        "source": "Example Food Blog",
+        "source_url": "https://www.teaforturmeric.com/masoor-dal/"
+      },
+      "nutrition": {
+        "servings": 4,
+        "caloriesPerServing": 220,
+        "protein": 15,
+        "carbohydrates": 30,
+        "fat": 5
+      }
+    },
+    {
+      "name": "Butter Chicken",
+      "cuisine": "Indian",
+      "ingredients": [
+        {
+          "name": "Boneless Chicken Thighs",
+          "amount": 2,
+          "unit": "lbs, cut into pieces"
+        },
+        {
+          "name": "Yogurt",
+          "amount": 1,
+          "unit": "cup"
+        },
+        {
+          "name": "Lemon Juice",
+          "amount": 2,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Turmeric Powder",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Garam Masala",
+          "amount": 2,
+          "unit": "teaspoons"
+        },
+        {
+          "name": "Chili Powder",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Cumin Powder",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Ginger Garlic Paste",
+          "amount": 2,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Butter",
+          "amount": 4,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Tomato Puree",
+          "amount": 2,
+          "unit": "cups"
+        },
+        {
+          "name": "Heavy Cream",
+          "amount": 1,
+          "unit": "cup"
+        },
+        {
+          "name": "Honey",
+          "amount": 2,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Kasuri Methi (Dried Fenugreek Leaves)",
+          "amount": 1,
+          "unit": "tablespoon"
+        },
+        {
+          "name": "Salt",
+          "amount": 1,
+          "unit": "teaspoon, or to taste"
+        },
+        {
+          "name": "Oil",
+          "amount": 2,
+          "unit": "tablespoons"
+        }
+      ],
+      "steps": [
+        "Marinate the chicken pieces in yogurt, lemon juice, turmeric, chili powder, cumin, half the garam masala, ginger garlic paste, and salt for at least 1 hour or overnight.",
+        "Heat oil in a pan over medium heat, add the marinated chicken, and cook until browned on all sides. Remove chicken and set aside.",
+        "In the same pan, melt the butter, then add the tomato puree and cook for a few minutes. Add the remaining garam masala and simmer for 10 minutes.",
+        "Return the chicken to the pan with the tomato mixture. Add honey and simmer until the chicken is fully cooked.",
+        "Stir in the heavy cream and kasuri methi, cook for an additional 5 minutes. Adjust seasoning with salt.",
+        "Serve hot with rice or naan bread."
+      ],
+      "image": {
+        "title": "Butter Chicken",
+        "url": "https://www.recipetineats.com/wp-content/uploads/2020/02/Rogan-Josh_4.jpg?resize=650,910",
+        "width": 1200,
+        "height": 800,
+        "source": "recipetineats",
+        "source_url": "https://www.recipetineats.com/butter-chicken/"
+      },
+      "nutrition": {
+        "servings": 4,
+        "caloriesPerServing": 490,
+        "protein": 25,
+        "carbohydrates": 10,
+        "fat": 40
+      }
+    },
+    {
+      "name": "Aloo Gobi",
+      "cuisine": "Indian",
+      "ingredients": [
+        {
+          "name": "Cauliflower",
+          "amount": 1,
+          "unit": "head, cut into florets"
+        },
+        {
+          "name": "Potatoes",
+          "amount": 3,
+          "unit": "medium, cubed"
+        },
+        {
+          "name": "Vegetable Oil",
+          "amount": 3,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Cumin Seeds",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Turmeric Powder",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Coriander Powder",
+          "amount": 2,
+          "unit": "teaspoons"
+        },
+        {
+          "name": "Cumin Powder",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Garam Masala",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Ginger",
+          "amount": 1,
+          "unit": "inch piece, grated"
+        },
+        {
+          "name": "Garlic",
+          "amount": 2,
+          "unit": "cloves, minced"
+        },
+        {
+          "name": "Green Chili",
+          "amount": 1,
+          "unit": "finely chopped"
+        },
+        {
+          "name": "Tomato",
+          "amount": 1,
+          "unit": "large, chopped"
+        },
+        {
+          "name": "Salt",
+          "amount": 1,
+          "unit": "teaspoon, or to taste"
+        },
+        {
+          "name": "Fresh Cilantro",
+          "amount": 0.25,
+          "unit": "cup, chopped for garnish"
+        },
+        {
+          "name": "Water",
+          "amount": 0.5,
+          "unit": "cup"
+        }
+      ],
+      "steps": [
+        "Heat oil in a large skillet over medium heat. Add cumin seeds and let them sizzle for a few seconds.",
+        "Add the potatoes and cauliflower florets. Stir to coat with oil and spices.",
+        "Sprinkle turmeric, coriander powder, cumin powder, and salt over the vegetables. Stir well.",
+        "Add ginger, garlic, and green chili. Mix well and cook for a minute.",
+        "Stir in the chopped tomato and water. Cover and cook over medium-low heat until the vegetables are tender, about 20 minutes.",
+        "Uncover, increase heat to medium-high, and cook for a few more minutes to evaporate any excess liquid.",
+        "Sprinkle garam masala over the vegetables. Turn off the heat and cover the pan for a few minutes to let the flavors meld.",
+        "Garnish with chopped cilantro before serving. Serve hot with roti or rice."
+      ],
+      "image": {
+        "title": "Aloo Gobi",
+        "url": "https://rainbowplantlife.com/wp-content/uploads/2023/06/Ag-Hero-5.jpg",
+        "width": 1200,
+        "height": 1200,
+        "source": "Rainbow plant life",
+        "source_url": "https://rainbowplantlife.com/aloo-gobi/"
+      },
+      "nutrition": {
+        "servings": 4,
+        "caloriesPerServing": 180,
+        "protein": 4,
+        "carbohydrates": 25,
+        "fat": 8
+      }
+    },
+    {
+      "name": "Naan",
+      "cuisine": "Indian",
+      "ingredients": [
+        {
+          "name": "All-Purpose Flour",
+          "amount": 4,
+          "unit": "cups"
+        },
+        {
+          "name": "Dry Yeast",
+          "amount": 2,
+          "unit": "teaspoons"
+        },
+        {
+          "name": "Warm Water",
+          "amount": 1.5,
+          "unit": "cups"
+        },
+        {
+          "name": "Sugar",
+          "amount": 1,
+          "unit": "tablespoon"
+        },
+        {
+          "name": "Salt",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Baking Powder",
+          "amount": 0.5,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Yogurt",
+          "amount": 4,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Oil",
+          "amount": 2,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Garlic",
+          "amount": 2,
+          "unit": "cloves, minced (optional)"
+        },
+        {
+          "name": "Butter",
+          "amount": 2,
+          "unit": "tablespoons, melted (for brushing)"
+        },
+        {
+          "name": "Fresh Cilantro",
+          "amount": 0.25,
+          "unit": "cup, chopped (optional for garnish)"
+        }
+      ],
+      "steps": [
+        "Dissolve yeast and sugar in warm water. Let it sit for 10 minutes until frothy.",
+        "In a large bowl, combine flour, salt, and baking powder. Add the yeast mixture, yogurt, and oil, and knead into a soft dough.",
+        "Cover the dough with a damp cloth and let it rise in a warm place for about 1 hour, or until doubled in size.",
+        "Punch down the dough and divide it into 8 equal parts. Roll each part into a ball, then flatten and stretch into an oval shape.",
+        "Preheat a skillet or griddle over high heat. Cook each naan until it puffs up and has golden brown spots on both sides, about 2 minutes per side.",
+        "Brush the naan with melted butter, sprinkle with minced garlic and cilantro if using, and serve hot."
+      ],
+      "image": {
+        "title": "Naan",
+        "url": "https://www.recipetineats.com/wp-content/uploads/2021/02/Naan_1-1.jpg?resize=650,813",
+        "width": 1200,
+        "height": 1200,
+        "source": "recipetineats",
+        "source_url": "https://www.recipetineats.com/naan-recipe/"
+      },
+      "nutrition": {
+        "servings": 8,
+        "caloriesPerServing": 250,
+        "protein": 6,
+        "carbohydrates": 45,
+        "fat": 5
+      }
+    },
+    {
+      "name": "Biryani",
+      "cuisine": "Indian",
+      "ingredients": [
+        {
+          "name": "Basmati Rice",
+          "amount": 2,
+          "unit": "cups"
+        },
+        {
+          "name": "Chicken",
+          "amount": 1.5,
+          "unit": "lbs, cut into pieces"
+        },
+        {
+          "name": "Yogurt",
+          "amount": 1,
+          "unit": "cup"
+        },
+        {
+          "name": "Onions",
+          "amount": 2,
+          "unit": "large, thinly sliced"
+        },
+        {
+          "name": "Tomatoes",
+          "amount": 2,
+          "unit": "large, chopped"
+        },
+        {
+          "name": "Ginger Garlic Paste",
+          "amount": 2,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Green Chilies",
+          "amount": 2,
+          "unit": "slit"
+        },
+        {
+          "name": "Mint Leaves",
+          "amount": 0.5,
+          "unit": "cup, chopped"
+        },
+        {
+          "name": "Cilantro Leaves",
+          "amount": 0.5,
+          "unit": "cup, chopped"
+        },
+        {
+          "name": "Biryani Masala",
+          "amount": 2,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Turmeric Powder",
+          "amount": 0.5,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Saffron",
+          "amount": 0.5,
+          "unit": "teaspoon, soaked in warm milk"
+        },
+        {
+          "name": "Salt",
+          "amount": 2,
+          "unit": "teaspoons, or to taste"
+        },
+        {
+          "name": "Vegetable Oil",
+          "amount": 3,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Ghee",
+          "amount": 2,
+          "unit": "tablespoons"
+        },
+        {
+          "name": "Water",
+          "amount": 4,
+          "unit": "cups"
+        },
+        {
+          "name": "Lemon Juice",
+          "amount": 1,
+          "unit": "tablespoon"
+        }
+      ],
+      "steps": [
+        "Wash and soak the basmati rice in water for 30 minutes. Drain.",
+        "Marinate the chicken with yogurt, half of the biryani masala, turmeric, ginger garlic paste, salt, and half of the mint and cilantro leaves for at least 1 hour.",
+        "Fry onions in oil until golden brown. Remove half for garnishing.",
+        "In the same pan, add the marinated chicken, cook until the chicken is three-quarters done.",
+        "Boil water in a large pot, add the soaked rice, and cook until it's 70% cooked. Drain the rice.",
+        "Layer the cooked chicken and cooked rice in a pot. Sprinkle the saffron milk, remaining biryani masala, mint, cilantro, fried onions, lemon juice, and dots of ghee over the rice.",
+        "Cover and cook on a low flame for 20 minutes or until done.",
+        "Serve hot, garnished with the reserved fried onions."
+      ],
+      "image": {
+        "title": "Biryani",
+        "url": "https://www.recipetineats.com/wp-content/uploads/2018/08/Chicken-Biryani_1-1.jpg?resize=650,910",
+        "width": 1200,
+        "height": 800,
+        "source": "recipetineats",
+        "source_url": "https://www.recipetineats.com/biryani/"
+      },
+      "nutrition": {
+        "servings": 6,
+        "caloriesPerServing": 550,
+        "protein": 25,
+        "carbohydrates": 75,
+        "fat": 20
+      }
+    },
+    {
+      "name": "Samosa",
+      "cuisine": "Indian",
+      "ingredients": [
+        {
+          "name": "All-Purpose Flour",
+          "amount": 2,
+          "unit": "cups"
+        },
+        {
+          "name": "Ajwain (Carom Seeds)",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Salt",
+          "amount": 0.5,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Vegetable Oil",
+          "amount": 4,
+          "unit": "tablespoons, for dough"
+        },
+        {
+          "name": "Water",
+          "amount": 0.5,
+          "unit": "cup, for dough"
+        },
+        {
+          "name": "Potatoes",
+          "amount": 4,
+          "unit": "medium, boiled, peeled, and mashed"
+        },
+        {
+          "name": "Green Peas",
+          "amount": 0.5,
+          "unit": "cup"
+        },
+        {
+          "name": "Cumin Seeds",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Ginger",
+          "amount": 1,
+          "unit": "inch piece, grated"
+        },
+        {
+          "name": "Green Chilies",
+          "amount": 2,
+          "unit": "finely chopped"
+        },
+        {
+          "name": "Garam Masala",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Coriander Powder",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Amchur (Dry Mango Powder)",
+          "amount": 1,
+          "unit": "teaspoon"
+        },
+        {
+          "name": "Fresh Coriander",
+          "amount": 0.25,
+          "unit": "cup, chopped"
+        },
+        {
+          "name": "Vegetable Oil",
+          "amount": "for frying",
+          "unit": ""
+        }
+      ],
+      "steps": [
+        "To make the dough, mix the flour, ajwain, salt, and oil. Gradually add water to form a stiff dough. Cover and let it rest for 30 minutes.",
+        "For the filling, heat oil in a pan, add cumin seeds, ginger, and green chilies. Sauté for a minute.",
+        "Add the mashed potatoes, green peas, garam masala, coriander powder, amchur, and salt. Cook for 5 minutes, then add fresh coriander. Let it cool.",
+        "Divide the dough into balls, roll each into a thin oval, cut it in half, and form each piece into a cone. Fill with the potato mixture, seal the edges with water.",
+        "Heat oil in a deep fryer or pan. Fry the samosas in batches until golden and crispy.",
+        "Serve hot with chutney or ketchup."
+      ],
+      "image": {
+        "title": "Samosa",
+        "url": "https://www.recipetineats.com/wp-content/uploads/2021/02/Samosas.jpg?resize=650,813",
+        "width": 1200,
+        "height": 1200,
+        "source": "Example Food Blog",
+        "source_url": "https://www.recipetineats.com/samosa-recipe/"
+      },
+      "nutrition": {
+        "servings": 12,
+        "caloriesPerServing": 260,
+        "protein": 4,
+        "carbohydrates": 35,
+        "fat": 12
+      }
+    }
+    
+    
+    
+    
+    
+
   ]
 }
