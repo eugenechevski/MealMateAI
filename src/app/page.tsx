@@ -6,7 +6,7 @@ export default async function Page() {
   const supabase = createClient(cookieStore);
 
   return (
-    <div>
+    <div className="font-primary text-primary-text">
       The project is in progress.
     </div>
   );
