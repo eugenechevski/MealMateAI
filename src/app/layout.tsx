@@ -1,6 +1,6 @@
 "use client";
 
-import type { Metadata } from "next";
+import { Analytics } from '@vercel/analytics/react';
 import { Pacifico, Roboto_Serif } from "next/font/google";
 import Image from "next/image";
 import logoImg from "@/assets/logo.png";
@@ -60,6 +60,7 @@ export default function RootLayout({
           <span className="font-secondary select-none">Meal Mate AI</span>
         </motion.figure>
         {children}
+        <Analytics/>
       </body>
     </html>
   );
