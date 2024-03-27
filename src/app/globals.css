@@ -8,6 +8,6 @@
 
 @layer components {
   .primary-button {
-    @apply bg-primary-button text-background-accent shadow-2xl rounded-full flex items-center justify-center;
+    @apply bg-primary-red text-primary-white shadow-2xl rounded-full flex items-center justify-center;
   }
 }

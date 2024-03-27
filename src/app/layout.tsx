@@ -47,7 +47,7 @@ export default function RootLayout({
         <link rel="icon" href={metadata.icons.icon} type="image/x-icon" />
         <title>{metadata.title}</title>
       </head>
-      <body className="bg-background-accent relative text-primary-text text-shadow scroll-smooth hide-scrollbar snap-center snap-normal snap-mandatory max-h-max max-w-max">
+      <body className="bg-primary-cream relative text-primary-coal text-shadow scroll-smooth hide-scrollbar snap-center snap-normal snap-mandatory max-h-max max-w-max">
         {/* Floating logo */}
         <motion.figure
           initial={{ opacity: 0 }}
