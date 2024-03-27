@@ -1,0 +1,51 @@
+"use server";
+
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
+
+import { createClient } from "@/lib/supabase/server";
+
+async function signInWithEmail(formData: { email: string; password: string }) {
+  const supabase = createClient();
+
+  // type-casting here for convenience
+  // in practice, you should validate your inputs
+  const data = {
+    email: formData.email,
+    password: formData.password,
+  };
+
+  const { error } = await supabase.auth.signInWithPassword(data);
+
+  if (error) {
+    redirect("/error");
+  }
+}
+
+async function signInWithProvider(provider: "google" | "discord") {
+  const supabase = createClient();
+
+  const { error } = await supabase.auth.signInWithOAuth({
+    provider,
+  });
+
+  if (error) {
+    redirect("/error");
+  }
+}
+
+export async function login(
+  provider: "email" | "google" | "discord",
+  formData?: { email: string; password: string }
+) {
+  if (provider === "email") {
+    await signInWithEmail(formData as { email: string; password: string });
+  } else if (provider === "google" || provider === "discord") {
+    await signInWithProvider(provider);
+  } else {
+    throw new Error("Invalid provider");
+  }
+
+  revalidatePath("/", "layout");
+  redirect("/");
+}
