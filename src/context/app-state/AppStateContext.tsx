@@ -5,7 +5,7 @@ interface State {
   appState: AppState;
 }
 
-type Action = { type: "UPDATE_APP_STATE"; payload: AppState };
+type Action = { type: "SET_APP_STATE"; payload: AppState };
 
 interface AppStateContextProps {
   state: State;
@@ -22,7 +22,7 @@ const initialState: State = {
 
 const appStateReducer = (state: State, action: Action): State => {
   switch (action.type) {
-    case "UPDATE_APP_STATE":
+    case "SET_APP_STATE":
       return { ...state, appState: action.payload };
     default:
       return state;

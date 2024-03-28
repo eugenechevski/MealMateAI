@@ -11,25 +11,24 @@ export class MainUser {
    * The username for the user.
    * @type {string}
    */
-  username: string;
+  username?: string;
 
   /**
    * The email for the user.
    * @type {string}
    */
-  email: string;
+  email?: string;
 
   /**
-   * The password for the user.
-   * @type {string}
+   * The saved meal plans for the user.
    */
-  savedMealPlans: { [date: number]: MealPlan };
+  savedMealPlans: { [date: number]: MealData };
 
   constructor(
     id: string,
-    username: string,
-    email: string,
-    savedMealPlans?: { [id: string]: MealPlan }
+    username?: string,
+    email?: string,
+    savedMealPlans?: { [date: number]: MealData }
   ) {
     this.id = id;
     this.username = username;
@@ -41,7 +40,7 @@ export class MainUser {
    * Saves a meal plan to the user's account.
    * @param {MealPlan} mealPlan - The meal plan to save.
    */
-  saveMealPlan(mealPlan: MealPlan) {
+  saveMealPlan(mealPlan: MealData) {
     this.savedMealPlans[Date.now()] = mealPlan;
   }
 }

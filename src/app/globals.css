@@ -8,10 +8,14 @@
 
 @layer components {
   .primary-button {
-    @apply bg-primary-red text-primary-white shadow-2xl rounded-full flex items-center justify-center p-3;
+    @apply bg-primary-red text-primary-white shadow-2xl rounded-full flex items-center justify-center p-3 text-shadow;
   }
 
   .primary-input {
     @apply bg-primary-white text-primary-coal shadow-2xl rounded-full outline-none text-shadow p-3 hover:shadow-2xl;
+  }
+
+  .primary-form {
+    @apply bg-primary-gray flex flex-col justify-center items-center rounded-2xl shadow-2xl p-12 gap-2;
   }
 }

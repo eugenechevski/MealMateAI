@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle, faDiscord } from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
 import { login } from "./login";
-import Button from "@/components/Button";
+import { emailPattern, passwordPattern } from "@/lib/constants";
 
 type LoginData = {
   email: string;
@@ -23,11 +23,11 @@ export default function LoginPage() {
 
   return (
     <form
-      className="bg-primary-gray flex flex-col justify-center items-center w-1/4 h-1/2 rounded-2xl shadow-2xl p-12 gap-2"
+      className="primary-form w-1/4 h-1/2"
       onSubmit={handleSubmit(onSubmit)}
     >
       {/* Heading */}
-      <h1 className="font-secondary text-5xl text-center">Login</h1>
+      <h1 className="font-secondary text-5xl text-center">Sign-in</h1>
 
       {/* Email */}
       <div className="flex flex-col w-[90%]">
@@ -36,7 +36,7 @@ export default function LoginPage() {
           type="email"
           id="email"
           className="primary-input"
-          {...register("email", { required: true })}
+          {...register("email", { required: true, pattern: emailPattern})}
         />
         {errors.email && <span className="text-primary-red">Email is required</span>}
       </div>
@@ -48,7 +48,7 @@ export default function LoginPage() {
           type="password"
           id="password"
           className="primary-input"
-          {...register("password", { required: true })}
+          {...register("password", { required: true, pattern: passwordPattern})}
         />
         {errors.password && <span className="text-primary-red">Password is required</span>}
       </div>
@@ -57,7 +57,7 @@ export default function LoginPage() {
       <Link href="/start" className="underline">Continue as guest</Link>
 
       {/* Sign-up link */}
-      <Link href="/auth/signup">
+      <Link href="/auth/sign-up">
         No account? <span className="underline">Sign-up</span>
       </Link>
 

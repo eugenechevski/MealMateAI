@@ -8,7 +8,93 @@ import Button from "@/components/Button";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
+/*
+import { AppState, GuestUser, MainUser, SelectionMenu } from "@/core";
+import { useCallback, useEffect, useState } from "react";
+import buildSelectionMenu from "@/lib/buildSelectionMenu";
+import { createClient } from "@/lib/supabase/client";
+import { useRouter } from "next/navigation";
+import { useAppState } from "@/context/app-state/AppStateContext";
+*/
+
 export default function Page() {
+  /*
+  const router = useRouter();
+  const { dispatch } = useAppState();
+  const supabase = createClient();
+  const [selectionMenu, setSelectionMenu] = useState({} as SelectionMenu);
+
+  // Build the selection menu
+  useEffect(() => {
+    (async () => {
+      const rawData = (await import("../../initialSelectionMenu.json"))
+        .recipes as RawMenuData;
+      const selectionMenu = buildSelectionMenu(rawData);
+      setSelectionMenu(selectionMenu);
+    })();
+  }, []);
+
+  const onSignedIn = useCallback(
+    async (user: any) => {
+      // Fetch saved meal plans from database
+      const { data, error } = await supabase
+        .from("users")
+        .select("*")
+        .eq("id", user.id);
+
+      let savedMealPlans: { [data: number]: MealData } | undefined = undefined;
+      if (!error) {
+        savedMealPlans = data[0].savedMealPlans;
+      }
+
+      dispatch({
+        type: "SET_APP_STATE",
+        payload: new AppState(
+          new MainUser(user.id, user.email, user.email, savedMealPlans),
+          selectionMenu
+        ),
+      });
+      router.push("/start");
+    },
+    [dispatch, router, selectionMenu, supabase]
+  );
+
+  const onSignedOut = useCallback(() => {
+    // Fetch saved meal plans from local storage
+    let savedMealPlans: { [date: number]: MealData } | undefined = undefined;
+    if (
+      typeof window !== "undefined" &&
+      localStorage.getItem("savedMealPlans")
+    ) {
+      savedMealPlans = JSON.parse(localStorage.getItem("savedMealPlans")!);
+    }
+
+    dispatch({
+      type: "SET_APP_STATE",
+      payload: new AppState(new GuestUser(savedMealPlans), selectionMenu),
+    });
+    router.push("/auth/login");
+  }, [dispatch, router, selectionMenu]);
+
+  // Set up initial the app state
+  useEffect(() => {
+    const setupAppState = async () => {
+      // Get the user from the session
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      if (user) {
+        onSignedIn(user);
+      } else {
+        onSignedOut();
+      }
+    };
+
+    setupAppState();
+  }, [supabase.auth, onSignedIn, onSignedOut]);
+  */
+
   return (
     <motion.main
       className="w-screen h-screen flex flex-col justify-center items-center gap-3"
@@ -53,11 +139,11 @@ export default function Page() {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
       >
-      <Link href="/auth/login">
-        <Button size="md">
-          <FontAwesomeIcon icon={faArrowRight} className="w-12" size="2x" />
-        </Button>
-      </Link>
+        <Link href="/auth/login">
+          <Button size="md">
+            <FontAwesomeIcon icon={faArrowRight} className="w-12" size="2x" />
+          </Button>
+        </Link>
       </motion.div>
     </motion.main>
   );

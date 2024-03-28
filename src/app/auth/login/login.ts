@@ -18,7 +18,7 @@ async function signInWithEmail(formData: { email: string; password: string }) {
   const { error } = await supabase.auth.signInWithPassword(data);
 
   if (error) {
-    redirect("/error");
+    redirect("/auth/login-error");
   }
 }
 
@@ -30,7 +30,7 @@ async function signInWithProvider(provider: "google" | "discord") {
   });
 
   if (error) {
-    redirect("/error");
+    redirect("/auth/login-error");
   }
 }
 
@@ -47,5 +47,5 @@ export async function login(
   }
 
   revalidatePath("/", "layout");
-  redirect("/");
+  redirect("/start");
 }

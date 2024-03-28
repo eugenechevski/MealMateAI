@@ -3,14 +3,14 @@
  * It stores the user, the current meal plan, and the selection menu.
  */
 
-import { MealPlan, MainUser, SelectionMenu, MealNode, Recipe } from "@/core";
+import { MealPlan, MainUser, GuestUser, SelectionMenu, MealNode, Recipe} from "@/core";
 
 export class AppState {
-  user: MainUser;
+  user: GuestUser | MainUser;
   currentMealPlan: MealPlan;
   selectionMenu: SelectionMenu;
 
-  constructor(user: MainUser, selectionMenu: SelectionMenu) {
+  constructor(user: MainUser | GuestUser, selectionMenu: SelectionMenu) {
     this.user = user;
     this.currentMealPlan = new MealPlan();
     this.selectionMenu = selectionMenu;

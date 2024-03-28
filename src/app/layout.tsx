@@ -1,11 +1,15 @@
 "use client";
 
-import { Analytics } from '@vercel/analytics/react';
-import { Pacifico, Roboto_Serif } from "next/font/google";
-import Image from "next/image";
-import logoImg from "@/assets/logo.png";
-import { motion } from "framer-motion";
 import "./globals.css";
+import logoImg from "@/assets/logo.png";
+
+import Image from "next/image";
+import { Pacifico, Roboto_Serif } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
+
+import { ContextProvider } from "@/context/Context";
+
+import { motion } from "framer-motion";
 
 const primaryFont = Roboto_Serif({
   subsets: ["latin"],
@@ -59,8 +63,8 @@ export default function RootLayout({
           <Image src={logoImg} alt="Meal Mate AI logo" />
           <span className="font-secondary select-none">Meal Mate AI</span>
         </motion.figure>
-        {children}
-        <Analytics/>
+        <ContextProvider>{children}</ContextProvider>
+        <Analytics />
       </body>
     </html>
   );
