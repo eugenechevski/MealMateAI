@@ -25,12 +25,19 @@ async function signInWithEmail(formData: { email: string; password: string }) {
 async function signInWithProvider(provider: "google" | "discord") {
   const supabase = createClient();
 
-  const { error } = await supabase.auth.signInWithOAuth({
+  const { data, error } = await supabase.auth.signInWithOAuth({
     provider,
+    options: {
+      redirectTo: `/auth/callback`,
+    }
   });
 
   if (error) {
     redirect("/auth/login-error");
+  }
+
+  if (data) {
+    redirect(data.url);
   }
 }
 
