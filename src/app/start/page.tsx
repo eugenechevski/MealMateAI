@@ -1,18 +1,21 @@
-'use client';
+"use client";
 
-import { useAppState } from "@/context/app-state/AppStateContext";
-import { useEffect } from "react";
-import { createClient } from "@/lib/supabase/client";
+import { motion } from "framer-motion";
 
 export default function StartPage() {
-    const { state, dispatch } = useAppState();
-
-    const supabase = createClient();
-    
-    useEffect(() => {
-        if (state.appState) {
-            // redirect to home page
-        }
-
-    }, [supabase]);
+  return (
+    <main className="flex flex-col gap-12 h-screen w-screen justify-center items-center">
+      <h1 className="font-secondary text-9xl mb-12">Hungry?</h1>
+      <motion.button
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 1 }}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        className="primary-button text-3xl p-5"
+      >
+        Start cooking
+      </motion.button>
+    </main>
+  );
 }

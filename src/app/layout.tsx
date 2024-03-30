@@ -41,9 +41,9 @@ const metadata = {
   },
 };
 
-const LayoutSetup = ({ children }: { children: React.ReactNode }) => {
+const RootState = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
-  const { dispatch } = useAppState();
+  const { state, dispatch } = useAppState();
   const supabase = createClient();
   const [selectionMenu, setSelectionMenu] = useState({} as SelectionMenu);
 
@@ -148,8 +148,9 @@ export default function RootLayout({
           <Image src={logoImg} alt="Meal Mate AI logo" />
           <span className="font-secondary select-none">Meal Mate AI</span>
         </motion.figure>
+
         <ContextProvider>
-          <LayoutSetup>{children}</LayoutSetup>
+          <RootState>{children}</RootState>
         </ContextProvider>
         <Analytics />
       </body>
