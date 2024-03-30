@@ -5,7 +5,11 @@ interface State {
   appState: AppState;
 }
 
-type Action = { type: "SET_APP_STATE"; payload: AppState };
+type Action =
+  | { type: "SET_APP_STATE"; payload: AppState }
+  | { type: "APPEND_NEW_DAY" }
+  | { type: "REMOVE_DAY"; payload: string }
+  | { type: "SWAP_DAYS"; payload: { day1: string; day2: string } };
 
 interface AppStateContextProps {
   state: State;
@@ -24,6 +28,12 @@ const appStateReducer = (state: State, action: Action): State => {
   switch (action.type) {
     case "SET_APP_STATE":
       return { ...state, appState: action.payload };
+    case "APPEND_NEW_DAY":
+      state.appState.currentMealPlan.appendNewDay();
+      return { ...state };
+    case "REMOVE_DAY":
+      state.appState.currentMealPlan.removeDay(action.payload);
+      return { ...state };
     default:
       return state;
   }

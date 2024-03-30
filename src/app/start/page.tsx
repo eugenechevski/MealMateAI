@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 
+import Link from "next/link";
+
 export default function StartPage() {
   return (
     <main className="flex flex-col gap-12 h-screen w-screen justify-center items-center">
@@ -14,7 +16,9 @@ export default function StartPage() {
         whileTap={{ scale: 0.9 }}
         className="primary-button text-3xl p-5"
       >
-        Start cooking
+        <Link href="/days">
+          Start cooking
+        </Link>
       </motion.button>
     </main>
   );

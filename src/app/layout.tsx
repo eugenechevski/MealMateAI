@@ -43,7 +43,7 @@ const metadata = {
 
 const RootState = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
-  const { state, dispatch } = useAppState();
+  const { dispatch } = useAppState();
   const supabase = createClient();
   const [selectionMenu, setSelectionMenu] = useState({} as SelectionMenu);
 

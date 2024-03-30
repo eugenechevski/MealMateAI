@@ -86,10 +86,12 @@ export class MealPlan {
    * Appends a new day node to the meal plan.
    */
   appendNewDay() {
-    if (Object.keys(this.days).length === MAX_MEAL_PLAN_DAYS) return;
+    if (Object.keys(this.days).length === MAX_MEAL_PLAN_DAYS) return false;
 
     const day = new DayNode();
     this.addDay(day);
+
+    return true;
   }
 
   /**
