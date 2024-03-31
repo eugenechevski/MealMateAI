@@ -216,6 +216,17 @@ export class MealPlan {
     mealNode.recipe = recipe;
   }
 
+  getDaysList() {
+    let daysArr: DayNode[] = [];
+    let currentDay = this.firstDay;
+    while (currentDay) {
+      daysArr.push(currentDay);
+      currentDay = currentDay.nextDay;
+    }
+
+    return daysArr;
+  }
+
   /**
    * The function assembles the meal plan data into an object format.
    *

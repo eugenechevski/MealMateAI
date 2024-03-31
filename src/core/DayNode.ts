@@ -180,6 +180,17 @@ export class DayNode {
     return newMeal;
   }
 
+  getMealList() {
+    let mealArr: MealNode[] = [];
+    let meal = this.firstMeal;
+    while (meal) {
+      mealArr.push(meal);
+      meal = meal.nextMeal;
+    }
+
+    return mealArr;
+  }
+
   /**
    * Prints the day node and its meal nodes to the console.
    */

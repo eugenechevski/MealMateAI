@@ -18,4 +18,8 @@
   .primary-form {
     @apply bg-primary-gray flex flex-col justify-center items-center rounded-2xl shadow-2xl p-12 gap-2;
   }
+
+  .primary-icon {
+    @apply primary-button rounded-full w-12 h-12 text-3xl;
+  }
 }

@@ -3,9 +3,17 @@
 import { useAppState } from "@/context/app-state/AppStateContext";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight, faPlus } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowRight,
+  faArrowLeft,
+  faPlus,
+  faRemove,
+  faEdit
+} from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { motion } from "framer-motion";
+
+import Link from "next/link";
 
 export default function DaysPage() {
   const { state, dispatch } = useAppState();
@@ -26,8 +34,9 @@ export default function DaysPage() {
   };
 
   const handleSwapDays = (day1: string, day2: string) => {
+    if (!day1 || !day2) return;
+
     dispatch({ type: "SWAP_DAYS", payload: { day1, day2 } });
-    setSelectedDayId(day2);
   };
 
   const handleFinishMealPlan = () => {
@@ -37,12 +46,12 @@ export default function DaysPage() {
   return (
     <main className="flex flex-col justify-center items-center gap-12 w-screen h-screen">
       {/* Meal plan date */}
-      <h1 className="text-5xl font-secondary">Today&apos;s meal plan</h1>
+      <h1 className="text-5xl font-secondary mb-12">Today&apos;s meal plan</h1>
 
       {/* Days sequence */}
       <section className="flex gap-5 justify-center items-center">
-        {state?.appState?.currentMealPlan?.days &&
-          Object.values(state.appState.currentMealPlan.days).map(
+        {state?.appState?.currentMealPlan &&
+          state.appState.currentMealPlan.getDaysList().map(
             (day, index) => (
               <div
                 className="flex gap-5 justify-center items-center"
@@ -85,7 +94,7 @@ export default function DaysPage() {
         {/* Add day button */}
         {dayCount < 7 && (
           <button
-            className="flex flex-col justify-center items-center rounded-full w-2 h-2 p-4 primary-button"
+            className="primary-icon bg-primary-green flex flex-col justify-center items-center"
             onClick={handleAddDay}
           >
             <FontAwesomeIcon icon={faPlus} size="sm" className="w-6" />
@@ -93,34 +102,84 @@ export default function DaysPage() {
         )}
       </section>
 
-      {/* Finish meal plan button */}
-      {dayCount > 0 && (
-        <motion.button
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 1 }}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          className="primary-button bg-primary-green text-3xl p-5"
-        >
-          Finish
-        </motion.button>
-      )}
+      <div className="flex gap-3 items-center justify-center">
+        {/* Edit meals button */}
+        {selectedDayId !== '' && (
+          <Link href={`/days/${selectedDayId}`}>
+            <motion.button
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 1 }}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="primary-icon bg-primary-coal"
+            >
+              <FontAwesomeIcon icon={faEdit} size="sm" />
+            </motion.button>
+          </Link>
+        )}
 
-      {/* Remove day button */}
-      {selectedDayId !== "" && (
-        <motion.button
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 1 }}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          className="primary-button bg-primary-red text-3xl p-5"
-          onClick={handleRemoveDay}
-        >
-          Remove
-        </motion.button>
-      )}
+        {/* Remove day button */}
+        {selectedDayId !== "" && (
+          <motion.button
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 1 }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            className="primary-icon"
+            onClick={handleRemoveDay}
+          >
+            <FontAwesomeIcon icon={faRemove} size="sm" />
+          </motion.button>
+        )}
+
+        {/* Swap with the left day */}
+        {selectedDayId !== "" &&
+          state.appState.currentMealPlan.days[selectedDayId]?.prevDay !==
+            null && (
+            <motion.button
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 1 }}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="primary-icon bg-primary-orange"
+              onClick={() =>
+                handleSwapDays(
+                  selectedDayId,
+                  state.appState.currentMealPlan.days[selectedDayId]?.prevDay
+                    ?.id as string
+                )
+              }
+            >
+              <FontAwesomeIcon icon={faArrowLeft} size="sm" />
+            </motion.button>
+          )}
+
+        {/* Swap with the right day */}
+        {selectedDayId !== "" &&
+          state.appState.currentMealPlan.days[selectedDayId].nextDay !==
+            null && (
+            <motion.button
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 1 }}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="primary-icon bg-primary-orange"
+              onClick={() =>
+                handleSwapDays(
+                  selectedDayId,
+                  state.appState.currentMealPlan.days[selectedDayId]?.nextDay
+                    ?.id as string
+                )
+              }
+            >
+              <FontAwesomeIcon icon={faArrowRight} size="sm" />
+            </motion.button>
+          )}
+      </div>
     </main>
   );
 }
