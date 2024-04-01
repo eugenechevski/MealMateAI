@@ -5,6 +5,7 @@
 export * from './AppState';
 export * from './SelectionMenu';
 export * from './MainUser';
+export * from './GuestUser';
 export * from './MealPlan';
 export * from './DayNode';
 export * from './MealNode';

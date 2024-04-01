@@ -1,4 +1,6 @@
-import { DayNode, Ingredient } from "@/core";
+import { DayNode, Ingredient, Recipe } from "@/core";
+
+const MAX_MEAL_PLAN_DAYS = 7;
 
 /**
  * Represents a meal plan.
@@ -84,8 +86,12 @@ export class MealPlan {
    * Appends a new day node to the meal plan.
    */
   appendNewDay() {
+    if (Object.keys(this.days).length === MAX_MEAL_PLAN_DAYS) return false;
+
     const day = new DayNode();
     this.addDay(day);
+
+    return true;
   }
 
   /**
@@ -184,8 +190,46 @@ export class MealPlan {
   }
 
   /**
+   * Selects a recipe for a meal in the meal plan.
+   */
+  selectRecipeForMeal(recipe: Recipe, dayId: string, mealId: string) {
+    const mealNode = this.days[dayId].meals[mealId];
+
+    // update user's ingredients
+
+    // Add the current recipe's ingredients back to the user's ingredients
+    if (mealNode.recipe) {
+      mealNode.recipe.ingredients.forEach((ingredient) => {
+        if (ingredient.name in this.userIngredients) {
+          this.userIngredients[ingredient.name].amount += ingredient.amount;
+        }
+      });
+    }
+
+    // Remove the new recipe's ingredients from the user's ingredients
+    recipe.ingredients.forEach((ingredient) => {
+      if (ingredient.name in this.userIngredients) {
+        this.userIngredients[ingredient.name].amount -= ingredient.amount;
+      }
+    });
+
+    mealNode.recipe = recipe;
+  }
+
+  getDaysList() {
+    let daysArr: DayNode[] = [];
+    let currentDay = this.firstDay;
+    while (currentDay) {
+      daysArr.push(currentDay);
+      currentDay = currentDay.nextDay;
+    }
+
+    return daysArr;
+  }
+
+  /**
    * The function assembles the meal plan data into an object format.
-   * 
+   *
    * @returns {MealPlanData} - The meal plan data.
    */
   getMealPlanData() {

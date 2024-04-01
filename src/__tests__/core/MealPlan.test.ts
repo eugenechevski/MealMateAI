@@ -10,6 +10,45 @@ import {
 import buildSelectionMenu from "@/lib/buildSelectionMenu";
 
 describe("MealPlan", () => {
+  let recipe1: Recipe;
+  let recipe2: Recipe;
+
+  beforeEach(() => {
+    recipe1 = new Recipe(
+      "Tomato Spaghetti",
+      "Italian",
+      new MealImage("spaggetti", "spaghetti.jpg"),
+      [
+        new Ingredient("Spaghetti pasta", 1, "box"),
+        new Ingredient("Tomato Sauce", 1, "jar"),
+      ],
+      [
+        new Step("Boil water."),
+        new Step("Add pasta."),
+        new Step("Cook for 8 minutes."),
+        new Step("Drain water."),
+        new Step("Add sauce."),
+      ]
+    );
+    recipe2 = new Recipe(
+      "Taco",
+      "Mexican",
+      new MealImage("taco", "taco.jpg"),
+      [
+        new Ingredient("Taco Shells", 1, "box"),
+        new Ingredient("Ground Beef", 1, "lb"),
+        new Ingredient("Lettuce", 1, "head"),
+        new Ingredient("Tomato", 1, "unit"),
+      ],
+      [
+        new Step("Cook beef."),
+        new Step("Chop lettuce and tomato."),
+        new Step("Warm taco shells."),
+        new Step("Add beef, lettuce, and tomato."),
+      ]
+    );
+  });
+
   it("should create a new meal plan", () => {
     const mealPlan = new MealPlan();
     expect(mealPlan.firstDay).toBeNull();
@@ -134,6 +173,7 @@ describe("MealPlan", () => {
   });
 
   it("should return the meal plan data", async () => {
+    // Build the selection menu
     const selectionMenu = buildSelectionMenu(
       (await import("../../../initialSelectionMenu.json")).recipes
     );
@@ -193,5 +233,118 @@ describe("MealPlan", () => {
     }
 
     expect(mealPlan.getMealPlanData()).toEqual(expectedMealPlanData);
+  });
+
+  it("should return an empty meal plan data when meal plan finished without any recipes", () => {
+    const mealPlan = new MealPlan();
+
+    expect(mealPlan.getMealPlanData()).toEqual({});
+  });
+
+  it("should add user ingredients to the meal plan", () => {
+    const mealPlan = new MealPlan();
+
+    mealPlan.addUserIngredient(new Ingredient("Spaghetti pasta", 1, "box"));
+    mealPlan.addUserIngredient(new Ingredient("Tomato", 2, "unit"));
+
+    expect(mealPlan.userIngredients["Spaghetti pasta"].amount).toBe(1);
+    expect(mealPlan.userIngredients["Tomato"].amount).toBe(2);
+  });
+
+  it("should update user ingredients in the meal plan", () => {
+    const mealPlan = new MealPlan();
+
+    mealPlan.addUserIngredient(new Ingredient("Spaghetti pasta", 1, "box"));
+    mealPlan.addUserIngredient(new Ingredient("Tomato", 2, "unit"));
+
+    expect(mealPlan.userIngredients["Spaghetti pasta"].amount).toBe(1);
+    expect(mealPlan.userIngredients["Tomato"].amount).toBe(2);
+
+    mealPlan.updateUserIngredient(new Ingredient("Spaghetti pasta", 2, "lb"));
+    mealPlan.updateUserIngredient(new Ingredient("Tomato", 3, "unit"));
+
+    expect(mealPlan.userIngredients["Spaghetti pasta"].amount).toBe(2);
+    expect(mealPlan.userIngredients["Tomato"].amount).toBe(3);
+  });
+
+  it("should remove user ingredients from the meal plan", () => {
+    const mealPlan = new MealPlan();
+
+    mealPlan.addUserIngredient(new Ingredient("Spaghetti pasta", 1, "box"));
+    mealPlan.addUserIngredient(new Ingredient("Tomato", 2, "unit"));
+
+    expect(mealPlan.userIngredients["Spaghetti pasta"].amount).toBe(1);
+    expect(mealPlan.userIngredients["Tomato"].amount).toBe(2);
+
+    mealPlan.removeUserIngredient("Spaghetti pasta");
+    mealPlan.removeUserIngredient("Tomato");
+
+    expect(mealPlan.userIngredients["Spaghetti pasta"]).toBeUndefined();
+    expect(mealPlan.userIngredients["Tomato"]).toBeUndefined();
+  });
+
+  it("should select recipe for a meal and update user ingredients", () => {
+    const mealPlan = new MealPlan();
+
+    mealPlan.addUserIngredient(new Ingredient("Spaghetti pasta", 1, "box"));
+    mealPlan.addUserIngredient(new Ingredient("Tomato Sauce", 1, "jar"));
+    mealPlan.addUserIngredient(new Ingredient("Taco Shells", 1, "box"));
+    mealPlan.addUserIngredient(new Ingredient("Ground Beef", 1, "lb"));
+    mealPlan.addUserIngredient(new Ingredient("Lettuce", 1, "head"));
+    mealPlan.addUserIngredient(new Ingredient("Tomato", 1, "unit"));
+
+    const day = new DayNode();
+    const meal1 = new MealNode();
+    const meal2 = new MealNode();
+
+    mealPlan.addDay(day);
+    day.addMeal(meal1);
+    day.addMeal(meal2);
+
+    mealPlan.selectRecipeForMeal(recipe1, day.id, meal1.id);
+    mealPlan.selectRecipeForMeal(recipe2, day.id, meal2.id);
+
+    expect(meal1.recipe).toBe(recipe1);
+    expect(meal2.recipe).toBe(recipe2);
+    expect(mealPlan.userIngredients["Spaghetti pasta"].amount).toBe(0);
+    expect(mealPlan.userIngredients["Tomato Sauce"].amount).toBe(0);
+    expect(mealPlan.userIngredients["Taco Shells"].amount).toBe(0);
+    expect(mealPlan.userIngredients["Ground Beef"].amount).toBe(0);
+    expect(mealPlan.userIngredients["Lettuce"].amount).toBe(0);
+    expect(mealPlan.userIngredients["Tomato"].amount).toBe(0);
+  });
+
+  it("should select recipe for a meal and update user ingredients when the meal already has a recipe", () => {
+    const mealPlan = new MealPlan();
+
+    mealPlan.addUserIngredient(new Ingredient("Spaghetti pasta", 0, "box"));
+    mealPlan.addUserIngredient(new Ingredient("Tomato Sauce", 0, "jar"));
+    mealPlan.addUserIngredient(new Ingredient("Taco Shells", 1, "box"));
+    mealPlan.addUserIngredient(new Ingredient("Ground Beef", 1, "lb"));
+    mealPlan.addUserIngredient(new Ingredient("Lettuce", 1, "head"));
+    mealPlan.addUserIngredient(new Ingredient("Tomato", 1, "unit"));
+
+    expect(mealPlan.userIngredients["Spaghetti pasta"].amount).toBe(0);
+    expect(mealPlan.userIngredients["Tomato Sauce"].amount).toBe(0);
+    expect(mealPlan.userIngredients["Taco Shells"].amount).toBe(1);
+    expect(mealPlan.userIngredients["Ground Beef"].amount).toBe(1);
+    expect(mealPlan.userIngredients["Lettuce"].amount).toBe(1);
+    expect(mealPlan.userIngredients["Tomato"].amount).toBe(1);
+
+    const day = new DayNode();
+    const meal = new MealNode(recipe1);
+
+    mealPlan.addDay(day);
+    day.addMeal(meal);
+
+    mealPlan.selectRecipeForMeal(recipe2, day.id, meal.id);
+
+    expect(meal.recipe).toBe(recipe2);
+    expect(mealPlan.userIngredients["Spaghetti pasta"].amount).toBe(1);
+    expect(mealPlan.userIngredients["Tomato Sauce"].amount).toBe(1);
+    expect(mealPlan.userIngredients["Taco Shells"].amount).toBe(0);
+    expect(mealPlan.userIngredients["Ground Beef"].amount).toBe(0);
+    expect(mealPlan.userIngredients["Lettuce"].amount).toBe(0);
+    expect(mealPlan.userIngredients["Tomato"].amount).toBe(0);
   });
 });
