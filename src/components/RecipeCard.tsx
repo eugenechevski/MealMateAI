@@ -1,30 +1,22 @@
 import { Recipe } from "@/core";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { memo } from "react";
 
-export default function RecipeCard({ recipe }: { recipe: Recipe | null }) {
-  // Fetch the image from the URL
-  const [image, setImage] = useState('');
-
-  useEffect(() => {
-    if (!recipe?.image?.url) return;
-
-    fetch(`/api/image-proxy?url=${recipe.image.url}`)
-      .then((response) => response.blob())
-      .then((blob) => {
-        const url = URL.createObjectURL(blob);
-        setImage(url);
-      });
-  }, [recipe?.image?.url]);
-
+const RecipeCard = ({ recipe }: { recipe: Recipe | null }) => {
   return (
-    <div className="primary-recipe-card">
-      <h2 className="text-2xl font-secondary">{recipe?.name}</h2>
-      <Image
-        src={image as string}
-        alt={recipe?.image?.title as string}
-        fill
-      />
+    <div className="bg-primary-gray flex flex-col justify-center items-center rounded-2xl shadow-2xl p-3 gap-7">
+      <h2 className="text-xl font-secondary text-center h-8 w-full overflow-hidden overflow-ellipsis whitespace-nowrap">{recipe?.name}</h2>
+      <div className="relative aspect-square h-32">
+        <Image
+          src={recipe?.image?.url as string}
+          alt={recipe?.image?.title as string}
+          sizes="6rem"
+          loading="lazy"
+          fill
+        />
+      </div>
     </div>
   );
 }
+
+export default memo(RecipeCard);

@@ -18,6 +18,10 @@ export default function buildSelectionMenu(
   const selectionMenu = new SelectionMenu();
 
   for (const rawMeal of rawData) {
+    // Fetch the external url of an image through the API as proxy
+    // to avoid CORS issues
+    
+
     const recipe = new Recipe(
       rawMeal.name,
       rawMeal.cuisine,

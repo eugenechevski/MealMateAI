@@ -4,6 +4,7 @@ import "./globals.css";
 import logoImg from "@/assets/logo.png";
 
 import Image from "next/image";
+import Link from "next/link";
 import { Pacifico, Roboto_Serif } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 
@@ -77,9 +78,8 @@ const RootState = ({ children }: { children: React.ReactNode }) => {
           selectionMenu
         ),
       });
-      router.push("/start");
     },
-    [dispatch, router, selectionMenu, supabase]
+    [dispatch, selectionMenu, supabase]
   );
 
   const onSignedOut = useCallback(() => {
@@ -138,16 +138,17 @@ export default function RootLayout({
       </head>
       <body className="bg-primary-cream relative text-primary-coal text-shadow scroll-smooth hide-scrollbar snap-center snap-normal snap-mandatory max-h-max max-w-max">
         {/* Floating logo */}
-        <motion.figure
+        <motion.button
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 2 }}
           whileHover={{ scale: 1.1 }}
-          className="absolute left-10 top-10 w-32 flex flex-col items-center justify-center"
+          className="z-[9999] absolute left-10 top-10 w-16 flex flex-col items-center justify-center"
         >
-          <Image src={logoImg} alt="Meal Mate AI logo" />
-          <span className="font-secondary select-none">Meal Mate AI</span>
-        </motion.figure>
+          <Link href="/">
+            <Image src={logoImg} alt="Meal Mate AI logo" />
+          </Link>
+        </motion.button>
 
         <ContextProvider>
           <RootState>{children}</RootState>
