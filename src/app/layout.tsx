@@ -1,5 +1,7 @@
 "use client";
 
+import * as React from "react";
+
 import "./globals.css";
 import logoImg from "@/assets/logo.png";
 
@@ -18,6 +20,8 @@ import buildSelectionMenu from "@/lib/buildSelectionMenu";
 import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 import { useAppState } from "@/context/app-state/AppStateContext";
+
+import { NextUIProvider } from "@nextui-org/react";
 
 const primaryFont = Roboto_Serif({
   subsets: ["latin"],
@@ -151,7 +155,9 @@ export default function RootLayout({
         </motion.button>
 
         <ContextProvider>
-          <RootState>{children}</RootState>
+          <NextUIProvider>
+            <RootState>{children}</RootState>
+          </NextUIProvider>
         </ContextProvider>
         <Analytics />
       </body>

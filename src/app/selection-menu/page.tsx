@@ -9,6 +9,19 @@ import RecipeCard from "@/components/RecipeCard";
 
 import { motion } from "framer-motion";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
+
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+} from "@nextui-org/react";
+
+import Image from "next/image";
+
 export default function SelectionMenuPage() {
   const { state, dispatch } = useAppState();
 
@@ -19,11 +32,12 @@ export default function SelectionMenuPage() {
 
   const [dayIndex, setDayIndex] = useState<number>(0);
   const [mealIndex, setMealIndex] = useState<number>(0);
-  const [mealNode, setMealNode] = useState<MealNode | null>(null);
   const [cuisineNames, setCuisineNames] = useState<string[]>([]);
   const [selectedCuisines, setSelectedCuisines] = useState<Set<string>>(
     new Set()
   );
+  const [selectedRecipe, setSelectedRecipe] = useState<Recipe | null>(null);
+  const [openedRecipe, setOpenedRecipe] = useState<Recipe | null>(null);
 
   const getAllRecipes = useMemo((): Recipe[] => {
     if (!state?.appState?.selectionMenu?.items) return [];
@@ -51,6 +65,23 @@ export default function SelectionMenuPage() {
     return getAllRecipes;
   }, [selectedCuisines, getAllRecipes, state?.appState?.selectionMenu?.items]);
 
+  const handleOpenRecipeProfile = useCallback((recipe: Recipe) => {
+    setOpenedRecipe(recipe);
+  }, []);
+
+  const handleSelectRecipe = useCallback(
+    (recipe: Recipe) => {
+      setSelectedRecipe(recipe);
+      setOpenedRecipe(null);
+
+      dispatch({
+        type: "UPDATE_RECIPE",
+        payload: { day, meal, recipe },
+      });
+    },
+    [dispatch, day, meal]
+  );
+
   const handleSelectCuisine = useCallback((cuisine: string) => {
     setSelectedCuisines((prev) => {
       const newSet = new Set(prev);
@@ -77,8 +108,6 @@ export default function SelectionMenuPage() {
       state?.appState?.currentMealPlan?.days[day]?.meals &&
       meal in state?.appState?.currentMealPlan?.days[day]?.meals
     ) {
-      setMealNode(state.appState.currentMealPlan.days[day].meals[meal]);
-
       // Compute the day index
       let dayCount = 1;
       let currentDay = state.appState.currentMealPlan.days[day];
@@ -105,7 +134,12 @@ export default function SelectionMenuPage() {
   ]);
 
   return (
-    <main className="flex flex-col justify-center items-center w-screen h-max">
+    <motion.main
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+      className="flex flex-col justify-center items-center w-screen h-max"
+    >
       {/* Top shelf */}
       <nav className="w-full h-full flex flex-col justify-center items-center mt-12">
         {meal && day ? (
@@ -140,18 +174,69 @@ export default function SelectionMenuPage() {
       {/* Selection menu grid */}
       <section className="grid grid-cols-4 gap-6 w-3/4 p-12 overflow-y-auto overflow-x-hidden h-full">
         {listRecipes.map((recipe) => (
-          <motion.div
+          <motion.button
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
             whileHover={{ scale: 1.05 }}
-            className=""
             key={recipe.name}
+            onClick={() => handleOpenRecipeProfile(recipe)}
           >
             <RecipeCard recipe={recipe} />
-          </motion.div>
+          </motion.button>
         ))}
       </section>
-    </main>
+
+      {/* Recipe profile modal */}
+      {openedRecipe && (
+        <Modal
+          isOpen={openedRecipe !== null}
+          onClose={() => setOpenedRecipe(null)}
+          backdrop="blur"
+          size="xl"
+        >
+          <ModalContent className="flex flex-col items-center justify-center">
+            <ModalHeader className="text-3xl font-secondary">
+              {openedRecipe?.name}
+            </ModalHeader>
+            <ModalHeader className="text-xl font-secondary">
+              {openedRecipe?.cuisine}
+            </ModalHeader>
+            <ModalBody className="flex flex-col justify-center items-center gap-3">
+              {/* Image */}
+              <Image
+                src={openedRecipe?.image?.url as string}
+                alt={openedRecipe?.image?.title}
+                loading="lazy"
+                height={200}
+                width={200}
+              />
+
+              {/* Ingredients */}
+              <ul className="flex flex-col items-start gap-3 overflow-auto">
+                {openedRecipe?.ingredients.map(({ name, amount, unit }) => (
+                  <li key={name}>{name + " " + amount + " " + unit}</li>
+                ))}
+              </ul>
+
+              {/* Steps */}
+              <ol className="flex flex-col items-start gap-3 overflow-auto">
+                {openedRecipe?.steps.map(({ description }, index) => (
+                  <li key={description}>{(index + 1) + ". " + description}</li>
+                ))}
+              </ol>
+            </ModalBody>
+            <ModalFooter>
+              <button
+                className="primary-icon"
+                onClick={() => handleSelectRecipe(openedRecipe)}
+              >
+                <FontAwesomeIcon icon={faCheck} />
+              </button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+      )}
+    </motion.main>
   );
 }

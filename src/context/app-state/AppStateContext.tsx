@@ -1,4 +1,4 @@
-import { AppState } from "@/core";
+import { AppState, Recipe } from "@/core";
 import { createContext, useContext, useReducer, Dispatch } from "react";
 
 interface State {
@@ -12,7 +12,11 @@ type Action =
   | { type: "SWAP_DAYS"; payload: { day1: string; day2: string } }
   | { type: "APPEND_NEW_MEAL"; payload: string }
   | { type: "REMOVE_MEAL"; payload: string }
-  | { type: "SWAP_MEALS"; payload: { meal1: string; meal2: string } };
+  | { type: "SWAP_MEALS"; payload: { meal1: string; meal2: string } }
+  | {
+      type: "UPDATE_RECIPE";
+      payload: { day: string; meal: string; recipe: Recipe };
+    };
 
 interface AppStateContextProps {
   state: State;
@@ -56,6 +60,17 @@ const appStateReducer = (state: State, action: Action): State => {
         action.payload.meal1,
         action.payload.meal2
       );
+      return { ...state };
+    case "UPDATE_RECIPE":
+      const { day, meal, recipe } = action.payload;
+
+      if (
+        day in state.appState.currentMealPlan.days &&
+        meal in state.appState.currentMealPlan.days[day].meals
+      ) {
+        state.appState.currentMealPlan.days[day].meals[meal].recipe = recipe;
+      }
+
       return { ...state };
     default:
       return state;
