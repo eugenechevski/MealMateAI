@@ -3,10 +3,11 @@
 import { useSearchParams } from "next/navigation";
 import { useAppState } from "@/context/app-state/AppStateContext";
 import { useEffect, useState, useCallback, useMemo } from "react";
-import { Suspense } from "react";
 import { MealNode, Recipe } from "@/core";
 
 import RecipeCard from "@/components/RecipeCard";
+
+import { motion } from "framer-motion";
 
 export default function SelectionMenuPage() {
   const { state, dispatch } = useAppState();
@@ -24,31 +25,31 @@ export default function SelectionMenuPage() {
     new Set()
   );
 
-  const listRecipes = useMemo((): Recipe[] => {
+  const getAllRecipes = useMemo((): Recipe[] => {
     if (!state?.appState?.selectionMenu?.items) return [];
 
-    let recipes: Recipe[] = [];
+    return Object.values(state.appState.selectionMenu.items).flatMap(
+      Object.values
+    );
+  }, [state?.appState?.selectionMenu?.items]);
 
+  const listRecipes = useMemo((): Recipe[] => {
     // If there are selected cuisines, only show recipes from that cuisine
     if (selectedCuisines && selectedCuisines?.size > 0) {
-      selectedCuisines.forEach((cuisine) => {
-        Object.values(state.appState.selectionMenu.items[cuisine]).forEach(
-          (recipe) => {
-            recipes.push(recipe);
-          }
-        );
-      });
-    } else {
-      // Otherwise, show all recipes
-      Object.values(state.appState.selectionMenu.items).forEach((cuisine) => {
-        Object.values(cuisine).forEach((recipe) => {
-          recipes.push(recipe);
-        });
-      });
+      if (!state?.appState?.selectionMenu?.items) return [];
+
+      const getSelectedRecipes = Object.values(
+        state.appState.selectionMenu.items
+      )
+        .flatMap(Object.values)
+        .filter((recipe) => selectedCuisines.has(recipe.cuisine));
+
+      return getSelectedRecipes;
     }
 
-    return recipes;
-  }, [selectedCuisines, state?.appState?.selectionMenu?.items]);
+    // If there are no selected cuisines, show all recipes
+    return getAllRecipes;
+  }, [selectedCuisines, getAllRecipes, state?.appState?.selectionMenu?.items]);
 
   const handleSelectCuisine = useCallback((cuisine: string) => {
     setSelectedCuisines((prev) => {
@@ -104,44 +105,53 @@ export default function SelectionMenuPage() {
   ]);
 
   return (
-    <Suspense>
-      <main className="flex flex-col justify-center items-center w-screen h-screen">
-        {/* Top shelf */}
-        <nav className="w-full h-full flex flex-col justify-center items-center">
-          {meal && day ? (
-            <h1 className="text-5xl font-secondary mb-12">
-              Recipe for meal {mealIndex} of day {dayIndex}.
-            </h1>
-          ) : (
-            <h1 className="text-5xl font-secondary mb-12">Selection Menu</h1>
-          )}
-          {/* Cuisines filter */}
-          <nav className="w-full flex justify-center items-center gap-3">
-            {cuisineNames.map((cuisineName) => (
-              <button
-                key={cuisineName}
-                className={`primary-button ${
-                  selectedCuisines?.has(cuisineName)
-                    ? `bg-primary-red`
-                    : `bg-primary-orange`
-                }`}
-                onClick={() => handleSelectCuisine(cuisineName)}
-              >
-                {cuisineName}
-              </button>
-            ))}
-          </nav>
-        </nav>
-
-        {/* Selection menu grid */}
-        <section className="grid grid-cols-5 gap-6 w-full p-12 overflow-y-auto overflow-x-hidden h-full scrollbar scrollbar-w-2 scrollbar-thumb-slate-400 scrollbar-track-rounded-full">
-          {listRecipes.map((recipe) => (
-            <div className="" key={recipe.name}>
-              <RecipeCard recipe={recipe} />
-            </div>
+    <main className="flex flex-col justify-center items-center w-screen h-max">
+      {/* Top shelf */}
+      <nav className="w-full h-full flex flex-col justify-center items-center mt-12">
+        {meal && day ? (
+          <h1 className="text-5xl font-secondary mb-12">
+            Recipe for meal {mealIndex + 1} of day {dayIndex + 1}.
+          </h1>
+        ) : (
+          <h1 className="text-5xl font-secondary mb-12">Selection Menu</h1>
+        )}
+        {/* Cuisines filter */}
+        <nav className="w-full flex justify-center items-center gap-3">
+          {cuisineNames.map((cuisineName) => (
+            <motion.button
+              key={cuisineName}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              whileHover={{ scale: 1.1 }}
+              className={`primary-button ${
+                selectedCuisines?.has(cuisineName)
+                  ? `bg-primary-red`
+                  : `bg-primary-orange`
+              }`}
+              onClick={() => handleSelectCuisine(cuisineName)}
+            >
+              {cuisineName}
+            </motion.button>
           ))}
-        </section>
-      </main>
-    </Suspense>
+        </nav>
+      </nav>
+
+      {/* Selection menu grid */}
+      <section className="grid grid-cols-4 gap-6 w-3/4 p-12 overflow-y-auto overflow-x-hidden h-full">
+        {listRecipes.map((recipe) => (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            whileHover={{ scale: 1.05 }}
+            className=""
+            key={recipe.name}
+          >
+            <RecipeCard recipe={recipe} />
+          </motion.div>
+        ))}
+      </section>
+    </main>
   );
 }
