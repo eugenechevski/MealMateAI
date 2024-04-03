@@ -3,6 +3,9 @@ const nextConfig = {
   reactStrictMode: false,
   experimental: {
     missingSuspenseWithCSRBailout: false,
+    outputFileTracingExcludes: {
+      '/test': ['./src/app/test/**'],
+    }
   },
   images: {
     remotePatterns: [

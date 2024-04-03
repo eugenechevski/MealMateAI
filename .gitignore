@@ -40,3 +40,5 @@ next-env.d.ts
 .env
 .swc
 test.json
+
+**src/app/test**
