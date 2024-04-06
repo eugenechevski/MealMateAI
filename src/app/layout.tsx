@@ -23,6 +23,17 @@ import { useAppState } from "@/context/app-state/AppStateContext";
 
 import { NextUIProvider } from "@nextui-org/react";
 
+import { faUser, faSignOut } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownSection,
+  DropdownItem,
+} from "@nextui-org/react";
+
 const primaryFont = Roboto_Serif({
   subsets: ["latin"],
   display: "swap",
@@ -48,7 +59,7 @@ const metadata = {
 
 const RootState = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
-  const { dispatch } = useAppState();
+  const { state, dispatch } = useAppState();
   const supabase = createClient();
   const [selectionMenu, setSelectionMenu] = useState({} as SelectionMenu);
 
@@ -120,7 +131,58 @@ const RootState = ({ children }: { children: React.ReactNode }) => {
     setupAppState();
   }, [supabase.auth, onSignedIn, onSignedOut]);
 
-  return <>{children}</>;
+  return (
+    <div className="relative">
+      {/* Floating logo */}
+      <motion.button
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 2 }}
+        whileHover={{ scale: 1.1 }}
+        className="z-[9999] absolute left-10 top-10 w-16 flex flex-col items-center justify-center"
+      >
+        <Link href="/">
+          <Image src={logoImg} alt="Meal Mate AI logo" />
+        </Link>
+      </motion.button>
+
+      {/* User dropdown */}
+      <Dropdown className="bg-primary-coal text-primary-cream">
+        <DropdownTrigger>
+          <div className="flex items-center gap-2 z-[9999] absolute top-10 right-10">
+            <motion.button
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 2 }}
+              whileHover={{ scale: 1.1 }}
+              className="primary-icon bg-primary-coal"
+            >
+              <FontAwesomeIcon icon={faUser} size="sm" />
+            </motion.button>
+            <span className="ml-3">Hello,</span>
+            {state?.appState?.user instanceof MainUser ? (
+              <span className="">{state?.appState?.user?.username?.split("@")[0]}</span>
+            ) : (
+              <span className="">Guest</span>
+            )}
+          </div>
+        </DropdownTrigger>
+        <DropdownMenu aria-label="Static Actions">
+          <DropdownSection>
+            <DropdownItem href="/saved-meals">Saved meals</DropdownItem>
+            <DropdownItem href="/about">About</DropdownItem>
+          </DropdownSection>
+          <DropdownSection className="border-t-2 border-primary-cream mt-2">
+            <DropdownItem href="/sign-out" className="flex">
+              <FontAwesomeIcon icon={faSignOut} size="sm" />
+              <span className="ml-2">Sign out</span>
+            </DropdownItem>
+          </DropdownSection>
+        </DropdownMenu>
+      </Dropdown>
+      {children}
+    </div>
+  );
 };
 
 export default function RootLayout({
@@ -141,19 +203,6 @@ export default function RootLayout({
         <title>{metadata.title}</title>
       </head>
       <body className="bg-primary-cream relative text-primary-coal text-shadow scroll-smooth hide-scrollbar snap-center snap-normal snap-mandatory max-h-max max-w-max overflow-x-hidden">
-        {/* Floating logo */}
-        <motion.button
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 2 }}
-          whileHover={{ scale: 1.1 }}
-          className="z-[9999] absolute left-10 top-10 w-16 flex flex-col items-center justify-center"
-        >
-          <Link href="/">
-            <Image src={logoImg} alt="Meal Mate AI logo" />
-          </Link>
-        </motion.button>
-
         <ContextProvider>
           <NextUIProvider>
             <RootState>{children}</RootState>

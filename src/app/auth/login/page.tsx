@@ -6,6 +6,9 @@ import { faGoogle, faDiscord } from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
 import { login } from "./login";
 import { emailPattern, passwordPattern } from "@/lib/constants";
+import { useEffect } from "react";
+import { useAppState } from "@/context/app-state/AppStateContext";
+import { useRouter } from "next/navigation";
 
 type LoginData = {
   email: string;
@@ -20,6 +23,13 @@ export default function LoginPage() {
   } = useForm<LoginData>();
 
   const onSubmit: SubmitHandler<LoginData> = (data) => login("email", data);
+
+  const { state } = useAppState();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (state?.appState?.user) router.replace("/start");
+  }, [state?.appState?.user, router])
 
   return (
     <form
