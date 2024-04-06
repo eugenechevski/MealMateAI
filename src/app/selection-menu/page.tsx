@@ -3,7 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import { useAppState } from "@/context/app-state/AppStateContext";
 import { useEffect, useState, useCallback, useMemo } from "react";
-import { MealNode, Recipe } from "@/core";
+import { Recipe } from "@/core";
 
 import RecipeCard from "@/components/RecipeCard";
 
@@ -138,7 +138,7 @@ export default function SelectionMenuPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
-      className="flex flex-col justify-center items-center w-screen h-max"
+      className="flex flex-col justify-center items-center w-screen h-max min-h-screen overflow-x-hidden"
     >
       {/* Top shelf */}
       <nav className="w-full h-full flex flex-col justify-center items-center mt-12">
@@ -180,6 +180,7 @@ export default function SelectionMenuPage() {
             transition={{ duration: 0.5 }}
             whileHover={{ scale: 1.05 }}
             key={recipe.name}
+            className={`${selectedRecipe?.name === recipe.name ? "primary-selected" : ""}`}
             onClick={() => handleOpenRecipeProfile(recipe)}
           >
             <RecipeCard recipe={recipe} />
@@ -193,16 +194,37 @@ export default function SelectionMenuPage() {
           isOpen={openedRecipe !== null}
           onClose={() => setOpenedRecipe(null)}
           backdrop="blur"
-          size="xl"
+          size="lg"
+          className="h-[80vh]"
+          motionProps={{
+            variants: {
+              enter: {
+                y: 0,
+                opacity: 1,
+                transition: {
+                  duration: 1,
+                  ease: "easeOut",
+                },
+              },
+              exit: {
+                y: -20,
+                opacity: 0,
+                transition: {
+                  duration: 1,
+                  ease: "easeIn",
+                },
+              },
+            },
+          }}
         >
-          <ModalContent className="flex flex-col items-center justify-center">
-            <ModalHeader className="text-3xl font-secondary">
+          <ModalContent className="p-3 flex flex-col items-center justify-start overflow-y-scroll">
+            <ModalHeader className="text-2xl font-secondary">
               {openedRecipe?.name}
             </ModalHeader>
-            <ModalHeader className="text-xl font-secondary">
+            <ModalHeader className="text-md font-secondary">
               {openedRecipe?.cuisine}
             </ModalHeader>
-            <ModalBody className="flex flex-col justify-center items-center gap-3">
+            <ModalBody className="w-full flex flex-col justify-center items-center text-sm">
               {/* Image */}
               <Image
                 src={openedRecipe?.image?.url as string}
@@ -210,29 +232,67 @@ export default function SelectionMenuPage() {
                 loading="lazy"
                 height={200}
                 width={200}
+                className="shadow-2xl"
               />
 
               {/* Ingredients */}
-              <ul className="flex flex-col items-start gap-3 overflow-auto">
-                {openedRecipe?.ingredients.map(({ name, amount, unit }) => (
-                  <li key={name}>{name + " " + amount + " " + unit}</li>
-                ))}
-              </ul>
+              <div className="w-full flex flex-col border-b-3 border-b-primary-coal justify-center items-center p-3">
+                <h2 className="text-xl font-secondary mb-3">Ingredients</h2>
+                <ul className="list-disc list-inside flex flex-col items-start overflow-auto">
+                  {openedRecipe?.ingredients.map(({ name, amount, unit }) => (
+                    <li key={name}>
+                      <strong>{name}</strong> {"- " + amount + " -"}{" "}
+                      <i>{unit}</i>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
               {/* Steps */}
-              <ol className="flex flex-col items-start gap-3 overflow-auto">
-                {openedRecipe?.steps.map(({ description }, index) => (
-                  <li key={description}>{(index + 1) + ". " + description}</li>
-                ))}
-              </ol>
+              <div className="w-full flex flex-col border-b-3 border-b-primary-coal justify-center items-center gap-3 p-5">
+                <h2 className="text-xl font-secondary mb-3">Steps</h2>
+                <ol className="list-inside list-decimal flex flex-col items-start gap-3 overflow-auto text-justify">
+                  {openedRecipe?.steps.map(({ description }) => (
+                    <li key={description}>{description}</li>
+                  ))}
+                </ol>
+              </div>
+
+              {/* Nutrition */}
+              <div className="w-full flex flex-col border-b-3 border-b-primary-coal justify-center items-center p-5">
+                <h2 className="text-xl font-secondary mb-3">Nutrition</h2>
+                <ul className="list-inside list-disc">
+                  <li>
+                    <strong>Servings:</strong>{" "}
+                    {openedRecipe?.nutrition?.servings}
+                  </li>
+                  <li>
+                    <strong>Calories per serving:</strong>{" "}
+                    {openedRecipe?.nutrition?.caloriesPerServing}
+                  </li>
+                  <li>
+                    <strong>Protein:</strong> {openedRecipe?.nutrition?.protein}
+                    g
+                  </li>
+                  <li>
+                    <strong>Carbohydrates:</strong>{" "}
+                    {openedRecipe?.nutrition?.carbohydrates}g
+                  </li>
+                  <li>
+                    <strong>Fat:</strong> {openedRecipe?.nutrition?.fat}g
+                  </li>
+                </ul>
+              </div>
             </ModalBody>
             <ModalFooter>
-              <button
-                className="primary-icon"
-                onClick={() => handleSelectRecipe(openedRecipe)}
-              >
-                <FontAwesomeIcon icon={faCheck} />
-              </button>
+              {day && meal && (
+                <button
+                  className="primary-icon"
+                  onClick={() => handleSelectRecipe(openedRecipe)}
+                >
+                  <FontAwesomeIcon icon={faCheck} />
+                </button>
+              )}
             </ModalFooter>
           </ModalContent>
         </Modal>
