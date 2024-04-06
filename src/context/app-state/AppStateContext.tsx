@@ -1,4 +1,4 @@
-import { AppState, Recipe } from "@/core";
+import { AppState, GuestUser, Recipe } from "@/core";
 import { createContext, useContext, useReducer, Dispatch } from "react";
 
 interface State {
@@ -16,7 +16,8 @@ type Action =
   | {
       type: "UPDATE_RECIPE";
       payload: { day: string; meal: string; recipe: Recipe };
-    };
+    }
+  | { type: "SIGN_OUT" };
 
 interface AppStateContextProps {
   state: State;
@@ -71,6 +72,12 @@ const appStateReducer = (state: State, action: Action): State => {
         state.appState.currentMealPlan.days[day].meals[meal].recipe = recipe;
       }
 
+      return { ...state };
+    case "SIGN_OUT":
+      state.appState = new AppState(
+        new GuestUser(),
+        state.appState.selectionMenu
+      );
       return { ...state };
     default:
       return state;

@@ -9,6 +9,7 @@ import { emailPattern, passwordPattern } from "@/lib/constants";
 import { useEffect } from "react";
 import { useAppState } from "@/context/app-state/AppStateContext";
 import { useRouter } from "next/navigation";
+import { MainUser } from "@/core";
 
 type LoginData = {
   email: string;
@@ -28,7 +29,7 @@ export default function LoginPage() {
   const router = useRouter();
 
   useEffect(() => {
-    if (state?.appState?.user) router.replace("/start");
+    if (state?.appState?.user instanceof MainUser) router.replace("/start");
   }, [state?.appState?.user, router])
 
   return (

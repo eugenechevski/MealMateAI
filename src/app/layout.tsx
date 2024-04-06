@@ -23,7 +23,7 @@ import { useAppState } from "@/context/app-state/AppStateContext";
 
 import { NextUIProvider } from "@nextui-org/react";
 
-import { faUser, faSignOut } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faSignOut, faSignIn } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import {
@@ -161,7 +161,9 @@ const RootState = ({ children }: { children: React.ReactNode }) => {
             </motion.button>
             <span className="ml-3">Hello,</span>
             {state?.appState?.user instanceof MainUser ? (
-              <span className="">{state?.appState?.user?.username?.split("@")[0]}</span>
+              <span className="">
+                {state?.appState?.user?.username?.split("@")[0]}
+              </span>
             ) : (
               <span className="">Guest</span>
             )}
@@ -172,12 +174,21 @@ const RootState = ({ children }: { children: React.ReactNode }) => {
             <DropdownItem href="/saved-meals">Saved meals</DropdownItem>
             <DropdownItem href="/about">About</DropdownItem>
           </DropdownSection>
-          <DropdownSection className="border-t-2 border-primary-cream mt-2">
-            <DropdownItem href="/sign-out" className="flex">
-              <FontAwesomeIcon icon={faSignOut} size="sm" />
-              <span className="ml-2">Sign out</span>
-            </DropdownItem>
-          </DropdownSection>
+          {state?.appState?.user instanceof MainUser ? (
+            <DropdownSection className="border-t-2 border-primary-cream mt-2">
+              <DropdownItem href="/auth/sign-out" className="flex">
+                <FontAwesomeIcon icon={faSignOut} size="sm" />
+                <span className="ml-2">Sign out</span>
+              </DropdownItem>
+            </DropdownSection>
+          ) : (
+            <DropdownSection className="border-t-2 border-primary-cream mt-2">
+              <DropdownItem href="/auth/login" className="flex">
+                <FontAwesomeIcon icon={faSignIn} size="sm" />
+                <span className="ml-2">Sign-in</span>
+              </DropdownItem>
+            </DropdownSection>
+          )}
         </DropdownMenu>
       </Dropdown>
       {children}
