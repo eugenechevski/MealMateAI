@@ -7,6 +7,10 @@
   width: 5px;
 }
 
+::-webkit-scrollbar-track {
+  background: #fff8dc;
+}
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: #333333;
@@ -43,5 +47,23 @@ body {
 
   .primary-icon {
     @apply primary-button rounded-full w-12 h-12 text-3xl;
+  }
+
+  .primary-selected {
+    box-shadow: 0 0 10px #ff851b, 0 0 20px #ff851b, 0 0 30px #ff851b,
+      0 0 40px #ff851b;
+    animation: glow 1s ease-in-out infinite;
+  }
+
+  @keyframes glow {
+    0%,
+    100% {
+      box-shadow: 0 0 10px #ff851b, 0 0 20px #ff851b, 0 0 30px #ff851b,
+        0 0 40px #ff851b;
+    }
+    50% {
+      box-shadow: 0 0 20px #ff851b, 0 0 30px #ff851b, 0 0 40px #ff851b,
+        0 0 50px #ff851b, 0 0 60px #ff851b;
+    }
   }
 }

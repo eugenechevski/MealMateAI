@@ -79,19 +79,13 @@ export default function DayPage({ params }: { params: { day: string } }) {
             >
               <motion.div
                 initial={{ scale: 0 }}
-                animate={
-                  selectedMealId === meal.id
-                    ? {
-                        scale: 1.2,
-                        boxShadow:
-                          "0 0 10px #ff0000, 0 0 30px #ff0000, 0 0 60px #ff0000, 0 0 220px #ff0000",
-                      }
-                    : { scale: 1, boxShadow: "0 0 0px #ff0000" }
-                }
+                animate={{ scale: 1, boxShadow: "0 0 0px #ff0000" }}
                 transition={{ duration: 1 }}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-                className="flex flex-col justify-center items-center primary-form"
+                className={`flex flex-col justify-center items-center primary-form ${
+                  selectedMealId === meal.id ? "primary-selected" : ""
+                }`}
                 onClick={() => setSelectedMealId(meal.id)}
               >
                 <h2 className="text-3xl">Meal {index + 1}</h2>
