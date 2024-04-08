@@ -138,7 +138,7 @@ export default function SelectionMenuPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
-      className="flex flex-col justify-center items-center w-screen h-max min-h-screen overflow-x-hidden"
+      className="primary-main h-max min-h-screen overflow-x-hidden"
     >
       {/* Top shelf */}
       <nav className="w-full h-full flex flex-col justify-center items-center mt-12">

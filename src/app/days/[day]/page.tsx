@@ -65,7 +65,7 @@ export default function DayPage({ params }: { params: { day: string } }) {
   };
 
   return (
-    <main className="flex flex-col justify-center items-center gap-12 w-screen h-screen">
+    <main className="primary-main">
       {/* Day heading */}
       <h1 className="text-5xl font-secondary mb-12">Day {dayIndex}</h1>
 

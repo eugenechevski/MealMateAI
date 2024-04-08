@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function StartPage() {
   return (
-    <main className="flex flex-col gap-12 h-screen w-screen justify-center items-center">
+    <main className="primary-main">
       <h1 className="font-secondary text-9xl mb-12">Hungry?</h1>
       <motion.button
         initial={{ scale: 0 }}

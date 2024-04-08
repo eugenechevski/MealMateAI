@@ -44,7 +44,7 @@ export default function DaysPage() {
   };
 
   return (
-    <main className="flex flex-col justify-center items-center gap-12 w-screen h-screen">
+    <main className="primary-main">
       {/* Meal plan date */}
       <h1 className="text-5xl font-secondary mb-12">Today&apos;s meal plan</h1>
 

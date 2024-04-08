@@ -33,6 +33,10 @@ body {
 }
 
 @layer components {
+  .primary-main {
+    @apply w-screen h-screen flex flex-col justify-center items-center gap-12;
+  }
+
   .primary-button {
     @apply bg-primary-red text-primary-white shadow-2xl rounded-full flex items-center justify-center p-3 text-shadow;
   }

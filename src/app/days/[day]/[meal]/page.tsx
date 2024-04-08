@@ -62,7 +62,7 @@ export default function MealPage({
   }, [state.appState, params.day, params.meal, router]);
 
   return (
-    <main className="flex flex-col justify-center items-center gap-12 w-screen h-screen">
+    <main className="primary-main">
       {/* Meal details */}
       <h1 className="text-5xl font-secondary mb-12">
         Meal {mealIndex} of day {dayIndex}.

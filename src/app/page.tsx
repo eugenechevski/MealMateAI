@@ -11,7 +11,7 @@ import { motion } from "framer-motion";
 export default function Page() {
   return (
     <motion.main
-      className="w-screen h-screen flex flex-col justify-center items-center gap-3"
+      className="primary-main gap-3"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
