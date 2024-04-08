@@ -46,7 +46,7 @@ export default function DaysPage() {
   return (
     <main className="primary-main">
       {/* Meal plan date */}
-      <h1 className="text-5xl font-secondary mb-12">Today&apos;s meal plan</h1>
+      <h1 className="primary-h1">Today&apos;s meal plan</h1>
 
       {/* Days sequence */}
       <section className="flex gap-5 justify-center items-center">

@@ -64,7 +64,7 @@ export default function MealPage({
   return (
     <main className="primary-main">
       {/* Meal details */}
-      <h1 className="text-5xl font-secondary mb-12">
+      <h1 className="primary-h1">
         Meal {mealIndex} of day {dayIndex}.
       </h1>
 

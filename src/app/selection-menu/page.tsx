@@ -143,11 +143,11 @@ export default function SelectionMenuPage() {
       {/* Top shelf */}
       <nav className="w-full h-full flex flex-col justify-center items-center mt-12">
         {meal && day ? (
-          <h1 className="text-5xl font-secondary mb-12">
+          <h1 className="primary-h1">
             Recipe for meal {mealIndex + 1} of day {dayIndex + 1}.
           </h1>
         ) : (
-          <h1 className="text-5xl font-secondary mb-12">Selection Menu</h1>
+          <h1 className="primary-h1">Selection Menu</h1>
         )}
         {/* Cuisines filter */}
         <nav className="w-full flex justify-center items-center gap-3">
