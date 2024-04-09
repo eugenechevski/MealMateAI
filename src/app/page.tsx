@@ -11,13 +11,21 @@ import { motion } from "framer-motion";
 export default function Page() {
   return (
     <motion.main
+<<<<<<< HEAD
       className="w-screen h-screen flex flex-col justify-center items-center gap-3"
+=======
+      className="primary-main gap-3"
+>>>>>>> upstream/main
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
       <motion.h1
+<<<<<<< HEAD
         className="text-3xl font-secondary"
+=======
+        className="primary-h1"
+>>>>>>> upstream/main
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1 }}

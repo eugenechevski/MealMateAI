@@ -1,9 +1,18 @@
 "use client";
 
+<<<<<<< HEAD
+=======
+import * as React from "react";
+
+>>>>>>> upstream/main
 import "./globals.css";
 import logoImg from "@/assets/logo.png";
 
 import Image from "next/image";
+<<<<<<< HEAD
+=======
+import Link from "next/link";
+>>>>>>> upstream/main
 import { Pacifico, Roboto_Serif } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 
@@ -18,6 +27,22 @@ import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 import { useAppState } from "@/context/app-state/AppStateContext";
 
+<<<<<<< HEAD
+=======
+import { NextUIProvider } from "@nextui-org/react";
+
+import { faUser, faSignOut, faSignIn } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownSection,
+  DropdownItem,
+} from "@nextui-org/react";
+
+>>>>>>> upstream/main
 const primaryFont = Roboto_Serif({
   subsets: ["latin"],
   display: "swap",
@@ -43,7 +68,11 @@ const metadata = {
 
 const RootState = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
+<<<<<<< HEAD
   const { dispatch } = useAppState();
+=======
+  const { state, dispatch } = useAppState();
+>>>>>>> upstream/main
   const supabase = createClient();
   const [selectionMenu, setSelectionMenu] = useState({} as SelectionMenu);
 
@@ -77,9 +106,14 @@ const RootState = ({ children }: { children: React.ReactNode }) => {
           selectionMenu
         ),
       });
+<<<<<<< HEAD
       router.push("/start");
     },
     [dispatch, router, selectionMenu, supabase]
+=======
+    },
+    [dispatch, selectionMenu, supabase]
+>>>>>>> upstream/main
   );
 
   const onSignedOut = useCallback(() => {
@@ -116,7 +150,73 @@ const RootState = ({ children }: { children: React.ReactNode }) => {
     setupAppState();
   }, [supabase.auth, onSignedIn, onSignedOut]);
 
+<<<<<<< HEAD
   return <>{children}</>;
+=======
+  return (
+    <div className="relative">
+      {/* Floating logo */}
+      <motion.button
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 2 }}
+        whileHover={{ scale: 1.1 }}
+        className="z-[9999] absolute left-10 top-10 w-16 flex flex-col items-center justify-center"
+      >
+        <Link href="/">
+          <Image src={logoImg} alt="Meal Mate AI logo" />
+        </Link>
+      </motion.button>
+
+      {/* User dropdown */}
+      <Dropdown className="bg-primary-coal text-primary-cream">
+        <DropdownTrigger>
+          <div className="flex items-center gap-2 z-[9999] absolute top-10 right-10">
+            <motion.button
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 2 }}
+              whileHover={{ scale: 1.1 }}
+              className="primary-icon bg-primary-coal"
+            >
+              <FontAwesomeIcon icon={faUser} size="sm" />
+            </motion.button>
+            <span className="ml-3">Hello,</span>
+            {state?.appState?.user instanceof MainUser ? (
+              <span className="">
+                {state?.appState?.user?.username?.split("@")[0]}
+              </span>
+            ) : (
+              <span className="">Guest</span>
+            )}
+          </div>
+        </DropdownTrigger>
+        <DropdownMenu aria-label="Static Actions">
+          <DropdownSection>
+            <DropdownItem href="/saved-meals">Saved meals</DropdownItem>
+            <DropdownItem href="/about">About</DropdownItem>
+          </DropdownSection>
+          {state?.appState?.user instanceof MainUser ? (
+            <DropdownSection className="border-t-2 border-primary-cream mt-2">
+              <DropdownItem href="/auth/sign-out" className="flex">
+                <FontAwesomeIcon icon={faSignOut} size="sm" />
+                <span className="ml-2">Sign out</span>
+              </DropdownItem>
+            </DropdownSection>
+          ) : (
+            <DropdownSection className="border-t-2 border-primary-cream mt-2">
+              <DropdownItem href="/auth/login" className="flex">
+                <FontAwesomeIcon icon={faSignIn} size="sm" />
+                <span className="ml-2">Sign-in</span>
+              </DropdownItem>
+            </DropdownSection>
+          )}
+        </DropdownMenu>
+      </Dropdown>
+      {children}
+    </div>
+  );
+>>>>>>> upstream/main
 };
 
 export default function RootLayout({
@@ -136,6 +236,7 @@ export default function RootLayout({
         <link rel="icon" href={metadata.icons.icon} type="image/x-icon" />
         <title>{metadata.title}</title>
       </head>
+<<<<<<< HEAD
       <body className="bg-primary-cream relative text-primary-coal text-shadow scroll-smooth hide-scrollbar snap-center snap-normal snap-mandatory max-h-max max-w-max">
         {/* Floating logo */}
         <motion.figure
@@ -151,6 +252,13 @@ export default function RootLayout({
 
         <ContextProvider>
           <RootState>{children}</RootState>
+=======
+      <body className="bg-primary-cream relative text-primary-coal text-shadow scroll-smooth hide-scrollbar snap-center snap-normal snap-mandatory max-h-max max-w-max overflow-x-hidden">
+        <ContextProvider>
+          <NextUIProvider>
+            <RootState>{children}</RootState>
+          </NextUIProvider>
+>>>>>>> upstream/main
         </ContextProvider>
         <Analytics />
       </body>
