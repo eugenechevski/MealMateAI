@@ -69,7 +69,17 @@ export default function MealPage({
       </h1>
 
       {/* Meal details */}
-      <section className="flex flex-col gap-5 justify-center items-center"></section>
+      <section className="flex flex-col gap-5 justify-center items-center">
+        {mealNode?.recipe ? (
+          <>
+            <h2 className="text-3xl font-secondary">Meal selected:</h2>
+            <h2 className="text-3xl">{mealNode?.recipe?.name}</h2>
+          </>
+        
+        ) : (
+          <p>No meal selected.</p>
+        )}
+      </section>
 
       {/* Actions */}
       <section className="flex gap-5 justify-center items-center">

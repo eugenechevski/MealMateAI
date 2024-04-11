@@ -44,11 +44,11 @@ export default function DaysMealLayout({
       >
         <FontAwesomeIcon icon={faMap} />
       </motion.button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} backdrop="blur">
         <ModalContent>
-          <ModalHeader>Meal Plan Overview</ModalHeader>
+          <ModalHeader className="flex justify-center">Meal Plan Overview</ModalHeader>
           <ModalBody>
-            {mealPlanData === null ? (
+            {mealPlanData === null && Object.keys(mealPlanData).length === 0 ? (
               <p>There is no meal plan yet.</p>
             ) : (
               <Accordion>
@@ -62,6 +62,7 @@ export default function DaysMealLayout({
                               <AccordionItem
                                 key={mealKey}
                                 title={`Meal ${mealKey}`}
+                                className="flex flex-col justify-center items-center gap-3"
                               >
                                 {/* Meal information */}
                                 <div>
