@@ -33,6 +33,7 @@ import {
   DropdownSection,
   DropdownItem,
 } from "@nextui-org/react";
+import { AuthChangeEvent, AuthSession } from "@supabase/supabase-js";
 
 const primaryFont = Roboto_Serif({
   subsets: ["latin"],
@@ -113,23 +114,37 @@ const RootState = ({ children }: { children: React.ReactNode }) => {
     });
   }, [dispatch, selectionMenu]);
 
-  // Set up initial the app state
   useEffect(() => {
-    const setupAppState = async () => {
-      // Get the user from the session
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
+    const { data } = supabase.auth.onAuthStateChange((event, session) => {
+      console.log(event, session);
 
-      if (user) {
-        onSignedIn(user);
-      } else {
+      if (event === "INITIAL_SESSION") {
+        // handle initial session
+        if (session?.user) {
+          onSignedIn(session.user);
+        } else {
+          onSignedOut();
+        }
+      } else if (event === "SIGNED_IN") {
+        // handle sign in event
+        onSignedIn(session?.user);
+      } else if (event === "SIGNED_OUT") {
+        // handle sign out event
         onSignedOut();
+      } else if (event === "PASSWORD_RECOVERY") {
+        // handle password recovery event
+      } else if (event === "TOKEN_REFRESHED") {
+        // handle token refreshed event
+      } else if (event === "USER_UPDATED") {
+        // handle user updated event
       }
-    };
+    });
 
-    setupAppState();
-  }, [supabase.auth, onSignedIn, onSignedOut]);
+    // Cleanup function
+    return () => {
+      data.subscription.unsubscribe();
+    };
+  }, [selectionMenu, onSignedIn, onSignedOut, supabase.auth]);
 
   return (
     <div className="relative">

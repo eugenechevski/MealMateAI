@@ -1,5 +1,7 @@
 "use client";
 
+import { v4 as uuidv4 } from "uuid"; 
+
 import { useSearchParams } from "next/navigation";
 import { useAppState } from "@/context/app-state/AppStateContext";
 import { useEffect, useState, useCallback, useMemo } from "react";
@@ -179,7 +181,7 @@ export default function SelectionMenuPage() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
             whileHover={{ scale: 1.05 }}
-            key={recipe.name}
+            key={uuidv4()}
             className={`${selectedRecipe?.name === recipe.name ? "primary-selected" : ""}`}
             onClick={() => handleOpenRecipeProfile(recipe)}
           >

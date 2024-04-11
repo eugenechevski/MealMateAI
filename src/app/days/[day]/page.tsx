@@ -27,7 +27,7 @@ export default function DayPage({ params }: { params: { day: string } }) {
   useEffect(() => {
     if (!state.appState) return;
 
-    const dayNode = state.appState.currentMealPlan.days[params.day];
+    const dayNode = state?.appState?.currentMealPlan?.days[params.day];
     if (!dayNode) {
       router.replace("/start");
       return;
