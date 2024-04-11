@@ -46,92 +46,104 @@ export default function DaysMealLayout({
       </motion.button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} backdrop="blur">
         <ModalContent>
-          <ModalHeader className="flex justify-center">Meal Plan Overview</ModalHeader>
+          <ModalHeader className="flex justify-center">
+            Meal Plan Overview
+          </ModalHeader>
           <ModalBody>
             {mealPlanData === null && Object.keys(mealPlanData).length === 0 ? (
               <p>There is no meal plan yet.</p>
             ) : (
               <Accordion>
                 {mealPlanData &&
-                  Object.keys(mealPlanData as MealPlanData || {}).map((dayKey) => {
-                    return (
-                      <AccordionItem key={dayKey} title={`Day ${dayKey}`}>
-                        <Accordion>
-                          {Object.keys(mealPlanData[Number(dayKey)] || {}).map((mealKey) => {
-                            return (
-                              <AccordionItem
-                                key={mealKey}
-                                title={`Meal ${mealKey}`}
-                                className="flex flex-col justify-center items-center gap-3"
-                              >
-                                {/* Meal information */}
-                                <div>
-                                  <p>
-                                    {
-                                      (
-                                        mealPlanData[Number(dayKey)][
-                                          Number(mealKey)
-                                        ] as MealData
-                                      ).name
-                                    }{" "}
-                                    -{" "}
-                                    {
-                                      (
-                                        mealPlanData[Number(dayKey)][
-                                          Number(mealKey)
-                                        ] as MealData
-                                      ).cuisine
-                                    }
-                                  </p>
-                                  <p>
-                                    Ingredients:{" "}
-                                    {(
-                                      mealPlanData[Number(dayKey)][Number(mealKey)] as MealData
-                                    ).ingredients
-                                      .map((ingredient) => {
-                                        return ingredient.name;
-                                      })
-                                      .join(", ")}
-                                  </p>
-                                  <p>
-                                    Steps:{" "}
-                                    {(
-                                      mealPlanData[Number(dayKey)][Number(mealKey)] as MealData
-                                    ).steps.join(", ")}
-                                  </p>
-                                  {(mealPlanData[Number(dayKey)][Number(mealKey)] as MealData)
-                                    .nutrition && (
-                                    <p>
-                                      Nutrition:{" "}
-                                      {Object.keys(
+                  Object.keys((mealPlanData as MealPlanData) || {}).map(
+                    (dayKey) => {
+                      return (
+                        <AccordionItem key={dayKey} title={`Day ${dayKey}`}>
+                          <Accordion>
+                            {Object.keys(
+                              mealPlanData[Number(dayKey)] || {}
+                            ).map((mealKey) => {
+                              return (
+                                <AccordionItem
+                                  key={mealKey}
+                                  title={`Meal ${mealKey}`}
+                                >
+                                  {/* Meal information */}
+                                  <div className="flex flex-col justify-center items-center gap-3">
+                                    <p className="bold text-2xl">
+                                      {
                                         (
                                           mealPlanData[Number(dayKey)][
                                             Number(mealKey)
                                           ] as MealData
-                                        )?.nutrition || {}
-                                      )
-                                        .map((key) => {
-                                          return `${key}: ${
-                                            (
-                                              mealPlanData[Number(dayKey)][
-                                                Number(mealKey)
-                                              ] as MealData
-                                            )?.nutrition?.[
-                                              key as keyof MealData["nutrition"]
-                                            ]
-                                          }`;
+                                        ).name
+                                      }{" "}
+                                      -{" "}
+                                      {
+                                        (
+                                          mealPlanData[Number(dayKey)][
+                                            Number(mealKey)
+                                          ] as MealData
+                                        ).cuisine
+                                      }
+                                    </p>
+                                    <p>
+                                      <strong>Ingredients</strong>:{" "}
+                                      {(
+                                        mealPlanData[Number(dayKey)][
+                                          Number(mealKey)
+                                        ] as MealData
+                                      ).ingredients
+                                        .map((ingredient) => {
+                                          return ingredient.name;
                                         })
                                         .join(", ")}
                                     </p>
-                                  )}
-                                </div>
-                              </AccordionItem>
-                            );
-                          })}
-                        </Accordion>
-                      </AccordionItem>
-                    );
-                  })}
+                                    <p>
+                                      <strong>Steps</strong>:{" "}
+                                      {(
+                                        mealPlanData[Number(dayKey)][
+                                          Number(mealKey)
+                                        ] as MealData
+                                      ).steps.join(", ")}
+                                    </p>
+                                    {(
+                                      mealPlanData[Number(dayKey)][
+                                        Number(mealKey)
+                                      ] as MealData
+                                    ).nutrition && (
+                                      <p>
+                                        <strong>Nutrition</strong>:{" "}
+                                        {Object.keys(
+                                          (
+                                            mealPlanData[Number(dayKey)][
+                                              Number(mealKey)
+                                            ] as MealData
+                                          )?.nutrition || {}
+                                        )
+                                          .map((key) => {
+                                            return `${key}: ${
+                                              (
+                                                mealPlanData[Number(dayKey)][
+                                                  Number(mealKey)
+                                                ] as MealData
+                                              )?.nutrition?.[
+                                                key as keyof MealData["nutrition"]
+                                              ]
+                                            }`;
+                                          })
+                                          .join(", ")}
+                                      </p>
+                                    )}
+                                  </div>
+                                </AccordionItem>
+                              );
+                            })}
+                          </Accordion>
+                        </AccordionItem>
+                      );
+                    }
+                  )}
               </Accordion>
             )}
           </ModalBody>

@@ -12,7 +12,7 @@ import RecipeCard from "@/components/RecipeCard";
 import { motion } from "framer-motion";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faFlagCheckered } from "@fortawesome/free-solid-svg-icons";
 
 import {
   Modal,
@@ -23,6 +23,7 @@ import {
 } from "@nextui-org/react";
 
 import Image from "next/image";
+import Link from "next/link";
 
 export default function SelectionMenuPage() {
   const { state, dispatch } = useAppState();
@@ -34,6 +35,9 @@ export default function SelectionMenuPage() {
 
   const [dayIndex, setDayIndex] = useState<number>(0);
   const [mealIndex, setMealIndex] = useState<number>(0);
+
+  const [selectionMode, setSelectionMode] = useState<"select" | "view">("view");
+
   const [cuisineNames, setCuisineNames] = useState<string[]>([]);
   const [selectedCuisines, setSelectedCuisines] = useState<Set<string>>(
     new Set()
@@ -127,6 +131,8 @@ export default function SelectionMenuPage() {
         mealCount++;
       }
       setMealIndex(mealCount);
+
+      setSelectionMode("select");
     }
   }, [
     state?.appState?.selectionMenu?.items,
@@ -171,10 +177,25 @@ export default function SelectionMenuPage() {
             </motion.button>
           ))}
         </nav>
+
+        {/* Finish selecting button */}
+        { selectionMode === "select" && selectedRecipe && (
+          <Link href={`/days/${day}/${meal}`} className="mt-5">
+            <motion.button
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              whileHover={{ scale: 1.1 }}
+              className="primary-icon bg-primary-green"
+            >
+              <FontAwesomeIcon icon={faFlagCheckered} />
+            </motion.button>
+          </Link>
+        )}
       </nav>
 
       {/* Selection menu grid */}
-      <section className="grid grid-cols-4 gap-6 w-3/4 p-12 overflow-y-auto overflow-x-hidden h-full">
+      <section className="grid grid-cols-3 gap-6 w-3/4 p-12 overflow-y-auto overflow-x-hidden h-full">
         {listRecipes.map((recipe) => (
           <motion.button
             initial={{ opacity: 0, scale: 0.9 }}
