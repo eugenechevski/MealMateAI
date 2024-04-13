@@ -9,6 +9,32 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      days: {
+        Row: {
+          day_id: string
+          day_number: number | null
+          plan_id: string
+        }
+        Insert: {
+          day_id?: string
+          day_number?: number | null
+          plan_id: string
+        }
+        Update: {
+          day_id?: string
+          day_number?: number | null
+          plan_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "days_plan_id_fkey"
+            columns: ["plan_id"]
+            isOneToOne: false
+            referencedRelation: "meal_plans"
+            referencedColumns: ["plan_id"]
+          },
+        ]
+      }
       images: {
         Row: {
           height: number | null
@@ -75,6 +101,68 @@ export type Database = {
         Relationships: [
           {
             foreignKeyName: "ingredients_recipe_id_fkey"
+            columns: ["recipe_id"]
+            isOneToOne: false
+            referencedRelation: "recipes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      meal_plans: {
+        Row: {
+          plan_date: string | null
+          plan_id: string
+          user_id: string
+        }
+        Insert: {
+          plan_date?: string | null
+          plan_id?: string
+          user_id: string
+        }
+        Update: {
+          plan_date?: string | null
+          plan_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "meal_plans_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      meals: {
+        Row: {
+          day_id: string
+          meal_id: string
+          meal_number: number | null
+          recipe_id: string | null
+        }
+        Insert: {
+          day_id: string
+          meal_id?: string
+          meal_number?: number | null
+          recipe_id?: string | null
+        }
+        Update: {
+          day_id?: string
+          meal_id?: string
+          meal_number?: number | null
+          recipe_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "meals_day_id_fkey"
+            columns: ["day_id"]
+            isOneToOne: false
+            referencedRelation: "days"
+            referencedColumns: ["day_id"]
+          },
+          {
+            foreignKeyName: "meals_recipe_id_fkey"
             columns: ["recipe_id"]
             isOneToOne: false
             referencedRelation: "recipes"
@@ -166,6 +254,24 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      users: {
+        Row: {
+          email: string | null
+          id: string
+          username: string | null
+        }
+        Insert: {
+          email?: string | null
+          id: string
+          username?: string | null
+        }
+        Update: {
+          email?: string | null
+          id?: string
+          username?: string | null
+        }
+        Relationships: []
       }
     }
     Views: {
