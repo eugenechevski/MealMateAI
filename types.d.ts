@@ -25,7 +25,43 @@ declare type RawMealData = {
   };
 };
 
-declare type RawMenuData = RawMealData[];
+declare type LocalRawMenuData = RawMealData[];
+
+declare type DBRawMenuData =
+  | {
+      id: string;
+      name: string;
+      cuisine: string | null;
+      ingredients: {
+        id: string;
+        name: string | null;
+        amount: number;
+        unit: string | null;
+      }[];
+      images: {
+        id: string;
+        url: string | null;
+        title: string | null;
+        source: string | null;
+        source_url: string | null;
+        height: number | null;
+        width: number | null;
+      }[];
+      nutrition: {
+        id: string;
+        servings: number;
+        calories_per_serving: number | null;
+        protein: number | null;
+        carbohydrates: number | null;
+        fat: number | null;
+      }[];
+      steps: {
+        id;
+        description: string | null;
+        step_order: number | null;
+      }[];
+    }[]
+  | null;
 
 declare type MealData = {
   name: string;

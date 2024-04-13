@@ -18,7 +18,6 @@ import { AppState, GuestUser, MainUser, SelectionMenu } from "@/core";
 import { useCallback, useEffect, useState } from "react";
 import buildSelectionMenu from "@/lib/buildSelectionMenu";
 import { createClient } from "@/lib/supabase/client";
-import { useRouter } from "next/navigation";
 import { useAppState } from "@/context/app-state/AppStateContext";
 
 import { NextUIProvider } from "@nextui-org/react";
@@ -33,7 +32,6 @@ import {
   DropdownSection,
   DropdownItem,
 } from "@nextui-org/react";
-import { AuthChangeEvent, AuthSession } from "@supabase/supabase-js";
 
 const primaryFont = Roboto_Serif({
   subsets: ["latin"],
@@ -59,7 +57,6 @@ const metadata = {
 };
 
 const RootState = ({ children }: { children: React.ReactNode }) => {
-  const router = useRouter();
   const { state, dispatch } = useAppState();
   const supabase = createClient();
   const [selectionMenu, setSelectionMenu] = useState({} as SelectionMenu);
@@ -67,24 +64,130 @@ const RootState = ({ children }: { children: React.ReactNode }) => {
   // Build the selection menu
   useEffect(() => {
     (async () => {
-      const rawData = (await import("../../initialSelectionMenu.json"))
-        .recipes as RawMenuData;
-      const selectionMenu = buildSelectionMenu(rawData);
-      setSelectionMenu(selectionMenu);
+      let rawData: DBRawMenuData | LocalRawMenuData | null;
+      let selectionMenu: SelectionMenu | null;
+
+      // Fetch the raw data from the database
+      const { data: recipesData, error } = await supabase.from("recipes")
+        .select(`
+          id,
+          name,
+          cuisine,
+          ingredients (
+            id,
+            name,
+            amount,
+            unit
+          ),
+          images (
+            id,
+            url,
+            title,
+            source,
+            source_url,
+            height,
+            width
+          ),
+          nutrition (
+            id,
+            calories_per_serving,
+            carbohydrates,
+            fat,
+            protein,
+            servings
+          ),
+          steps (
+            id,
+            description,
+            step_order
+          )
+        `);
+
+      if (!error && recipesData) {
+        // Build the selection menu from the fetched data
+        rawData = recipesData as DBRawMenuData;
+        selectionMenu = buildSelectionMenu(rawData, "db");
+      } else {
+        // Fetch the raw data from the local file
+        rawData = (await import("../../initialSelectionMenu.json"))
+          .recipes as LocalRawMenuData;
+        selectionMenu = buildSelectionMenu(rawData, "local");
+      }
+
+      // Set the selection menu
+      if (selectionMenu) {
+        setSelectionMenu(selectionMenu);
+      }
     })();
-  }, []);
+  }, [supabase]);
 
   const onSignedIn = useCallback(
     async (user: any) => {
-      // Fetch saved meal plans from database
-      const { data, error } = await supabase
-        .from("users")
-        .select("*")
-        .eq("id", user.id);
+      // Initialize saved meal plans
+      let savedMealPlans: { [date: number]: MealPlanData } = {};
+      if (user) {
+        // Perform the fetching of saved meals for the user
+        const { data: mealData, error } = await supabase
+          .from("meal_plans")
+          .select(
+            `
+            plan_id,
+            plan_date,
+            days (
+              day_id,
+              day_number,
+              meals (
+                meal_id,
+                meal_number,
+                recipe_id
+              )
+            )`
+          )
+          .eq("user_id", user.id);
 
-      let savedMealPlans: { [data: number]: MealData } | undefined = undefined;
-      if (!error) {
-        savedMealPlans = data[0].savedMealPlans;
+        if (!error && mealData) {
+          // Construct the saved meal plans
+          for (const mealPlan of mealData) {
+            const planDate = mealPlan.plan_date
+              ? new Date(mealPlan.plan_date)
+              : Date.now();
+            savedMealPlans[planDate as number] = {};
+
+            for (const day of mealPlan.days) {
+              savedMealPlans[planDate as number][day.day_number as number] = {};
+
+              for (const meal of day.meals) {
+                // Fetch the recipe names and cuisines
+                const { data: recipeData, error: recipeError } = await supabase
+                  .from("recipes")
+                  .select("name, cuisine")
+                  .eq("id", meal.recipe_id as string);
+
+                if (!recipeError) {
+                  let name = recipeData[0].name as string;
+                  let cuisine = recipeData[0].cuisine as string;
+                  let ingredients =
+                    selectionMenu.items[cuisine][name].ingredients;
+                  let steps = selectionMenu.items[cuisine][name].steps.map(
+                    (step) => step.description
+                  );
+                  let nutrition = selectionMenu.items[cuisine][name].nutrition;
+
+                  // Add the meal to the saved meal plans
+                  savedMealPlans[planDate as number][day.day_number as number][
+                    meal.meal_number as number
+                  ] = {
+                    name,
+                    cuisine,
+                    ingredients,
+                    steps,
+                    nutrition,
+                  };
+                }
+              }
+            }
+          }
+        }
       }
 
       dispatch({
@@ -100,7 +203,7 @@ const RootState = ({ children }: { children: React.ReactNode }) => {
 
   const onSignedOut = useCallback(() => {
     // Fetch saved meal plans from local storage
-    let savedMealPlans: { [date: number]: MealData } | undefined = undefined;
+    let savedMealPlans: { [date: number]: MealPlanData } = {};
     if (
       typeof window !== "undefined" &&
       localStorage.getItem("savedMealPlans")
@@ -116,8 +219,6 @@ const RootState = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     const { data } = supabase.auth.onAuthStateChange((event, session) => {
-      console.log(event, session);
-
       if (event === "INITIAL_SESSION") {
         // handle initial session
         if (session?.user) {
