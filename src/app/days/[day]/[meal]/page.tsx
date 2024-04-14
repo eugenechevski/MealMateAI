@@ -4,7 +4,7 @@ import { useAppState } from "@/context/app-state/AppStateContext";
 import { DayNode, MealNode } from "@/core";
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit } from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -74,8 +74,24 @@ export default function MealPage({
         Meal {mealIndex} of day {dayIndex}.
       </h1>
 
+      {/* Back button */}
+      <Link href={`/days/${params.day}`}>
+        <button className="primary-icon bg-primary-coal">
+          <FontAwesomeIcon icon={faArrowLeft} size="sm" />
+        </button>
+      </Link>
+
       {/* Meal details */}
-      <section className="flex flex-col gap-5 justify-center items-center"></section>
+      <section className="flex flex-col gap-5 justify-center items-center">
+        {mealNode?.recipe ? (
+          <>
+            <button className="primary-button bg-primary-orange">{mealNode?.recipe?.name}</button>
+          </>
+        
+        ) : (
+          <p>No meal selected.</p>
+        )}
+      </section>
 
       {/* Actions */}
       <section className="flex gap-5 justify-center items-center">

@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "uploadRecipes": "ts-node ./src/lib/uploadSelectionMenu.ts"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.1.0",
@@ -35,8 +36,8 @@
     "react-dom": "^18",
     "react-hook-form": "^7.51.2",
     "supabase": "^1.148.6",
-    "ts-node": "^10.9.2",
-    "uuid": "^9.0.1"
+    "uuid": "^9.0.1",
+    "uuid-int": "^3.1.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.4.2",
@@ -54,6 +55,7 @@
     "postcss": "^8",
     "tailwind-scrollbar": "^3.1.0",
     "tailwindcss": "^3.3.0",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
   }
 }

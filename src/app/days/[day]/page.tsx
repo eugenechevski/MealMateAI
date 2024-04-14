@@ -27,7 +27,7 @@ export default function DayPage({ params }: { params: { day: string } }) {
   useEffect(() => {
     if (!state.appState) return;
 
-    const dayNode = state.appState.currentMealPlan.days[params.day];
+    const dayNode = state?.appState?.currentMealPlan?.days[params.day];
     if (!dayNode) {
       router.replace("/start");
       return;
@@ -74,6 +74,20 @@ export default function DayPage({ params }: { params: { day: string } }) {
       {/* Day heading */}
       <h1 className="primary-h1">Day {dayIndex}</h1>
 >>>>>>> upstream/main
+
+      {/* Back button */}
+      <Link href="/days">
+        <motion.button
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 1 }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          className="primary-icon bg-primary-coal"
+        >
+          <FontAwesomeIcon icon={faArrowLeft} size="sm" />
+        </motion.button>
+      </Link>
 
       {/* Meal sequence */}
       <section className="flex gap-5 justify-center items-center">

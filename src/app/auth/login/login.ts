@@ -5,9 +5,9 @@ import { redirect } from "next/navigation";
 
 import { createClient } from "@/lib/supabase/server";
 
-async function signInWithEmail(formData: { email: string; password: string }) {
-  const supabase = createClient();
+const supabase = createClient();
 
+async function signInWithEmail(formData: { email: string; password: string }) {
   // type-casting here for convenience
   // in practice, you should validate your inputs
   const data = {
@@ -23,13 +23,11 @@ async function signInWithEmail(formData: { email: string; password: string }) {
 }
 
 async function signInWithProvider(provider: "google" | "discord") {
-  const supabase = createClient();
-
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider,
     options: {
       redirectTo: `/auth/callback`,
-    }
+    },
   });
 
   if (error) {
@@ -51,6 +49,18 @@ export async function login(
     await signInWithProvider(provider);
   } else {
     throw new Error("Invalid provider");
+  }
+
+  // if the user doesn't have the record in the database
+  // create one
+  const { data: userData } = await supabase.auth.getUser();
+  if ((await supabase.from("users").select("*")).count === 0) {
+    // create the user's record in the database
+    await supabase.from("users").insert({
+      id: userData.user?.id as string,
+      username: userData.user?.email as string,
+      email: userData.user?.email as string,
+    });
   }
 
   revalidatePath("/", "layout");

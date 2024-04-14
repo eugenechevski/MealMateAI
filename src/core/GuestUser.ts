@@ -1,11 +1,11 @@
 export class GuestUser {
-  savedMealPlans: { [date: number]: MealData };
+  savedMealPlans: { [date: number]: MealPlanData };
 
-  constructor(savedMealPlans?: { [date: number]: MealData }) {
+  constructor(savedMealPlans?: { [date: number]: MealPlanData }) {
     this.savedMealPlans = savedMealPlans || {};
   }
 
-  saveMealPlan(mealPlan: MealData) {
+  saveMealPlan(mealPlan: MealPlanData) {
     this.savedMealPlans[Date.now()] = mealPlan;
   }
 }

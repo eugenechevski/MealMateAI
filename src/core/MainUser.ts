@@ -22,13 +22,13 @@ export class MainUser {
   /**
    * The saved meal plans for the user.
    */
-  savedMealPlans: { [date: number]: MealData };
+  savedMealPlans: { [date: number]: MealPlanData };
 
   constructor(
     id: string,
     username?: string,
     email?: string,
-    savedMealPlans?: { [date: number]: MealData }
+    savedMealPlans?: { [date: number]: MealPlanData }
   ) {
     this.id = id;
     this.username = username;

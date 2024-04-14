@@ -1,18 +1,12 @@
 "use client";
 
-<<<<<<< HEAD
-=======
 import * as React from "react";
 
->>>>>>> upstream/main
 import "./globals.css";
 import logoImg from "@/assets/logo.png";
 
 import Image from "next/image";
-<<<<<<< HEAD
-=======
 import Link from "next/link";
->>>>>>> upstream/main
 import { Pacifico, Roboto_Serif } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 
@@ -24,11 +18,8 @@ import { AppState, GuestUser, MainUser, SelectionMenu } from "@/core";
 import { useCallback, useEffect, useState } from "react";
 import buildSelectionMenu from "@/lib/buildSelectionMenu";
 import { createClient } from "@/lib/supabase/client";
-import { useRouter } from "next/navigation";
 import { useAppState } from "@/context/app-state/AppStateContext";
 
-<<<<<<< HEAD
-=======
 import { NextUIProvider } from "@nextui-org/react";
 
 import { faUser, faSignOut, faSignIn } from "@fortawesome/free-solid-svg-icons";
@@ -42,7 +33,6 @@ import {
   DropdownItem,
 } from "@nextui-org/react";
 
->>>>>>> upstream/main
 const primaryFont = Roboto_Serif({
   subsets: ["latin"],
   display: "swap",
@@ -67,36 +57,141 @@ const metadata = {
 };
 
 const RootState = ({ children }: { children: React.ReactNode }) => {
-  const router = useRouter();
-<<<<<<< HEAD
-  const { dispatch } = useAppState();
-=======
+
+  //const router = useRouter();
+
   const { state, dispatch } = useAppState();
->>>>>>> upstream/main
+
   const supabase = createClient();
   const [selectionMenu, setSelectionMenu] = useState({} as SelectionMenu);
 
   // Build the selection menu
   useEffect(() => {
     (async () => {
-      const rawData = (await import("../../initialSelectionMenu.json"))
-        .recipes as RawMenuData;
-      const selectionMenu = buildSelectionMenu(rawData);
-      setSelectionMenu(selectionMenu);
+      let rawData: DBRawMenuData | LocalRawMenuData | null;
+      let selectionMenu: SelectionMenu | null;
+
+      // Fetch the raw data from the database
+      const { data: recipesData, error } = await supabase.from("recipes")
+        .select(`
+          id,
+          name,
+          cuisine,
+          ingredients (
+            id,
+            name,
+            amount,
+            unit
+          ),
+          images (
+            id,
+            url,
+            title,
+            source,
+            source_url,
+            height,
+            width
+          ),
+          nutrition (
+            id,
+            calories_per_serving,
+            carbohydrates,
+            fat,
+            protein,
+            servings
+          ),
+          steps (
+            id,
+            description,
+            step_order
+          )
+        `);
+
+      if (!error && recipesData) {
+        // Build the selection menu from the fetched data
+        rawData = recipesData as DBRawMenuData;
+        selectionMenu = buildSelectionMenu(rawData, "db");
+      } else {
+        // Fetch the raw data from the local file
+        rawData = (await import("../../initialSelectionMenu.json"))
+          .recipes as LocalRawMenuData;
+        selectionMenu = buildSelectionMenu(rawData, "local");
+      }
+
+      // Set the selection menu
+      if (selectionMenu) {
+        setSelectionMenu(selectionMenu);
+      }
     })();
-  }, []);
+  }, [supabase]);
 
   const onSignedIn = useCallback(
     async (user: any) => {
-      // Fetch saved meal plans from database
-      const { data, error } = await supabase
-        .from("users")
-        .select("*")
-        .eq("id", user.id);
+      // Initialize saved meal plans
+      let savedMealPlans: { [date: number]: MealPlanData } = {};
+      if (user) {
+        // Perform the fetching of saved meals for the user
+        const { data: mealData, error } = await supabase
+          .from("meal_plans")
+          .select(
+            `
+            plan_id,
+            plan_date,
+            days (
+              day_id,
+              day_number,
+              meals (
+                meal_id,
+                meal_number,
+                recipe_id
+              )
+            )`
+          )
+          .eq("user_id", user.id);
 
-      let savedMealPlans: { [data: number]: MealData } | undefined = undefined;
-      if (!error) {
-        savedMealPlans = data[0].savedMealPlans;
+        if (!error && mealData) {
+          // Construct the saved meal plans
+          for (const mealPlan of mealData) {
+            const planDate = mealPlan.plan_date
+              ? new Date(mealPlan.plan_date)
+              : Date.now();
+            savedMealPlans[planDate as number] = {};
+
+            for (const day of mealPlan.days) {
+              savedMealPlans[planDate as number][day.day_number as number] = {};
+
+              for (const meal of day.meals) {
+                // Fetch the recipe names and cuisines
+                const { data: recipeData, error: recipeError } = await supabase
+                  .from("recipes")
+                  .select("name, cuisine")
+                  .eq("id", meal.recipe_id as string);
+
+                if (!recipeError) {
+                  let name = recipeData[0].name as string;
+                  let cuisine = recipeData[0].cuisine as string;
+                  let ingredients =
+                    selectionMenu.items[cuisine][name].ingredients;
+                  let steps = selectionMenu.items[cuisine][name].steps.map(
+                    (step) => step.description
+                  );
+                  let nutrition = selectionMenu.items[cuisine][name].nutrition;
+
+                  // Add the meal to the saved meal plans
+                  savedMealPlans[planDate as number][day.day_number as number][
+                    meal.meal_number as number
+                  ] = {
+                    name,
+                    cuisine,
+                    ingredients,
+                    steps,
+                    nutrition,
+                  };
+                }
+              }
+            }
+          }
+        }
       }
 
       dispatch({
@@ -106,19 +201,13 @@ const RootState = ({ children }: { children: React.ReactNode }) => {
           selectionMenu
         ),
       });
-<<<<<<< HEAD
-      router.push("/start");
-    },
-    [dispatch, router, selectionMenu, supabase]
-=======
     },
     [dispatch, selectionMenu, supabase]
->>>>>>> upstream/main
   );
 
   const onSignedOut = useCallback(() => {
     // Fetch saved meal plans from local storage
-    let savedMealPlans: { [date: number]: MealData } | undefined = undefined;
+    let savedMealPlans: { [date: number]: MealPlanData } = {};
     if (
       typeof window !== "undefined" &&
       localStorage.getItem("savedMealPlans")
@@ -132,27 +221,36 @@ const RootState = ({ children }: { children: React.ReactNode }) => {
     });
   }, [dispatch, selectionMenu]);
 
-  // Set up initial the app state
   useEffect(() => {
-    const setupAppState = async () => {
-      // Get the user from the session
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-
-      if (user) {
-        onSignedIn(user);
-      } else {
+    const { data } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === "INITIAL_SESSION") {
+        // handle initial session
+        if (session?.user) {
+          onSignedIn(session.user);
+        } else {
+          onSignedOut();
+        }
+      } else if (event === "SIGNED_IN") {
+        // handle sign in event
+        onSignedIn(session?.user);
+      } else if (event === "SIGNED_OUT") {
+        // handle sign out event
         onSignedOut();
+      } else if (event === "PASSWORD_RECOVERY") {
+        // handle password recovery event
+      } else if (event === "TOKEN_REFRESHED") {
+        // handle token refreshed event
+      } else if (event === "USER_UPDATED") {
+        // handle user updated event
       }
+    });
+
+    // Cleanup function
+    return () => {
+      data.subscription.unsubscribe();
     };
+  }, [selectionMenu, onSignedIn, onSignedOut, supabase.auth]);
 
-    setupAppState();
-  }, [supabase.auth, onSignedIn, onSignedOut]);
-
-<<<<<<< HEAD
-  return <>{children}</>;
-=======
   return (
     <div className="relative">
       {/* Floating logo */}
@@ -216,7 +314,6 @@ const RootState = ({ children }: { children: React.ReactNode }) => {
       {children}
     </div>
   );
->>>>>>> upstream/main
 };
 
 export default function RootLayout({
@@ -236,29 +333,11 @@ export default function RootLayout({
         <link rel="icon" href={metadata.icons.icon} type="image/x-icon" />
         <title>{metadata.title}</title>
       </head>
-<<<<<<< HEAD
-      <body className="bg-primary-cream relative text-primary-coal text-shadow scroll-smooth hide-scrollbar snap-center snap-normal snap-mandatory max-h-max max-w-max">
-        {/* Floating logo */}
-        <motion.figure
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 2 }}
-          whileHover={{ scale: 1.1 }}
-          className="absolute left-10 top-10 w-32 flex flex-col items-center justify-center"
-        >
-          <Image src={logoImg} alt="Meal Mate AI logo" />
-          <span className="font-secondary select-none">Meal Mate AI</span>
-        </motion.figure>
-
-        <ContextProvider>
-          <RootState>{children}</RootState>
-=======
       <body className="bg-primary-cream relative text-primary-coal text-shadow scroll-smooth hide-scrollbar snap-center snap-normal snap-mandatory max-h-max max-w-max overflow-x-hidden">
         <ContextProvider>
           <NextUIProvider>
             <RootState>{children}</RootState>
           </NextUIProvider>
->>>>>>> upstream/main
         </ContextProvider>
         <Analytics />
       </body>
