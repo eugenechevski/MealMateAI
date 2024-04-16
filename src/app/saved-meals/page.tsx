@@ -11,7 +11,7 @@ export default function SavedMealsPage() {
   const { state, dispatch } = useAppState();
 
   const [savedMealPlans, setSavedMealPlans] = useState(
-    [] as [string, MealData][]
+    [] as [string, MealPlanData][]
   );
 
   useEffect(() => {
