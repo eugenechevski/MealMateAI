@@ -7,6 +7,7 @@ interface State {
 
 type Action =
   | { type: "SET_APP_STATE"; payload: AppState }
+  | { type: "START_NEW_MEAL_PLAN";}
   | { type: "APPEND_NEW_DAY" }
   | { type: "REMOVE_DAY"; payload: string }
   | { type: "SWAP_DAYS"; payload: { day1: string; day2: string } }
@@ -17,7 +18,8 @@ type Action =
       type: "UPDATE_RECIPE";
       payload: { day: string; meal: string; recipe: Recipe };
     }
-  | { type: "SIGN_OUT" };
+  | { type: "SIGN_OUT" }
+  | { type: "SAVE_MEAL_PLAN" };
 
 interface AppStateContextProps {
   state: State;
@@ -36,6 +38,9 @@ const appStateReducer = (state: State, action: Action): State => {
   switch (action.type) {
     case "SET_APP_STATE":
       return { ...state, appState: action.payload };
+    case "START_NEW_MEAL_PLAN":
+      state.appState.startNewMealPlan();
+      return { ...state };
     case "APPEND_NEW_DAY":
       state.appState.currentMealPlan.appendNewDay();
       return { ...state };
@@ -78,6 +83,10 @@ const appStateReducer = (state: State, action: Action): State => {
         new GuestUser(),
         state.appState.selectionMenu
       );
+      return { ...state };
+    case "SAVE_MEAL_PLAN":
+      state.appState.user.savedMealPlans[Date.now()] =
+        state.appState.currentMealPlan.getMealPlanData();
       return { ...state };
     default:
       return state;

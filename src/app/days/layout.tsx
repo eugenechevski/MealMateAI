@@ -18,6 +18,11 @@ import { useAppState } from "@/context/app-state/AppStateContext";
 import { useEffect, useState } from "react";
 
 import { Accordion, AccordionItem } from "@nextui-org/react";
+import { GuestUser, MainUser } from "@/core";
+
+import { createClient } from "@/lib/supabase/client";
+
+import { useRouter } from "next/navigation";
 
 export default function DaysMealLayout({
   children,
@@ -25,6 +30,10 @@ export default function DaysMealLayout({
   children: React.ReactNode;
 }) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const supabase = createClient();
+
+  const router = useRouter();
+
 
   const { state, dispatch } = useAppState();
   const [mealPlanData, setMealPlanData] = useState({} as MealPlanData);
@@ -34,6 +43,74 @@ export default function DaysMealLayout({
       setMealPlanData(state.appState.currentMealPlan.getMealPlanData());
     }
   }, [state?.appState?.currentMealPlan]);
+
+  const handleFinishMealPlan = async () => {
+    // Save the meal plan
+    dispatch({ type: "SAVE_MEAL_PLAN" });
+
+    // Update the storage
+    if (state?.appState?.user instanceof GuestUser) {
+      const { savedMealPlans } = state.appState.user;
+      localStorage.setItem(JSON.stringify(mealPlanData), "savedMealPlans");
+    } else if (state?.appState?.user instanceof MainUser) {
+      // Add the new meal plan to the user's saved meal plans
+      const { data: insertMealPlanData, error } = await supabase
+        .from("meal_plans")
+        .upsert([
+          {
+            plan_date: new Date().toISOString(),
+            user_id: state.appState.user.id,
+          },
+        ])
+        .select();
+
+      if (!insertMealPlanData || error) {
+        console.error(error);
+        return;
+      }
+
+      for (const day in mealPlanData) {
+        // Insert day
+        await supabase.from("days").insert([
+          {
+            day_number: Number(day),
+            plan_id: insertMealPlanData[0]?.plan_id,
+          },
+        ]);
+        for (const meal in mealPlanData[day]) {
+          const mealData = mealPlanData[day][meal];
+          // Get the recipe id
+          const { data: recipeData, error } = await supabase
+            .from("recipes")
+            .select("id")
+            .eq("name", mealData.name);
+
+          if (!recipeData || error) {
+            console.error(error);
+            continue;
+          }
+
+          // Insert meal
+          await supabase.from("meals").insert([
+            {
+              meal_number: Number(meal),
+              day_id: insertMealPlanData[0]?.plan_id,
+              recipe_id: recipeData[0]?.id as string,
+            },
+          ]);
+        }
+      }
+    }
+
+    // Start a new meal plan
+    dispatch({ type: "START_NEW_MEAL_PLAN" });
+
+    // Close the modal
+    onOverviewOpenChange();
+
+    // Redirect to the start page
+    router.replace("/start");
+  };
 
   return (
     <main className="relative">

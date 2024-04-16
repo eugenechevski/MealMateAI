@@ -9,4 +9,4 @@
 
 # FOCUS
 
-* Creating user record in the database when signing up
+* Saving of meal plans

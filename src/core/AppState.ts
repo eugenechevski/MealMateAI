@@ -21,8 +21,4 @@ export class AppState {
 
     return true;
   }
-
-  finishMealPlan() {
-    return this.currentMealPlan.getMealPlanData();
-  }
 }
