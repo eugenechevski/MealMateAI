@@ -34,7 +34,7 @@ body {
 
 @layer components {
   .primary-main {
-    @apply w-screen h-screen flex flex-col justify-center items-center gap-12;
+    @apply w-screen min-h-screen flex flex-col justify-center items-center gap-12;
   }
 
   .primary-h1 {

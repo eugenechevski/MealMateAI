@@ -7,7 +7,7 @@ interface State {
 
 type Action =
   | { type: "SET_APP_STATE"; payload: AppState }
-  | { type: "START_NEW_MEAL_PLAN";}
+  | { type: "START_NEW_MEAL_PLAN" }
   | { type: "APPEND_NEW_DAY" }
   | { type: "REMOVE_DAY"; payload: string }
   | { type: "SWAP_DAYS"; payload: { day1: string; day2: string } }
@@ -85,8 +85,9 @@ const appStateReducer = (state: State, action: Action): State => {
       );
       return { ...state };
     case "SAVE_MEAL_PLAN":
-      state.appState.user.savedMealPlans[Date.now()] =
-        state.appState.currentMealPlan.getMealPlanData();
+      state.appState.user.saveMealPlan(
+        state.appState.currentMealPlan.getMealPlanData()
+      );
       return { ...state };
     default:
       return state;

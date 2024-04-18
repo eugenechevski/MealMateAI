@@ -22,13 +22,13 @@ export class MainUser {
   /**
    * The saved meal plans for the user.
    */
-  savedMealPlans: { [date: number]: MealPlanData };
+  savedMealPlans: { [date: string]: MealPlanData };
 
   constructor(
     id: string,
     username?: string,
     email?: string,
-    savedMealPlans?: { [date: number]: MealPlanData }
+    savedMealPlans?: { [date: string]: MealPlanData }
   ) {
     this.id = id;
     this.username = username;
@@ -38,9 +38,9 @@ export class MainUser {
 
   /**
    * Saves a meal plan to the user's account.
-   * @param {MealPlan} mealPlan - The meal plan to save.
+   * @param {MealPlanData} mealPlan - The meal plan to save.
    */
-  saveMealPlan(mealPlan: MealData) {
-    this.savedMealPlans[Date.now()] = mealPlan;
+  saveMealPlan(mealPlan: MealPlanData) {
+    this.savedMealPlans[new Date().toISOString()] = mealPlan;
   }
 }
