@@ -1,4 +1,4 @@
-import { AppState, GuestUser, Recipe } from "@/core";
+import { AppState, GuestUser, Ingredient, Recipe } from "@/core";
 import { createContext, useContext, useReducer, Dispatch } from "react";
 
 interface State {
@@ -19,7 +19,10 @@ type Action =
       payload: { day: string; meal: string; recipe: Recipe };
     }
   | { type: "SIGN_OUT" }
-  | { type: "SAVE_MEAL_PLAN" };
+  | { type: "SAVE_MEAL_PLAN" }
+  | { type: "ADD_USER_INGREDIENT"; payload: Ingredient }
+  | { type: "REMOVE_USER_INGREDIENT"; payload: string }
+  | { type: "UPDATE_USER_INGREDIENT"; payload: Ingredient };
 
 interface AppStateContextProps {
   state: State;
@@ -74,7 +77,7 @@ const appStateReducer = (state: State, action: Action): State => {
         day in state.appState.currentMealPlan.days &&
         meal in state.appState.currentMealPlan.days[day].meals
       ) {
-        state.appState.currentMealPlan.days[day].meals[meal].recipe = recipe;
+        state.appState.currentMealPlan.selectRecipeForMeal(recipe, day, meal);
       }
 
       return { ...state };
@@ -91,6 +94,15 @@ const appStateReducer = (state: State, action: Action): State => {
       return { ...state };
     default:
       return state;
+    case "ADD_USER_INGREDIENT":
+      state.appState.currentMealPlan.addUserIngredient(action.payload);
+      return { ...state };
+    case "REMOVE_USER_INGREDIENT":
+      state.appState.currentMealPlan.removeUserIngredient(action.payload);
+      return { ...state };
+    case "UPDATE_USER_INGREDIENT":
+      state.appState.currentMealPlan.updateUserIngredient(action.payload);
+      return { ...state };
   }
 };
 

@@ -4,9 +4,13 @@
 * Form for adding recipes
 * User profile
 * flow controls
+* AI integration
 
 # DEBUGGING
 
+* Saving meal plans
+* Linked list operations
+
 # FOCUS
 
-* Saving of meal plans
+* Edit user ingredients
