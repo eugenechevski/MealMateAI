@@ -181,11 +181,10 @@ export class MealPlan {
     this.userIngredients[ingredient.name] = ingredient;
   }
 
-  updateUserIngredient(ingredient: Ingredient) {
-    if (this.userIngredients[ingredient.name]) {
-      delete this.userIngredients[ingredient.name];
-      this.userIngredients[ingredient.name] = ingredient;
-      return;
+  updateUserIngredient(oldIngredient: Ingredient, newIngredient: Ingredient) {
+    if (this.userIngredients[oldIngredient.name]) {
+      delete this.userIngredients[oldIngredient.name];
+      this.addUserIngredient(newIngredient);
     }
   }
 

@@ -44,7 +44,7 @@ import { useRouter } from "next/navigation";
 
 import stringify from "json-stringify-safe";
 
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, set } from "react-hook-form";
 
 type IngredientData = {
   name: string;
@@ -83,8 +83,47 @@ export default function DaysMealLayout({
   const [isMealPlanEmpty, setIsMealPlanEmpty] = useState(true);
   const [mealPlanData, setMealPlanData] = useState({} as MealPlanData);
   const [page, setPage] = useState(1);
+  const [isEditUserIngredient, setIsEditUserIngredient] = useState(false);
+  const [editedUserIngredient, setEditedUserIngredient] =
+    useState<Ingredient>();
+
+  const {
+    isOpen: isOverviewOpen,
+    onOpen: onOverviewOpen,
+    onOpenChange: onOverviewOpenChange,
+  } = useDisclosure();
+  const {
+    isOpen: isIngredientsOpen,
+    onOpen: onIngredientsOpen,
+    onOpenChange: onIngredientsOpenChange,
+  } = useDisclosure();
+  const {
+    isOpen: isConfirmationOpen,
+    onOpen: onConfirmationOpen,
+    onOpenChange: onConfirmationOpenChange,
+  } = useDisclosure();
+
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useForm<IngredientData>();
 
   const rowsPerPage = 4;
+
+  const onSubmit: SubmitHandler<IngredientData> = useCallback(
+    (data) => {
+      const { name, amount, unit } = data;
+
+      const ingredient = new Ingredient(name, Number(amount), unit);
+
+      // Dispatch user ingredient update
+      dispatch({ type: "ADD_USER_INGREDIENT", payload: ingredient });
+    },
+    [dispatch]
+  );
 
   const listIngredientRows = useMemo(() => {
     return Object.keys(
@@ -111,6 +150,30 @@ export default function DaysMealLayout({
     );
   }, [listIngredientRows, page]);
 
+  const startEditUserIngredient = useCallback(
+    (ingredient: Ingredient) => {
+      setIsEditUserIngredient(true);
+      setEditedUserIngredient(ingredient);
+      setValue("name", ingredient.name);
+      setValue("amount", ingredient.amount);
+      setValue("unit", ingredient.unit);
+    },
+    [setValue]
+  );
+
+  const confirmEditUserIngredient = useCallback(() => {
+    const ingredient = {
+      name: watch("name"),
+      amount: watch("amount"),
+      unit: watch("unit"),
+    };
+    setIsEditUserIngredient(false);
+    dispatch({
+      type: "UPDATE_USER_INGREDIENT",
+      payload: [editedUserIngredient as Ingredient, ingredient],
+    });
+  }, [dispatch, editedUserIngredient, watch]);
+
   const renderCell = useCallback(
     (item: Ingredient, columnKey: keyof Ingredient | "actions") => {
       switch (columnKey) {
@@ -123,24 +186,17 @@ export default function DaysMealLayout({
         case "actions":
           return (
             <div className="flex justify-center items-center gap-2">
-              {/**
               <motion.button
-                className="primary-icon bg-primary-coal w-6 h-6"
-                onClick={() => {
-                  dispatch({
-                    type: "UPDATE_USER_INGREDIENT",
-                    payload: item,
-                  });
-                }}
+                className="primary-icon bg-transparent w-6 h-6"
+                onClick={startEditUserIngredient.bind(null, item)}
                 whileHover={{
                   scale: 1.1,
                   transition: { duration: 0.1 },
                 }}
                 whileTap={{ scale: 0.9 }}
               >
-                <FontAwesomeIcon icon={faPenToSquare} size="sm" />
+                <FontAwesomeIcon icon={faPenToSquare} size="sm" color="black" />
               </motion.button>
-               */}
               <motion.button
                 className="primary-icon bg-primary-red w-6 h-6"
                 onClick={() => {
@@ -164,53 +220,119 @@ export default function DaysMealLayout({
           return item[columnKey];
       }
     },
-    []
+    [dispatch, startEditUserIngredient]
   );
 
-  const {
-    isOpen: isOverviewOpen,
-    onOpen: onOverviewOpen,
-    onOpenChange: onOverviewOpenChange,
-  } = useDisclosure();
-  const {
-    isOpen: isIngredientsOpen,
-    onOpen: onIngredientsOpen,
-    onOpenChange: onIngredientsOpenChange,
-  } = useDisclosure();
-  const {
-    isOpen: isConfirmationOpen,
-    onOpen: onConfirmationOpen,
-    onOpenChange: onConfirmationOpenChange,
-  } = useDisclosure();
+  const userIngredientsBottomContent = useMemo(() => {
+    return (
+      <div className="flex flex-col justify-center items-center gap-2">
+        {/** New ingredient form */}
+        <form className="w-full flex justify-center items-center gap-2">
+          {/* Ingredient name */}
+          <div className="flex flex-col w-32 p-0">
+            <input
+              type="text"
+              id="name"
+              className={`primary-input ${
+                errors.name ? "outline-danger-500" : ""
+              }`}
+              {...register("name", {
+                required: true,
+                maxLength: 80,
+              })}
+            />
+          </div>
+          {/* Ingredient amount */}
+          <div className="flex flex-col w-24 p-0">
+            <input
+              type="number"
+              id="amount"
+              className={`primary-input ${
+                errors.amount ? "outline-danger-500" : ""
+              }`}
+              {...register("amount", { required: true })}
+            />
+          </div>
+          {/* Ingredient unit */}
+          <div className="flex flex-col w-20 p-0">
+            <input
+              type="text"
+              id="unit"
+              className={`primary-input ${
+                errors.unit ? "outline-danger-500" : ""
+              }`}
+              {...register("unit", { required: true })}
+            />
+          </div>
+        </form>
+        {/* Add a new ingredient button */}
+        {isEditUserIngredient ? (
+          <div className="flex gap-3">
+            <motion.button
+              className="primary-icon bg-primary-green h-8 w-8"
+              onClick={confirmEditUserIngredient}
+              whileHover={{
+                scale: 1.1,
+                transition: { duration: 0.1 },
+              }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <FontAwesomeIcon icon={faCheck} size="sm" />
+            </motion.button>
+            <motion.button
+              className="primary-icon h-8 w-8"
+              onClick={setIsEditUserIngredient.bind(null, false)}
+              whileHover={{
+                scale: 1.1,
+                transition: { duration: 0.1 },
+              }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <FontAwesomeIcon icon={faClose} size="sm" />
+            </motion.button>
+          </div>
+        ) : (
+          <motion.button
+            className="primary-icon bg-primary-green w-8 h-8"
+            onClick={handleSubmit(onSubmit)}
+            whileHover={{
+              scale: 1.1,
+              transition: { duration: 0.1 },
+            }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <FontAwesomeIcon icon={faPlus} size="sm" />
+          </motion.button>
+        )}
 
-  const {
-    register,
+        {/* Pagination */}
+        <Pagination
+          isCompact
+          showControls
+          showShadow
+          classNames={{
+            cursor: "bg-primary-orange",
+          }}
+          page={page}
+          total={pages}
+          onChange={(page) => setPage(page)}
+        />
+      </div>
+    );
+  }, [
+    confirmEditUserIngredient,
+    errors.amount,
+    errors.name,
+    errors.unit,
     handleSubmit,
-    formState: { errors },
-  } = useForm<IngredientData>();
+    isEditUserIngredient,
+    onSubmit,
+    page,
+    pages,
+    register,
+  ]);
 
-  const onSubmit: SubmitHandler<IngredientData> = (data) => {
-    const { name, amount, unit } = data;
-
-    const ingredient = new Ingredient(name, Number(amount), unit);
-
-    // Dispatch user ingredient update
-    dispatch({ type: "ADD_USER_INGREDIENT", payload: ingredient });
-  };
-
-  useEffect(() => {
-    if (state?.appState?.currentMealPlan) {
-      setMealPlanData(state.appState.currentMealPlan.getMealPlanData());
-    }
-  }, [state]);
-
-  useEffect(() => {
-    if (mealPlanData !== null && Object.keys(mealPlanData).length !== 0) {
-      setIsMealPlanEmpty(false);
-    }
-  }, [mealPlanData]);
-
-  const handleFinishMealPlan = async () => {
+  const handleFinishMealPlan = useCallback(async () => {
     // Save the meal plan
     dispatch({ type: "SAVE_MEAL_PLAN" });
 
@@ -308,16 +430,35 @@ export default function DaysMealLayout({
 
     // Redirect to the start page
     router.replace("/start");
-  };
+  }, [
+    dispatch,
+    mealPlanData,
+    onOverviewOpenChange,
+    router,
+    state.appState.user,
+    supabase,
+  ]);
 
-  const confirmFinishMealPlan = () => {
+  const confirmFinishMealPlan = useCallback(() => {
     onConfirmationOpenChange();
     handleFinishMealPlan();
-  };
+  }, [handleFinishMealPlan, onConfirmationOpenChange]);
 
-  const cancelFinishMealPlan = () => {
+  const cancelFinishMealPlan = useCallback(() => {
     onConfirmationOpenChange();
-  };
+  }, [onConfirmationOpenChange]);
+
+  useEffect(() => {
+    if (state?.appState?.currentMealPlan) {
+      setMealPlanData(state.appState.currentMealPlan.getMealPlanData());
+    }
+  }, [state]);
+
+  useEffect(() => {
+    if (mealPlanData !== null && Object.keys(mealPlanData).length !== 0) {
+      setIsMealPlanEmpty(false);
+    }
+  }, [mealPlanData]);
 
   return (
     <main className="relative">
@@ -450,83 +591,7 @@ export default function DaysMealLayout({
             <ModalBody className="flex flex-col justify-start items-center">
               <Table
                 className="w-full"
-                bottomContent={
-                  <div className="flex flex-col justify-center items-center gap-2">
-                    {/** New ingredient form */}
-                    <form className="w-full flex justify-center items-center gap-2">
-                      {/* Ingredient name */}
-                      <div className="flex flex-col w-32 p-0">
-                        <input
-                          type="text"
-                          id="name"
-                          className="primary-input"
-                          {...register("name", {
-                            required: true,
-                            maxLength: 80,
-                          })}
-                        />
-                        {errors.name && (
-                          <span className="text-primary-red">
-                            name is required
-                          </span>
-                        )}
-                      </div>
-                      {/* Ingredient amount */}
-                      <div className="flex flex-col w-24 p-0">
-                        <input
-                          type="number"
-                          id="amount"
-                          className="primary-input"
-                          {...register("amount", { required: true })}
-                        />
-                        {errors.amount && (
-                          <span className="text-primary-red">
-                            amount is required
-                          </span>
-                        )}
-                      </div>
-                      {/* Ingredient unit */}
-                      <div className="flex flex-col w-20 p-0">
-                        <input
-                          type="text"
-                          id="unit"
-                          className="primary-input"
-                          {...register("unit", { required: true })}
-                        />
-                        {errors.unit && (
-                          <span className="text-primary-red">
-                            unit is required
-                          </span>
-                        )}
-                      </div>
-                    </form>
-                    {/* Add a new ingredient button */}
-                    <motion.button
-                      className="primary-icon bg-primary-green w-8 h-8"
-                      onClick={handleSubmit(onSubmit)}
-                      whileHover={{
-                        scale: 1.1,
-                        transition: { duration: 0.1 },
-                      }}
-                      whileTap={{ scale: 0.9 }}
-                    >
-                      <FontAwesomeIcon icon={faPlus} size="sm" />
-                    </motion.button>
-
-                    {/* Pagination */}
-                    <Pagination
-                      isCompact
-                      showControls
-                      showShadow
-                      classNames={{
-                        cursor: "bg-primary-orange",
-                      }}
-                      page={page}
-                      total={pages}
-                      onChange={(page) => setPage(page)}
-                    />
-                  </div>
-                }
+                bottomContent={userIngredientsBottomContent}
               >
                 <TableHeader columns={ingredientsColumns}>
                   {(column) => (

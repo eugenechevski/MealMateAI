@@ -22,7 +22,7 @@ type Action =
   | { type: "SAVE_MEAL_PLAN" }
   | { type: "ADD_USER_INGREDIENT"; payload: Ingredient }
   | { type: "REMOVE_USER_INGREDIENT"; payload: string }
-  | { type: "UPDATE_USER_INGREDIENT"; payload: Ingredient };
+  | { type: "UPDATE_USER_INGREDIENT"; payload: [Ingredient, Ingredient] };
 
 interface AppStateContextProps {
   state: State;
@@ -101,7 +101,10 @@ const appStateReducer = (state: State, action: Action): State => {
       state.appState.currentMealPlan.removeUserIngredient(action.payload);
       return { ...state };
     case "UPDATE_USER_INGREDIENT":
-      state.appState.currentMealPlan.updateUserIngredient(action.payload);
+      state.appState.currentMealPlan.updateUserIngredient(
+        action.payload[0],
+        action.payload[1]
+      );
       return { ...state };
   }
 };

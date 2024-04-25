@@ -14,3 +14,4 @@
 # FOCUS
 
 * Edit user ingredients
+* Saving of user ingredients
