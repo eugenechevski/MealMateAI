@@ -448,6 +448,78 @@ export default function DaysMealLayout({
     onConfirmationOpenChange();
   }, [onConfirmationOpenChange]);
 
+  const mealPlanOverview = useMemo(() => {
+    return (
+      <>
+        {isMealPlanEmpty ? (
+          <p className="text-center">There is no meal plan yet.</p>
+        ) : (
+          <Accordion>
+            {Object.keys(mealPlanData).map((day) => (
+              <AccordionItem key={day} title={"Day " + day}>
+                <Accordion>
+                  {Object.keys(mealPlanData[Number(day)]).map((meal) => (
+                    <AccordionItem key={meal} title={"Meal " + meal}>
+                      {(() => {
+                        const mealData =
+                          mealPlanData[Number(day)][Number(meal)];
+                        return (
+                          <div className="flex flex-col justify-center items-start gap-3">
+                            {/* Meal information */}
+                            <p className="font-bold text-2xl self-center">
+                              {mealData.name} - {mealData.cuisine}
+                            </p>
+                            <p>
+                              <strong>Ingredients</strong>:{" "}
+                              {mealData.ingredients
+                                .map((ingredient) => ingredient.name)
+                                .join(", ")}
+                            </p>
+                            <p>
+                              <strong>Steps</strong>:{" "}
+                              {mealData.steps.join(", ")}
+                            </p>
+                            {mealData.nutrition && (
+                              <p>
+                                <strong>Nutrition</strong>:{" "}
+                                <ul className="list-disc list-inside">
+                                  <li>
+                                    <strong>servings</strong>:{" "}
+                                    {mealData.nutrition.servings}
+                                  </li>
+                                  <li>
+                                    <strong>calories per serving</strong>:{" "}
+                                    {mealData.nutrition.caloriesPerServing}
+                                  </li>
+                                  <li>
+                                    <strong>carbohydrates</strong>:{" "}
+                                    {mealData.nutrition.carbohydrates} g
+                                  </li>
+                                  <li>
+                                    <strong>protein</strong>:{" "}
+                                    {mealData.nutrition.protein} g
+                                  </li>
+                                  <li>
+                                    <strong>fat</strong>:{" "}
+                                    {mealData.nutrition.fat} g
+                                  </li>
+                                </ul>
+                              </p>
+                            )}
+                          </div>
+                        );
+                      })()}
+                    </AccordionItem>
+                  ))}
+                </Accordion>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        )}
+      </>
+    );
+  }, [isMealPlanEmpty, mealPlanData]);
+
   useEffect(() => {
     if (state?.appState?.currentMealPlan) {
       setMealPlanData(state.appState.currentMealPlan.getMealPlanData());
@@ -485,74 +557,7 @@ export default function DaysMealLayout({
               Meal Plan Overview
             </ModalHeader>
             <ModalBody>
-              {isMealPlanEmpty ? (
-                <p className="text-center">There is no meal plan yet.</p>
-              ) : (
-                <Accordion>
-                  {Object.keys(mealPlanData).map((day) => (
-                    <AccordionItem key={day} title={"Day " + day}>
-                      <Accordion>
-                        {Object.keys(mealPlanData[Number(day)]).map((meal) => (
-                          <AccordionItem key={meal} title={"Meal " + meal}>
-                            {(() => {
-                              const mealData =
-                                mealPlanData[Number(day)][Number(meal)];
-                              return (
-                                <div className="flex flex-col justify-center items-start gap-3">
-                                  {/* Meal information */}
-                                  <p className="font-bold text-2xl self-center">
-                                    {mealData.name} - {mealData.cuisine}
-                                  </p>
-                                  <p>
-                                    <strong>Ingredients</strong>:{" "}
-                                    {mealData.ingredients
-                                      .map((ingredient) => ingredient.name)
-                                      .join(", ")}
-                                  </p>
-                                  <p>
-                                    <strong>Steps</strong>:{" "}
-                                    {mealData.steps.join(", ")}
-                                  </p>
-                                  {mealData.nutrition && (
-                                    <p>
-                                      <strong>Nutrition</strong>:{" "}
-                                      <ul className="list-disc list-inside">
-                                        <li>
-                                          <strong>servings</strong>:{" "}
-                                          {mealData.nutrition.servings}
-                                        </li>
-                                        <li>
-                                          <strong>calories per serving</strong>:{" "}
-                                          {
-                                            mealData.nutrition
-                                              .caloriesPerServing
-                                          }
-                                        </li>
-                                        <li>
-                                          <strong>carbohydrates</strong>:{" "}
-                                          {mealData.nutrition.carbohydrates} g
-                                        </li>
-                                        <li>
-                                          <strong>protein</strong>:{" "}
-                                          {mealData.nutrition.protein} g
-                                        </li>
-                                        <li>
-                                          <strong>fat</strong>:{" "}
-                                          {mealData.nutrition.fat} g
-                                        </li>
-                                      </ul>
-                                    </p>
-                                  )}
-                                </div>
-                              );
-                            })()}
-                          </AccordionItem>
-                        ))}
-                      </Accordion>
-                    </AccordionItem>
-                  ))}
-                </Accordion>
-              )}
+              {mealPlanOverview}
             </ModalBody>
             <ModalFooter className="flex justify-center items-center">
               {!isMealPlanEmpty && (
