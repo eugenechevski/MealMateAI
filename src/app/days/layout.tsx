@@ -9,6 +9,8 @@ import {
   faCarrot,
   faPlus,
   faPenToSquare,
+  faMessage as faChat,
+  faPaperPlane,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { motion } from "framer-motion";
@@ -35,6 +37,7 @@ import {
   TableCell,
   Pagination,
 } from "@nextui-org/react";
+import { Textarea } from "@nextui-org/react";
 
 import { GuestUser, Ingredient, MainUser } from "@/core";
 
@@ -44,7 +47,9 @@ import { useRouter } from "next/navigation";
 
 import stringify from "json-stringify-safe";
 
-import { useForm, SubmitHandler, set } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
+
+import { useChat } from "ai/react";
 
 type IngredientData = {
   name: string;
@@ -88,6 +93,13 @@ export default function DaysMealLayout({
     useState<Ingredient>();
 
   const {
+    messages: chatMessages,
+    input: chatInput,
+    handleInputChange: handleChatInputChange,
+    handleSubmit: chatHandleSubmit,
+  } = useChat();
+
+  const {
     isOpen: isOverviewOpen,
     onOpen: onOverviewOpen,
     onOpenChange: onOverviewOpenChange,
@@ -96,6 +108,11 @@ export default function DaysMealLayout({
     isOpen: isIngredientsOpen,
     onOpen: onIngredientsOpen,
     onOpenChange: onIngredientsOpenChange,
+  } = useDisclosure();
+  const {
+    isOpen: isChatOpen,
+    onOpen: onChatOpen,
+    onOpenChange: onChatOpenChange,
   } = useDisclosure();
   const {
     isOpen: isConfirmationOpen,
@@ -128,7 +145,7 @@ export default function DaysMealLayout({
   const listIngredientRows = useMemo(() => {
     return Object.values(
       state?.appState?.currentMealPlan?.userIngredients || {}
-    )
+    );
   }, [state]);
 
   const pages = useMemo(() => {
@@ -440,7 +457,7 @@ export default function DaysMealLayout({
     onConfirmationOpenChange();
   }, [onConfirmationOpenChange]);
 
-  const mealPlanOverview = useMemo(() => {
+  const mealPlanAccordion = useMemo(() => {
     return (
       <>
         {isMealPlanEmpty ? (
@@ -512,118 +529,170 @@ export default function DaysMealLayout({
     );
   }, [isMealPlanEmpty, mealPlanData]);
 
-  useEffect(() => {
-    if (state?.appState?.currentMealPlan) {
-      setMealPlanData(state.appState.currentMealPlan.getMealPlanData());
-    }
-  }, [state]);
-
-  useEffect(() => {
-    if (mealPlanData !== null && Object.keys(mealPlanData).length !== 0) {
-      setIsMealPlanEmpty(false);
-    }
-  }, [mealPlanData]);
-
-  return (
-    <main className="relative">
-      <div className="absolute left-0 right-0 translate-x-[75vw] translate-y-[25vh] flex flex-col">
-        {/* Meal plan overview */}
-        <motion.button
-          className="primary-icon mb-3"
-          onClick={onOverviewOpen}
-          whileHover={{
-            scale: 1.1,
-            transition: { duration: 0.1 },
-          }}
-          whileTap={{ scale: 0.9 }}
-        >
-          <FontAwesomeIcon icon={faMap} />
-        </motion.button>
-        <Modal
-          isOpen={isOverviewOpen}
-          onOpenChange={onOverviewOpenChange}
-          backdrop="blur"
-        >
-          <ModalContent>
-            <ModalHeader className="flex justify-center">
-              Meal Plan Overview
-            </ModalHeader>
-            <ModalBody>
-              {mealPlanOverview}
-            </ModalBody>
-            <ModalFooter className="flex justify-center items-center">
-              {!isMealPlanEmpty && (
-                <motion.button
-                  className="primary-icon bg-primary-green"
-                  onClick={onConfirmationOpen}
-                >
-                  <FontAwesomeIcon icon={faFlagCheckered} />
-                </motion.button>
-              )}
-            </ModalFooter>
-          </ModalContent>
-        </Modal>
-
-        {/** User ingredients table */}
-        <motion.button
-          className="primary-icon bg-primary-orange"
-          onClick={onIngredientsOpen}
-          whileHover={{
-            scale: 1.1,
-            transition: { duration: 0.1 },
-          }}
-          whileTap={{ scale: 0.9 }}
-        >
-          <FontAwesomeIcon icon={faCarrot} />
-        </motion.button>
-        <Modal
-          isOpen={isIngredientsOpen}
-          onOpenChange={onIngredientsOpenChange}
-          backdrop="blur"
-        >
-          <ModalContent>
-            <ModalHeader className="flex justify-center">
-              User Ingredients
-            </ModalHeader>
-            <ModalBody className="flex flex-col justify-start items-center">
-              <Table
-                className="w-full"
-                bottomContent={userIngredientsBottomContent}
+  const mealPlanOverview = useMemo(() => {
+    return (
+      <Modal
+        isOpen={isOverviewOpen}
+        onOpenChange={onOverviewOpenChange}
+        backdrop="blur"
+      >
+        <ModalContent>
+          <ModalHeader className="flex justify-center">
+            Meal Plan Overview
+          </ModalHeader>
+          <ModalBody>{mealPlanAccordion}</ModalBody>
+          <ModalFooter className="flex justify-center items-center">
+            {!isMealPlanEmpty && (
+              <motion.button
+                className="primary-icon bg-primary-green"
+                onClick={onConfirmationOpen}
               >
-                <TableHeader columns={ingredientsColumns}>
-                  {(column) => (
-                    <TableColumn
-                      key={column.key}
-                      align={column.key === "actions" ? "center" : "start"}
-                    >
-                      {column.label}
-                    </TableColumn>
-                  )}
-                </TableHeader>
-                <TableBody
-                  emptyContent={"No rows to display."}
-                  items={paginatedListIngredientRows}
-                >
-                  {(item) => (
-                    <TableRow key={item.name}>
-                      {(columnKey) => (
-                        <TableCell>
-                          {renderCell(
-                            item,
-                            columnKey as "actions" | keyof Ingredient
-                          )}
-                        </TableCell>
-                      )}
-                    </TableRow>
-                  )}
-                </TableBody>
-              </Table>
-            </ModalBody>
-          </ModalContent>
-        </Modal>
-      </div>
+                <FontAwesomeIcon icon={faFlagCheckered} />
+              </motion.button>
+            )}
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    );
+  }, [
+    isMealPlanEmpty,
+    isOverviewOpen,
+    mealPlanAccordion,
+    onConfirmationOpen,
+    onOverviewOpenChange,
+  ]);
 
-      {/* Confirmation modal */}
+  const ingredientsTable = useMemo(() => {
+    return (
+      <Modal
+        isOpen={isIngredientsOpen}
+        onOpenChange={onIngredientsOpenChange}
+        backdrop="blur"
+      >
+        <ModalContent>
+          <ModalHeader className="flex justify-center">
+            User Ingredients
+          </ModalHeader>
+          <ModalBody className="flex flex-col justify-start items-center">
+            <Table
+              className="w-full"
+              bottomContent={userIngredientsBottomContent}
+            >
+              <TableHeader columns={ingredientsColumns}>
+                {(column) => (
+                  <TableColumn
+                    key={column.key}
+                    align={column.key === "actions" ? "center" : "start"}
+                  >
+                    {column.label}
+                  </TableColumn>
+                )}
+              </TableHeader>
+              <TableBody
+                emptyContent={"No rows to display."}
+                items={paginatedListIngredientRows}
+              >
+                {(item) => (
+                  <TableRow key={item.name}>
+                    {(columnKey) => (
+                      <TableCell>
+                        {renderCell(
+                          item,
+                          columnKey as "actions" | keyof Ingredient
+                        )}
+                      </TableCell>
+                    )}
+                  </TableRow>
+                )}
+              </TableBody>
+            </Table>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+    );
+  }, [
+    isIngredientsOpen,
+    onIngredientsOpenChange,
+    paginatedListIngredientRows,
+    renderCell,
+    userIngredientsBottomContent,
+  ]);
+
+  const chatBodyContent = useMemo(() => {
+    return (
+      <>
+        <div className="primary-form flex flex-col gap-2 h-[50vh] w-full overflow-auto">
+          {chatMessages.map((message, index) => (
+            <div
+              key={index}
+              className={`flex flex-col gap-2 max-h-max min-w-[40%] max-w-[90%] p-3 rounded ${
+                message.role === "assistant"
+                  ? "self-start bg-primary-orange text-black"
+                  : "self-end bg-primary-green text-white"
+              }`}
+            >
+              <h1 className="text-start font-bold">
+                {message.role === "assistant" ? "Chef Assistant" : "You"}
+              </h1>
+              <p className="text-wrap whitespace-normal w-full min-h-6 max-h-max overflow-auto">
+                {message.content}
+              </p>
+              <p className="text-end italic">
+                {message.createdAt?.getHours() +
+                  ":" +
+                  message.createdAt?.getMinutes()}
+              </p>
+            </div>
+          ))}
+        </div>
+      </>
+    );
+  }, [chatMessages]);
+
+  const chatModal = useMemo(() => {
+    return (
+      <Modal isOpen={isChatOpen} onOpenChange={onChatOpenChange}>
+        <ModalContent>
+          <ModalHeader className="flex justify-center">Chat</ModalHeader>
+          <ModalBody>{chatBodyContent}</ModalBody>
+          <ModalFooter className="justify-center items-center">
+            <form
+              className="flex gap-2 justify-center items-center"
+              onSubmit={chatHandleSubmit}
+            >
+              <input
+                type="text"
+                value={chatInput}
+                onChange={handleChatInputChange}
+                className="primary-input"
+              />
+              <motion.button
+                className="primary-icon bg-primary-green"
+                type="submit"
+                whileHover={{
+                  scale: 1.1,
+                  transition: { duration: 0.1 },
+                }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <FontAwesomeIcon icon={faPaperPlane} />
+              </motion.button>
+            </form>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    );
+  }, [
+    isChatOpen,
+    onChatOpenChange,
+    chatBodyContent,
+    chatHandleSubmit,
+    chatInput,
+    handleChatInputChange,
+  ]);
+
+  const confirmationModal = useMemo(() => {
+    return (
       <Modal
         isOpen={isConfirmationOpen}
         onOpenChange={onConfirmationOpenChange}
@@ -654,6 +723,74 @@ export default function DaysMealLayout({
           </ModalFooter>
         </ModalContent>
       </Modal>
+    );
+  }, [
+    cancelFinishMealPlan,
+    confirmFinishMealPlan,
+    isConfirmationOpen,
+    onConfirmationOpenChange,
+  ]);
+
+  useEffect(() => {
+    if (state?.appState?.currentMealPlan) {
+      setMealPlanData(state.appState.currentMealPlan.getMealPlanData());
+    }
+  }, [state]);
+
+  useEffect(() => {
+    if (mealPlanData !== null && Object.keys(mealPlanData).length !== 0) {
+      setIsMealPlanEmpty(false);
+    }
+  }, [mealPlanData]);
+
+  return (
+    <main className="relative">
+      <div className="absolute left-0 right-0 translate-x-[75vw] translate-y-[25vh] flex flex-col">
+        {/* Meal plan overview */}
+        <motion.button
+          className="primary-icon mb-3"
+          onClick={onOverviewOpen}
+          whileHover={{
+            scale: 1.1,
+            transition: { duration: 0.1 },
+          }}
+          whileTap={{ scale: 0.9 }}
+        >
+          <FontAwesomeIcon icon={faMap} />
+        </motion.button>
+        {mealPlanOverview}
+
+        {/** User ingredients table */}
+        <motion.button
+          className="primary-icon bg-primary-orange mb-3"
+          onClick={onIngredientsOpen}
+          whileHover={{
+            scale: 1.1,
+            transition: { duration: 0.1 },
+          }}
+          whileTap={{ scale: 0.9 }}
+        >
+          <FontAwesomeIcon icon={faCarrot} />
+        </motion.button>
+        {ingredientsTable}
+
+        {/* Chat */}
+        <motion.button
+          className="primary-icon bg-primary-green"
+          onClick={onChatOpen}
+          whileHover={{
+            scale: 1.1,
+            transition: { duration: 0.1 },
+          }}
+          whileTap={{ scale: 0.9 }}
+        >
+          <FontAwesomeIcon icon={faChat} />
+        </motion.button>
+        {chatModal}
+      </div>
+
+      {/* Confirmation modal */}
+      {confirmationModal}
 
       {children}
     </main>

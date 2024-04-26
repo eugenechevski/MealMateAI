@@ -7,7 +7,6 @@
 * Saving of user ingredients
 * Ingredients updates
 * Ingredients sections
-* AI integration
 * Optimization
 
 # DEBUGGING
@@ -16,3 +15,5 @@
 * Linked list operations
 
 # FOCUS
+
+* AI integration
