@@ -126,17 +126,9 @@ export default function DaysMealLayout({
   );
 
   const listIngredientRows = useMemo(() => {
-    return Object.keys(
+    return Object.values(
       state?.appState?.currentMealPlan?.userIngredients || {}
-    ).map((name) => {
-      const ingredient = state.appState.currentMealPlan.userIngredients[name];
-
-      return {
-        name: ingredient.name,
-        amount: ingredient.amount,
-        unit: ingredient.unit,
-      };
-    });
+    )
   }, [state]);
 
   const pages = useMemo(() => {

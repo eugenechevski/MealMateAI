@@ -4,7 +4,11 @@
 * Form for adding recipes
 * User profile
 * flow controls
+* Saving of user ingredients
+* Ingredients updates
+* Ingredients sections
 * AI integration
+* Optimization
 
 # DEBUGGING
 
@@ -12,6 +16,3 @@
 * Linked list operations
 
 # FOCUS
-
-* Edit user ingredients
-* Saving of user ingredients
