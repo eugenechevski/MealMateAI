@@ -3,9 +3,6 @@ const nextConfig = {
   reactStrictMode: false,
   experimental: {
     missingSuspenseWithCSRBailout: false,
-<<<<<<< HEAD
-  },
-=======
     outputFileTracingExcludes: {
       '/test': ['./src/app/test/**'],
     }
@@ -18,7 +15,6 @@ const nextConfig = {
       }
     ]
   }
->>>>>>> upstream/main
 };
 
 export default nextConfig;

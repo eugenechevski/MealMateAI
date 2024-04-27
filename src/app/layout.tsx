@@ -251,41 +251,53 @@ const RootState = ({ children }: { children: React.ReactNode }) => {
     };
   }, [selectionMenu, onSignedIn, onSignedOut, supabase.auth]);
 
+  const NavBar: React.FC = () => {
+    return (
+        <nav className="navBar">
+
+        </nav>
+    );
+  }
   return (
-    <div className="relative">
+    <div className="fixed">
       {/* Floating logo */}
+      <NavBar />
       <motion.button
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 2 }}
         whileHover={{ scale: 1.1 }}
-        className="z-[9999] absolute left-10 top-10 w-16 flex flex-col items-center justify-center"
+        className="z-[9999] absolute left-2 top-0 flex flex-col items-center justify-center mealMateAILogo"
       >
         <Link href="/">
-          <Image src={logoImg} alt="Meal Mate AI logo" />
+          <Image src={logoImg} alt="Meal Mate AI logo"/>
         </Link>
       </motion.button>
+
 
       {/* User dropdown */}
       <Dropdown className="bg-primary-coal text-primary-cream">
         <DropdownTrigger>
-          <div className="flex items-center gap-2 z-[9999] absolute top-10 right-10">
+          {/* we are able to move even more than right-0 just put a negative before the right and it will become negative */}
+          <div className="flex items-center gap-2 z-[9999] absolute top-2 -right-3">
             <motion.button
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 2 }}
               whileHover={{ scale: 1.1 }}
-              className="primary-icon bg-primary-coal"
+              //the black circle behind the login icon logo
+              className="primary-icon blackCircleBehindLogo"
             >
-              <FontAwesomeIcon icon={faUser} size="sm" />
+              {/* the login icon but just the person inside the circle faUser is borrowed from font awesome */}
+              <FontAwesomeIcon icon={faUser} size="sm" className="personInsideCircle"/>
             </motion.button>
-            <span className="ml-3">Hello,</span>
+            <span className="items-end text-xs"></span>
             {state?.appState?.user instanceof MainUser ? (
               <span className="">
                 {state?.appState?.user?.username?.split("@")[0]}
               </span>
             ) : (
-              <span className="">Guest</span>
+              <span className="items-end text-xs"></span>
             )}
           </div>
         </DropdownTrigger>
@@ -311,6 +323,7 @@ const RootState = ({ children }: { children: React.ReactNode }) => {
           )}
         </DropdownMenu>
       </Dropdown>
+
       {children}
     </div>
   );
@@ -333,13 +346,14 @@ export default function RootLayout({
         <link rel="icon" href={metadata.icons.icon} type="image/x-icon" />
         <title>{metadata.title}</title>
       </head>
-      <body className="bg-primary-cream relative text-primary-coal text-shadow scroll-smooth hide-scrollbar snap-center snap-normal snap-mandatory max-h-max max-w-max overflow-x-hidden">
+      <body className="bg-primary-cream text-primary-coal text-shadow scroll-smooth hide-scrollbar snap-center snap-normal snap-mandatory max-h-screen max-w-max overflow-x-hidden">
+      {/* <nav className="h-auto bg-slate-600">hello </nav> */}
         <ContextProvider>
           <NextUIProvider>
             <RootState>{children}</RootState>
           </NextUIProvider>
         </ContextProvider>
-        <Analytics />
+        <Analytics />  
       </body>
     </html>
   );

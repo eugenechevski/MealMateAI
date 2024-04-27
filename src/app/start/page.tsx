@@ -6,13 +6,8 @@ import Link from "next/link";
 
 export default function StartPage() {
   return (
-<<<<<<< HEAD
-    <main className="flex flex-col gap-12 h-screen w-screen justify-center items-center">
-      <h1 className="font-secondary text-9xl mb-12">Hungry?</h1>
-=======
     <main className="primary-main">
       <h1 className="primary-h1 text-9xl">Hungry?</h1>
->>>>>>> upstream/main
       <motion.button
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}

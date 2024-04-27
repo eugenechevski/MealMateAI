@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import { AppState } from "@/core";
-=======
 import { AppState, GuestUser, Recipe } from "@/core";
->>>>>>> upstream/main
 import { createContext, useContext, useReducer, Dispatch } from "react";
 
 interface State {
@@ -16,16 +12,12 @@ type Action =
   | { type: "SWAP_DAYS"; payload: { day1: string; day2: string } }
   | { type: "APPEND_NEW_MEAL"; payload: string }
   | { type: "REMOVE_MEAL"; payload: string }
-<<<<<<< HEAD
-  | { type: "SWAP_MEALS"; payload: { meal1: string; meal2: string } };
-=======
   | { type: "SWAP_MEALS"; payload: { meal1: string; meal2: string } }
   | {
       type: "UPDATE_RECIPE";
       payload: { day: string; meal: string; recipe: Recipe };
     }
   | { type: "SIGN_OUT" };
->>>>>>> upstream/main
 
 interface AppStateContextProps {
   state: State;
@@ -70,8 +62,6 @@ const appStateReducer = (state: State, action: Action): State => {
         action.payload.meal2
       );
       return { ...state };
-<<<<<<< HEAD
-=======
     case "UPDATE_RECIPE":
       const { day, meal, recipe } = action.payload;
 
@@ -89,7 +79,6 @@ const appStateReducer = (state: State, action: Action): State => {
         state.appState.selectionMenu
       );
       return { ...state };
->>>>>>> upstream/main
     default:
       return state;
   }

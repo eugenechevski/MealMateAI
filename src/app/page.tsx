@@ -10,44 +10,40 @@ import { motion } from "framer-motion";
 
 export default function Page() {
   return (
+    // entire page
     <motion.main
-<<<<<<< HEAD
-      className="w-screen h-screen flex flex-col justify-center items-center gap-3"
-=======
       className="primary-main gap-3"
->>>>>>> upstream/main
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
+    {/* header that says simplify your meal planning */}
+
       <motion.h1
-<<<<<<< HEAD
-        className="text-3xl font-secondary"
-=======
-        className="primary-h1"
->>>>>>> upstream/main
+        className="primary-h1 simplifyYourMealPlanning "
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        Simplify Your Meal Planning
+
+          Simplify Your Meal Planning
       </motion.h1>
+
+      {/* The image at the center of the start page */}
       <motion.figure
-        className="rounded-full shadow-2xl"
+        className="centerImage"
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ duration: 1 }}
       >
         <Image
           src={landingPageImg}
-          width={300}
-          height={300}
           alt="Landing Page"
-          className="rounded-full shadow-2xl"
+          className="rounded-full landingPageImg"
         ></Image>
       </motion.figure>
       <motion.p
-        className="font-primary italic"
+        className="font-primary textUnderLandingPageImg"
         initial={{ y: 50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1 }}
@@ -62,7 +58,9 @@ export default function Page() {
         whileTap={{ scale: 0.9 }}
       >
         <Link href="/auth/login">
-          <Button size="md">
+          {/* not able to customize button size this button is different cant use class 
+          size is limited to the ones you set up in Button.tsx */}
+          <Button size="buttonSize">
             <FontAwesomeIcon icon={faArrowRight} className="w-12" size="2x" />
           </Button>
         </Link>

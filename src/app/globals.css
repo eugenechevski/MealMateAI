@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-<<<<<<< HEAD
-=======
 /* Hide scrollbar for Chrome, Safari and Opera */
 ::-webkit-scrollbar {
   width: 5px;
@@ -30,23 +28,21 @@ body {
   scrollbar-color: #333333 transparent;
 }
 
->>>>>>> upstream/main
 .text-shadow {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 @layer components {
-<<<<<<< HEAD
-=======
   .primary-main {
     @apply w-screen h-screen flex flex-col justify-center items-center gap-12;
+    @apply w-screen;
+
   }
 
   .primary-h1 {
     @apply text-5xl font-secondary mb-12;
   }
 
->>>>>>> upstream/main
   .primary-button {
     @apply bg-primary-red text-primary-white shadow-2xl rounded-full flex items-center justify-center p-3 text-shadow;
   }
@@ -62,14 +58,66 @@ body {
   .primary-icon {
     @apply primary-button rounded-full w-12 h-12 text-3xl;
   }
-<<<<<<< HEAD
-=======
 
   .primary-selected {
     box-shadow: 0 0 10px #ff851b, 0 0 20px #ff851b, 0 0 30px #ff851b,
       0 0 40px #ff851b;
     animation: glow 1s ease-in-out infinite;
   }
+  .rectange {
+    width: 200 px;
+    height: 100 px;
+    background: blue;
+  }
+  .simplifyYourMealPlanning{
+    @apply text-2xl 
+    -mt-28 
+    sm:-mt-24 
+    sm:text-5xl 
+    sm:mb-24
+    lg:text-7xl;
+  }
+  .navBar{
+    @apply bg-black h-16 
+    sm:h-24
+    lg:h-36 ;
+  }
+  .landingPageImg{
+    @apply shadow-2xl w-44 sm:w-80 lg:object-fill lg:w-96;
+  }
+  .textUnderLandingPageImg{
+    @apply italic text-xs sm:text-2xl sm:mt-14;
+  }
+  .blackCircleBehindLogo
+  {
+    @apply bg-primary-coal 
+    w-12 
+    h-12
+    sm:w-20
+    sm:h-20
+    lg:w-32
+    lg:h-32;
+  }
+  .centerImage{
+    @apply rounded-full shadow-2xl mt-8;
+  }
+  .personInsideCircle{
+    @apply w-6
+    h-6
+    sm:w-10
+    sm:h-10
+    lg:w-16
+    lg:h-16;
+  }
+  .mealMateAILogo{
+    @apply w-16
+    h-16
+    sm:h-24
+    sm:w-24
+    lg:w-36
+    lg:h-36;
+  }
+  
 
   @keyframes glow {
     0%,
@@ -82,5 +130,4 @@ body {
         0 0 50px #ff851b, 0 0 60px #ff851b;
     }
   }
->>>>>>> upstream/main
 }
