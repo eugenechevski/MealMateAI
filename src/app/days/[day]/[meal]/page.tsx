@@ -62,9 +62,15 @@ export default function MealPage({
   }, [state.appState, params.day, params.meal, router]);
 
   return (
+<<<<<<< HEAD
+    <main className="flex flex-col justify-center items-center gap-12 w-screen h-screen">
+      {/* Meal details */}
+      <h1 className="text-5xl font-secondary mb-12">
+=======
     <main className="primary-main">
       {/* Meal details */}
       <h1 className="primary-h1">
+>>>>>>> upstream/main
         Meal {mealIndex} of day {dayIndex}.
       </h1>
 

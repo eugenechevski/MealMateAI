@@ -65,9 +65,15 @@ export default function DayPage({ params }: { params: { day: string } }) {
   };
 
   return (
+<<<<<<< HEAD
+    <main className="flex flex-col justify-center items-center gap-12 w-screen h-screen">
+      {/* Day heading */}
+      <h1 className="text-5xl font-secondary mb-12">Day {dayIndex}</h1>
+=======
     <main className="primary-main">
       {/* Day heading */}
       <h1 className="primary-h1">Day {dayIndex}</h1>
+>>>>>>> upstream/main
 
       {/* Back button */}
       <Link href="/days">
@@ -93,6 +99,21 @@ export default function DayPage({ params }: { params: { day: string } }) {
             >
               <motion.div
                 initial={{ scale: 0 }}
+<<<<<<< HEAD
+                animate={
+                  selectedMealId === meal.id
+                    ? {
+                        scale: 1.2,
+                        boxShadow:
+                          "0 0 10px #ff0000, 0 0 30px #ff0000, 0 0 60px #ff0000, 0 0 220px #ff0000",
+                      }
+                    : { scale: 1, boxShadow: "0 0 0px #ff0000" }
+                }
+                transition={{ duration: 1 }}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                className="flex flex-col justify-center items-center primary-form"
+=======
                 animate={{ scale: 1, boxShadow: "0 0 0px #ff0000" }}
                 transition={{ duration: 1 }}
                 whileHover={{ scale: 1.1 }}
@@ -100,6 +121,7 @@ export default function DayPage({ params }: { params: { day: string } }) {
                 className={`flex flex-col justify-center items-center primary-form ${
                   selectedMealId === meal.id ? "primary-selected" : ""
                 }`}
+>>>>>>> upstream/main
                 onClick={() => setSelectedMealId(meal.id)}
               >
                 <h2 className="text-3xl">Meal {index + 1}</h2>

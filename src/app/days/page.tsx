@@ -8,7 +8,11 @@ import {
   faArrowLeft,
   faPlus,
   faRemove,
+<<<<<<< HEAD
+  faEdit
+=======
   faEdit,
+>>>>>>> upstream/main
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { motion } from "framer-motion";
@@ -44,13 +48,60 @@ export default function DaysPage() {
   };
 
   return (
+<<<<<<< HEAD
+    <main className="flex flex-col justify-center items-center gap-12 w-screen h-screen">
+      {/* Meal plan date */}
+      <h1 className="text-5xl font-secondary mb-12">Today&apos;s meal plan</h1>
+=======
     <main className="primary-main">
       {/* Meal plan date */}
       <h1 className="primary-h1">Today&apos;s meal plan</h1>
+>>>>>>> upstream/main
 
       {/* Days sequence */}
       <section className="flex gap-5 justify-center items-center">
         {state?.appState?.currentMealPlan &&
+<<<<<<< HEAD
+          state.appState.currentMealPlan.getDaysList().map(
+            (day, index) => (
+              <div
+                className="flex gap-5 justify-center items-center"
+                key={day.id}
+              >
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={
+                    selectedDayId === day.id
+                      ? {
+                          scale: 1.2,
+                          boxShadow:
+                            "0 0 10px #ff0000, 0 0 30px #ff0000, 0 0 60px #ff0000, 0 0 220px #ff0000",
+                        }
+                      : { scale: 1, boxShadow: "0 0 0px #ff0000" }
+                  }
+                  transition={{ duration: 1 }}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="flex flex-col justify-center items-center primary-form"
+                  onClick={() => setSelectedDayId(day.id)}
+                >
+                  <h2 className="text-3xl">Day {index + 1}</h2>
+                </motion.div>
+                {index < 6 ? (
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ duration: 1 }}
+                  >
+                    <FontAwesomeIcon icon={faArrowRight} size="3x" />
+                  </motion.div>
+                ) : (
+                  <></>
+                )}
+              </div>
+            )
+          )}
+=======
           state.appState.currentMealPlan.getDaysList().map((day, index) => (
             <div
               className="flex gap-5 justify-center items-center"
@@ -82,6 +133,7 @@ export default function DaysPage() {
               )}
             </div>
           ))}
+>>>>>>> upstream/main
 
         {/* Add day button */}
         {dayCount < 7 && (
@@ -96,7 +148,11 @@ export default function DaysPage() {
 
       <div className="flex gap-3 items-center justify-center">
         {/* Edit meals button */}
+<<<<<<< HEAD
+        {selectedDayId !== '' && (
+=======
         {selectedDayId !== "" && (
+>>>>>>> upstream/main
           <Link href={`/days/${selectedDayId}`}>
             <motion.button
               initial={{ scale: 0 }}

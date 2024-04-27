@@ -16,7 +16,7 @@ export default function SavedMealsPage() {
 
   useEffect(() => {
     if (state?.appState?.user?.savedMealPlans) {
-      setSavedMealPlans(Object.entries(state.appState.user.savedMealPlans));
+      //setSavedMealPlans(Object.entries(state.appState.user.savedMealPlans));
     }
   }, [state?.appState?.user?.savedMealPlans]);
 
