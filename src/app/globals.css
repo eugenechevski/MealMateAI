@@ -73,15 +73,18 @@ body {
     sm:-mt-24 
     sm:text-5xl 
     sm:mb-24
-    lg:text-7xl;
+    lg:text-7xl
+    xl:-mt-24
+    xl:-mb-0;
   }
   .navBar{
     @apply bg-black h-16 
     sm:h-24
-    lg:h-36 ;
+    lg:h-36
+    xl:h-24;
   }
   .landingPageImg{
-    @apply shadow-2xl w-44 sm:w-80 lg:object-fill lg:w-96;
+    @apply shadow-2xl w-44 sm:w-80 lg:w-96 xl:w-80;
   }
   .textUnderLandingPageImg{
     @apply italic text-xs sm:text-2xl sm:mt-14;
@@ -94,7 +97,9 @@ body {
     sm:w-20
     sm:h-20
     lg:w-32
-    lg:h-32;
+    lg:h-32
+    xl:w-20
+    xl:h-20;
   }
   .centerImage{
     @apply rounded-full shadow-2xl mt-8;
@@ -105,7 +110,9 @@ body {
     sm:w-10
     sm:h-10
     lg:w-16
-    lg:h-16;
+    lg:h-16    
+    xl:w-10
+    xl:h-10;
   }
   .mealMateAILogo{
     @apply w-16
@@ -113,7 +120,9 @@ body {
     sm:h-24
     sm:w-24
     lg:w-36
-    lg:h-36;
+    lg:h-36
+    xl:h-24
+    xl:w-24;
   }
   
 
