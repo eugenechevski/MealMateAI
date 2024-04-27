@@ -170,7 +170,10 @@ export class MealPlan {
   }
 
   addUserIngredient(ingredient: Ingredient) {
-    if (this.userIngredients[ingredient.name]) {
+    if (
+      ingredient.name in this.userIngredients &&
+      ingredient.unit === this.userIngredients[ingredient.name].unit
+    ) {
       this.userIngredients[ingredient.name].amount += ingredient.amount;
       return;
     }
@@ -178,10 +181,10 @@ export class MealPlan {
     this.userIngredients[ingredient.name] = ingredient;
   }
 
-  updateUserIngredient(ingredient: Ingredient) {
-    if (this.userIngredients[ingredient.name]) {
-      this.userIngredients[ingredient.name] = ingredient;
-      return;
+  updateUserIngredient(oldIngredient: Ingredient, newIngredient: Ingredient) {
+    if (this.userIngredients[oldIngredient.name]) {
+      delete this.userIngredients[oldIngredient.name];
+      this.addUserIngredient(newIngredient);
     }
   }
 

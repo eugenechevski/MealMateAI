@@ -3,7 +3,7 @@
  * It stores the user, the current meal plan, and the selection menu.
  */
 
-import { MealPlan, MainUser, GuestUser, SelectionMenu, MealNode, Recipe} from "@/core";
+import { MealPlan, MainUser, GuestUser, SelectionMenu} from "@/core";
 
 export class AppState {
   user: GuestUser | MainUser;
@@ -20,9 +20,5 @@ export class AppState {
     this.currentMealPlan = new MealPlan();
 
     return true;
-  }
-
-  finishMealPlan() {
-    return this.currentMealPlan.getMealPlanData();
   }
 }

@@ -194,6 +194,25 @@ const RootState = ({ children }: { children: React.ReactNode }) => {
         }
       }
 
+      // if the user doesn't have the record in the database
+      // create one
+      const { data: userData } = await supabase.auth.getUser();
+      if (userData) {
+        const { data: userRecord, error: userError } = await supabase
+          .from("users")
+          .select("*")
+          .eq("id", userData.user?.id as string);
+
+        if (userRecord?.length === 0 || userError) {
+          // create the user's record in the database
+          await supabase.from("users").insert({
+            id: userData.user?.id as string,
+            username: userData.user?.email as string,
+            email: userData.user?.email as string,
+          });
+        }
+      }
+
       dispatch({
         type: "SET_APP_STATE",
         payload: new AppState(

@@ -34,9 +34,7 @@ body {
 
 @layer components {
   .primary-main {
-    @apply w-screen h-screen flex flex-col justify-center items-center gap-12;
-    @apply w-screen;
-
+    @apply w-screen min-h-screen flex flex-col justify-center items-center gap-12;
   }
 
   .primary-h1 {
@@ -56,7 +54,7 @@ body {
   }
 
   .primary-icon {
-    @apply primary-button rounded-full w-12 h-12 text-3xl;
+    @apply primary-button rounded-full w-12 h-12 text-3xl shadow-2xl drop-shadow-2xl;
   }
 
   .primary-selected {

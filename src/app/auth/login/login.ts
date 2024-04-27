@@ -51,18 +51,6 @@ export async function login(
     throw new Error("Invalid provider");
   }
 
-  // if the user doesn't have the record in the database
-  // create one
-  const { data: userData } = await supabase.auth.getUser();
-  if ((await supabase.from("users").select("*")).count === 0) {
-    // create the user's record in the database
-    await supabase.from("users").insert({
-      id: userData.user?.id as string,
-      username: userData.user?.email as string,
-      email: userData.user?.email as string,
-    });
-  }
-
   revalidatePath("/", "layout");
   redirect("/start");
 }

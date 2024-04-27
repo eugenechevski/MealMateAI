@@ -1,4 +1,4 @@
-import { AppState, GuestUser, Recipe } from "@/core";
+import { AppState, GuestUser, Ingredient, Recipe } from "@/core";
 import { createContext, useContext, useReducer, Dispatch } from "react";
 
 interface State {
@@ -7,6 +7,7 @@ interface State {
 
 type Action =
   | { type: "SET_APP_STATE"; payload: AppState }
+  | { type: "START_NEW_MEAL_PLAN" }
   | { type: "APPEND_NEW_DAY" }
   | { type: "REMOVE_DAY"; payload: string }
   | { type: "SWAP_DAYS"; payload: { day1: string; day2: string } }
@@ -17,7 +18,11 @@ type Action =
       type: "UPDATE_RECIPE";
       payload: { day: string; meal: string; recipe: Recipe };
     }
-  | { type: "SIGN_OUT" };
+  | { type: "SIGN_OUT" }
+  | { type: "SAVE_MEAL_PLAN" }
+  | { type: "ADD_USER_INGREDIENT"; payload: Ingredient }
+  | { type: "REMOVE_USER_INGREDIENT"; payload: string }
+  | { type: "UPDATE_USER_INGREDIENT"; payload: [Ingredient, Ingredient] };
 
 interface AppStateContextProps {
   state: State;
@@ -36,6 +41,9 @@ const appStateReducer = (state: State, action: Action): State => {
   switch (action.type) {
     case "SET_APP_STATE":
       return { ...state, appState: action.payload };
+    case "START_NEW_MEAL_PLAN":
+      state.appState.startNewMealPlan();
+      return { ...state };
     case "APPEND_NEW_DAY":
       state.appState.currentMealPlan.appendNewDay();
       return { ...state };
@@ -69,7 +77,7 @@ const appStateReducer = (state: State, action: Action): State => {
         day in state.appState.currentMealPlan.days &&
         meal in state.appState.currentMealPlan.days[day].meals
       ) {
-        state.appState.currentMealPlan.days[day].meals[meal].recipe = recipe;
+        state.appState.currentMealPlan.selectRecipeForMeal(recipe, day, meal);
       }
 
       return { ...state };
@@ -79,8 +87,25 @@ const appStateReducer = (state: State, action: Action): State => {
         state.appState.selectionMenu
       );
       return { ...state };
+    case "SAVE_MEAL_PLAN":
+      state.appState.user.saveMealPlan(
+        state.appState.currentMealPlan.getMealPlanData()
+      );
+      return { ...state };
     default:
       return state;
+    case "ADD_USER_INGREDIENT":
+      state.appState.currentMealPlan.addUserIngredient(action.payload);
+      return { ...state };
+    case "REMOVE_USER_INGREDIENT":
+      state.appState.currentMealPlan.removeUserIngredient(action.payload);
+      return { ...state };
+    case "UPDATE_USER_INGREDIENT":
+      state.appState.currentMealPlan.updateUserIngredient(
+        action.payload[0],
+        action.payload[1]
+      );
+      return { ...state };
   }
 };
 
