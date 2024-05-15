@@ -294,7 +294,11 @@ const RootState = ({ children }: { children: React.ReactNode }) => {
             >
               <FontAwesomeIcon icon={faUser} size="sm" />
             </motion.button>
-            <span className="ml-3">Hello,</span>
+          </div>
+        </DropdownTrigger>
+        <DropdownMenu aria-label="Static Actions" disabledKeys={["user"]}>
+          <DropdownItem key={"user"}>
+            <span className="ml-3">Hello, </span>
             {state?.appState?.user instanceof MainUser ? (
               <span className="">
                 {state?.appState?.user?.username?.split("@")[0]}
@@ -302,28 +306,24 @@ const RootState = ({ children }: { children: React.ReactNode }) => {
             ) : (
               <span className="">Guest</span>
             )}
-          </div>
-        </DropdownTrigger>
-        <DropdownMenu aria-label="Static Actions">
-          <DropdownSection>
+          </DropdownItem>
+          <DropdownSection className="border-t-2 border-primary-cream mt-2 pt-2">
             <DropdownItem href="/saved-meals">Saved meals</DropdownItem>
             <DropdownItem href="/about">About</DropdownItem>
           </DropdownSection>
-          {state?.appState?.user instanceof MainUser ? (
-            <DropdownSection className="border-t-2 border-primary-cream mt-2">
+          <DropdownSection className="border-t-2 border-primary-cream mt-2">
+            {state?.appState?.user instanceof MainUser ? (
               <DropdownItem href="/auth/sign-out" className="flex">
                 <FontAwesomeIcon icon={faSignOut} size="sm" />
                 <span className="ml-2">Sign out</span>
               </DropdownItem>
-            </DropdownSection>
-          ) : (
-            <DropdownSection className="border-t-2 border-primary-cream mt-2">
+            ) : (
               <DropdownItem href="/auth/login" className="flex">
                 <FontAwesomeIcon icon={faSignIn} size="sm" />
                 <span className="ml-2">Sign-in</span>
               </DropdownItem>
-            </DropdownSection>
-          )}
+            )}
+          </DropdownSection>
         </DropdownMenu>
       </Dropdown>
       {children}

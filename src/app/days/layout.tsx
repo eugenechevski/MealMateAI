@@ -11,6 +11,7 @@ import {
   faPenToSquare,
   faMessage as faChat,
   faPaperPlane,
+  faBars,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { motion } from "framer-motion";
@@ -37,7 +38,6 @@ import {
   TableCell,
   Pagination,
 } from "@nextui-org/react";
-import { Textarea } from "@nextui-org/react";
 
 import { GuestUser, Ingredient, MainUser } from "@/core";
 
@@ -86,11 +86,11 @@ export default function DaysMealLayout({
 
   const { state, dispatch } = useAppState();
   const [isMealPlanEmpty, setIsMealPlanEmpty] = useState(true);
-  const [mealPlanData, setMealPlanData] = useState({} as MealPlanData);
   const [page, setPage] = useState(1);
   const [isEditUserIngredient, setIsEditUserIngredient] = useState(false);
   const [editedUserIngredient, setEditedUserIngredient] =
     useState<Ingredient>();
+  const [isTriggersDropdownOpen, setIsTriggersDropdownOpen] = useState(false);
 
   const {
     messages: chatMessages,
@@ -141,6 +141,10 @@ export default function DaysMealLayout({
     },
     [dispatch]
   );
+
+  const mealPlanData = useMemo(() => {
+    return state?.appState?.currentMealPlan?.getMealPlanData();
+  }, [state?.appState?.currentMealPlan])
 
   const listIngredientRows = useMemo(() => {
     return Object.values(
@@ -738,63 +742,97 @@ export default function DaysMealLayout({
     onConfirmationOpenChange,
   ]);
 
-  useEffect(() => {
-    if (state?.appState?.currentMealPlan) {
-      setMealPlanData(state.appState.currentMealPlan.getMealPlanData());
-    }
-  }, [state]);
+  const triggersDropdown = useMemo(() => {
+    return (
+      <div className="z-[99] fixed left-0 right-0 translate-x-[75vw] translate-y-[25vh] flex flex-col gap-3">
+        <motion.button
+          className="primary-icon bg-primary-coal"
+          onClick={() => setIsTriggersDropdownOpen((prev) => !prev)}
+          whileHover={{
+            scale: 1.1,
+            transition: { duration: 0.1 },
+          }}
+          whileTap={{ scale: 0.9 }}
+        >
+          <FontAwesomeIcon icon={faBars} />
+        </motion.button>
+        {isTriggersDropdownOpen && (
+          <motion.div
+            initial={{
+              opacity: 0,
+              height: 0,
+            }}
+            animate={{
+              opacity: 1,
+              height: "100%",
+            }}
+            transition={{
+              duration: 1,
+            }}
+            exit={{
+              opacity: 0,
+              height: 0,
+            }}
+            className="flex flex-col gap-3"
+          >
+            <motion.button
+              className="primary-icon"
+              onClick={onOverviewOpen}
+              whileHover={{
+                scale: 1.1,
+                transition: { duration: 0.1 },
+              }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <FontAwesomeIcon icon={faMap} />
+            </motion.button>
+            <motion.button
+              className="primary-icon bg-primary-orange"
+              onClick={onIngredientsOpen}
+              whileHover={{
+                scale: 1.1,
+                transition: { duration: 0.1 },
+              }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <FontAwesomeIcon icon={faCarrot} />
+            </motion.button>
+            <motion.button
+              className="primary-icon bg-primary-green"
+              onClick={onChatOpen}
+              whileHover={{
+                scale: 1.1,
+                transition: { duration: 0.1 },
+              }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <FontAwesomeIcon icon={faChat} />
+            </motion.button>
+          </motion.div>
+        )}
+      </div>
+    );
+  }, [isTriggersDropdownOpen, onChatOpen, onIngredientsOpen, onOverviewOpen]);
 
   useEffect(() => {
-    if (mealPlanData !== null && Object.keys(mealPlanData).length !== 0) {
+    if (mealPlanData && Object.keys(mealPlanData).length !== 0) {
       setIsMealPlanEmpty(false);
     }
   }, [mealPlanData]);
 
   return (
     <main className="relative">
-      <div className="absolute left-0 right-0 translate-x-[75vw] translate-y-[25vh] flex flex-col">
-        {/* Meal plan overview */}
-        <motion.button
-          className="primary-icon mb-3"
-          onClick={onOverviewOpen}
-          whileHover={{
-            scale: 1.1,
-            transition: { duration: 0.1 },
-          }}
-          whileTap={{ scale: 0.9 }}
-        >
-          <FontAwesomeIcon icon={faMap} />
-        </motion.button>
-        {mealPlanOverview}
+      {/* Triggers dropdown */}
+      {triggersDropdown}
 
-        {/** User ingredients table */}
-        <motion.button
-          className="primary-icon bg-primary-orange mb-3"
-          onClick={onIngredientsOpen}
-          whileHover={{
-            scale: 1.1,
-            transition: { duration: 0.1 },
-          }}
-          whileTap={{ scale: 0.9 }}
-        >
-          <FontAwesomeIcon icon={faCarrot} />
-        </motion.button>
-        {ingredientsTable}
+      {/* Chat */}
+      {chatModal}
 
-        {/* Chat */}
-        <motion.button
-          className="primary-icon bg-primary-green"
-          onClick={onChatOpen}
-          whileHover={{
-            scale: 1.1,
-            transition: { duration: 0.1 },
-          }}
-          whileTap={{ scale: 0.9 }}
-        >
-          <FontAwesomeIcon icon={faChat} />
-        </motion.button>
-        {chatModal}
-      </div>
+      {/* Meal plan overview */}
+      {mealPlanOverview}
+
+      {/** User ingredients table */}
+      {ingredientsTable}
 
       {/* Confirmation modal */}
       {confirmationModal}

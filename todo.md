@@ -12,6 +12,7 @@
 
 * Saving meal plans
 * Linked list operations
+* OAuth login
 
 # FOCUS
 

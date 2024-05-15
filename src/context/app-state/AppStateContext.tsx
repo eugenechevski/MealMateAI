@@ -42,30 +42,30 @@ const appStateReducer = (state: State, action: Action): State => {
     case "SET_APP_STATE":
       return { ...state, appState: action.payload };
     case "START_NEW_MEAL_PLAN":
-      state.appState.startNewMealPlan();
+      state?.appState?.startNewMealPlan();
       return { ...state };
     case "APPEND_NEW_DAY":
-      state.appState.currentMealPlan.appendNewDay();
+      state?.appState?.currentMealPlan?.appendNewDay();
       return { ...state };
     case "REMOVE_DAY":
-      state.appState.currentMealPlan.removeDay(action.payload);
+      state?.appState?.currentMealPlan?.removeDay(action.payload);
       return { ...state };
     case "SWAP_DAYS":
-      state.appState.currentMealPlan.swapDays(
+      state?.appState?.currentMealPlan?.swapDays(
         action.payload.day1,
         action.payload.day2
       );
       return { ...state };
     case "APPEND_NEW_MEAL":
-      state.appState.currentMealPlan.days[action.payload].appendNewMeal();
+      state?.appState?.currentMealPlan?.days[action.payload]?.appendNewMeal();
       return { ...state };
     case "REMOVE_MEAL":
-      state.appState.currentMealPlan.days[action.payload].removeMeal(
+      state?.appState?.currentMealPlan?.days[action.payload]?.removeMeal(
         action.payload
       );
       return { ...state };
     case "SWAP_MEALS":
-      state.appState.currentMealPlan.days[action.payload.meal1].swapMeals(
+      state?.appState?.currentMealPlan?.days[action.payload.meal1]?.swapMeals(
         action.payload.meal1,
         action.payload.meal2
       );
@@ -74,34 +74,38 @@ const appStateReducer = (state: State, action: Action): State => {
       const { day, meal, recipe } = action.payload;
 
       if (
-        day in state.appState.currentMealPlan.days &&
-        meal in state.appState.currentMealPlan.days[day].meals
+        day in state?.appState?.currentMealPlan?.days &&
+        meal in state?.appState?.currentMealPlan?.days[day].meals
       ) {
-        state.appState.currentMealPlan.selectRecipeForMeal(recipe, day, meal);
+        state?.appState?.currentMealPlan?.selectRecipeForMeal(
+          recipe,
+          day,
+          meal
+        );
       }
 
       return { ...state };
     case "SIGN_OUT":
       state.appState = new AppState(
         new GuestUser(),
-        state.appState.selectionMenu
+        state?.appState?.selectionMenu
       );
       return { ...state };
     case "SAVE_MEAL_PLAN":
-      state.appState.user.saveMealPlan(
-        state.appState.currentMealPlan.getMealPlanData()
+      state?.appState?.user.saveMealPlan(
+        state?.appState?.currentMealPlan?.getMealPlanData()
       );
       return { ...state };
     default:
       return state;
     case "ADD_USER_INGREDIENT":
-      state.appState.currentMealPlan.addUserIngredient(action.payload);
+      state?.appState?.currentMealPlan?.addUserIngredient(action.payload);
       return { ...state };
     case "REMOVE_USER_INGREDIENT":
-      state.appState.currentMealPlan.removeUserIngredient(action.payload);
+      state?.appState?.currentMealPlan?.removeUserIngredient(action.payload);
       return { ...state };
     case "UPDATE_USER_INGREDIENT":
-      state.appState.currentMealPlan.updateUserIngredient(
+      state?.appState?.currentMealPlan?.updateUserIngredient(
         action.payload[0],
         action.payload[1]
       );

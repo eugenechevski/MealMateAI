@@ -109,62 +109,55 @@ export class MealPlan {
    * @param {string} id2 - The ID of the second day node.
    */
   swapDays(id1: string, id2: string) {
+    if (id1 === id2) return; // If both IDs are the same, do nothing.
+
     const day1 = this.days[id1];
     const day2 = this.days[id2];
 
-    if (!day1 || !day2) return;
+    if (!day1 || !day2) return; // If either node does not exist, exit the function.
 
-    // Swap nodes
-    // Make sure they are not the same node
-    // Also check whether they are adjacent
-    if (day1.nextDay?.id === day2.id) {
+    // Handle the swap of nodes when they are adjacent
+    if (day1.nextDay === day2) {
+      // Swapping day1 and day2 when day1 is directly before day2
       day1.nextDay = day2.nextDay;
       day2.prevDay = day1.prevDay;
-      day1.prevDay = day2;
+      if (day1.prevDay) day1.prevDay.nextDay = day2;
+      if (day2.nextDay) day2.nextDay.prevDay = day1;
       day2.nextDay = day1;
-    } else if (day2.nextDay?.id === day1.id) {
+      day1.prevDay = day2;
+    } else if (day2.nextDay === day1) {
+      // Swapping day2 and day1 when day2 is directly before day1
       day2.nextDay = day1.nextDay;
       day1.prevDay = day2.prevDay;
-      day2.prevDay = day1;
+      if (day2.prevDay) day2.prevDay.nextDay = day1;
+      if (day1.nextDay) day1.nextDay.prevDay = day2;
       day1.nextDay = day2;
+      day2.prevDay = day1;
     } else {
+      // Handle the swap when nodes are not adjacent
       const tempPrev = day1.prevDay;
       const tempNext = day1.nextDay;
-      day1.nextDay = day2.nextDay;
-      day2.nextDay = tempNext;
       day1.prevDay = day2.prevDay;
+      day1.nextDay = day2.nextDay;
       day2.prevDay = tempPrev;
+      day2.nextDay = tempNext;
 
-      // Update the pointers of the adjacent nodes
-
-      if (day1.nextDay) {
-        day1.nextDay.prevDay = day1;
-      }
-
-      if (day1.prevDay) {
-        day1.prevDay.nextDay = day1;
-      }
-
-      if (day2.nextDay) {
-        day2.nextDay.prevDay = day2;
-      }
-
-      if (day2.prevDay) {
-        day2.prevDay.nextDay = day2;
-      }
+      if (day1.nextDay) day1.nextDay.prevDay = day1;
+      if (day1.prevDay) day1.prevDay.nextDay = day1;
+      if (day2.nextDay) day2.nextDay.prevDay = day2;
+      if (day2.prevDay) day2.prevDay.nextDay = day2;
     }
 
-    // Update the first pointer
-    if (this.firstDay?.id === day1.id) {
+    // Update the first and last pointers
+    if (this.firstDay === day1) {
       this.firstDay = day2;
-    } else if (this.firstDay?.id === day2.id) {
+    } else if (this.firstDay === day2) {
       this.firstDay = day1;
     }
 
-    // Update the last pointer
-    if (this.lastDay?.id === day1.id) {
+    if (this.lastDay === day1) {
       this.lastDay = day2;
-    } else if (this.lastDay?.id === day2.id) {
+    } else if (this.lastDay === day2) {
       this.lastDay = day1;
     }
   }
