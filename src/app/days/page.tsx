@@ -52,7 +52,7 @@ export default function DaysPage() {
   const daySequence = useMemo(() => {
     return (
       <section className="flex flex-col gap-5 justify-center items-center">
-        {listDays.map((day, index) => (
+        {listDays.length > 0 ? ( listDays.map((day, index) => (
           <div
             className="flex flex-col gap-5 justify-center items-center"
             key={day.id}
@@ -83,7 +83,11 @@ export default function DaysPage() {
               <></>
             )}
           </div>
-        ))}
+        ))) : (
+          <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }}>
+            <p>No days in the meal plan</p>
+          </motion.div>
+        )}
       </section>
     );
   }, [selectedDayId, listDays]);

@@ -108,62 +108,55 @@ export class DayNode {
    * @param {string} id2 - The ID of the second meal node.
    */
   swapMeals(id1: string, id2: string) {
+    if (id1 === id2) return; // If both IDs are the same, do nothing.
+
     const meal1 = this.meals[id1];
     const meal2 = this.meals[id2];
 
-    if (!meal1 || !meal2) return;
+    if (!meal1 || !meal2) return; // If either node does not exist, exit the function.
 
-    // If the meal nodes are adjacent, then we can simply swap the pointers
-    // without having to update the adjacent nodes
-    if (meal1.nextMeal?.id === meal2.id) {
+    // Handle the swap of nodes when they are adjacent
+    if (meal1.nextMeal === meal2) {
+      // Swapping meal1 and meal2 when meal1 is directly before meal2
       meal1.nextMeal = meal2.nextMeal;
       meal2.prevMeal = meal1.prevMeal;
-      meal1.prevMeal = meal2;
+      if (meal1.prevMeal) meal1.prevMeal.nextMeal = meal2;
+      if (meal2.nextMeal) meal2.nextMeal.prevMeal = meal1;
       meal2.nextMeal = meal1;
-    } else if (meal2.nextMeal?.id === meal1.id) {
+      meal1.prevMeal = meal2;
+    } else if (meal2.nextMeal === meal1) {
+      // Swapping meal2 and meal1 when meal2 is directly before meal1
       meal2.nextMeal = meal1.nextMeal;
       meal1.prevMeal = meal2.prevMeal;
-      meal2.prevMeal = meal1;
+      if (meal2.prevMeal) meal2.prevMeal.nextMeal = meal1;
+      if (meal1.nextMeal) meal1.nextMeal.prevMeal = meal2;
       meal1.nextMeal = meal2;
+      meal2.prevMeal = meal1;
     } else {
-      // Perform the swap
-      const tempPrevMeal = meal1.prevMeal;
-      const tempNextMeal = meal1.nextMeal;
+      // Handle the swap when nodes are not adjacent
+      const tempPrev = meal1.prevMeal;
+      const tempNext = meal1.nextMeal;
       meal1.prevMeal = meal2.prevMeal;
       meal1.nextMeal = meal2.nextMeal;
-      meal2.prevMeal = tempPrevMeal;
-      meal2.nextMeal = tempNextMeal;
+      meal2.prevMeal = tempPrev;
+      meal2.nextMeal = tempNext;
 
-      // Update the pointers of the adjacent nodes
-
-      if (meal1.prevMeal) {
-        meal1.prevMeal.nextMeal = meal1;
-      }
-
-      if (meal1.nextMeal) {
-        meal1.nextMeal.prevMeal = meal1;
-      }
-
-      if (meal2.prevMeal) {
-        meal2.prevMeal.nextMeal = meal2;
-      }
-
-      if (meal2.nextMeal) {
-        meal2.nextMeal.prevMeal = meal2;
-      }
+      if (meal1.nextMeal) meal1.nextMeal.prevMeal = meal1;
+      if (meal1.prevMeal) meal1.prevMeal.nextMeal = meal1;
+      if (meal2.nextMeal) meal2.nextMeal.prevMeal = meal2;
+      if (meal2.prevMeal) meal2.prevMeal.nextMeal = meal2;
     }
 
-    // Update the first and last meal pointers if necessary
-
-    if (this.firstMeal?.id === meal1.id) {
+    // Update the first and last pointers
+    if (this.firstMeal === meal1) {
       this.firstMeal = meal2;
-    } else if (this.firstMeal?.id === meal2.id) {
+    } else if (this.firstMeal === meal2) {
       this.firstMeal = meal1;
     }
 
-    if (this.lastMeal?.id === meal1.id) {
+    if (this.lastMeal === meal1) {
       this.lastMeal = meal2;
-    } else if (this.lastMeal?.id === meal2.id) {
+    } else if (this.lastMeal === meal2) {
       this.lastMeal = meal1;
     }
   }
@@ -173,11 +166,13 @@ export class DayNode {
    * @returns {MealNode} - The newly created meal node.
    */
   appendNewMeal() {
-    if (Object.keys(this.meals).length === MAX_MEALS_PER_DAY) { return; }
+    if (Object.keys(this.meals).length === MAX_MEALS_PER_DAY) {
+      return;
+    }
 
     const newMeal = new MealNode();
     this.addMeal(newMeal);
-    return newMeal;
+    return true;
   }
 
   getMealList() {
@@ -189,6 +184,24 @@ export class DayNode {
     }
 
     return mealArr;
+  }
+
+  swapLeftMeal(id: string) {
+    const meal = this.meals[id];
+    if (!meal) return;
+
+    if (!meal.prevMeal) return;
+
+    this.swapMeals(meal.id, meal.prevMeal.id);
+  }
+
+  swapRightMeal(id: string) {
+    const meal = this.meals[id];
+    if (!meal) return;
+
+    if (!meal.nextMeal) return;
+
+    this.swapMeals(meal.id, meal.nextMeal.id);
   }
 
   /**

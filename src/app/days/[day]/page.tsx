@@ -1,19 +1,23 @@
 "use client";
 
 import { useAppState } from "@/context/app-state/AppStateContext";
-import { DayNode, MealNode } from "@/core";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faArrowLeft,
-  faArrowRight,
+  faArrowUp,
+  faArrowDown,
   faPlus,
   faRemove,
   faEdit,
+  faArrowLeft,
 } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState, useCallback, useMemo, useEffect } from "react";
 import { motion } from "framer-motion";
-import { useRouter } from "next/navigation";
+
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+
+import { DayNode } from "@/core";
 
 export default function DayPage({ params }: { params: { day: string } }) {
   const { state, dispatch } = useAppState();
@@ -45,50 +49,53 @@ export default function DayPage({ params }: { params: { day: string } }) {
     setDayIndex(count);
   }, [state.appState, params.day, router]);
 
-  const handleAddMeal = () => {
+  const handleAddMeal = useCallback(() => {
     if (!state.appState) return;
 
     dispatch({ type: "APPEND_NEW_MEAL", payload: (dayNode as DayNode).id });
     setMealCount(mealCount + 1);
-  };
+  }, [dispatch, dayNode, mealCount, state.appState]);
 
-  const handleRemoveMeal = () => {
-    dispatch({ type: "REMOVE_MEAL", payload: selectedMealId });
+  const handleRemoveMeal = useCallback(() => {
+    dispatch({
+      type: "REMOVE_MEAL",
+      payload: {
+        day: params.day,
+        meal: selectedMealId,
+      },
+    });
     setMealCount(mealCount - 1);
     setSelectedMealId("");
-  };
+  }, [dispatch, params.day, selectedMealId, mealCount]);
 
-  const handleSwapMeals = (meal1: string, meal2: string) => {
-    if (!meal1 || !meal2) return;
+  const handleSwapLeftMeal = useCallback(() => {
+    dispatch({
+      type: "SWAP_LEFT_MEAL",
+      payload: { day: dayNode?.id as string, meal: selectedMealId },
+    });
+  }, [dayNode?.id, dispatch, selectedMealId]);
 
-    dispatch({ type: "SWAP_MEALS", payload: { meal1, meal2 } });
-  };
+  const handleSwapRightMeal = useCallback(() => {
+    dispatch({
+      type: "SWAP_RIGHT_MEAL",
+      payload: { day: dayNode?.id as string, meal: selectedMealId },
+    });
+  }, [dayNode?.id, dispatch, selectedMealId]);
 
-  return (
-    <main className="primary-main">
-      {/* Day heading */}
-      <h1 className="primary-h1">Day {dayIndex}</h1>
+  const listMeals = useMemo(() => {
+    return (
+      state?.appState?.currentMealPlan?.days[params.day]?.getMealList() ?? []
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state]);
 
-      {/* Back button */}
-      <Link href="/days">
-        <motion.button
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 1 }}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          className="primary-icon bg-primary-coal"
-        >
-          <FontAwesomeIcon icon={faArrowLeft} size="sm" />
-        </motion.button>
-      </Link>
-
-      {/* Meal sequence */}
-      <section className="flex gap-5 justify-center items-center">
-        {dayNode &&
-          dayNode?.getMealList().map((meal, index) => (
+  const mealSequence = useMemo(() => {
+    return (
+      <section className="flex flex-col gap-5 justify-center items-center">
+        {listMeals.length > 0 ? (
+          listMeals.map((meal, index) => (
             <div
-              className="flex gap-5 justify-center items-center"
+              className="flex flex-col gap-5 justify-center items-center"
               key={meal.id}
             >
               <motion.div
@@ -97,29 +104,41 @@ export default function DayPage({ params }: { params: { day: string } }) {
                 transition={{ duration: 1 }}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-                className={`flex flex-col justify-center items-center primary-form ${
+                className={`flex flex-col justify-center items-center bg-primary-red text-white rounded-xl h-24 w-32 ${
                   selectedMealId === meal.id ? "primary-selected" : ""
                 }`}
                 onClick={() => setSelectedMealId(meal.id)}
               >
                 <h2 className="text-3xl">Meal {index + 1}</h2>
+                <h3>{meal.id.slice(0, 3)}</h3>
               </motion.div>
-              {index < 6 ? (
+              {index < listMeals.length - 1 ? (
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ duration: 1 }}
                 >
-                  <FontAwesomeIcon icon={faArrowRight} size="3x" />
+                  <FontAwesomeIcon icon={faArrowDown} size="3x" />
                 </motion.div>
               ) : (
                 <></>
               )}
             </div>
-          ))}
+          ))
+        ) : (
+          <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }}>
+            <p>No meals in the day plan</p>
+          </motion.div>
+        )}
+      </section>
+    );
+  }, [selectedMealId, listMeals]);
 
+  const controlsMenu = useMemo(() => {
+    return (
+      <div className="z-[99] fixed left-0 top-0 translate-x-[25vw] translate-y-[25vh] flex flex-col gap-3 items-center justify-center">
         {/* Add meal button */}
-        {mealCount < 7 && (
+        {mealCount < 5 && (
           <button
             className="primary-icon bg-primary-green flex flex-col justify-center items-center"
             onClick={handleAddMeal}
@@ -127,10 +146,7 @@ export default function DayPage({ params }: { params: { day: string } }) {
             <FontAwesomeIcon icon={faPlus} size="sm" className="w-6" />
           </button>
         )}
-      </section>
-
-      <div className="flex gap-3 items-center justify-center">
-        {/* Edit recipe button */}
+        {/* Edit meal button */}
         {selectedMealId !== "" && (
           <Link href={`/days/${params.day}/${selectedMealId}`}>
             <motion.button
@@ -163,7 +179,8 @@ export default function DayPage({ params }: { params: { day: string } }) {
 
         {/* Swap with the left meal */}
         {selectedMealId !== "" &&
-          dayNode?.meals[selectedMealId]?.prevMeal !== null && (
+          state.appState.currentMealPlan.days[params.day]?.meals[selectedMealId]
+            ?.prevMeal !== null && (
             <motion.button
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
@@ -171,31 +188,65 @@ export default function DayPage({ params }: { params: { day: string } }) {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               className="primary-icon bg-primary-orange"
-              onClick={() =>
-                handleSwapMeals(selectedMealId, dayNode?.prevDay?.id as string)
-              }
+              onClick={handleSwapLeftMeal}
             >
-              <FontAwesomeIcon icon={faArrowLeft} size="sm" />
+              <FontAwesomeIcon icon={faArrowUp} size="sm" />
             </motion.button>
           )}
 
         {/* Swap with the right meal */}
-        {selectedMealId !== "" && dayNode?.nextDay !== null && (
-          <motion.button
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 1 }}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            className="primary-icon bg-primary-orange"
-            onClick={() =>
-              handleSwapMeals(selectedMealId, dayNode?.nextDay?.id as string)
-            }
-          >
-            <FontAwesomeIcon icon={faArrowRight} size="sm" />
-          </motion.button>
-        )}
+        {selectedMealId !== "" &&
+          state.appState.currentMealPlan.days[params.day]?.meals[selectedMealId]
+            ?.nextMeal !== null && (
+            <motion.button
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 1 }}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="primary-icon bg-primary-orange"
+              onClick={handleSwapRightMeal}
+            >
+              <FontAwesomeIcon icon={faArrowDown} size="sm" />
+            </motion.button>
+          )}
       </div>
+    );
+  }, [
+    state,
+    mealCount,
+    handleAddMeal,
+    selectedMealId,
+    params.day,
+    handleRemoveMeal,
+    handleSwapLeftMeal,
+    handleSwapRightMeal,
+  ]);
+
+  return (
+    <main className="primary-main relative p-12">
+      {/* Day heading */}
+      <h1 className="primary-h1">Day {dayIndex}</h1>
+
+      {/* Back button */}
+      <Link href="/days">
+        <motion.button
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 1 }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          className="primary-icon bg-primary-coal"
+        >
+          <FontAwesomeIcon icon={faArrowLeft} size="sm" />
+        </motion.button>
+      </Link>
+
+      {/* Meal sequence */}
+      {mealSequence}
+
+      {/* Controls menu */}
+      {controlsMenu}
     </main>
   );
 }

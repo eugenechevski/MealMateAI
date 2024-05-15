@@ -1,5 +1,5 @@
 import { AppState, GuestUser, Ingredient, Recipe } from "@/core";
-import { createContext, useContext, useReducer, Dispatch } from "react";
+import { createContext, useContext, useReducer } from "react";
 
 interface State {
   appState: AppState;
@@ -12,8 +12,9 @@ type Action =
   | { type: "REMOVE_DAY"; payload: string }
   | { type: "SWAP_DAYS"; payload: { day1: string; day2: string } }
   | { type: "APPEND_NEW_MEAL"; payload: string }
-  | { type: "REMOVE_MEAL"; payload: string }
-  | { type: "SWAP_MEALS"; payload: { meal1: string; meal2: string } }
+  | { type: "REMOVE_MEAL"; payload: { day: string; meal: string } }
+  | { type: "SWAP_LEFT_MEAL"; payload: { day: string; meal: string } }
+  | { type: "SWAP_RIGHT_MEAL"; payload: { day: string; meal: string } }
   | {
       type: "UPDATE_RECIPE";
       payload: { day: string; meal: string; recipe: Recipe };
@@ -60,14 +61,18 @@ const appStateReducer = (state: State, action: Action): State => {
       state?.appState?.currentMealPlan?.days[action.payload]?.appendNewMeal();
       return { ...state };
     case "REMOVE_MEAL":
-      state?.appState?.currentMealPlan?.days[action.payload]?.removeMeal(
-        action.payload
+      state?.appState?.currentMealPlan?.days[action.payload.day]?.removeMeal(
+        action.payload.meal
       );
       return { ...state };
-    case "SWAP_MEALS":
-      state?.appState?.currentMealPlan?.days[action.payload.meal1]?.swapMeals(
-        action.payload.meal1,
-        action.payload.meal2
+    case "SWAP_LEFT_MEAL":
+      state?.appState?.currentMealPlan?.days[action.payload.day]?.swapLeftMeal(
+        action.payload.meal
+      );
+      return { ...state };
+    case "SWAP_RIGHT_MEAL":
+      state?.appState?.currentMealPlan?.days[action.payload.day]?.swapRightMeal(
+        action.payload.meal
       );
       return { ...state };
     case "UPDATE_RECIPE":
