@@ -42,48 +42,60 @@ export default function DaysPage() {
     [dispatch]
   );
 
+  const handleSwapLeftDay = useCallback(() => {
+    if (selectedDayId === "") return;
+
+    dispatch({ type: "SWAP_LEFT_DAY", payload: selectedDayId });
+  }, [dispatch, selectedDayId]);
+
+  const handleSwapRightDay = useCallback(() => {
+    if (selectedDayId === "") return;
+
+    dispatch({ type: "SWAP_RIGHT_DAY", payload: selectedDayId });
+  }, [dispatch, selectedDayId]);
+
   const listDays = useMemo(() => {
     return state?.appState?.currentMealPlan?.getDaysList() ?? [];
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    state,
-  ]);
+  }, [state]);
 
   const daySequence = useMemo(() => {
     return (
       <section className="flex flex-col gap-5 justify-center items-center">
-        {listDays.length > 0 ? ( listDays.map((day, index) => (
-          <div
-            className="flex flex-col gap-5 justify-center items-center"
-            key={day.id}
-          >
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1, boxShadow: "0 0 0px #ff0000" }}
-              transition={{ duration: 1 }}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              className={`flex flex-col justify-center items-center bg-primary-red text-white rounded-xl h-24 w-32 ${
-                selectedDayId === day.id ? "primary-selected" : ""
-              }`}
-              onClick={() => setSelectedDayId(day.id)}
+        {listDays.length > 0 ? (
+          listDays.map((day, index) => (
+            <div
+              className="flex flex-col gap-5 justify-center items-center"
+              key={day.id}
             >
-              <h2 className="text-3xl">Day {index + 1}</h2>
-              <h3>{day.id.slice(0, 3)}</h3>
-            </motion.div>
-            {index < listDays.length - 1 ? (
               <motion.div
                 initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
+                animate={{ scale: 1, boxShadow: "0 0 0px #ff0000" }}
                 transition={{ duration: 1 }}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                className={`flex flex-col justify-center items-center bg-primary-red text-white rounded-xl h-24 w-32 ${
+                  selectedDayId === day.id ? "primary-selected" : ""
+                }`}
+                onClick={() => setSelectedDayId(day.id)}
               >
-                <FontAwesomeIcon icon={faArrowDown} size="3x" />
+                <h2 className="text-3xl">Day {index + 1}</h2>
+                <h3>{day.id.slice(0, 3)}</h3>
               </motion.div>
-            ) : (
-              <></>
-            )}
-          </div>
-        ))) : (
+              {index < listDays.length - 1 ? (
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ duration: 1 }}
+                >
+                  <FontAwesomeIcon icon={faArrowDown} size="3x" />
+                </motion.div>
+              ) : (
+                <></>
+              )}
+            </div>
+          ))
+        ) : (
           <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }}>
             <p>No days in the meal plan</p>
           </motion.div>
@@ -146,13 +158,7 @@ export default function DaysPage() {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               className="primary-icon bg-primary-orange"
-              onClick={() =>
-                handleSwapDays(
-                  state.appState.currentMealPlan.days[selectedDayId]?.prevDay
-                    ?.id as string,
-                  selectedDayId
-                )
-              }
+              onClick={handleSwapLeftDay}
             >
               <FontAwesomeIcon icon={faArrowUp} size="sm" />
             </motion.button>
@@ -169,13 +175,7 @@ export default function DaysPage() {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               className="primary-icon bg-primary-orange"
-              onClick={() =>
-                handleSwapDays(
-                  selectedDayId,
-                  state.appState.currentMealPlan.days[selectedDayId]?.nextDay
-                    ?.id as string
-                )
-              }
+              onClick={handleSwapRightDay}
             >
               <FontAwesomeIcon icon={faArrowDown} size="sm" />
             </motion.button>
@@ -183,12 +183,13 @@ export default function DaysPage() {
       </div>
     );
   }, [
+    state,
     dayCount,
     handleAddDay,
     handleRemoveDay,
-    handleSwapDays,
+    handleSwapLeftDay,
+    handleSwapRightDay,
     selectedDayId,
-    state
   ]);
 
   return (

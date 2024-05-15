@@ -162,6 +162,20 @@ export class MealPlan {
     }
   }
 
+  swapLeftDay(id: string) {
+    const day = this.days[id];
+    if (!day || !day.prevDay) return;
+
+    this.swapDays(day.id, day.prevDay.id);
+  }
+
+  swapRightDay(id: string) {
+    const day = this.days[id];
+    if (!day || !day.nextDay) return;
+
+    this.swapDays(day.id, day.nextDay.id);
+  }
+
   addUserIngredient(ingredient: Ingredient) {
     if (
       ingredient.name in this.userIngredients &&

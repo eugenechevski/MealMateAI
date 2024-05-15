@@ -11,6 +11,8 @@ type Action =
   | { type: "APPEND_NEW_DAY" }
   | { type: "REMOVE_DAY"; payload: string }
   | { type: "SWAP_DAYS"; payload: { day1: string; day2: string } }
+  | { type: "SWAP_LEFT_DAY"; payload: string }
+  | { type: "SWAP_RIGHT_DAY"; payload: string }
   | { type: "APPEND_NEW_MEAL"; payload: string }
   | { type: "REMOVE_MEAL"; payload: { day: string; meal: string } }
   | { type: "SWAP_LEFT_MEAL"; payload: { day: string; meal: string } }
@@ -56,6 +58,12 @@ const appStateReducer = (state: State, action: Action): State => {
         action.payload.day1,
         action.payload.day2
       );
+      return { ...state };
+    case "SWAP_LEFT_DAY":
+      state?.appState?.currentMealPlan?.swapLeftDay(action.payload);
+      return { ...state };
+    case "SWAP_RIGHT_DAY":
+      state?.appState?.currentMealPlan?.swapRightDay(action.payload);
       return { ...state };
     case "APPEND_NEW_MEAL":
       state?.appState?.currentMealPlan?.days[action.payload]?.appendNewMeal();
