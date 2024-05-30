@@ -1,6 +1,6 @@
 "use client";
 
-import { v4 as uuidv4 } from "uuid"; 
+import { v4 as uuidv4 } from "uuid";
 
 import { useSearchParams } from "next/navigation";
 import { useAppState } from "@/context/app-state/AppStateContext";
@@ -141,16 +141,10 @@ export default function SelectionMenuPage() {
     state?.appState?.currentMealPlan?.days,
   ]);
 
-  return (
-    <motion.main
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
-      className="primary-main h-max min-h-screen overflow-x-hidden"
-    >
-      {/* Top shelf */}
+  const topShelf = useMemo(
+    () => (
       <nav className="w-full h-full flex flex-col justify-center items-center mt-12">
-        {meal && day ? (
+        {selectionMode === 'select' ? (
           <h1 className="primary-h1">
             Recipe for meal {mealIndex + 1} of day {dayIndex + 1}.
           </h1>
@@ -179,7 +173,7 @@ export default function SelectionMenuPage() {
         </nav>
 
         {/* Finish selecting button */}
-        { selectionMode === "select" && selectedRecipe && (
+        {selectionMode === "select" && selectedRecipe && (
           <Link href={`/days/${day}/${meal}`} className="mt-5">
             <motion.button
               initial={{ opacity: 0, y: -10 }}
@@ -193,8 +187,22 @@ export default function SelectionMenuPage() {
           </Link>
         )}
       </nav>
+    ),
+    [
+      cuisineNames,
+      day,
+      dayIndex,
+      handleSelectCuisine,
+      meal,
+      mealIndex,
+      selectedCuisines,
+      selectedRecipe,
+      selectionMode,
+    ]
+  );
 
-      {/* Selection menu grid */}
+  const selectionMenuGrid = useMemo(
+    () => (
       <section className="grid grid-cols-3 gap-6 w-3/4 p-12 overflow-y-auto overflow-x-hidden h-full">
         {listRecipes.map((recipe) => (
           <motion.button
@@ -203,123 +211,143 @@ export default function SelectionMenuPage() {
             transition={{ duration: 0.5 }}
             whileHover={{ scale: 1.05 }}
             key={uuidv4()}
-            className={`${selectedRecipe?.name === recipe.name ? "primary-selected" : ""}`}
+            className={`${
+              selectedRecipe?.name === recipe.name ? "primary-selected" : ""
+            }`}
             onClick={() => handleOpenRecipeProfile(recipe)}
           >
             <RecipeCard recipe={recipe} />
           </motion.button>
         ))}
       </section>
+    ),
+    [handleOpenRecipeProfile, listRecipes, selectedRecipe?.name]
+  );
 
-      {/* Recipe profile modal */}
-      {openedRecipe && (
-        <Modal
-          isOpen={openedRecipe !== null}
-          onClose={() => setOpenedRecipe(null)}
-          backdrop="blur"
-          size="lg"
-          className="h-[80vh]"
-          motionProps={{
-            variants: {
-              enter: {
-                y: 0,
-                opacity: 1,
-                transition: {
-                  duration: 1,
-                  ease: "easeOut",
-                },
-              },
-              exit: {
-                y: -20,
-                opacity: 0,
-                transition: {
-                  duration: 1,
-                  ease: "easeIn",
-                },
+  const recipeProfileModal = useMemo(
+    () => (
+      <Modal
+        isOpen={openedRecipe !== null}
+        onClose={() => setOpenedRecipe(null)}
+        backdrop="blur"
+        size="lg"
+        className="h-[80vh]"
+        motionProps={{
+          variants: {
+            enter: {
+              y: 0,
+              opacity: 1,
+              transition: {
+                duration: 1,
+                ease: "easeOut",
               },
             },
-          }}
-        >
-          <ModalContent className="p-3 flex flex-col items-center justify-start overflow-y-scroll">
-            <ModalHeader className="text-2xl font-secondary">
-              {openedRecipe?.name}
-            </ModalHeader>
-            <ModalHeader className="text-md font-secondary">
-              {openedRecipe?.cuisine}
-            </ModalHeader>
-            <ModalBody className="w-full flex flex-col justify-center items-center text-sm">
-              {/* Image */}
-              <Image
-                src={openedRecipe?.image?.url as string}
-                alt={openedRecipe?.image?.title}
-                loading="lazy"
-                height={200}
-                width={200}
-                className="shadow-2xl"
-              />
+            exit: {
+              y: -20,
+              opacity: 0,
+              transition: {
+                duration: 1,
+                ease: "easeIn",
+              },
+            },
+          },
+        }}
+      >
+        <ModalContent className="p-3 flex flex-col items-center justify-start overflow-y-scroll">
+          <ModalHeader className="text-2xl font-secondary">
+            {openedRecipe?.name}
+          </ModalHeader>
+          <ModalHeader className="text-md font-secondary">
+            {openedRecipe?.cuisine}
+          </ModalHeader>
+          <ModalBody className="w-full flex flex-col justify-center items-center text-sm">
+            {/* Image */}
+            <Image
+              src={openedRecipe?.image?.url as string}
+              alt={openedRecipe?.image?.title as string}
+              loading="lazy"
+              height={200}
+              width={200}
+              className="shadow-2xl"
+            />
 
-              {/* Ingredients */}
-              <div className="w-full flex flex-col border-b-3 border-b-primary-coal justify-center items-center p-3">
-                <h2 className="text-xl font-secondary mb-3">Ingredients</h2>
-                <ul className="list-disc list-inside flex flex-col items-start overflow-auto">
-                  {openedRecipe?.ingredients.map(({ name, amount, unit }) => (
-                    <li key={name}>
-                      <strong>{name}</strong> {"- " + amount + " -"}{" "}
-                      <i>{unit}</i>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            {/* Ingredients */}
+            <div className="w-full flex flex-col border-b-3 border-b-primary-coal justify-center items-center p-3">
+              <h2 className="text-xl font-secondary mb-3">Ingredients</h2>
+              <ul className="list-disc list-inside flex flex-col items-start overflow-auto">
+                {openedRecipe?.ingredients.map(({ name, amount, unit }) => (
+                  <li key={name}>
+                    <strong>{name}</strong> {"- " + amount + " -"} <i>{unit}</i>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-              {/* Steps */}
-              <div className="w-full flex flex-col border-b-3 border-b-primary-coal justify-center items-center gap-3 p-5">
-                <h2 className="text-xl font-secondary mb-3">Steps</h2>
-                <ol className="list-inside list-decimal flex flex-col items-start gap-3 overflow-auto text-justify">
-                  {openedRecipe?.steps.map(({ description }) => (
-                    <li key={description}>{description}</li>
-                  ))}
-                </ol>
-              </div>
+            {/* Steps */}
+            <div className="w-full flex flex-col border-b-3 border-b-primary-coal justify-center items-center gap-3 p-5">
+              <h2 className="text-xl font-secondary mb-3">Steps</h2>
+              <ol className="list-inside list-decimal flex flex-col items-start gap-3 overflow-auto text-justify">
+                {openedRecipe?.steps.map(({ description }) => (
+                  <li key={description}>{description}</li>
+                ))}
+              </ol>
+            </div>
 
-              {/* Nutrition */}
-              <div className="w-full flex flex-col border-b-3 border-b-primary-coal justify-center items-center p-5">
-                <h2 className="text-xl font-secondary mb-3">Nutrition</h2>
-                <ul className="list-inside list-disc">
-                  <li>
-                    <strong>Servings:</strong>{" "}
-                    {openedRecipe?.nutrition?.servings}
-                  </li>
-                  <li>
-                    <strong>Calories per serving:</strong>{" "}
-                    {openedRecipe?.nutrition?.caloriesPerServing}
-                  </li>
-                  <li>
-                    <strong>Protein:</strong> {openedRecipe?.nutrition?.protein}
-                    g
-                  </li>
-                  <li>
-                    <strong>Carbohydrates:</strong>{" "}
-                    {openedRecipe?.nutrition?.carbohydrates}g
-                  </li>
-                  <li>
-                    <strong>Fat:</strong> {openedRecipe?.nutrition?.fat}g
-                  </li>
-                </ul>
-              </div>
-            </ModalBody>
-            <ModalFooter>
-              {day && meal && (
-                <button
-                  className="primary-icon"
-                  onClick={() => handleSelectRecipe(openedRecipe)}
-                >
-                  <FontAwesomeIcon icon={faCheck} />
-                </button>
-              )}
-            </ModalFooter>
-          </ModalContent>
-        </Modal>
-      )}
+            {/* Nutrition */}
+            <div className="w-full flex flex-col border-b-3 border-b-primary-coal justify-center items-center p-5">
+              <h2 className="text-xl font-secondary mb-3">Nutrition</h2>
+              <ul className="list-inside list-disc">
+                <li>
+                  <strong>Servings:</strong> {openedRecipe?.nutrition?.servings}
+                </li>
+                <li>
+                  <strong>Calories per serving:</strong>{" "}
+                  {openedRecipe?.nutrition?.caloriesPerServing}
+                </li>
+                <li>
+                  <strong>Protein:</strong> {openedRecipe?.nutrition?.protein}g
+                </li>
+                <li>
+                  <strong>Carbohydrates:</strong>{" "}
+                  {openedRecipe?.nutrition?.carbohydrates}g
+                </li>
+                <li>
+                  <strong>Fat:</strong> {openedRecipe?.nutrition?.fat}g
+                </li>
+              </ul>
+            </div>
+          </ModalBody>
+          <ModalFooter>
+            {selectionMode === "select" && day && meal && (
+              <button
+                className="primary-icon"
+                onClick={() => handleSelectRecipe(openedRecipe as Recipe)}
+              >
+                <FontAwesomeIcon icon={faCheck} />
+              </button>
+            )}
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    ),
+    [day, handleSelectRecipe, meal, openedRecipe, selectionMode]
+  );
+
+  return (
+    <motion.main
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+      className="primary-main h-max min-h-screen overflow-x-hidden"
+    >
+      {/* Top shelf */}
+      {topShelf}
+
+      {/* Selection menu grid */}
+      {selectionMenuGrid}
+
+      {/* Recipe profile modal */}
+      {openedRecipe && recipeProfileModal}
     </motion.main>
   );
 }
