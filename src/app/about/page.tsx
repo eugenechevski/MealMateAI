@@ -9,7 +9,6 @@ const text = [
 const authors = {
   "Yauheni Khvashcheuski / eugenechevski": "https://github.com/eugenechevski",
   "Arthur Teng / Saxhaver": "https://github.com/Arthur1asdf",
-  "Daniel Ramirez / danrmz": "https://github.com/danrmzz",
 };
 
 export default function AboutPage() {
