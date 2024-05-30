@@ -26,7 +26,7 @@ async function signInWithProvider(provider: "google" | "discord") {
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider,
     options: {
-      redirectTo: `https://meal-mate-ai.vercel.app/auth/callback`,
+      redirectTo: `/auth/callback`,
     },
   });
 

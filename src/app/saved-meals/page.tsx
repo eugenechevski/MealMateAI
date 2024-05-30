@@ -1,10 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-
 import { useAppState } from "@/context/app-state/AppStateContext";
-import { useEffect, useState } from "react";
-
+import { useEffect, useState, useMemo } from "react";
 import { Accordion, AccordionItem } from "@nextui-org/react";
 
 export default function SavedMealsPage() {
@@ -20,17 +18,11 @@ export default function SavedMealsPage() {
     }
   }, [state?.appState?.user?.savedMealPlans]);
 
-  return (
-    <motion.main
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
-      className="primary-main max-h-max"
-    >
-      <h1 className="primary-h1">Saved Meals</h1>
-      {savedMealPlans.length === 0 ? (
-        <p>No saved meal plans.</p>
-      ) : (
+  const renderAccordion = useMemo(() => {
+    if (savedMealPlans.length === 0) {
+      return <p>No saved meal plans.</p>;
+    } else {
+      return (
         <Accordion className="w-1/2">
           {savedMealPlans.map(([date, mealPlan]) => (
             <AccordionItem key={date} title={new Date(date).toDateString()}>
@@ -83,7 +75,19 @@ export default function SavedMealsPage() {
             </AccordionItem>
           ))}
         </Accordion>
-      )}
+      );
+    }
+  }, [savedMealPlans]);
+
+  return (
+    <motion.main
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+      className="primary-main max-h-max"
+    >
+      <h1 className="primary-h1">Saved Meals</h1>
+      {renderAccordion}
     </motion.main>
   );
 }
