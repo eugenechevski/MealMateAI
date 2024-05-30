@@ -1,6 +1,7 @@
 import {
   AppState,
   MainUser,
+  SelectionMenu,
 } from "@/core";
 import buildSelectionMenu from "@/lib/buildSelectionMenu";
 
@@ -10,10 +11,10 @@ describe("AppState", () => {
       .recipes as LocalRawMenuData;
     const app = new AppState(
       new MainUser("0", "John Doe", "johndow@mail.com"),
-      buildSelectionMenu(rawData)
+      buildSelectionMenu(rawData, "local") as SelectionMenu
     );
 
-    expect(app.user.username).toBe("John Doe");
+    expect((app.user as MainUser).username).toBe("John Doe");
     expect(Object.keys(app.selectionMenu.items).length).toBeGreaterThan(0);
   });
 });

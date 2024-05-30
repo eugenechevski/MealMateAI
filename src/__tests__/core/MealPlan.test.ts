@@ -6,6 +6,7 @@ import {
   Ingredient,
   Step,
   MealImage,
+  SelectionMenu,
 } from "@/core";
 import buildSelectionMenu from "@/lib/buildSelectionMenu";
 
@@ -148,13 +149,17 @@ describe("MealPlan", () => {
 
   it("should update a user ingredient in the meal plan", () => {
     const mealPlan = new MealPlan();
+    const ingredient = new Ingredient("Spaghetti pasta", 1, "box");
 
-    mealPlan.addUserIngredient(new Ingredient("Spaghetti pasta", 1, "box"));
+    mealPlan.addUserIngredient(ingredient);
 
     expect(mealPlan.userIngredients["Spaghetti pasta"].amount).toBe(1);
     expect(mealPlan.userIngredients["Spaghetti pasta"].unit).toBe("box");
 
-    mealPlan.updateUserIngredient(new Ingredient("Spaghetti pasta", 2, "lb"));
+    mealPlan.updateUserIngredient(
+      ingredient,
+      new Ingredient("Spaghetti pasta", 2, "lb")
+    );
 
     expect(mealPlan.userIngredients["Spaghetti pasta"].amount).toBe(2);
     expect(mealPlan.userIngredients["Spaghetti pasta"].unit).toBe("lb");
@@ -175,13 +180,17 @@ describe("MealPlan", () => {
   it("should return the meal plan data", async () => {
     // Build the selection menu
     const selectionMenu = buildSelectionMenu(
-      (await import("../../../initialSelectionMenu.json")).recipes
+      (await import("../../../initialSelectionMenu.json"))
+        .recipes as LocalRawMenuData,
+      "local"
     );
     const mealPlan = new MealPlan();
 
     // Build the meal plan using the selection menu
     const recipes: Recipe[] = [];
-    for (const cuisine of Object.values(selectionMenu.items)) {
+    for (const cuisine of Object.values(
+      (selectionMenu as SelectionMenu).items
+    )) {
       for (const recipe of Object.values(cuisine)) {
         recipes.push(recipe);
       }
@@ -253,15 +262,23 @@ describe("MealPlan", () => {
 
   it("should update user ingredients in the meal plan", () => {
     const mealPlan = new MealPlan();
+    const ingredient1 = new Ingredient("Spaghetti pasta", 1, "box");
+    const ingredient2 = new Ingredient("Tomato", 2, "unit");
 
-    mealPlan.addUserIngredient(new Ingredient("Spaghetti pasta", 1, "box"));
-    mealPlan.addUserIngredient(new Ingredient("Tomato", 2, "unit"));
+    mealPlan.addUserIngredient(ingredient1);
+    mealPlan.addUserIngredient(ingredient2);
 
     expect(mealPlan.userIngredients["Spaghetti pasta"].amount).toBe(1);
     expect(mealPlan.userIngredients["Tomato"].amount).toBe(2);
 
-    mealPlan.updateUserIngredient(new Ingredient("Spaghetti pasta", 2, "lb"));
-    mealPlan.updateUserIngredient(new Ingredient("Tomato", 3, "unit"));
+    mealPlan.updateUserIngredient(
+      ingredient1,
+      new Ingredient("Spaghetti pasta", 2, "box")
+    );
+    mealPlan.updateUserIngredient(
+      ingredient2,
+      new Ingredient("Tomato", 3, "unit")
+    );
 
     expect(mealPlan.userIngredients["Spaghetti pasta"].amount).toBe(2);
     expect(mealPlan.userIngredients["Tomato"].amount).toBe(3);
