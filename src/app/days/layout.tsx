@@ -144,7 +144,7 @@ export default function DaysMealLayout({
 
   const mealPlanData = useMemo(() => {
     return state?.appState?.currentMealPlan?.getMealPlanData();
-  }, [state?.appState?.currentMealPlan])
+  }, [state?.appState?.currentMealPlan]);
 
   const listIngredientRows = useMemo(() => {
     return Object.values(
@@ -346,12 +346,14 @@ export default function DaysMealLayout({
   ]);
 
   const handleFinishMealPlan = useCallback(async () => {
-    // Save the meal plan
-    dispatch({ type: "SAVE_MEAL_PLAN" });
-
     // Update the storage
     if (state?.appState?.user instanceof GuestUser) {
       const { savedMealPlans } = state.appState.user;
+      const currentMealPlanData =
+        state.appState.currentMealPlan?.getMealPlanData();
+
+      // Combine the saved meal plans with the current meal plan
+      savedMealPlans[new Date().toISOString()] = currentMealPlanData;
 
       // Stringify the meal plans
       const stringified = stringify(savedMealPlans);
@@ -435,6 +437,9 @@ export default function DaysMealLayout({
       }
     }
 
+    // Save the meal plan
+    dispatch({ type: "SAVE_MEAL_PLAN" });
+
     // Start a new meal plan
     dispatch({ type: "START_NEW_MEAL_PLAN" });
 
@@ -448,6 +453,7 @@ export default function DaysMealLayout({
     mealPlanData,
     onOverviewOpenChange,
     router,
+    state.appState.currentMealPlan,
     state.appState.user,
     supabase,
   ]);
