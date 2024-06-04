@@ -11,19 +11,11 @@ import { motion } from "framer-motion";
 export default function Page() {
   return (
     <motion.main
-      className="primary-main gap-3"
+      className="primary-main gap-7"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
-      <motion.h1
-        className="primary-h1"
-        initial={{ y: -50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 1 }}
-      >
-        Simplify Your Meal Planning
-      </motion.h1>
       <motion.figure
         className="rounded-full shadow-2xl"
         initial={{ scale: 0 }}
@@ -39,7 +31,7 @@ export default function Page() {
         ></Image>
       </motion.figure>
       <motion.p
-        className="font-primary italic"
+        className="font-primary italic text-sm text-center phone:text-lg"
         initial={{ y: 50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1 }}

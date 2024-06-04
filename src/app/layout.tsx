@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { useMemo } from "react";
 
 import "./globals.css";
 import logoImg from "@/assets/logo.png";
@@ -266,9 +267,8 @@ const RootState = ({ children }: { children: React.ReactNode }) => {
     };
   }, [selectionMenu, onSignedIn, onSignedOut, supabase.auth]);
 
-  return (
-    <div className="relative">
-      {/* Floating logo */}
+  const floatingLogo = useMemo(
+    () => (
       <motion.button
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -280,8 +280,12 @@ const RootState = ({ children }: { children: React.ReactNode }) => {
           <Image src={logoImg} alt="Meal Mate AI logo" />
         </Link>
       </motion.button>
+    ),
+    []
+  );
 
-      {/* User dropdown */}
+  const userDropdown = useMemo(
+    () => (
       <Dropdown className="bg-primary-coal text-primary-cream">
         <DropdownTrigger>
           <div className="flex items-center gap-2 z-[9999] absolute top-10 right-10">
@@ -326,6 +330,19 @@ const RootState = ({ children }: { children: React.ReactNode }) => {
           </DropdownSection>
         </DropdownMenu>
       </Dropdown>
+    ),
+    [state?.appState?.user]
+  );
+
+  return (
+    <div className="relative">
+      {/* Floating logo */}
+      {floatingLogo}
+
+      {/* User dropdown */}
+      {userDropdown}
+
+      {/* Main content */}
       {children}
     </div>
   );

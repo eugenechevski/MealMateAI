@@ -17,7 +17,7 @@ export default function StartPage() {
         className="primary-button text-3xl p-5"
       >
         <Link href="/days">
-          Start cooking
+          Cook
         </Link>
       </motion.button>
     </main>

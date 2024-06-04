@@ -34,14 +34,14 @@ export default function LoginPage() {
 
   return (
     <form
-      className="primary-form w-1/4 h-1/2"
+      className="primary-form w-[95%] h-[60%] tablet:w-3/4 tablet:h-[60%] laptop:w-1/2 laptop:h-1/2 desktop:w-1/3"
       onSubmit={handleSubmit(onSubmit)}
     >
       {/* Heading */}
-      <h1 className="font-secondary text-5xl text-center">Sign-in</h1>
+      <h1 className="font-secondary text-2xl text-center">Sign-in</h1>
 
       {/* Email */}
-      <div className="flex flex-col w-[90%]">
+      <div className="flex flex-col w-[90%] text-sm">
         <label htmlFor="email">Email</label>
         <input
           type="email"
@@ -53,7 +53,7 @@ export default function LoginPage() {
       </div>
 
       {/* Password */}
-      <div className="flex flex-col w-[90%]">
+      <div className="flex flex-col w-[90%] text-sm">
         <label htmlFor="password">Password</label>
         <input
           type="password"
@@ -65,11 +65,11 @@ export default function LoginPage() {
       </div>
 
       {/* Guest link */}
-      <Link href="/start" className="underline">Continue as guest</Link>
+      <Link href="/start" className="underline text-sm">Continue as guest</Link>
 
       {/* Sign-up link */}
-      <Link href="/auth/sign-up">
-        No account? <span className="underline">Sign-up</span>
+      <Link href="/auth/sign-up" className="text-sm">
+        No account? <span className="underline ">Sign-up</span>
       </Link>
 
       {/* OAuth providers */}
@@ -83,7 +83,7 @@ export default function LoginPage() {
       </div>
 
       {/* Login button */}
-      <button type="submit" className="primary-button w-1/4">
+      <button type="submit" className="primary-button w-1/2">
         Login
       </button>
     </form>

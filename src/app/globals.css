@@ -38,7 +38,7 @@ body {
   }
 
   .primary-h1 {
-    @apply text-5xl font-secondary mb-12;
+    @apply text-sm phone:text-lg tablet:text-xl desktop:text-5xl font-secondary mb-12;
   }
 
   .primary-button {

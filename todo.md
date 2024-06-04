@@ -1,6 +1,5 @@
 # BACKLOG
 
-* Responsive design
 * Form for adding recipes
 * User profile
 * flow controls
@@ -10,10 +9,6 @@
 
 # DEBUGGING
 
-* Saving meal plans
-* Linked list operations
-* OAuth login
-
 # FOCUS
 
-* Optimization & Debugging
+* Responsive design
