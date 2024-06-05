@@ -1,5 +1,10 @@
 "use client";
 
+import logoImg from "@/assets/logo.png";
+
+import Image from "next/image";
+import Link from "next/link";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFlagCheckered,
@@ -12,6 +17,10 @@ import {
   faMessage as faChat,
   faPaperPlane,
   faBars,
+  faSignOut,
+  faCompass,
+  faUser,
+  faSignIn,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { motion } from "framer-motion";
@@ -23,6 +32,8 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
+  DropdownItem,
+  DropdownSection,
 } from "@nextui-org/react";
 
 import { useAppState } from "@/context/app-state/AppStateContext";
@@ -38,6 +49,7 @@ import {
   TableCell,
   Pagination,
 } from "@nextui-org/react";
+import { Dropdown, DropdownTrigger, DropdownMenu } from "@nextui-org/react";
 
 import { GuestUser, Ingredient, MainUser } from "@/core";
 
@@ -91,6 +103,8 @@ export default function DaysMealLayout({
   const [editedUserIngredient, setEditedUserIngredient] =
     useState<Ingredient>();
   const [isTriggersDropdownOpen, setIsTriggersDropdownOpen] = useState(false);
+  const [isNavigationsDropdownOpen, setNavigationsDropdownOpen] =
+    useState(false);
 
   const {
     messages: chatMessages,
@@ -820,6 +834,117 @@ export default function DaysMealLayout({
     );
   }, [isTriggersDropdownOpen, onChatOpen, onIngredientsOpen, onOverviewOpen]);
 
+  const floatingLogo = useMemo(
+    () => (
+      <motion.button
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 2 }}
+        whileHover={{ scale: 1.1 }}
+        className="w-[70px] flex flex-col items-center justify-center"
+      >
+        <Link href="/">
+          <Image src={logoImg} alt="Meal Mate AI logo" />
+        </Link>
+      </motion.button>
+    ),
+    []
+  );
+
+  const userDropdown = useMemo(
+    () => (
+      <Dropdown className="bg-primary-coal text-primary-cream">
+        <DropdownTrigger>
+          <div className="flex items-center">
+            <motion.button
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 2 }}
+              whileHover={{ scale: 1.1 }}
+              className="primary-icon bg-primary-coal"
+            >
+              <FontAwesomeIcon icon={faUser} size="sm" />
+            </motion.button>
+          </div>
+        </DropdownTrigger>
+        <DropdownMenu aria-label="Static Actions" disabledKeys={["user"]}>
+          <DropdownItem key={"user"}>
+            <span className="ml-3">Hello, </span>
+            {state?.appState?.user instanceof MainUser ? (
+              <span className="">
+                {state?.appState?.user?.username?.split("@")[0]}
+              </span>
+            ) : (
+              <span className="">Guest</span>
+            )}
+          </DropdownItem>
+          <DropdownSection className="border-t-2 border-primary-cream mt-2 pt-2">
+            <DropdownItem href="/saved-meals">Saved meals</DropdownItem>
+            <DropdownItem href="/about">About</DropdownItem>
+          </DropdownSection>
+          <DropdownSection className="border-t-2 border-primary-cream mt-2">
+            {state?.appState?.user instanceof MainUser ? (
+              <DropdownItem href="/auth/sign-out" className="flex">
+                <FontAwesomeIcon icon={faSignOut} size="sm" />
+                <span className="ml-2">Sign out</span>
+              </DropdownItem>
+            ) : (
+              <DropdownItem href="/auth/login" className="flex">
+                <FontAwesomeIcon icon={faSignIn} size="sm" />
+                <span className="ml-2">Sign-in</span>
+              </DropdownItem>
+            )}
+          </DropdownSection>
+        </DropdownMenu>
+      </Dropdown>
+    ),
+    [state?.appState?.user]
+  );
+
+  const navigationBar = useMemo(() => {
+    return (
+      <nav className="absolute w-full h-[10vh] left-0 top-0">
+        <div className="z-[99] fixed top-7 left-7 flex flex-col gap-3">
+          {/** Custom  trigger */}
+          <motion.button
+            className="primary-icon bg-primary-coal"
+            onClick={() => setNavigationsDropdownOpen((prev) => !prev)}
+            whileHover={{
+              scale: 1.1,
+              transition: { duration: 0.1 },
+            }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <FontAwesomeIcon icon={faCompass} />
+          </motion.button>
+          {isNavigationsDropdownOpen && (
+            <motion.div
+              initial={{
+                opacity: 0,
+                height: 0,
+              }}
+              animate={{
+                opacity: 1,
+                height: "100%",
+              }}
+              transition={{
+                duration: 1,
+              }}
+              exit={{
+                opacity: 0,
+                height: 0,
+              }}
+              className="flex flex-col justify-center items-center w-12"
+            >
+              {floatingLogo}
+              {userDropdown}
+            </motion.div>
+          )}
+        </div>
+      </nav>
+    );
+  }, [floatingLogo, isNavigationsDropdownOpen, userDropdown]);
+
   useEffect(() => {
     if (mealPlanData && Object.keys(mealPlanData).length !== 0) {
       setIsMealPlanEmpty(false);
@@ -828,6 +953,9 @@ export default function DaysMealLayout({
 
   return (
     <main className="relative">
+      {/* Navigations */}
+      {navigationBar}
+
       {/* Triggers dropdown */}
       {triggersDropdown}
 

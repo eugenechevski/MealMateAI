@@ -1,13 +1,9 @@
 "use client";
 
 import * as React from "react";
-import { useMemo } from "react";
 
 import "./globals.css";
-import logoImg from "@/assets/logo.png";
 
-import Image from "next/image";
-import Link from "next/link";
 import { Pacifico, Roboto_Serif } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 
@@ -22,17 +18,6 @@ import { createClient } from "@/lib/supabase/client";
 import { useAppState } from "@/context/app-state/AppStateContext";
 
 import { NextUIProvider } from "@nextui-org/react";
-
-import { faUser, faSignOut, faSignIn } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-import {
-  Dropdown,
-  DropdownTrigger,
-  DropdownMenu,
-  DropdownSection,
-  DropdownItem,
-} from "@nextui-org/react";
 
 const primaryFont = Roboto_Serif({
   subsets: ["latin"],
@@ -267,81 +252,8 @@ const RootState = ({ children }: { children: React.ReactNode }) => {
     };
   }, [selectionMenu, onSignedIn, onSignedOut, supabase.auth]);
 
-  const floatingLogo = useMemo(
-    () => (
-      <motion.button
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 2 }}
-        whileHover={{ scale: 1.1 }}
-        className="z-[9999] absolute left-10 top-10 w-16 flex flex-col items-center justify-center"
-      >
-        <Link href="/">
-          <Image src={logoImg} alt="Meal Mate AI logo" />
-        </Link>
-      </motion.button>
-    ),
-    []
-  );
-
-  const userDropdown = useMemo(
-    () => (
-      <Dropdown className="bg-primary-coal text-primary-cream">
-        <DropdownTrigger>
-          <div className="flex items-center gap-2 z-[9999] absolute top-10 right-10">
-            <motion.button
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 2 }}
-              whileHover={{ scale: 1.1 }}
-              className="primary-icon bg-primary-coal"
-            >
-              <FontAwesomeIcon icon={faUser} size="sm" />
-            </motion.button>
-          </div>
-        </DropdownTrigger>
-        <DropdownMenu aria-label="Static Actions" disabledKeys={["user"]}>
-          <DropdownItem key={"user"}>
-            <span className="ml-3">Hello, </span>
-            {state?.appState?.user instanceof MainUser ? (
-              <span className="">
-                {state?.appState?.user?.username?.split("@")[0]}
-              </span>
-            ) : (
-              <span className="">Guest</span>
-            )}
-          </DropdownItem>
-          <DropdownSection className="border-t-2 border-primary-cream mt-2 pt-2">
-            <DropdownItem href="/saved-meals">Saved meals</DropdownItem>
-            <DropdownItem href="/about">About</DropdownItem>
-          </DropdownSection>
-          <DropdownSection className="border-t-2 border-primary-cream mt-2">
-            {state?.appState?.user instanceof MainUser ? (
-              <DropdownItem href="/auth/sign-out" className="flex">
-                <FontAwesomeIcon icon={faSignOut} size="sm" />
-                <span className="ml-2">Sign out</span>
-              </DropdownItem>
-            ) : (
-              <DropdownItem href="/auth/login" className="flex">
-                <FontAwesomeIcon icon={faSignIn} size="sm" />
-                <span className="ml-2">Sign-in</span>
-              </DropdownItem>
-            )}
-          </DropdownSection>
-        </DropdownMenu>
-      </Dropdown>
-    ),
-    [state?.appState?.user]
-  );
-
   return (
     <div className="relative">
-      {/* Floating logo */}
-      {floatingLogo}
-
-      {/* User dropdown */}
-      {userDropdown}
-
       {/* Main content */}
       {children}
     </div>

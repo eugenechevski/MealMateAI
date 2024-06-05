@@ -34,7 +34,7 @@ export default function LoginPage() {
 
   return (
     <form
-      className="primary-form w-[95%] h-[60%] tablet:w-3/4 tablet:h-[60%] laptop:w-1/2 laptop:h-1/2 desktop:w-1/3"
+      className="primary-form w-[95%] p-12 tablet:w-3/4 laptop:w-1/2  desktop:w-1/3"
       onSubmit={handleSubmit(onSubmit)}
     >
       {/* Heading */}
