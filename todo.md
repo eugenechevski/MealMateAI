@@ -14,3 +14,4 @@
 # FOCUS
 
 * Responsive design
+* Put all Japanese and Taiwanese recipes into the Asia category

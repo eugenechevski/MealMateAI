@@ -141,10 +141,35 @@ export default function SelectionMenuPage() {
     state?.appState?.currentMealPlan?.days,
   ]);
 
-  const topShelf = useMemo(
+  const filterButtons = useMemo(
     () => (
-      <nav className="w-full h-full flex flex-col justify-center items-center mt-12">
-        {selectionMode === 'select' ? (
+      <nav className="w-full overflow-x-scroll flex justify-center items-center gap-3">
+        {cuisineNames.map((cuisineName) => (
+          <motion.button
+            key={cuisineName}
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            whileHover={{ scale: 1.1 }}
+            className={`primary-button w-12 laptop:w-24 ${
+              selectedCuisines?.has(cuisineName)
+                ? `bg-primary-red`
+                : `bg-primary-orange`
+            }`}
+            onClick={() => handleSelectCuisine(cuisineName)}
+          >
+            {cuisineName}
+          </motion.button>
+        ))}
+      </nav>
+    ),
+    [cuisineNames, handleSelectCuisine, selectedCuisines]
+  );
+
+  const navigationBar = useMemo(
+    () => (
+      <nav className="max-w-screen w-full h-full flex flex-col justify-center items-center mt-12">
+        {selectionMode === "select" ? (
           <h1 className="primary-h1">
             Recipe for meal {mealIndex + 1} of day {dayIndex + 1}.
           </h1>
@@ -152,25 +177,7 @@ export default function SelectionMenuPage() {
           <h1 className="primary-h1">Selection Menu</h1>
         )}
         {/* Cuisines filter */}
-        <nav className="w-full flex justify-center items-center gap-3">
-          {cuisineNames.map((cuisineName) => (
-            <motion.button
-              key={cuisineName}
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              whileHover={{ scale: 1.1 }}
-              className={`primary-button ${
-                selectedCuisines?.has(cuisineName)
-                  ? `bg-primary-red`
-                  : `bg-primary-orange`
-              }`}
-              onClick={() => handleSelectCuisine(cuisineName)}
-            >
-              {cuisineName}
-            </motion.button>
-          ))}
-        </nav>
+        {filterButtons}
 
         {/* Finish selecting button */}
         {selectionMode === "select" && selectedRecipe && (
@@ -189,13 +196,11 @@ export default function SelectionMenuPage() {
       </nav>
     ),
     [
-      cuisineNames,
       day,
       dayIndex,
-      handleSelectCuisine,
+      filterButtons,
       meal,
       mealIndex,
-      selectedCuisines,
       selectedRecipe,
       selectionMode,
     ]
@@ -203,7 +208,7 @@ export default function SelectionMenuPage() {
 
   const selectionMenuGrid = useMemo(
     () => (
-      <section className="grid grid-cols-3 gap-6 w-3/4 p-12 overflow-y-auto overflow-x-hidden h-full">
+      <section className="grid grid-cols-1 gap-3 tablet:grid-cols-2 laptop:grid-cols-3 laptop:gap-6 laptop:w-3/4 p-12 overflow-y-auto overflow-x-hidden h-full">
         {listRecipes.map((recipe) => (
           <motion.button
             initial={{ opacity: 0, scale: 0.9 }}
@@ -340,8 +345,8 @@ export default function SelectionMenuPage() {
       transition={{ duration: 1 }}
       className="primary-main h-max min-h-screen overflow-x-hidden"
     >
-      {/* Top shelf */}
-      {topShelf}
+      {/* Navbar */}
+      {navigationBar}
 
       {/* Selection menu grid */}
       {selectionMenuGrid}
