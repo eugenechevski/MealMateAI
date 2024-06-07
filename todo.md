@@ -9,6 +9,8 @@
 
 # DEBUGGING
 
+* Sign-in via email and passwords
+
 # FOCUS
 
 * Responsive design

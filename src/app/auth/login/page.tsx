@@ -34,14 +34,14 @@ export default function LoginPage() {
 
   return (
     <form
-      className="primary-form w-[95%] p-12 tablet:w-3/4 laptop:w-1/2  desktop:w-1/3"
+      className="primary-form"
       onSubmit={handleSubmit(onSubmit)}
     >
       {/* Heading */}
       <h1 className="font-secondary text-2xl text-center">Sign-in</h1>
 
       {/* Email */}
-      <div className="flex flex-col w-[90%] text-sm">
+      <div className="primary-form-field">
         <label htmlFor="email">Email</label>
         <input
           type="email"
@@ -53,7 +53,7 @@ export default function LoginPage() {
       </div>
 
       {/* Password */}
-      <div className="flex flex-col w-[90%] text-sm">
+      <div className="primary-form-field">
         <label htmlFor="password">Password</label>
         <input
           type="password"
@@ -83,7 +83,7 @@ export default function LoginPage() {
       </div>
 
       {/* Login button */}
-      <button type="submit" className="primary-button w-1/2">
+      <button type="submit" className="primary-button">
         Login
       </button>
     </form>

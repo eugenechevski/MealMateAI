@@ -42,7 +42,7 @@ body {
   }
 
   .primary-button {
-    @apply bg-primary-red text-primary-white shadow-2xl rounded-full flex items-center justify-center p-3 text-shadow;
+    @apply w-1/2 bg-primary-red text-primary-white shadow-2xl rounded-full flex items-center justify-center p-3 text-shadow;
   }
 
   .primary-input {
@@ -50,7 +50,11 @@ body {
   }
 
   .primary-form {
-    @apply bg-primary-gray flex flex-col justify-center items-center rounded-2xl shadow-2xl p-12 gap-2;
+    @apply text-center bg-primary-gray flex flex-col justify-center items-center rounded-2xl shadow-2xl p-8 gap-2 w-[95%] tablet:w-3/4 laptop:w-1/2 desktop:w-1/3;
+  }
+
+  .primary-form-field {
+    @apply flex flex-col w-[90%] text-sm;
   }
 
   .primary-icon {

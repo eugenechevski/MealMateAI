@@ -23,14 +23,14 @@ export default function SignUpPage() {
 
   return (
     <form
-      className="primary-form w-1/4 min-h-1/2 max-h-3/4 gap-5"
+      className="primary-form"
       onSubmit={handleSubmit(onSubmit)}
     >
       {/* Heading */}
-      <h1 className="font-secondary text-5xl text-center">Create account</h1>
+      <h1 className="font-secondary text-2xl text-center">Create account</h1>
 
       {/* Email */}
-      <div className="flex flex-col w-[90%]">
+      <div className="primary-form-field">
         <label htmlFor="email">Email</label>
         <input
           type="email"
@@ -44,7 +44,7 @@ export default function SignUpPage() {
       </div>
 
       {/* Password */}
-      <div className="flex flex-col w-[90%]">
+      <div className="primary-form-field">
         <label htmlFor="password">Password</label>
         <input
           type="password"
@@ -67,7 +67,7 @@ export default function SignUpPage() {
       </div>
 
       {/* Confirm password */}
-      <div className="flex flex-col w-[90%]">
+      <div className="primary-form-field">
         <label htmlFor="confirm-password">Confirm Password</label>
         <input
           type="password"
@@ -85,7 +85,7 @@ export default function SignUpPage() {
       </div>
 
       {/* Sign-up button */}
-      <button type="submit" className="primary-button w-1/4">
+      <button type="submit" className="primary-button">
         Sign Up
       </button>
     </form>
