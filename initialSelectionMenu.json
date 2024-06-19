@@ -1026,7 +1026,7 @@
 
     {
       "name": "Karaage",
-      "cuisine": "Japanese",
+      "cuisine": "Asian",
       "ingredients": [
         {
           "name": "Chicken Thighs",
@@ -1102,7 +1102,7 @@
     },
     {
       "name": "Chicken Katsu",
-      "cuisine": "Japanese",
+      "cuisine": "Asian",
       "ingredients": [
         {
           "name": "Boneless Chicken Breast",
@@ -1171,7 +1171,7 @@
     },
     {
       "name": "Katsudon",
-      "cuisine": "Japanese",
+      "cuisine": "Asian",
       "ingredients": [
         {
           "name": "Cooked Chicken Katsu",
@@ -1240,7 +1240,7 @@
     },
     {
       "name": "Japanese Chicken Curry",
-      "cuisine": "Japanese",
+      "cuisine": "Asian",
       "ingredients": [
         {
           "name": "Boneless Chicken Thighs",
@@ -1303,7 +1303,7 @@
     },
     {
       "name": "Gyudon",
-      "cuisine": "Japanese",
+      "cuisine": "Asian",
       "ingredients": [
         {
           "name": "Thinly Sliced Beef",
@@ -1376,7 +1376,7 @@
     },
     {
       "name": "Japanese Cold Soba",
-      "cuisine": "Japanese",
+      "cuisine": "Asian",
       "ingredients": [
         {
           "name": "Dried Soba Noodles",
@@ -1444,7 +1444,7 @@
     },
     {
       "name": "Japanese Udon Soup",
-      "cuisine": "Japanese",
+      "cuisine": "Asian",
       "ingredients": [
         {
           "name": "Dried Udon Noodles",
@@ -1523,7 +1523,7 @@
     },
     {
       "name": "Oyakodon",
-      "cuisine": "Japanese",
+      "cuisine": "Asian",
       "ingredients": [
         {
           "name": "Boneless Chicken Thighs",
@@ -1597,7 +1597,7 @@
     },
     {
       "name": "Onigiri with Unagi Filling",
-      "cuisine": "Japanese",
+      "cuisine": "Asian",
       "ingredients": [
         {
           "name": "Cooked Short-Grain Rice",
@@ -1656,7 +1656,7 @@
     },
     {
       "name": "Miso Soup",
-      "cuisine": "Japanese",
+      "cuisine": "Asian",
       "ingredients": [
         {
           "name": "Dashi Stock",
@@ -1709,7 +1709,7 @@
     },
     {
       "name": "Potstickers with Crispy Skirt",
-      "cuisine": "Taiwanese",
+      "cuisine": "Asian",
       "ingredients": [
         {
           "name": "Taiwanese Potstickers",
@@ -1758,7 +1758,7 @@
     },
     {
       "name": "Taiwanese Popcorn Chicken",
-      "cuisine": "Taiwanese",
+      "cuisine": "Asian",
       "ingredients": [
         {
           "name": "Boneless Chicken Thighs",
@@ -1906,7 +1906,7 @@
     },
     {
       "name": "Taiwanese Fried XXL Chicken",
-      "cuisine": "Taiwanese",
+      "cuisine": "Asian",
       "ingredients": [
         {
           "name": "Boneless Chicken Breast",
@@ -1991,7 +1991,7 @@
     },
     {
       "name": "Taiwanese Fried Pork Chop",
-      "cuisine": "Taiwanese",
+      "cuisine": "Asian",
       "ingredients": [
         {
           "name": "Boneless Pork Chops",
@@ -2071,7 +2071,7 @@
     },
     {
       "name": "Stinky Tofu",
-      "cuisine": "Taiwanese",
+      "cuisine": "Asian",
       "ingredients": [
         {
           "name": "Stinky Tofu (fermented tofu)",
@@ -2124,7 +2124,7 @@
     },
     {
       "name": "Taiwanese Stir Fry Cabbage",
-      "cuisine": "Taiwanese",
+      "cuisine": "Asian",
       "ingredients": [
         {
           "name": "Cabbage",
@@ -2187,7 +2187,7 @@
     },
     {
       "name": "Taiwanese Beef Noodle Soup",
-      "cuisine": "Taiwanese",
+      "cuisine": "Asian",
       "ingredients": [
         {
           "name": "Beef Shank",
@@ -2296,7 +2296,7 @@
     },
     {
       "name": "Oyster Vermicelli Noodles",
-      "cuisine": "Taiwanese",
+      "cuisine": "Asian",
       "ingredients": [
         {
           "name": "Fresh Oysters",
@@ -2388,7 +2388,7 @@
     },
     {
       "name": "Scallion Pancakes with Eggs",
-      "cuisine": "Taiwanese",
+      "cuisine": "Asian",
       "ingredients": [
         {
           "name": "Frozen Scallion Pancakes",

@@ -22,8 +22,15 @@ import {
   ModalFooter,
 } from "@nextui-org/react";
 
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
+
+import { Tooltip } from "@nextui-org/tooltip";
+
+import italianCuisineImg from "@/assets/Italian.png";
+import frenchCuisineImg from "@/assets/French.png";
+import asianCuisineImg from "@/assets/Asian.png";
+import indianCuisineImg from "@/assets/Indian.png";
 
 export default function SelectionMenuPage() {
   const { state, dispatch } = useAppState();
@@ -44,6 +51,15 @@ export default function SelectionMenuPage() {
   );
   const [selectedRecipe, setSelectedRecipe] = useState<Recipe | null>(null);
   const [openedRecipe, setOpenedRecipe] = useState<Recipe | null>(null);
+
+  const mapCuisineToImage = useCallback((cuisineName: string) => {
+    return {
+      Italian: italianCuisineImg,
+      French: frenchCuisineImg,
+      Asian: asianCuisineImg,
+      Indian: indianCuisineImg,
+    }[cuisineName];
+  }, []);
 
   const getAllRecipes = useMemo((): Recipe[] => {
     if (!state?.appState?.selectionMenu?.items) return [];
@@ -143,7 +159,7 @@ export default function SelectionMenuPage() {
 
   const filterButtons = useMemo(
     () => (
-      <nav className="w-full overflow-x-scroll flex justify-center items-center gap-3">
+      <nav className="w-full overflow-x-scroll flex justify-center items-center gap-3 p-3">
         {cuisineNames.map((cuisineName) => (
           <motion.button
             key={cuisineName}
@@ -151,19 +167,24 @@ export default function SelectionMenuPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             whileHover={{ scale: 1.1 }}
-            className={`primary-button w-12 laptop:w-24 ${
+            className={`primary-button shadow-none w-14 laptop:w-20 ${
               selectedCuisines?.has(cuisineName)
                 ? `bg-primary-red`
                 : `bg-primary-orange`
             }`}
             onClick={() => handleSelectCuisine(cuisineName)}
           >
-            {cuisineName}
+            <Tooltip content={cuisineName}>
+              <Image
+                src={mapCuisineToImage(cuisineName) as StaticImageData}
+                alt={cuisineName}
+              />
+            </Tooltip>
           </motion.button>
         ))}
       </nav>
     ),
-    [cuisineNames, handleSelectCuisine, selectedCuisines]
+    [cuisineNames, handleSelectCuisine, mapCuisineToImage, selectedCuisines]
   );
 
   const navigationBar = useMemo(
@@ -208,7 +229,7 @@ export default function SelectionMenuPage() {
 
   const selectionMenuGrid = useMemo(
     () => (
-      <section className="grid grid-cols-1 gap-3 tablet:grid-cols-2 laptop:grid-cols-3 laptop:gap-6 laptop:w-3/4 p-12 overflow-y-auto overflow-x-hidden h-full">
+      <section className="grid grid-cols-1 gap-3 tablet:grid-cols-2 laptop:grid-cols-3 laptop:gap-6 laptop:w-3/4 desktop:grid-cols-4 p-6 laptop:p-12 overflow-y-auto overflow-x-hidden h-full">
         {listRecipes.map((recipe) => (
           <motion.button
             initial={{ opacity: 0, scale: 0.9 }}
@@ -236,6 +257,7 @@ export default function SelectionMenuPage() {
         onClose={() => setOpenedRecipe(null)}
         backdrop="blur"
         size="lg"
+        placement="center"
         className="h-[80vh]"
         motionProps={{
           variants: {
@@ -343,7 +365,7 @@ export default function SelectionMenuPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
-      className="primary-main h-max min-h-screen overflow-x-hidden"
+      className="primary-main h-max min-h-screen overflow-x-hidden gap-1"
     >
       {/* Navbar */}
       {navigationBar}
