@@ -2,7 +2,7 @@
 
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import landingPageImg from "@/assets/landing-page.png";
+import logoImg from "@/assets/logo.png";
 import Image from "next/image";
 import Button from "@/components/Button";
 import Link from "next/link";
@@ -23,7 +23,7 @@ export default function Page() {
         transition={{ duration: 1 }}
       >
         <Image
-          src={landingPageImg}
+          src={logoImg}
           width={300}
           height={300}
           alt="Landing Page"

@@ -106,7 +106,7 @@ export default function DaysPage() {
 
   const controlsMenu = useMemo(() => {
     return (
-      <div className="z-[99] fixed left-0 top-0 translate-x-[25vw] translate-y-[25vh] flex flex-col gap-3 items-center justify-center">
+      <div className="z-[99] fixed left-0 top-0 translate-x-[10vw] translate-y-[26vh] tablet:translate-x-[20vw] flex flex-col gap-3 items-center justify-center">
         {/* Add day button */}
         {dayCount < 7 && (
           <button
@@ -195,7 +195,7 @@ export default function DaysPage() {
   return (
     <main className="primary-main relative p-12">
       {/* Meal plan date */}
-      <h1 className="primary-h1">Today&apos;s meal plan</h1>
+      <h1 className="primary-h1 text-2xl desktop:text-5xl">Today&apos;s meal plan</h1>
 
       {/* Days sequence */}
       {daySequence}

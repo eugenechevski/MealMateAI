@@ -9,7 +9,9 @@
 
 # DEBUGGING
 
-* Sign-in via email and passwords
+* Sign-in
+* Modal center
+* Text shadow on recipe's profiles
 
 # FOCUS
 

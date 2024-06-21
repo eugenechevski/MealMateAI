@@ -21,6 +21,7 @@ import {
   faCompass,
   faUser,
   faSignIn,
+  faHome,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { motion } from "framer-motion";
@@ -764,7 +765,7 @@ export default function DaysMealLayout({
 
   const triggersDropdown = useMemo(() => {
     return (
-      <div className="z-[99] fixed left-0 right-0 translate-x-[75vw] translate-y-[25vh] flex flex-col gap-3">
+      <div className="z-[99] fixed left-0 right-0 translate-x-[75vw] translate-y-[26vh] flex flex-col gap-3">
         <motion.button
           className="primary-icon bg-primary-coal"
           onClick={() => setIsTriggersDropdownOpen((prev) => !prev)}
@@ -841,10 +842,10 @@ export default function DaysMealLayout({
         animate={{ opacity: 1 }}
         transition={{ duration: 2 }}
         whileHover={{ scale: 1.1 }}
-        className="w-[70px] flex flex-col items-center justify-center"
+        className="primary-icon bg-primary-coal mb-2"
       >
-        <Link href="/">
-          <Image src={logoImg} alt="Meal Mate AI logo" />
+        <Link href="/start">
+          <FontAwesomeIcon icon={faHome} size="sm" />
         </Link>
       </motion.button>
     ),
