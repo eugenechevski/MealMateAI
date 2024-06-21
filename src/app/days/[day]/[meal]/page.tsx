@@ -64,7 +64,7 @@ export default function MealPage({
   return (
     <main className="primary-main">
       {/* Meal details */}
-      <h1 className="primary-h1">
+      <h1 className="primary-h1 text-2xl desktop:text-5xl">
         Meal {mealIndex} of day {dayIndex}.
       </h1>
 
@@ -79,7 +79,7 @@ export default function MealPage({
       <section className="flex flex-col gap-5 justify-center items-center">
         {mealNode?.recipe ? (
           <>
-            <button className="primary-button bg-primary-orange">{mealNode?.recipe?.name}</button>
+            <div className="bg-primary-orange p-3 text-white rounded-lg shadow-xl">{mealNode?.recipe?.name}</div>
           </>
         
         ) : (

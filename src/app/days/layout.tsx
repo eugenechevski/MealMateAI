@@ -558,6 +558,7 @@ export default function DaysMealLayout({
     return (
       <Modal
         isOpen={isOverviewOpen}
+        placement="center"
         onOpenChange={onOverviewOpenChange}
         backdrop="blur"
       >
@@ -591,6 +592,8 @@ export default function DaysMealLayout({
     return (
       <Modal
         isOpen={isIngredientsOpen}
+        placement="center"
+        className="z-[101]"
         onOpenChange={onIngredientsOpenChange}
         backdrop="blur"
       >
@@ -683,7 +686,7 @@ export default function DaysMealLayout({
 
   const chatModal = useMemo(() => {
     return (
-      <Modal isOpen={isChatOpen} onOpenChange={onChatOpenChange}>
+      <Modal isOpen={isChatOpen} onOpenChange={onChatOpenChange} placement="center">
         <ModalContent>
           <ModalHeader className="flex justify-center">Chat</ModalHeader>
           <ModalBody>{chatBodyContent}</ModalBody>
@@ -727,6 +730,8 @@ export default function DaysMealLayout({
     return (
       <Modal
         isOpen={isConfirmationOpen}
+        placement="center"
+        className="z-[100]"
         onOpenChange={onConfirmationOpenChange}
         backdrop="blur"
       >
