@@ -91,7 +91,7 @@ export default function DayPage({ params }: { params: { day: string } }) {
 
   const mealSequence = useMemo(() => {
     return (
-      <section className="flex flex-col gap-5 justify-center items-center">
+      <section className="mt-12 flex flex-col gap-5 justify-center items-center">
         {listMeals.length > 0 ? (
           listMeals.map((meal, index) => (
             <div
@@ -136,7 +136,7 @@ export default function DayPage({ params }: { params: { day: string } }) {
 
   const controlsMenu = useMemo(() => {
     return (
-      <div className="z-[99] fixed left-0 top-0 translate-x-[10vw] translate-y-[26vh] tablet:translate-x-[20vw] flex flex-col gap-3 items-center justify-center">
+      <div className="z-[50] fixed left-0 top-0 translate-x-[10vw] translate-y-[26vh] tablet:translate-x-[20vw] flex flex-col gap-3 items-center justify-center">
         {/* Add meal button */}
         {mealCount < 5 && (
           <button
@@ -226,7 +226,7 @@ export default function DayPage({ params }: { params: { day: string } }) {
   return (
     <main className="primary-main relative p-12">
       {/* Day heading */}
-      <h1 className="primary-h1 text-2xl desktop:text-5xl">Day {dayIndex}</h1>
+      <h1 className="static top-7 primary-h1 text-2xl desktop:text-5xl">Day {dayIndex}</h1>
 
       {/* Back button */}
       <Link href="/days">

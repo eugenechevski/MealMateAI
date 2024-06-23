@@ -9,11 +9,8 @@
 
 # DEBUGGING
 
-* Sign-in
-* Modal center
-* Text shadow on recipe's profiles
 
 # FOCUS
 
-* Responsive design
-* Put all Japanese and Taiwanese recipes into the Asia category
+* Sign-in fix
+

@@ -770,7 +770,7 @@ export default function DaysMealLayout({
 
   const triggersDropdown = useMemo(() => {
     return (
-      <div className="z-[99] fixed left-0 right-0 translate-x-[75vw] translate-y-[26vh] flex flex-col gap-3">
+      <div className="z-[50] fixed left-0 right-0 translate-x-[75vw] translate-y-[26vh] flex flex-col gap-3">
         <motion.button
           className="primary-icon bg-primary-coal"
           onClick={() => setIsTriggersDropdownOpen((prev) => !prev)}
