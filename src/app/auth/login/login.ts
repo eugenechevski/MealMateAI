@@ -31,6 +31,7 @@ async function signInWithProvider(provider: "google" | "discord") {
   });
 
   if (error) {
+    console.error(error);
     redirect("/auth/login-error");
   }
 

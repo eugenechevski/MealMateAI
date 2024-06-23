@@ -74,10 +74,10 @@ export default function LoginPage() {
 
       {/* OAuth providers */}
       <div className="flex gap-3">
-        <button onClick={() => login("google")}>
+        <button onClick={() => login("google")} className="primary-button w-12 h-12 bg-primary-coal">
           <FontAwesomeIcon icon={faGoogle} />
         </button>
-        <button onClick={() => login("discord")}>
+        <button onClick={() => login("discord")} className="primary-button w-12 bg-primary-coal">
           <FontAwesomeIcon icon={faDiscord} />
         </button>
       </div>

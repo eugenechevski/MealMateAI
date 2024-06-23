@@ -6,11 +6,13 @@
 * Saving of user ingredients
 * Ingredients updates
 * Ingredients sections
+* Recommendations
 
 # DEBUGGING
 
 
 # FOCUS
 
+* Saved meals & about pages responsive design
 * Sign-in fix
 
