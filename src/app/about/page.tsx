@@ -17,10 +17,10 @@ export default function AboutPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
-      className="primary-main"
+      className="primary-main p-5"
     >
-      <h1 className="primary-h1">About</h1>
-      <p className="w-1/3">{text}</p>
+      <h1 className="my-5 primary-h1 text-2xl desktop:text-5xl">About</h1>
+      <p className="laptop:w-3/4 desktop:w-1/2">{text}</p>
       <h2 className="font-secondary text-3xl">Authors</h2>
       <ul className="list-disc list-inside">
         {Object.entries(authors).map(([name, link]) => (

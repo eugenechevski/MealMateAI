@@ -23,7 +23,7 @@ export default function SavedMealsPage() {
       return <p>No saved meal plans.</p>;
     } else {
       return (
-        <Accordion className="w-1/2">
+        <Accordion className="w-[90vw] tablet:w-1/2">
           {savedMealPlans.map(([date, mealPlan]) => (
             <AccordionItem key={date} title={new Date(date).toDateString()}>
               <Accordion>
@@ -86,7 +86,7 @@ export default function SavedMealsPage() {
       transition={{ duration: 1 }}
       className="primary-main max-h-max"
     >
-      <h1 className="primary-h1">Saved Meals</h1>
+      <h1 className="primary-h1 text-2xl desktop:text-5xl my-3">Saved Meals</h1>
       {renderAccordion}
     </motion.main>
   );

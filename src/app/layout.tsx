@@ -1,15 +1,15 @@
 "use client";
 
-import * as React from "react";
+import { useMemo } from "react";
 
 import "./globals.css";
+
+import Link from "next/link";
 
 import { Pacifico, Roboto_Serif } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 
 import { ContextProvider } from "@/context/Context";
-
-import { motion } from "framer-motion";
 
 import { AppState, GuestUser, MainUser, SelectionMenu } from "@/core";
 import { useCallback, useEffect, useState } from "react";
@@ -18,6 +18,24 @@ import { createClient } from "@/lib/supabase/client";
 import { useAppState } from "@/context/app-state/AppStateContext";
 
 import { NextUIProvider } from "@nextui-org/react";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faSignOut,
+  faCompass,
+  faUser,
+  faSignIn,
+  faHome,
+} from "@fortawesome/free-solid-svg-icons";
+
+import {
+  DropdownItem,
+  DropdownSection,
+} from "@nextui-org/react";
+
+import { Dropdown, DropdownTrigger, DropdownMenu } from "@nextui-org/react";
+
+import { motion } from "framer-motion";
 
 const primaryFont = Roboto_Serif({
   subsets: ["latin"],
@@ -46,6 +64,8 @@ const RootState = ({ children }: { children: React.ReactNode }) => {
   const { state, dispatch } = useAppState();
   const supabase = createClient();
   const [selectionMenu, setSelectionMenu] = useState({} as SelectionMenu);
+  const [isNavigationsDropdownOpen, setNavigationsDropdownOpen] =
+    useState(false);
 
   // Build the selection menu
   useEffect(() => {
@@ -252,8 +272,122 @@ const RootState = ({ children }: { children: React.ReactNode }) => {
     };
   }, [selectionMenu, onSignedIn, onSignedOut, supabase.auth]);
 
+  const floatingLogo = useMemo(
+    () => (
+      <motion.button
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 2 }}
+        whileHover={{ scale: 1.1 }}
+        className="primary-icon bg-primary-coal mb-2"
+      >
+        <Link href="/start">
+          <FontAwesomeIcon icon={faHome} size="sm" />
+        </Link>
+      </motion.button>
+    ),
+    []
+  );
+
+  const userDropdown = useMemo(
+    () => (
+      <Dropdown className="bg-primary-coal text-primary-cream">
+        <DropdownTrigger>
+          <div className="flex items-center">
+            <motion.button
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 2 }}
+              whileHover={{ scale: 1.1 }}
+              className="primary-icon bg-primary-coal"
+            >
+              <FontAwesomeIcon icon={faUser} size="sm" />
+            </motion.button>
+          </div>
+        </DropdownTrigger>
+        <DropdownMenu aria-label="Static Actions" disabledKeys={["user"]}>
+          <DropdownItem key={"user"}>
+            <span className="ml-3">Hello, </span>
+            {state?.appState?.user instanceof MainUser ? (
+              <span className="">
+                {state?.appState?.user?.username?.split("@")[0]}
+              </span>
+            ) : (
+              <span className="">Guest</span>
+            )}
+          </DropdownItem>
+          <DropdownSection className="border-t-2 border-primary-cream mt-2 pt-2">
+            <DropdownItem href="/saved-meals">Saved meals</DropdownItem>
+            <DropdownItem href="/about">About</DropdownItem>
+          </DropdownSection>
+          <DropdownSection className="border-t-2 border-primary-cream mt-2">
+            {state?.appState?.user instanceof MainUser ? (
+              <DropdownItem href="/auth/sign-out" className="flex">
+                <FontAwesomeIcon icon={faSignOut} size="sm" />
+                <span className="ml-2">Sign out</span>
+              </DropdownItem>
+            ) : (
+              <DropdownItem href="/auth/login" className="flex">
+                <FontAwesomeIcon icon={faSignIn} size="sm" />
+                <span className="ml-2">Sign-in</span>
+              </DropdownItem>
+            )}
+          </DropdownSection>
+        </DropdownMenu>
+      </Dropdown>
+    ),
+    [state?.appState?.user]
+  );
+
+  const navigationBar = useMemo(() => {
+    return (
+      <nav className="absolute w-full h-[10vh] left-0 top-0">
+        <div className="z-[99] fixed top-7 right-7 flex flex-col gap-3">
+          {/** Custom  trigger */}
+          <motion.button
+            className="primary-icon bg-primary-coal"
+            onClick={() => setNavigationsDropdownOpen((prev) => !prev)}
+            whileHover={{
+              scale: 1.1,
+              transition: { duration: 0.1 },
+            }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <FontAwesomeIcon icon={faCompass} />
+          </motion.button>
+          {isNavigationsDropdownOpen && (
+            <motion.div
+              initial={{
+                opacity: 0,
+                height: 0,
+              }}
+              animate={{
+                opacity: 1,
+                height: "100%",
+              }}
+              transition={{
+                duration: 1,
+              }}
+              exit={{
+                opacity: 0,
+                height: 0,
+              }}
+              className="flex flex-col justify-center items-center w-12"
+            >
+              {floatingLogo}
+              {userDropdown}
+            </motion.div>
+          )}
+        </div>
+      </nav>
+    );
+  }, [floatingLogo, isNavigationsDropdownOpen, userDropdown]);
+
   return (
     <div className="relative">
+      {/* Navigations */}
+      {navigationBar}
+
       {/* Main content */}
       {children}
     </div>

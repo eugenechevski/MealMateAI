@@ -7,12 +7,13 @@
 * Ingredients updates
 * Ingredients sections
 * Recommendations
+* Prevent empty days/meals saving
 
 # DEBUGGING
 
+* Sign-in fix
 
 # FOCUS
 
 * Saved meals & about pages responsive design
-* Sign-in fix
 
