@@ -349,8 +349,27 @@ export default function DaysMealLayout({
     // Update the storage
     if (state?.appState?.user instanceof GuestUser) {
       const { savedMealPlans } = state.appState.user;
+
       const currentMealPlanData =
         state.appState.currentMealPlan?.getMealPlanData();
+
+      if (Object.keys(currentMealPlanData).length === 0) {
+        return;
+      }
+
+      // Clean empty nodes
+      for (const day in currentMealPlanData) {
+        if (Object.keys(currentMealPlanData[day]).length === 0) {
+          delete currentMealPlanData[day];
+        } else {
+          // Check empty meals
+          for (const meal in currentMealPlanData[day]) {
+            if (Object.keys(currentMealPlanData[day][meal]).length === 0) {
+              delete currentMealPlanData[day][meal];
+            }
+          }
+        }
+      }
 
       // Combine the saved meal plans with the current meal plan
       savedMealPlans[new Date().toISOString()] = currentMealPlanData;

@@ -7,7 +7,6 @@
 * Ingredients updates
 * Ingredients sections
 * Recommendations
-* Prevent empty days/meals saving
 
 # DEBUGGING
 
@@ -15,5 +14,5 @@
 
 # FOCUS
 
-* Saved meals & about pages responsive design
+* Prevent empty days/meals saving
 
