@@ -28,10 +28,7 @@ import {
   faHome,
 } from "@fortawesome/free-solid-svg-icons";
 
-import {
-  DropdownItem,
-  DropdownSection,
-} from "@nextui-org/react";
+import { DropdownItem, DropdownSection } from "@nextui-org/react";
 
 import { Dropdown, DropdownTrigger, DropdownMenu } from "@nextui-org/react";
 

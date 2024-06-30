@@ -43,13 +43,15 @@ import { GuestUser, Ingredient, MainUser } from "@/core";
 
 import { createClient } from "@/lib/supabase/client";
 
-import { useRouter } from "next/navigation";
+import { useRouter as useAppRouter, usePathname } from "next/navigation";
 
 import stringify from "json-stringify-safe";
 
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, set } from "react-hook-form";
 
 import { useChat } from "ai/react";
+
+import ConfirmModal from "@/components/ConfirmModal";
 
 type IngredientData = {
   name: string;
@@ -82,7 +84,8 @@ export default function DaysMealLayout({
   children: React.ReactNode;
 }) {
   const supabase = createClient();
-  const router = useRouter();
+  const router = useAppRouter();
+  const pathname = usePathname();
 
   const { state, dispatch } = useAppState();
   const [isMealPlanEmpty, setIsMealPlanEmpty] = useState(true);
@@ -91,6 +94,9 @@ export default function DaysMealLayout({
   const [editedUserIngredient, setEditedUserIngredient] =
     useState<Ingredient>();
   const [isTriggersDropdownOpen, setIsTriggersDropdownOpen] = useState(false);
+  const [isPageLeaveConfirmModalOpen, setIsPageLeaveConfirmModalOpen] =
+    useState(false);
+  const [isMealPlanSaved, setIsMealPlanSaved] = useState(false);
 
   const {
     messages: chatMessages,
@@ -690,7 +696,11 @@ export default function DaysMealLayout({
 
   const chatModal = useMemo(() => {
     return (
-      <Modal isOpen={isChatOpen} onOpenChange={onChatOpenChange} placement="center">
+      <Modal
+        isOpen={isChatOpen}
+        onOpenChange={onChatOpenChange}
+        placement="center"
+      >
         <ModalContent>
           <ModalHeader className="flex justify-center">Chat</ModalHeader>
           <ModalBody>{chatBodyContent}</ModalBody>
@@ -730,40 +740,16 @@ export default function DaysMealLayout({
     handleChatInputChange,
   ]);
 
-  const confirmationModal = useMemo(() => {
+  const mealPlanFinishConfirmModal = useMemo(() => {
     return (
-      <Modal
-        isOpen={isConfirmationOpen}
-        placement="center"
-        className="z-[100]"
-        onOpenChange={onConfirmationOpenChange}
-        backdrop="blur"
-      >
-        <ModalContent>
-          <ModalHeader className="flex justify-center">
-            Confirm Finish
-          </ModalHeader>
-          <ModalBody>
-            <h2 className="font-secondary text-xl">
-              Are you sure you want to finish the meal plan?
-            </h2>
-          </ModalBody>
-          <ModalFooter className="flex justify-center items-center">
-            <motion.button
-              className="primary-icon bg-primary-green"
-              onClick={confirmFinishMealPlan}
-            >
-              <FontAwesomeIcon icon={faCheck} />
-            </motion.button>
-            <motion.button
-              className="primary-icon bg-primary-red"
-              onClick={cancelFinishMealPlan}
-            >
-              <FontAwesomeIcon icon={faClose} />
-            </motion.button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+      <ConfirmModal
+        confirmAction={confirmFinishMealPlan}
+        cancelAction={cancelFinishMealPlan}
+        title="Finish Meal Plan"
+        message="Are you sure you want to finish the meal plan?"
+        isConfirmationOpen={isConfirmationOpen}
+        onConfirmationOpenChange={onConfirmationOpenChange}
+      />
     );
   }, [
     cancelFinishMealPlan,
@@ -844,11 +830,84 @@ export default function DaysMealLayout({
     );
   }, [isTriggersDropdownOpen, onChatOpen, onIngredientsOpen, onOverviewOpen]);
 
+  const handleConfirmSaveUnsavedChanges = useCallback(() => {
+    // Save the state
+
+    // Get the current meal plan's data
+    const mealPlanData = state.appState.currentMealPlan.getMealPlanData();
+
+    // Local save
+    if (state.appState.user instanceof GuestUser) {
+      localStorage.setItem("unfinishedMealPlan", stringify(mealPlanData));
+    }
+    // Remote save
+    else if (state.appState.user instanceof MainUser) {
+      // TODO
+    }
+
+    setIsPageLeaveConfirmModalOpen(false);
+    setIsMealPlanSaved(true);
+  }, [state.appState.currentMealPlan, state.appState.user]);
+
+  const handleRejectUnsavedChanges = useCallback(() => {
+    // Reset the state
+    // TODO
+    setIsPageLeaveConfirmModalOpen(false);
+  }, []);
+
+  /**
+   * Page leave confirmation modal
+   *
+   * This modal will be shown when the user tries to leave the page with unsaved changes.
+   * The user can either save the changes or reject them.
+   * Regardless, the user is redirected where they want to go.
+   * The state is saved locally or remotely depending on the user type.
+   */
+  const unsavedChangesModal = useMemo(() => {
+    return (
+      <ConfirmModal
+        confirmAction={handleConfirmSaveUnsavedChanges}
+        cancelAction={handleRejectUnsavedChanges}
+        title="Save unsaved changes?"
+        message={"You have unsaved changes. Do you want to save them?"}
+        isConfirmationOpen={isPageLeaveConfirmModalOpen}
+        onConfirmationOpenChange={setIsPageLeaveConfirmModalOpen}
+      />
+    );
+  }, [
+    handleConfirmSaveUnsavedChanges,
+    handleRejectUnsavedChanges,
+    isPageLeaveConfirmModalOpen,
+  ]);
+
+  /**
+   * Check if the meal plan is empty
+   * and update the state accordingly
+   */
   useEffect(() => {
     if (mealPlanData && Object.keys(mealPlanData).length !== 0) {
       setIsMealPlanEmpty(false);
     }
   }, [mealPlanData]);
+
+  /**
+   * Add the unload event for detecting page leave
+   */
+  useEffect(() => {
+    const handleUnload = (event: BeforeUnloadEvent) => {
+      event.preventDefault();
+
+      if (!isMealPlanSaved) {
+        setIsPageLeaveConfirmModalOpen(true);
+      }
+    };
+
+    window.addEventListener("beforeunload", handleUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleUnload);
+    };
+  }, [isMealPlanSaved]);
 
   return (
     <main className="relative">
@@ -865,7 +924,10 @@ export default function DaysMealLayout({
       {ingredientsTable}
 
       {/* Confirmation modal */}
-      {confirmationModal}
+      {mealPlanFinishConfirmModal}
+
+      {/* Unsaved changes modal */}
+      {unsavedChangesModal}
 
       {children}
     </main>
