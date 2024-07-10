@@ -351,10 +351,10 @@ export default function DaysMealLayout({
     register,
   ]);
 
-  const handleFinishMealPlan = useCallback(async () => {
-    // Update the storage
-    if (state?.appState?.user instanceof GuestUser) {
-      const { savedMealPlans } = state.appState.user;
+  const saveMealPlanLocally = useCallback(() => {
+    if (state.appState.user instanceof MainUser) { return; }
+
+    const { savedMealPlans } = state.appState.user;
 
       const currentMealPlanData =
         state.appState.currentMealPlan?.getMealPlanData();
@@ -384,9 +384,12 @@ export default function DaysMealLayout({
       const stringified = stringify(savedMealPlans);
 
       localStorage.setItem("savedMealPlans", stringified);
-    } else if (state?.appState?.user instanceof MainUser) {
-      // Add the new meal plan to the user's saved meal plans
-      const { data: mealPlanDataInsert, error: mealPlanDataInsertError } =
+  }, [state.appState.currentMealPlan, state.appState.user]);
+
+  const saveMealPlanRemotely = useCallback(async () => {
+    if (state.appState.user instanceof GuestUser) { return; }
+
+    const { data: mealPlanDataInsert, error: mealPlanDataInsertError } =
         await supabase
           .from("meal_plans")
           .insert([
@@ -460,6 +463,15 @@ export default function DaysMealLayout({
           }
         }
       }
+  }, [mealPlanData, state.appState.user, supabase]);
+
+  const handleFinishMealPlan = useCallback(async () => {
+    // Update the storage
+    if (state?.appState?.user instanceof GuestUser) {
+      saveMealPlanLocally();
+    } else if (state?.appState?.user instanceof MainUser) {
+      // Add the new meal plan to the user's saved meal plans
+      saveMealPlanRemotely();
     }
 
     // Save the meal plan
@@ -473,15 +485,7 @@ export default function DaysMealLayout({
 
     // Redirect to the start page
     router.replace("/start");
-  }, [
-    dispatch,
-    mealPlanData,
-    onOverviewOpenChange,
-    router,
-    state.appState.currentMealPlan,
-    state.appState.user,
-    supabase,
-  ]);
+  }, [dispatch, onOverviewOpenChange, router, saveMealPlanLocally, saveMealPlanRemotely, state?.appState?.user]);
 
   const confirmFinishMealPlan = useCallback(() => {
     onConfirmationOpenChange();
@@ -830,7 +834,7 @@ export default function DaysMealLayout({
     );
   }, [isTriggersDropdownOpen, onChatOpen, onIngredientsOpen, onOverviewOpen]);
 
-  const handleConfirmSaveUnsavedChanges = useCallback(() => {
+  const handleConfirmSaveUnsavedChanges = useCallback(async () => {
     // Save the state
 
     // Get the current meal plan's data
@@ -842,18 +846,111 @@ export default function DaysMealLayout({
     }
     // Remote save
     else if (state.appState.user instanceof MainUser) {
-      // TODO
+      const { data: mealPlanDataInsert, error: mealPlanDataInsertError } =
+        await supabase
+          .from("meal_plans")
+          .insert([
+            {
+              plan_date: new Date().toISOString(),
+              user_id: state.appState.user.id,
+              is_finished: false,
+            },
+          ])
+          .select();
+
+      if (!mealPlanDataInsert || mealPlanDataInsertError) {
+        console.error(mealPlanDataInsertError);
+        return;
+      }
+
+      for (const day in mealPlanData) {
+        // Insert day
+        const { data: dayInsertData, error: dayInsertError } = await supabase
+          .from("days")
+          .insert([
+            {
+              day_number: Number(day),
+              plan_id: mealPlanDataInsert[0]?.plan_id,
+            },
+          ])
+          .select();
+
+        if (!dayInsertData || dayInsertError) {
+          console.error(dayInsertError);
+
+          // Delete the plan
+          await supabase
+            .from("meal_plans")
+            .delete()
+            .eq("plan_id", mealPlanDataInsert[0]?.plan_id);
+          continue;
+        }
+
+        for (const meal in mealPlanData[day]) {
+          // Insert meal
+
+          const mealData = mealPlanData[day][meal];
+          // Get the recipe id
+          const { data: recipeData, error: recipeError } = await supabase
+            .from("recipes")
+            .select("id")
+            .eq("name", mealData.name);
+
+          if (!recipeData || recipeError) {
+            console.error(recipeError);
+            // Delete the day
+            await supabase
+              .from("days")
+              .delete()
+              .eq("day_id", dayInsertData[0]?.day_id);
+            continue;
+          }
+
+          const { error: mealInsertDataError } = await supabase
+            .from("meals")
+            .insert([
+              {
+                meal_number: Number(meal),
+                day_id: dayInsertData[0]?.day_id,
+                recipe_id: recipeData[0]?.id as string,
+              },
+            ]);
+
+          if (mealInsertDataError) {
+            console.error(mealInsertDataError);
+            // Delete the day
+            await supabase
+              .from("days")
+              .delete()
+              .eq("day_id", dayInsertData[0]?.day_id);
+
+            // Delete the plan
+            await supabase
+              .from("meal_plans")
+              .delete()
+              .eq("plan_id", mealPlanDataInsert[0]?.plan_id);
+          }
+        }
+      }
     }
 
+    // Close the modal
     setIsPageLeaveConfirmModalOpen(false);
+    
+    // Set the meal plan as saved
     setIsMealPlanSaved(true);
-  }, [state.appState.currentMealPlan, state.appState.user]);
+
+    // Reset the state
+    dispatch({ type: "START_NEW_MEAL_PLAN" });
+  }, [dispatch, state.appState.currentMealPlan, state.appState.user, supabase]);
 
   const handleRejectUnsavedChanges = useCallback(() => {
     // Reset the state
-    // TODO
+    dispatch({ type: "START_NEW_MEAL_PLAN" });
+
+    // Close the modal
     setIsPageLeaveConfirmModalOpen(false);
-  }, []);
+  }, [dispatch]);
 
   /**
    * Page leave confirmation modal
@@ -895,9 +992,8 @@ export default function DaysMealLayout({
    */
   useEffect(() => {
     const handleUnload = (event: BeforeUnloadEvent) => {
-      event.preventDefault();
-
       if (!isMealPlanSaved) {
+        event.preventDefault();
         setIsPageLeaveConfirmModalOpen(true);
       }
     };

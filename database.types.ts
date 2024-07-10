@@ -110,16 +110,19 @@ export type Database = {
       }
       meal_plans: {
         Row: {
+          is_finished: boolean | null
           plan_date: string | null
           plan_id: string
           user_id: string
         }
         Insert: {
+          is_finished?: boolean | null
           plan_date?: string | null
           plan_id?: string
           user_id: string
         }
         Update: {
+          is_finished?: boolean | null
           plan_date?: string | null
           plan_id?: string
           user_id?: string
