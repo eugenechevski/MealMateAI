@@ -40,7 +40,7 @@ export default function ConfirmModal({
         <ModalContent>
           <ModalHeader className="flex justify-center">{title}</ModalHeader>
           <ModalBody>
-            <h2 className="font-secondary text-xl">{message}</h2>
+            <h2 className="font-secondary text-xl text-center whitespace-normal">{message}</h2>
           </ModalBody>
           <ModalFooter className="flex justify-center items-center">
             <motion.button

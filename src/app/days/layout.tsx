@@ -43,11 +43,11 @@ import { GuestUser, Ingredient, MainUser } from "@/core";
 
 import { createClient } from "@/lib/supabase/client";
 
-import { useRouter as useAppRouter, usePathname } from "next/navigation";
+import { useRouter as useAppRouter } from "next/navigation";
 
 import stringify from "json-stringify-safe";
 
-import { useForm, SubmitHandler, set } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 
 import { useChat } from "ai/react";
 
@@ -85,7 +85,6 @@ export default function DaysMealLayout({
 }) {
   const supabase = createClient();
   const router = useAppRouter();
-  const pathname = usePathname();
 
   const { state, dispatch } = useAppState();
   const [isMealPlanEmpty, setIsMealPlanEmpty] = useState(true);

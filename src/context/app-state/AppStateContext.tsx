@@ -7,6 +7,7 @@ interface State {
 
 type Action =
   | { type: "SET_APP_STATE"; payload: AppState }
+  | { type: "SET_MEAL_PLAN"; payload: MealPlanData}
   | { type: "START_NEW_MEAL_PLAN" }
   | { type: "APPEND_NEW_DAY" }
   | { type: "REMOVE_DAY"; payload: string }
