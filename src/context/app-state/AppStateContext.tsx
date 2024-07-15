@@ -48,6 +48,9 @@ const appStateReducer = (state: State, action: Action): State => {
     case "START_NEW_MEAL_PLAN":
       state?.appState?.startNewMealPlan();
       return { ...state };
+    case "SET_MEAL_PLAN":
+      state?.appState?.setMealPlan(action.payload);
+      return { ...state };
     case "APPEND_NEW_DAY":
       state?.appState?.currentMealPlan?.appendNewDay();
       return { ...state };

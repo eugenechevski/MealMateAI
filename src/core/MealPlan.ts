@@ -1,4 +1,4 @@
-import { DayNode, Ingredient, Recipe } from "@/core";
+import { DayNode, Ingredient, MealNode, Recipe } from "@/core";
 
 const MAX_MEAL_PLAN_DAYS = 7;
 

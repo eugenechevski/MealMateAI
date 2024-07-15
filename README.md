@@ -20,5 +20,3 @@ Meal Mate AI is designed to simplify the process of meal planning for college st
 
 - Yauheni Khvashcheuski / eugenechevski
 - Arthur Teng / Saxhaver
-- Daniel Ramirez / danrmz
-- Azel Padron / ze1p
