@@ -17,12 +17,17 @@ export default function StartPage() {
   const { state, dispatch } = useAppState();
   const supabase = createClient();
 
-  const [isConfirmModalForUnsavedChangesOpen, setIsConfirmModalForUnsavedChangesOpen] = useState(false);
-  const [unsavedChanges, setUnsavedChanges] = useState<MealPlanData | null>(null);
+  const [
+    isConfirmModalForUnsavedChangesOpen,
+    setIsConfirmModalForUnsavedChangesOpen,
+  ] = useState(false);
+  const [unsavedChanges, setUnsavedChanges] = useState<MealPlanData | null>(
+    null
+  );
 
   const removeUnsavedChanges = useCallback(async () => {
     if (state.appState.user instanceof GuestUser) {
-      localStorage.removeItem("unsavedChanges");
+      localStorage.removeItem("unfinishedMealPlan");
     } else if (state.appState.user instanceof MainUser) {
       await supabase
         .from("meal_plans")
@@ -34,30 +39,34 @@ export default function StartPage() {
 
   const handleConfirmRestoreUnsavedChanges = useCallback(() => {
     if (unsavedChanges) {
-      dispatch({ type: "SET_MEAL_PLAN", payload: unsavedChanges});
+      dispatch({ type: "SET_MEAL_PLAN", payload: unsavedChanges });
       setTimeout(() => {}, 3000);
     }
-
-    removeUnsavedChanges();
     setIsConfirmModalForUnsavedChangesOpen(false);
-  }, [dispatch, removeUnsavedChanges, unsavedChanges]);
+  }, [dispatch, unsavedChanges]);
 
   const handleCancelRestoreUnsavedChanges = useCallback(() => {
-    removeUnsavedChanges();
     setUnsavedChanges(null);
     setIsConfirmModalForUnsavedChangesOpen(false);
-  }, [removeUnsavedChanges]);
+  }, []);
 
-  const ConfirmModalForUnsavedChanges = useMemo(() => (
-    <ConfirmModal
-      title="Unsaved Changes"
-      message="There're unsaved changes from previous sessions. Do you want to restore them?"
-      confirmAction={handleConfirmRestoreUnsavedChanges}
-      cancelAction={handleCancelRestoreUnsavedChanges}
-      isConfirmationOpen={isConfirmModalForUnsavedChangesOpen}
-      onConfirmationOpenChange={setIsConfirmModalForUnsavedChangesOpen}
-    />
-  ), [handleCancelRestoreUnsavedChanges, handleConfirmRestoreUnsavedChanges, isConfirmModalForUnsavedChangesOpen])
+  const ConfirmModalForUnsavedChanges = useMemo(
+    () => (
+      <ConfirmModal
+        title="Unsaved Changes"
+        message="There're unsaved changes from previous sessions. Do you want to restore them?"
+        confirmAction={handleConfirmRestoreUnsavedChanges}
+        cancelAction={handleCancelRestoreUnsavedChanges}
+        isConfirmationOpen={isConfirmModalForUnsavedChangesOpen}
+        onConfirmationOpenChange={setIsConfirmModalForUnsavedChangesOpen}
+      />
+    ),
+    [
+      handleCancelRestoreUnsavedChanges,
+      handleConfirmRestoreUnsavedChanges,
+      isConfirmModalForUnsavedChangesOpen,
+    ]
+  );
 
   /**
    * Add the initial check for unsaved changes
@@ -187,11 +196,14 @@ export default function StartPage() {
 
       // Show the confirm modal
       setIsConfirmModalForUnsavedChangesOpen(true);
-      
+
       // Set the unsaved changes
       setUnsavedChanges(savedChanges);
+
+      // Remove the changes from the stores
+      removeUnsavedChanges();
     }
-  }, [state.appState.user, supabase]);
+  }, [removeUnsavedChanges, state.appState.user, supabase]);
 
   useEffect(() => {
     checkForUnsavedChanges();

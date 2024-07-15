@@ -351,117 +351,121 @@ export default function DaysMealLayout({
   ]);
 
   const saveMealPlanLocally = useCallback(() => {
-    if (state.appState.user instanceof MainUser) { return; }
+    if (state.appState.user instanceof MainUser) {
+      return;
+    }
 
     const { savedMealPlans } = state.appState.user;
 
-      const currentMealPlanData =
-        state.appState.currentMealPlan?.getMealPlanData();
+    const currentMealPlanData =
+      state.appState.currentMealPlan?.getMealPlanData();
 
-      if (Object.keys(currentMealPlanData).length === 0) {
-        return;
-      }
+    if (Object.keys(currentMealPlanData).length === 0) {
+      return;
+    }
 
-      // Clean empty nodes
-      for (const day in currentMealPlanData) {
-        if (Object.keys(currentMealPlanData[day]).length === 0) {
-          delete currentMealPlanData[day];
-        } else {
-          // Check empty meals
-          for (const meal in currentMealPlanData[day]) {
-            if (Object.keys(currentMealPlanData[day][meal]).length === 0) {
-              delete currentMealPlanData[day][meal];
-            }
+    // Clean empty nodes
+    for (const day in currentMealPlanData) {
+      if (Object.keys(currentMealPlanData[day]).length === 0) {
+        delete currentMealPlanData[day];
+      } else {
+        // Check empty meals
+        for (const meal in currentMealPlanData[day]) {
+          if (Object.keys(currentMealPlanData[day][meal]).length === 0) {
+            delete currentMealPlanData[day][meal];
           }
         }
       }
+    }
 
-      // Combine the saved meal plans with the current meal plan
-      savedMealPlans[new Date().toISOString()] = currentMealPlanData;
+    // Combine the saved meal plans with the current meal plan
+    savedMealPlans[new Date().toISOString()] = currentMealPlanData;
 
-      // Stringify the meal plans
-      const stringified = stringify(savedMealPlans);
+    // Stringify the meal plans
+    const stringified = stringify(savedMealPlans);
 
-      localStorage.setItem("savedMealPlans", stringified);
+    localStorage.setItem("savedMealPlans", stringified);
   }, [state.appState.currentMealPlan, state.appState.user]);
 
   const saveMealPlanRemotely = useCallback(async () => {
-    if (state.appState.user instanceof GuestUser) { return; }
+    if (state.appState.user instanceof GuestUser) {
+      return;
+    }
 
     const { data: mealPlanDataInsert, error: mealPlanDataInsertError } =
-        await supabase
-          .from("meal_plans")
-          .insert([
-            {
-              plan_date: new Date().toISOString(),
-              user_id: state.appState.user.id,
-            },
-          ])
-          .select();
+      await supabase
+        .from("meal_plans")
+        .insert([
+          {
+            plan_date: new Date().toISOString(),
+            user_id: state.appState.user.id,
+          },
+        ])
+        .select();
 
-      if (!mealPlanDataInsert || mealPlanDataInsertError) {
-        console.error(mealPlanDataInsertError);
-        return;
+    if (!mealPlanDataInsert || mealPlanDataInsertError) {
+      console.error(mealPlanDataInsertError);
+      return;
+    }
+
+    for (const day in mealPlanData) {
+      // Insert day
+      const { data: dayInsertData, error: dayInsertError } = await supabase
+        .from("days")
+        .insert([
+          {
+            day_number: Number(day),
+            plan_id: mealPlanDataInsert[0]?.plan_id,
+          },
+        ])
+        .select();
+
+      if (!dayInsertData || dayInsertError) {
+        console.error(dayInsertError);
+        continue;
       }
 
-      for (const day in mealPlanData) {
-        // Insert day
-        const { data: dayInsertData, error: dayInsertError } = await supabase
-          .from("days")
-          .insert([
-            {
-              day_number: Number(day),
-              plan_id: mealPlanDataInsert[0]?.plan_id,
-            },
-          ])
-          .select();
+      for (const meal in mealPlanData[day]) {
+        // Insert meal
 
-        if (!dayInsertData || dayInsertError) {
-          console.error(dayInsertError);
+        const mealData = mealPlanData[day][meal];
+        // Get the recipe id
+        const { data: recipeData, error: recipeError } = await supabase
+          .from("recipes")
+          .select("id")
+          .eq("name", mealData.name);
+
+        if (!recipeData || recipeError) {
+          console.error(recipeError);
+          // Delete the day
+          await supabase
+            .from("days")
+            .delete()
+            .eq("day_id", dayInsertData[0]?.day_id);
           continue;
         }
 
-        for (const meal in mealPlanData[day]) {
-          // Insert meal
+        // Insert meal
+        const { error: mealInsertDataError } = await supabase
+          .from("meals")
+          .insert([
+            {
+              meal_number: Number(meal),
+              day_id: dayInsertData[0]?.day_id,
+              recipe_id: recipeData[0]?.id as string,
+            },
+          ]);
 
-          const mealData = mealPlanData[day][meal];
-          // Get the recipe id
-          const { data: recipeData, error: recipeError } = await supabase
-            .from("recipes")
-            .select("id")
-            .eq("name", mealData.name);
-
-          if (!recipeData || recipeError) {
-            console.error(recipeError);
-            // Delete the day
-            await supabase
-              .from("days")
-              .delete()
-              .eq("day_id", dayInsertData[0]?.day_id);
-            continue;
-          }
-
-          // Insert meal
-          const { error: mealInsertDataError } = await supabase
-            .from("meals")
-            .insert([
-              {
-                meal_number: Number(meal),
-                day_id: dayInsertData[0]?.day_id,
-                recipe_id: recipeData[0]?.id as string,
-              },
-            ]);
-
-          if (mealInsertDataError) {
-            console.error(mealInsertDataError);
-            // Delete the day
-            await supabase
-              .from("days")
-              .delete()
-              .eq("day_id", dayInsertData[0]?.day_id);
-          }
+        if (mealInsertDataError) {
+          console.error(mealInsertDataError);
+          // Delete the day
+          await supabase
+            .from("days")
+            .delete()
+            .eq("day_id", dayInsertData[0]?.day_id);
         }
       }
+    }
   }, [mealPlanData, state.appState.user, supabase]);
 
   const handleFinishMealPlan = useCallback(async () => {
@@ -484,7 +488,14 @@ export default function DaysMealLayout({
 
     // Redirect to the start page
     router.replace("/start");
-  }, [dispatch, onOverviewOpenChange, router, saveMealPlanLocally, saveMealPlanRemotely, state?.appState?.user]);
+  }, [
+    dispatch,
+    onOverviewOpenChange,
+    router,
+    saveMealPlanLocally,
+    saveMealPlanRemotely,
+    state?.appState?.user,
+  ]);
 
   const confirmFinishMealPlan = useCallback(() => {
     onConfirmationOpenChange();
@@ -843,6 +854,7 @@ export default function DaysMealLayout({
     if (state.appState.user instanceof GuestUser) {
       localStorage.setItem("unfinishedMealPlan", stringify(mealPlanData));
     }
+
     // Remote save
     else if (state.appState.user instanceof MainUser) {
       const { data: mealPlanDataInsert, error: mealPlanDataInsertError } =
@@ -933,11 +945,11 @@ export default function DaysMealLayout({
       }
     }
 
-    // Close the modal
-    setIsPageLeaveConfirmModalOpen(false);
-    
     // Set the meal plan as saved
     setIsMealPlanSaved(true);
+    
+    // Close the modal
+    setIsPageLeaveConfirmModalOpen(false);
 
     // Reset the state
     dispatch({ type: "START_NEW_MEAL_PLAN" });
@@ -993,7 +1005,29 @@ export default function DaysMealLayout({
     const handleUnload = (event: BeforeUnloadEvent) => {
       if (!isMealPlanSaved) {
         event.preventDefault();
-        setIsPageLeaveConfirmModalOpen(true);
+
+        const mealPlanData = state.appState.currentMealPlan.getMealPlanData();
+
+        // Check if there are empty nodes
+        for (const day in mealPlanData) {
+          if (Object.keys(mealPlanData[day]).length === 0) {
+            delete mealPlanData[day];
+          } else {
+            // Check empty meals
+            for (const meal in mealPlanData[day]) {
+              if (Object.keys(mealPlanData[day][meal]).length === 0) {
+                delete mealPlanData[day][meal];
+              }
+            }
+          }
+        }
+
+        // Display the saving modal if there aren't any empty nodes
+        if (Object.keys(mealPlanData).length > 0) {
+          setIsPageLeaveConfirmModalOpen(true);
+        } else {
+          setIsMealPlanSaved(true);
+        }
       }
     };
 
@@ -1002,7 +1036,7 @@ export default function DaysMealLayout({
     return () => {
       window.removeEventListener("beforeunload", handleUnload);
     };
-  }, [isMealPlanSaved]);
+  }, [isMealPlanSaved, state.appState.currentMealPlan]);
 
   return (
     <main className="relative">
