@@ -1,6 +1,5 @@
 # BACKLOG
 
-* Form for adding recipes
 * User profile
 * Saving of user ingredients
 * Ingredients updates
@@ -15,8 +14,6 @@
 
 # FOCUS
 
-* flow controls
-    - Caching of state
-    - reloading of a page doesn't lose state
+* Form for adding recipes
 * add comments
 

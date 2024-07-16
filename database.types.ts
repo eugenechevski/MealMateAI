@@ -262,16 +262,19 @@ export type Database = {
         Row: {
           email: string | null
           id: string
+          is_admin: boolean | null
           username: string | null
         }
         Insert: {
           email?: string | null
           id: string
+          is_admin?: boolean | null
           username?: string | null
         }
         Update: {
           email?: string | null
           id?: string
+          is_admin?: boolean | null
           username?: string | null
         }
         Relationships: []
