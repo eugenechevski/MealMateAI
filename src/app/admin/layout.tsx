@@ -26,22 +26,26 @@ export default function AdminRootLayout({
    * Check the role of the user
    */
   const checkAdminRole = useCallback(async () => {
-    let { data: userData } = await supabase.auth.getUser();
-    let isAdmin = false;
+    let {
+      data: { user },
+    } = await supabase.auth.getUser();
 
-    if (userData) {
-      let { data: isAdminData} = await supabase
+    // Check if authenticated
+    if (user) {
+      let { data: adminData } = await supabase
         .from("users")
         .select(`is_admin`)
-        .eq("id", userData.user?.id ?? "");
+        .eq("id", user?.id ?? "")
+        .single();
 
-      if (isAdminData && isAdminData[0].is_admin === true) {
-        isAdmin = true;
-      }
-    }
-
-    if (!isAdmin) {
+      // Check if an admin
+      if (adminData?.is_admin === false) {
+        // If not admin, go to the root page
         router.replace("/");
+      }
+    } else {
+      // If not authenticated, go to the login page
+      router.replace("/auth/login");
     }
   }, [supabase, router]);
 
