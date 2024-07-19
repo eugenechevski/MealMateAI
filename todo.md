@@ -7,10 +7,9 @@
 * Recommendations
 * Exporting of meal plan
 * Viewing/selecting mode icon for the selection menu page
+* Admin management panel
 
 # DEBUGGING
-
-* Sign-in fix
 
 # FOCUS
 

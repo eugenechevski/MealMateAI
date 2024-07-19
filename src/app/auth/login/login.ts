@@ -23,8 +23,6 @@ async function signInWithEmail(formData: { email: string; password: string }) {
 }
 
 async function signInWithProvider(provider: "google" | "discord") {
-  
-
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider,
     options: {
