@@ -32,6 +32,7 @@ export default function AddNewRecipePage() {
     formState: { errors },
   } = useForm<FormData>();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [cuisines, setCuisines] = useState<string[]>([]);
   const supabase = createClient();
 
   const onSubmit = useCallback(
@@ -109,7 +110,30 @@ export default function AddNewRecipePage() {
       }
     },
     [reset, supabase]
-  );
+  ); 
+
+  /**
+   * The initial fetching of existing cuisine names for
+   * the future mapping to the option menu.
+   */
+  useEffect(() => {
+    async function fetchCuisines() {
+      const { data, error } = await supabase
+        .from('recipes')
+        .select('cuisine');
+      
+      if (data && !error) {
+        let uniqueCuisines: { [cuisine: string]: string } = {};
+        for (const cuisine in data)
+        {
+          uniqueCuisines[cuisine] = "";
+        }
+        setCuisines(Object.keys(uniqueCuisines));
+      }
+    }
+
+    fetchCuisines();
+  }, [supabase]);
 
   return (
     <motion.form className="primary-form my-12" onSubmit={handleSubmit(onSubmit)}>
@@ -301,4 +325,8 @@ export default function AddNewRecipePage() {
       </button>
     </motion.form>
   );
+}
+
+function useEffect(arg0: () => void, arg1: import("@supabase/supabase-js").SupabaseClient<import("../../../../database.types").Database, "public", { Tables: { days: { Row: { day_id: string; day_number: number | null; plan_id: string; }; Insert: { day_id?: string; day_number?: number | null; plan_id: string; }; Update: { day_id?: string; day_number?: number | null; plan_id?: string; }; Relationships: [{ foreignKeyName: "days_plan_id_fkey"; columns: ["plan_id"]; isOneToOne: false; referencedRelation: "meal_plans"; referencedColumns: ["plan_id"]; }]; }; images: { Row: { height: number | null; id: string; recipe_id: string; source: string | null; source_url: string | null; title: string | null; url: string | null; width: number | null; }; Insert: { height?: number | null; id?: string; recipe_id: string; source?: string | null; source_url?: string | null; title?: string | null; url?: string | null; width?: number | null; }; Update: { height?: number | null; id?: string; recipe_id?: string; source?: string | null; source_url?: string | null; title?: string | null; url?: string | null; width?: number | null; }; Relationships: [{ foreignKeyName: "images_recipe_id_fkey"; columns: ["recipe_id"]; isOneToOne: false; referencedRelation: "recipes"; referencedColumns: ["id"]; }]; }; ingredients: { Row: { amount: number; id: string; name: string | null; recipe_id: string; unit: string | null; }; Insert: { amount: number; id?: string; name?: string | null; recipe_id: string; unit?: string | null; }; Update: { amount?: number; id?: string; name?: string | null; recipe_id?: string; unit?: string | null; }; Relationships: [{ foreignKeyName: "ingredients_recipe_id_fkey"; columns: ["recipe_id"]; isOneToOne: false; referencedRelation: "recipes"; referencedColumns: ["id"]; }]; }; meal_plans: { Row: { is_finished: boolean | null; plan_date: string | null; plan_id: string; user_id: string; }; Insert: { is_finished?: boolean | null; plan_date?: string | null; plan_id?: string; user_id: string; }; Update: { is_finished?: boolean | null; plan_date?: string | null; plan_id?: string; user_id?: string; }; Relationships: [{ foreignKeyName: "meal_plans_user_id_fkey"; columns: ["user_id"]; isOneToOne: false; referencedRelation: "users"; referencedColumns: ["id"]; }]; }; meals: { Row: { day_id: string; meal_id: string; meal_number: number | null; recipe_id: string | null; }; Insert: { day_id: string; meal_id? /** Recipe name */: string; meal_number?: number | null; recipe_id?: string | null; }; Update: { day_id?: string; meal_id?: string; meal_number?: number | null; recipe_id?: string | null; }; Relationships: [{ foreignKeyName: "meals_day_id_fkey"; columns: ["day_id"]; isOneToOne: false; referencedRelation: "days"; referencedColumns: ["day_id"]; }, { foreignKeyName: "meals_recipe_id_fkey"; columns: ["recipe_id"]; isOneToOne: false; referencedRelation: "recipes"; referencedColumns: ["id"]; }]; }; nutrition: { Row: { calories_per_serving: number | null; carbohydrates: number | null; fat: number | null; id: string; protein: number | null; recipe_id: string; servings: number | null; }; Insert: { calories_per_serving?: number | null; carbohydrates?: number | null; fat?: number | null; id?: string; protein?: number | null; recipe_id: string; servings?: number | null; }; Update: { calories_per_serving?: number | null; carbohydrates?: number | null; fat?: number | null; id?: string; protein?: number | null; recipe_id?: string; servings?: number | null; }; Relationships: [{ foreignKeyName: "nutrition_recipe_id_fkey"; columns: ["recipe_id"]; isOneToOne: false; referencedRelation: "recipes"; referencedColumns: ["id"]; }]; }; recipes: { Row: { cuisine: string | null; id: string; name: string; }; Insert: { cuisine?: string | null; id?: string; name: string; }; Update: { cuisine?: string | null; id?: string; name?: string; }; Relationships: []; }; steps: { Row: { description: string | null; id: string; recipe_id: string; step_order: number | null; }; Insert: { description?: string | null; id?: string; recipe_id: string; step_order?: number | null; }; Update: { description?: string | null; id?: string; recipe_id?: string; step_order?: number | null; }; Relationships: [{ foreignKeyName: "steps_recipe_id_fkey"; columns: ["recipe_id"]; isOneToOne: false; referencedRelation: "recipes"; referencedColumns: ["id"]; }]; }; users: { Row: { email: string | null; id: string; is_admin: boolean | null; username: string | null; }; Insert: { email?: string | null; id: string; is_admin?: boolean | null; username?: string | null; }; Update: { email?: string | null; id?: string; is_admin?: boolean | null; username?: string | null; }; Relationships: []; }; }; Views: { [_ in never]: never; }; Functions: { [_ in never]: never; }; Enums: { [_ in never]: never; }; CompositeTypes: { [_ in never]: never; }; }>[]) {
+  throw new Error("Function not implemented.");
 }
