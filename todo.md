@@ -14,5 +14,6 @@
 # FOCUS
 
 * Form for adding recipes
-* add comments
+ - Adding images urls of cuisines to db
+ - adding the form for a new cuisine
 
